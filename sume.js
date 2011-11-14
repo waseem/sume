@@ -75,7 +75,7 @@ Sume.SearchResultsView = Backbone.View.extend({
   },
 
   renderItem: function(model) {
-    var view = new Sume.SearchResultView({model : model, router: this.options.router})
+    var view = new Sume.SearchResultView({model : model})
     $(this.el).append(view.el)
   }
 })
