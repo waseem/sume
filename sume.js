@@ -175,7 +175,6 @@ $(document).keydown(function(e){
       }
     }
     else {
-      console.log($('ul#search_autocomplete li').first())
       $('ul#search_autocomplete li').first().addClass('active')
     }
     return false;
