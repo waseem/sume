@@ -116,7 +116,7 @@ Sume.SearchRouter = Backbone.Router.extend({
 
   initialize: function() {
     new Sume.SearchView({router : this})
-    new Sume.SearchResultsView({router: this});
+    new Sume.SearchResultsView();
   },
 
   autocomplete: function(term) {
