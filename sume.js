@@ -19,7 +19,7 @@ Sume.SearchEngine = {
   search: function() {
     $('#search_autocomplete').hide();
     active = $('#search_autocomplete li.active')
-    if (!active.empty()) {
+    if (active.length > 0) {
       term = $.trim(active.text())
     }
     else {
