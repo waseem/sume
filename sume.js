@@ -23,6 +23,7 @@ Sume.SearchEngine = {
       $.get(this.locations[term], function(html) {
         $('#docs').html(html)
       })
+      Backbone.history.navigate("search/" + term, false)
     }
     else {
       $('#docs').html("<br><h4>Hmm... we couldn't find what you were looking for, sorry!</h4>")
@@ -136,8 +137,10 @@ Sume.SearchView = Backbone.View.extend({
   },
 
   autocomplete: function(e) {
-    if ($(this.el).val().length > 2) {
-      this.router.navigate('autocomplete/' + $(this.el).val(), true)
+    if (e.keyCode != 13) {
+      if ($(this.el).val().length > 2) {
+        this.router.navigate('autocomplete/' + $(this.el).val(), true)
+      }
     }
   }
 })
