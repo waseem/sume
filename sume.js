@@ -138,7 +138,7 @@ Sume.SearchView = Backbone.View.extend({
 
   autocomplete: function(e) {
     if (e.keyCode != 13) {
-      if ($(this.el).val().length > 2) {
+      if ($(this.el).val().length >= 2) {
         this.router.navigate('autocomplete/' + $(this.el).val(), true)
       }
     }
