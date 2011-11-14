@@ -18,7 +18,14 @@ Sume.SearchEngine = {
                "ActiveRecord::FinderMethods.find": "ActiveRecord/FinderMethods/find.html" },
   search: function() {
     $('#search_autocomplete').hide();
-    term = $.trim($('#search_autocomplete li.active').text())
+    active = $('#search_autocomplete li.active')
+    if (!active.empty()) {
+      term = $.trim(active.text())
+    }
+    else {
+      term = location.hash.split("/")[1]
+    }
+
     if (this.locations[term]) {
       $.get(this.locations[term], function(html) {
         $('#docs').html(html)
@@ -111,7 +118,8 @@ Sume.SearchResultView = Backbone.View.extend({
 Sume.SearchRouter = Backbone.Router.extend({
 
   routes: {
-    'autocomplete/:term' : 'autocomplete'
+    'autocomplete/:term' : 'autocomplete',
+    'search/:term': 'search'
   },
 
   initialize: function() {
@@ -121,6 +129,10 @@ Sume.SearchRouter = Backbone.Router.extend({
 
   autocomplete: function(term) {
     Sume.AutoCompleteController.search(term)
+  },
+
+  search: function(term) {
+    Sume.SearchEngine.search(term)
   }
 })
 
@@ -183,4 +195,5 @@ $(document).keydown(function(e){
 
 $(document).ready(function (e) {
   Sume.start();
+  Backbone.history.start();
 })
