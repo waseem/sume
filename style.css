@@ -1,7 +1,7 @@
 body {
   margin-top: 2%;
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
 #search {
@@ -47,10 +47,18 @@ body {
   line-height: 120%;
 }
 
+p, pre {
+  font-size: 16px;
+}
+
+p {
+  line-height: 1.4em;
+}
+
 tt {
-  font: 9pt Monaco "Courier New";
+  font: 12px Monaco "Courier New";
   background: #EFEFEF;
-  padding: 3px;
+  padding: 2px;
   -webkit-border-radius: 5px;
   border: 1px solid #DEDEDE;
 }
