@@ -93,7 +93,6 @@ Sume.SearchResultsView = Backbone.View.extend({
   },
 
   renderItem: function(model) {
-    // console.log("apppending model: " + model.attributes["term"])
     var view = new Sume.SearchResultView({model : model})
     $(this.el).append(view.el)
   }
