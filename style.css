@@ -61,7 +61,7 @@ p {
   line-height: 1.4em;
 }
 
-tt {
+p tt {
   font: 12px Monaco "Courier New";
   background: #EFEFEF;
   padding: 2px;
