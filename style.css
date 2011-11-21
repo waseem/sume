@@ -19,6 +19,12 @@ body {
 }
 
 @media all and (max-width: 600px) {
+
+  body {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
   #search {
     width: 100%;
   }
