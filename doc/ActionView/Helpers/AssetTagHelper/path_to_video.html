@@ -1,0 +1,21 @@
+<h1>ActionView::Helpers::AssetTagHelper#path_to_video</h1>
+
+
+<p>Computes the path to a video asset in the public videos directory. Full
+paths from the document root will be passed through. Used internally by
+<tt>video_tag</tt> to build the video path.</p>
+
+<h4>Examples</h4>
+
+<pre>video_path(&quot;hd&quot;)                                            # =&gt; /videos/hd
+video_path(&quot;hd.avi&quot;)                                        # =&gt; /videos/hd.avi
+video_path(&quot;trailers/hd.avi&quot;)                               # =&gt; /videos/trailers/hd.avi
+video_path(&quot;/trailers/hd.avi&quot;)                              # =&gt; /trailers/hd.avi
+video_path(&quot;http://www.example.com/vid/hd.avi&quot;)             # =&gt; http://www.example.com/vid/hd.avi</pre>
+
+<p>aliased to avoid conflicts with a video_path named route</p>
+
+
+
+
+

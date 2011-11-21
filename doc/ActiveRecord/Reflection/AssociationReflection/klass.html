@@ -1,0 +1,21 @@
+<h1>ActiveRecord::Reflection::AssociationReflection#klass</h1>
+
+
+<p>Returns the target association's class.</p>
+
+<pre>class Author &lt; ActiveRecord::Base
+  has_many :books
+end
+
+Author.reflect_on_association(:books).klass
+# =&gt; Book</pre>
+
+<p><b>Note:</b> Do not call <tt>klass.new</tt> or <tt>klass.create</tt> to
+instantiate a new association object. Use <tt>build_association</tt> or
+<tt>create_association</tt> instead. This allows plugins to hook into
+association object creation.</p>
+
+
+
+
+

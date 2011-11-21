@@ -1,0 +1,43 @@
+<h1>ActiveRecord::Base.create</h1>
+
+
+<p>Creates an object (or multiple objects) and saves it to the database, if
+validations pass. The resulting object is returned whether the object was
+saved successfully to the database or not.</p>
+
+<p>The <tt>attributes</tt> parameter can be either be a Hash or an Array of
+Hashes. These Hashes describe the attributes on the objects that are to be
+created.</p>
+
+<p><tt>create</tt> respects mass-assignment security and accepts either
+<tt>:as</tt> or <tt>:without_protection</tt> options in the
+<tt>options</tt> parameter.</p>
+
+<h4>Examples</h4>
+
+<pre># Create a single new object
+User.create(:first_name =&gt; 'Jamie')
+
+# Create a single new object using the :admin mass-assignment security role
+User.create({ :first_name =&gt; 'Jamie', :is_admin =&gt; true }, :as =&gt; :admin)
+
+# Create a single new object bypassing mass-assignment security
+User.create({ :first_name =&gt; 'Jamie', :is_admin =&gt; true }, :without_protection =&gt; true)
+
+# Create an Array of new objects
+User.create([{ :first_name =&gt; 'Jamie' }, { :first_name =&gt; 'Jeremy' }])
+
+# Create a single object and pass it into a block to set other attributes.
+User.create(:first_name =&gt; 'Jamie') do |u|
+  u.is_admin = false
+end
+
+# Creating an Array of new objects using a block, where the block is executed for each object:
+User.create([{ :first_name =&gt; 'Jamie' }, { :first_name =&gt; 'Jeremy' }]) do |u|
+  u.is_admin = false
+end</pre>
+
+
+
+
+

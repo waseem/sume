@@ -1,0 +1,32 @@
+<h1>ActionController::ConditionalGet#fresh_when</h1>
+
+
+<p>Sets the etag, last_modified, or both on the response and renders a <tt>304
+Not Modified</tt> response if the request is already fresh.</p>
+
+<p>Parameters:</p>
+<ul><li>
+<p><tt>:etag</tt></p>
+</li><li>
+<p><tt>:last_modified</tt></p>
+</li><li>
+<p><tt>:public</tt> By default the Cache-Control header is private, set this
+to true if you want your application to be cachable by other devices (proxy
+caches).</p>
+</li></ul>
+
+<p>Example:</p>
+
+<pre>def show
+  @article = Article.find(params[:id])
+  fresh_when(:etag =&gt; @article, :last_modified =&gt; @article.created_at, :public =&gt; true)
+end</pre>
+
+<p>This will render the show template if the request isn't sending a matching
+etag or If-Modified-Since header and just a <tt>304 Not Modified</tt>
+response if there's a match.</p>
+
+
+
+
+

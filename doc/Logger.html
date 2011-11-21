@@ -1,0 +1,13 @@
+Extensions to the built-in Ruby logger.
+
+If you want to use the default log formatter as defined in the Ruby core, then you
+will need to set the formatter for the logger as in:
+
+  logger.formatter = Formatter.new
+
+You can then specify the datetime format, for example:
+
+  logger.datetime_format = "%Y-%m-%d"
+
+Note: This logger is deprecated in favor of ActiveSupport::BufferedLogger
+

@@ -1,0 +1,17 @@
+<h1>ActiveRecord::Base#table_name_prefix</h1>
+
+
+<p>:singleton-method: Accessor for the name of the prefix string to prepend to
+every table name. So if set to "basecamp_", all table names will be named
+like "basecamp_projects", "basecamp_people", etc. This is a convenient way
+of creating a namespace for tables in a shared database. By default, the
+prefix is the empty string.</p>
+
+<p>If you are organising your models within modules you can add a prefix to
+the models within a namespace by defining a singleton method in the parent
+module called table_name_prefix which returns your chosen prefix.</p>
+
+
+
+
+

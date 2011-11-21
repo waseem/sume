@@ -1,0 +1,99 @@
+Makes it dead easy to do HTTP \Basic and \Digest authentication.
+
+=== Simple \Basic example
+
+  class PostsController < ApplicationController
+    http_basic_authenticate_with :name => "dhh", :password => "secret", :except => :index
+
+    def index
+      render :text => "Everyone can see me!"
+    end
+
+    def edit
+      render :text => "I'm only accessible if you know the password"
+    end
+ end
+
+=== Advanced \Basic example
+
+Here is a more advanced \Basic example where only Atom feeds and the XML API is protected by HTTP authentication,
+the regular HTML interface is protected by a session approach:
+
+  class ApplicationController < ActionController::Base
+    before_filter :set_account, :authenticate
+
+    protected
+      def set_account
+        @account = Account.find_by_url_name(request.subdomains.first)
+      end
+
+      def authenticate
+        case request.format
+        when Mime::XML, Mime::ATOM
+          if user = authenticate_with_http_basic { |u, p| @account.users.authenticate(u, p) }
+            @current_user = user
+          else
+            request_http_basic_authentication
+          end
+        else
+          if session_authenticated?
+            @current_user = @account.users.find(session[:authenticated][:user_id])
+          else
+            redirect_to(login_url) and return false
+          end
+        end
+      end
+  end
+
+In your integration tests, you can do something like this:
+
+  def test_access_granted_from_xml
+    get(
+      "/notes/1.xml", nil,
+      'HTTP_AUTHORIZATION' => ActionController::HttpAuthentication::Basic.encode_credentials(users(:dhh).name, users(:dhh).password)
+    )
+
+    assert_equal 200, status
+  end
+
+=== Simple \Digest example
+
+  require 'digest/md5'
+  class PostsController < ApplicationController
+    REALM = "SuperSecret"
+    USERS = {"dhh" => "secret", #plain text password
+             "dap" => Digest::MD5.hexdigest(["dap",REALM,"secret"].join(":"))  #ha1 digest password
+
+    before_filter :authenticate, :except => [:index]
+
+    def index
+      render :text => "Everyone can see me!"
+    end
+
+    def edit
+      render :text => "I'm only accessible if you know the password"
+    end
+
+    private
+      def authenticate
+        authenticate_or_request_with_http_digest(REALM) do |username|
+          USERS[username]
+        end
+      end
+  end
+
+=== Notes
+
+The +authenticate_or_request_with_http_digest+ block must return the user's password
+or the ha1 digest hash so the framework can appropriately hash to check the user's
+credentials. Returning +nil+ will cause authentication to fail.
+
+Storing the ha1 hash: MD5(username:realm:password), is better than storing a plain password. If
+the password file or database is compromised, the attacker would be able to use the ha1 hash to
+authenticate as the user at this +realm+, but would not have the user's password to try using at
+other sites.
+
+In rare instances, web servers or front proxies strip authorization headers before
+they reach your application. You can debug this situation by logging all environment
+variables, and check for HTTP_AUTHORIZATION, amongst others.
+

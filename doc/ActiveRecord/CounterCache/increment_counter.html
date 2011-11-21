@@ -1,0 +1,26 @@
+<h1>ActiveRecord::CounterCache#increment_counter</h1>
+
+
+<p>Increment a number field by one, usually representing a count.</p>
+
+<p>This is used for caching aggregate values, so that they don't need to be
+computed every time. For example, a DiscussionBoard may cache post_count
+and comment_count otherwise every time the board is shown it would have to
+run an SQL query to find how many posts and comments there are.</p>
+
+<h4>Parameters</h4>
+<ul><li>
+<p><tt>counter_name</tt> - The name of the field that should be incremented.</p>
+</li><li>
+<p><tt>id</tt> - The id of the object that should be incremented.</p>
+</li></ul>
+
+<h4>Examples</h4>
+
+<pre># Increment the post_count column for the record with an id of 5
+DiscussionBoard.increment_counter(:post_count, 5)</pre>
+
+
+
+
+

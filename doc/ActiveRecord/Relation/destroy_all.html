@@ -1,0 +1,34 @@
+<h1>ActiveRecord::Relation#destroy_all</h1>
+
+
+<p>Destroys the records matching <tt>conditions</tt> by instantiating each
+record and calling its <tt>destroy</tt> method. Each object's callbacks are
+executed (including <tt>:dependent</tt> association options and
+<tt>before_destroy</tt>/<tt>after_destroy</tt> Observer methods). Returns
+the collection of objects that were destroyed; each will be frozen, to
+reflect that no changes should be made (since they can't be persisted).</p>
+
+<p>Note: Instantiation, callback execution, and deletion of each record can be
+time consuming when you're removing many records at once. It generates at
+least one SQL <tt>DELETE</tt> query per record (or possibly more, to
+enforce your callbacks). If you want to delete many rows quickly, without
+concern for their associations or callbacks, use <tt>delete_all</tt>
+instead.</p>
+
+<h4>Parameters</h4>
+<ul><li>
+<p><tt>conditions</tt> - A string, array, or hash that specifies which records
+to destroy. If omitted, all records are destroyed. See the Conditions
+section in the introduction to ActiveRecord::Base for more information.</p>
+</li></ul>
+
+<h4>Examples</h4>
+
+<pre>Person.destroy_all(&quot;last_login &lt; '2004-04-04'&quot;)
+Person.destroy_all(:status =&gt; &quot;inactive&quot;)
+Person.where(:age =&gt; 0..18).destroy_all</pre>
+
+
+
+
+

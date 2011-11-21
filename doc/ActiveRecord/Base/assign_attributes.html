@@ -1,0 +1,35 @@
+<h1>ActiveRecord::Base#assign_attributes</h1>
+
+
+<p>Allows you to set all the attributes for a particular mass-assignment
+security role by passing in a hash of attributes with keys matching the
+attribute names (which again matches the column names) and the role name
+using the :as option.</p>
+
+<p>To bypass mass-assignment security you can use the :without_protection
+=&gt; true option.</p>
+
+<pre>class User &lt; ActiveRecord::Base
+  attr_accessible :name
+  attr_accessible :name, :is_admin, :as =&gt; :admin
+end
+
+user = User.new
+user.assign_attributes({ :name =&gt; 'Josh', :is_admin =&gt; true })
+user.name       # =&gt; &quot;Josh&quot;
+user.is_admin?  # =&gt; false
+
+user = User.new
+user.assign_attributes({ :name =&gt; 'Josh', :is_admin =&gt; true }, :as =&gt; :admin)
+user.name       # =&gt; &quot;Josh&quot;
+user.is_admin?  # =&gt; true
+
+user = User.new
+user.assign_attributes({ :name =&gt; 'Josh', :is_admin =&gt; true }, :without_protection =&gt; true)
+user.name       # =&gt; &quot;Josh&quot;
+user.is_admin?  # =&gt; true</pre>
+
+
+
+
+

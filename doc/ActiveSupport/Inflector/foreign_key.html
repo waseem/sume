@@ -1,0 +1,17 @@
+<h1>ActiveSupport::Inflector#foreign_key</h1>
+
+
+<p>Creates a foreign key name from a class name.
+<tt>separate_class_name_and_id_with_underscore</tt> sets whether the method
+should put '_' between the name and 'id'.</p>
+
+<p>Examples:</p>
+
+<pre>&quot;Message&quot;.foreign_key        # =&gt; &quot;message_id&quot;
+&quot;Message&quot;.foreign_key(false) # =&gt; &quot;messageid&quot;
+&quot;Admin::Post&quot;.foreign_key    # =&gt; &quot;post_id&quot;</pre>
+
+
+
+
+

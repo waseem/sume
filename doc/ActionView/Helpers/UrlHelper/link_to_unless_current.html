@@ -1,0 +1,48 @@
+<h1>ActionView::Helpers::UrlHelper#link_to_unless_current</h1>
+
+
+<p>Creates a link tag of the given <tt>name</tt> using a URL created by the
+set of <tt>options</tt> unless the current request URI is the same as the
+links, in which case only the name is returned (or the given block is
+yielded, if one exists).  You can give <tt>link_to_unless_current</tt> a
+block which will specialize the default behavior (e.g., show a "Start Here"
+link rather than the link's text).</p>
+
+<h4>Examples</h4>
+
+<p>Let's say you have a navigation menu...</p>
+
+<pre>&lt;ul id=&quot;navbar&quot;&gt;
+  &lt;li&gt;&lt;%= link_to_unless_current(&quot;Home&quot;, { :action =&gt; &quot;index&quot; }) %&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;%= link_to_unless_current(&quot;About Us&quot;, { :action =&gt; &quot;about&quot; }) %&gt;&lt;/li&gt;
+&lt;/ul&gt;</pre>
+
+<p>If in the "about" action, it will render...</p>
+
+<pre>&lt;ul id=&quot;navbar&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;/controller/index&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;About Us&lt;/li&gt;
+&lt;/ul&gt;</pre>
+
+<p>...but if in the "index" action, it will render:</p>
+
+<pre>&lt;ul id=&quot;navbar&quot;&gt;
+  &lt;li&gt;Home&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/controller/about&quot;&gt;About Us&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</pre>
+
+<p>The implicit block given to <tt>link_to_unless_current</tt> is evaluated if
+the current action is the action given.  So, if we had a comments page and
+wanted to render a "Go Back" link instead of a link to the comments page,
+we could do something like this...</p>
+
+<pre>&lt;%=
+    link_to_unless_current(&quot;Comment&quot;, { :controller =&gt; &quot;comments&quot;, :action =&gt; &quot;new&quot; }) do
+       link_to(&quot;Go back&quot;, { :controller =&gt; &quot;posts&quot;, :action =&gt; &quot;index&quot; })
+    end
+ %&gt;</pre>
+
+
+
+
+

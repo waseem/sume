@@ -1,0 +1,54 @@
+Polymorphic URL helpers are methods for smart resolution to a named route call when
+given an Active Record model instance. They are to be used in combination with
+ActionController::Resources.
+
+These methods are useful when you want to generate correct URL or path to a RESTful
+resource without having to know the exact type of the record in question.
+
+Nested resources and/or namespaces are also supported, as illustrated in the example:
+
+  polymorphic_url([:admin, @article, @comment])
+
+results in:
+
+  admin_article_comment_url(@article, @comment)
+
+== Usage within the framework
+
+Polymorphic URL helpers are used in a number of places throughout the \Rails framework:
+
+* <tt>url_for</tt>, so you can use it with a record as the argument, e.g.
+  <tt>url_for(@article)</tt>;
+* ActionView::Helpers::FormHelper uses <tt>polymorphic_path</tt>, so you can write
+  <tt>form_for(@article)</tt> without having to specify <tt>:url</tt> parameter for the form
+  action;
+* <tt>redirect_to</tt> (which, in fact, uses <tt>url_for</tt>) so you can write
+  <tt>redirect_to(post)</tt> in your controllers;
+* ActionView::Helpers::AtomFeedHelper, so you don't have to explicitly specify URLs
+  for feed entries.
+
+== Prefixed polymorphic helpers
+
+In addition to <tt>polymorphic_url</tt> and <tt>polymorphic_path</tt> methods, a
+number of prefixed helpers are available as a shorthand to <tt>:action => "..."</tt>
+in options. Those are:
+
+* <tt>edit_polymorphic_url</tt>, <tt>edit_polymorphic_path</tt>
+* <tt>new_polymorphic_url</tt>, <tt>new_polymorphic_path</tt>
+
+Example usage:
+
+  edit_polymorphic_path(@post)              # => "/posts/1/edit"
+  polymorphic_path(@post, :format => :pdf)  # => "/posts/1.pdf"
+
+== Using with mounted engines
+
+If you use mounted engine, there is a possibility that you will need to use
+polymorphic_url pointing at engine's routes. To do that, just pass proxy used
+to reach engine's routes as a first argument:
+
+For example:
+
+polymorphic_url([blog, @post])  # it will call blog.post_path(@post)
+form_for([blog, @post])         # => "/blog/posts/1
+

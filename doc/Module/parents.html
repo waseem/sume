@@ -1,0 +1,20 @@
+<h1>Module#parents</h1>
+
+
+<p>Returns all the parents of this module according to its name, ordered from
+nested outwards. The receiver is not contained within the result.</p>
+
+<pre>module M
+  module N
+  end
+end
+X = M::N
+
+M.parents    # =&gt; [Object]
+M::N.parents # =&gt; [M, Object]
+X.parents    # =&gt; [M, Object]</pre>
+
+
+
+
+

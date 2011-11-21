@@ -1,0 +1,21 @@
+<h1>ActiveRecord::Associations::ThroughAssociation#construct_join_attributes</h1>
+
+
+<p>Construct attributes for :through pointing to owner and associate. This is
+used by the methods which create and delete records on the association.</p>
+
+<p>We only support indirectly modifying through associations which has a
+belongs_to source. This is the "has_many :tags, :through =&gt; :taggings"
+situation, where the join model typically has a belongs_to on both side. In
+other words, associations which could also be represented as
+has_and_belongs_to_many associations.</p>
+
+<p>We do not support creating/deleting records on the association where the
+source has some other type, because this opens up a whole can of worms, and
+in basically any situation it is more natural for the user to just create
+or modify their join records directly as required.</p>
+
+
+
+
+

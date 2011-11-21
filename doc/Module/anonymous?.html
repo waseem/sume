@@ -1,0 +1,22 @@
+<h1>Module#anonymous?</h1>
+
+
+<p>A module may or may not have a name.</p>
+
+<pre>module M; end
+M.name # =&gt; &quot;M&quot;
+
+m = Module.new
+m.name # =&gt; &quot;&quot;</pre>
+
+<p>A module gets a name when it is first assigned to a constant. Either via
+the <tt>module</tt> or <tt>class</tt> keyword or by an explicit assignment:</p>
+
+<pre>m = Module.new # creates an anonymous module
+M = m          # =&gt; m gets a name here as a side-effect
+m.name         # =&gt; &quot;M&quot;</pre>
+
+
+
+
+

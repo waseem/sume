@@ -1,0 +1,16 @@
+<h1>ActiveSupport::Dependencies#new_constants_in</h1>
+
+
+<p>Run the provided block and detect the new constants that were loaded during
+its execution. Constants may only be regarded as 'new' once -- so if the
+block calls <tt>new_constants_in</tt> again, then the constants defined
+within the inner call will not be reported in this one.</p>
+
+<p>If the provided block does not run to completion, and instead raises an
+exception, any new constants are regarded as being only partially defined
+and will be removed immediately.</p>
+
+
+
+
+

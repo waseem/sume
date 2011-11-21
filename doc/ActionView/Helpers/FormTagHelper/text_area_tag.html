@@ -1,0 +1,48 @@
+<h1>ActionView::Helpers::FormTagHelper#text_area_tag</h1>
+
+
+<p>Creates a text input area; use a textarea for longer text inputs such as
+blog posts or descriptions.</p>
+
+<h4>Options</h4>
+<ul><li>
+<p><tt>:size</tt> - A string specifying the dimensions (columns by rows) of
+the textarea (e.g., "25x10").</p>
+</li><li>
+<p><tt>:rows</tt> - Specify the number of rows in the textarea</p>
+</li><li>
+<p><tt>:cols</tt> - Specify the number of columns in the textarea</p>
+</li><li>
+<p><tt>:disabled</tt> - If set to true, the user will not be able to use this
+input.</p>
+</li><li>
+<p><tt>:escape</tt> - By default, the contents of the text input are HTML
+escaped. If you need unescaped contents, set this to false.</p>
+</li><li>
+<p>Any other key creates standard HTML attributes for the tag.</p>
+</li></ul>
+
+<h4>Examples</h4>
+
+<pre>text_area_tag 'post'
+# =&gt; &lt;textarea id=&quot;post&quot; name=&quot;post&quot;&gt;&lt;/textarea&gt;
+
+text_area_tag 'bio', @user.bio
+# =&gt; &lt;textarea id=&quot;bio&quot; name=&quot;bio&quot;&gt;This is my biography.&lt;/textarea&gt;
+
+text_area_tag 'body', nil, :rows =&gt; 10, :cols =&gt; 25
+# =&gt; &lt;textarea cols=&quot;25&quot; id=&quot;body&quot; name=&quot;body&quot; rows=&quot;10&quot;&gt;&lt;/textarea&gt;
+
+text_area_tag 'body', nil, :size =&gt; &quot;25x10&quot;
+# =&gt; &lt;textarea name=&quot;body&quot; id=&quot;body&quot; cols=&quot;25&quot; rows=&quot;10&quot;&gt;&lt;/textarea&gt;
+
+text_area_tag 'description', &quot;Description goes here.&quot;, :disabled =&gt; true
+# =&gt; &lt;textarea disabled=&quot;disabled&quot; id=&quot;description&quot; name=&quot;description&quot;&gt;Description goes here.&lt;/textarea&gt;
+
+text_area_tag 'comment', nil, :class =&gt; 'comment_input'
+# =&gt; &lt;textarea class=&quot;comment_input&quot; id=&quot;comment&quot; name=&quot;comment&quot;&gt;&lt;/textarea&gt;</pre>
+
+
+
+
+

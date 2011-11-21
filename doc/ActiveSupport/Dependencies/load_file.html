@@ -1,0 +1,16 @@
+<h1>ActiveSupport::Dependencies#load_file</h1>
+
+
+<p>Load the file at the provided path. <tt>const_paths</tt> is a set of
+qualified constant names. When loading the file, Dependencies will watch
+for the addition of these constants. Each that is defined will be marked as
+autoloaded, and will be removed when Dependencies.clear is next called.</p>
+
+<p>If the second parameter is left off, then Dependencies will construct a set
+of names that the file at <tt>path</tt> may define. See
+<tt>loadable_constants_for_path</tt> for more details.</p>
+
+
+
+
+

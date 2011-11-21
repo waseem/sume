@@ -1,0 +1,16 @@
+<h1>ActiveRecord::ConnectionAdapters::Table#remove_references</h1>
+
+
+<p>Removes a reference. Optionally removes a <tt>type</tt> column.
+<tt>remove_references</tt> and <tt>remove_belongs_to</tt> are acceptable.</p>
+
+<h5>Examples</h5>
+
+<pre>t.remove_references(:goat)
+t.remove_references(:goat, :polymorphic =&gt; true)
+t.remove_belongs_to(:goat)</pre>
+
+
+
+
+

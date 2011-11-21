@@ -1,0 +1,32 @@
+<h1>ActiveRecord::Relation#delete_all</h1>
+
+
+<p>Deletes the records matching <tt>conditions</tt> without instantiating the
+records first, and hence not calling the <tt>destroy</tt> method nor
+invoking callbacks. This is a single SQL DELETE statement that goes
+straight to the database, much more efficient than <tt>destroy_all</tt>. Be
+careful with relations though, in particular <tt>:dependent</tt> rules
+defined on associations are not honored.  Returns the number of rows
+affected.</p>
+
+<h4>Parameters</h4>
+<ul><li>
+<p><tt>conditions</tt> - Conditions are specified the same way as with
+<tt>find</tt> method.</p>
+</li></ul>
+
+<h4>Example</h4>
+
+<pre>Post.delete_all(&quot;person_id = 5 AND (category = 'Something' OR category = 'Else')&quot;)
+Post.delete_all([&quot;person_id = ? AND (category = ? OR category = ?)&quot;, 5, 'Something', 'Else'])
+Post.where(:person_id =&gt; 5).where(:category =&gt; ['Something', 'Else']).delete_all</pre>
+
+<p>Both calls delete the affected posts all at once with a single DELETE
+statement. If you need to destroy dependent associations or call your
+<tt>before_*</tt> or <tt>after_destroy</tt> callbacks, use the
+<tt>destroy_all</tt> method instead.</p>
+
+
+
+
+

@@ -1,0 +1,29 @@
+<h1>ActionController::RequestForgeryProtection::ClassMethods#protect_from_forgery</h1>
+
+
+<p>Turn on request forgery protection. Bear in mind that only non-GET,
+HTML/JavaScript requests are checked.</p>
+
+<p>Example:</p>
+
+<pre>class FooController &lt; ApplicationController
+  protect_from_forgery :except =&gt; :index</pre>
+
+<p>You can disable csrf protection on controller-by-controller basis:</p>
+
+<pre>skip_before_filter :verify_authenticity_token</pre>
+
+<p>It can also be disabled for specific controller actions:</p>
+
+<pre>skip_before_filter :verify_authenticity_token, :except =&gt; [:create]</pre>
+
+<p>Valid Options:</p>
+<ul><li>
+<p><tt>:only/:except</tt> - Passed to the <tt>before_filter</tt> call. Set
+which actions are verified.</p>
+</li></ul>
+
+
+
+
+

@@ -1,0 +1,40 @@
+<h1>ActionController::ParamsWrapper::ClassMethods#wrap_parameters</h1>
+
+
+<p>Sets the name of the wrapper key, or the model which <tt>ParamsWrapper</tt>
+would use to determine the attribute names from.</p>
+
+<h4>Examples</h4>
+
+<pre>wrap_parameters :format =&gt; :xml
+  # enables the parameter wrapper for XML format
+
+wrap_parameters :person
+  # wraps parameters into <tt>params[:person]</tt> hash
+
+wrap_parameters Person
+  # wraps parameters by determining the wrapper key from Person class
+  (+person+, in this case) and the list of attribute names
+
+wrap_parameters :include =&gt; [:username, :title]
+  # wraps only <tt>:username</tt> and <tt>:title</tt> attributes from parameters.
+
+wrap_parameters false
+  # disables parameters wrapping for this controller altogether.</pre>
+
+<h4>Options</h4>
+<ul><li>
+<p><tt>:format</tt> - The list of formats in which the parameters wrapper will
+be enabled.</p>
+</li><li>
+<p><tt>:include</tt> - The list of attribute names which parameters wrapper
+will wrap into a nested hash.</p>
+</li><li>
+<p><tt>:exclude</tt> - The list of attribute names which parameters wrapper
+will exclude from a nested hash.</p>
+</li></ul>
+
+
+
+
+

@@ -1,0 +1,21 @@
+<h1>ActionView::Helpers::AssetTagHelper#path_to_audio</h1>
+
+
+<p>Computes the path to an audio asset in the public audios directory. Full
+paths from the document root will be passed through. Used internally by
+<tt>audio_tag</tt> to build the audio path.</p>
+
+<h4>Examples</h4>
+
+<pre>audio_path(&quot;horse&quot;)                                            # =&gt; /audios/horse
+audio_path(&quot;horse.wav&quot;)                                        # =&gt; /audios/horse.wav
+audio_path(&quot;sounds/horse.wav&quot;)                                 # =&gt; /audios/sounds/horse.wav
+audio_path(&quot;/sounds/horse.wav&quot;)                                # =&gt; /sounds/horse.wav
+audio_path(&quot;http://www.example.com/sounds/horse.wav&quot;)          # =&gt; http://www.example.com/sounds/horse.wav</pre>
+
+<p>aliased to avoid conflicts with an audio_path named route</p>
+
+
+
+
+

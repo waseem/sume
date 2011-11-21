@@ -1,0 +1,43 @@
+<h1>ActionController::Renderers.add</h1>
+
+
+<p>Adds a new renderer to call within controller actions. A renderer is
+invoked by passing its name as an option to
+<tt>AbstractController::Rendering#render</tt>. To create a renderer pass it
+a name and a block. The block takes two arguments, the first is the value
+paired with its key and the second is the remaining hash of options passed
+to <tt>render</tt>.</p>
+
+<h3>Example</h3>
+
+<p>Create a csv renderer:</p>
+
+<pre>ActionController::Renderers.add :csv do |obj, options|
+  filename = options[:filename] || 'data'
+  str = obj.respond_to?(:to_csv) ? obj.to_csv : obj.to_s
+  send_data str, :type =&gt; Mime::CSV,
+    :disposition =&gt; &quot;attachment; filename=#{filename}.csv&quot;
+end</pre>
+
+<p>Note that we used Mime::CSV for the csv mime type as it comes with Rails.
+For a custom renderer, you'll need to register a mime type with
+<tt>Mime::Type.register</tt>.</p>
+
+<p>To use the csv renderer in a controller action:</p>
+
+<pre>def show
+  @csvable = Csvable.find(params[:id])
+  respond_to do |format|
+    format.html
+    format.csv { render :csv =&gt; @csvable, :filename =&gt; @csvable.name }
+  }
+end</pre>
+
+<p>To use renderers and their mime types in more concise ways, see
+<tt>ActionController::MimeResponds::ClassMethods.respond_to</tt> and
+<tt>ActionController::MimeResponds#respond_with</tt></p>
+
+
+
+
+

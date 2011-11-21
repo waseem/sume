@@ -1,0 +1,23 @@
+<h1>ActiveSupport::Configurable#config</h1>
+
+
+<p>Reads and writes attributes from a configuration <tt>OrderedHash</tt>.</p>
+
+<pre>require 'active_support/configurable'
+
+class User
+  include ActiveSupport::Configurable
+end
+
+user = User.new
+
+user.config.allowed_access = true
+user.config.level = 1
+
+user.config.allowed_access # =&gt; true
+user.config.level          # =&gt; 1</pre>
+
+
+
+
+

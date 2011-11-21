@@ -1,0 +1,17 @@
+<h1>ActionView::Template#refresh</h1>
+
+
+<p>Receives a view object and return a template similar to self by using
+@virtual_path.</p>
+
+<p>This method is useful if you have a template object but it does not contain
+its source anymore since it was already compiled. In such cases, all you
+need to do is to call refresh passing in the view object.</p>
+
+<p>Notice this method raises an error if the template to be refreshed does not
+have a virtual path set (true just for inline templates).</p>
+
+
+
+
+

@@ -1,0 +1,51 @@
+<h1>ActionView::Helpers::DateHelper#select_month</h1>
+
+
+<p>Returns a select tag with options for each of the months January through
+December with the current month selected. The month names are presented as
+keys (what's shown to the user) and the month numbers (1-12) are used as
+values (what's submitted to the server). It's also possible to use month
+numbers for the presentation instead of names -- set the
+<tt>:use_month_numbers</tt> key in <tt>options</tt> to true for this to
+happen. If you want both numbers and names, set the
+<tt>:add_month_numbers</tt> key in <tt>options</tt> to true. If you would
+prefer to show month names as abbreviations, set the
+<tt>:use_short_month</tt> key in <tt>options</tt> to true. If you want to
+use your own month names, set the <tt>:use_month_names</tt> key in
+<tt>options</tt> to an array of 12 month names. Override the field name
+using the <tt>:field_name</tt> option, 'month' by default.</p>
+
+<h4>Examples</h4>
+
+<pre># Generates a select field for months that defaults to the current month that
+# will use keys like &quot;January&quot;, &quot;March&quot;.
+select_month(Date.today)
+
+# Generates a select field for months that defaults to the current month that
+# is named &quot;start&quot; rather than &quot;month&quot;.
+select_month(Date.today, :field_name =&gt; 'start')
+
+# Generates a select field for months that defaults to the current month that
+# will use keys like &quot;1&quot;, &quot;3&quot;.
+select_month(Date.today, :use_month_numbers =&gt; true)
+
+# Generates a select field for months that defaults to the current month that
+# will use keys like &quot;1 - January&quot;, &quot;3 - March&quot;.
+select_month(Date.today, :add_month_numbers =&gt; true)
+
+# Generates a select field for months that defaults to the current month that
+# will use keys like &quot;Jan&quot;, &quot;Mar&quot;.
+select_month(Date.today, :use_short_month =&gt; true)
+
+# Generates a select field for months that defaults to the current month that
+# will use keys like &quot;Januar&quot;, &quot;Marts.&quot;
+select_month(Date.today, :use_month_names =&gt; %w(Januar Februar Marts ...))
+
+# Generates a select field for months with a custom prompt. Use &lt;tt&gt;:prompt =&gt; true&lt;/tt&gt; for a
+# generic prompt.
+select_month(14, :prompt =&gt; 'Choose month')</pre>
+
+
+
+
+

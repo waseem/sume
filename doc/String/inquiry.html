@@ -1,0 +1,14 @@
+<h1>String#inquiry</h1>
+
+
+<p>Wraps the current string in the <tt>ActiveSupport::StringInquirer</tt>
+class, which gives you a prettier way to test for equality. Example:</p>
+
+<pre>env = &quot;production&quot;.inquiry
+env.production?  # =&gt; true
+env.development? # =&gt; false</pre>
+
+
+
+
+

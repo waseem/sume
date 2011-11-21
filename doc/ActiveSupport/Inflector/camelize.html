@@ -1,0 +1,26 @@
+<h1>ActiveSupport::Inflector#camelize</h1>
+
+
+<p>By default, <tt>camelize</tt> converts strings to UpperCamelCase. If the
+argument to <tt>camelize</tt> is set to <tt>:lower</tt> then
+<tt>camelize</tt> produces lowerCamelCase.</p>
+
+<p><tt>camelize</tt> will also convert '/' to '::' which is useful for
+converting paths to namespaces.</p>
+
+<p>Examples:</p>
+
+<pre>&quot;active_record&quot;.camelize                # =&gt; &quot;ActiveRecord&quot;
+&quot;active_record&quot;.camelize(:lower)        # =&gt; &quot;activeRecord&quot;
+&quot;active_record/errors&quot;.camelize         # =&gt; &quot;ActiveRecord::Errors&quot;
+&quot;active_record/errors&quot;.camelize(:lower) # =&gt; &quot;activeRecord::Errors&quot;</pre>
+
+<p>As a rule of thumb you can think of <tt>camelize</tt> as the inverse of
+<tt>underscore</tt>, though there are cases where that does not hold:</p>
+
+<pre>&quot;SSLError&quot;.underscore.camelize # =&gt; &quot;SslError&quot;</pre>
+
+
+
+
+

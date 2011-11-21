@@ -1,0 +1,22 @@
+<h1>ActiveRecord::Base.sequence_name=</h1>
+
+
+<p>Sets the name of the sequence to use when generating ids to the given
+value, or (if the value is nil or false) to the value returned by the given
+block. This is required for Oracle and is useful for any database which
+relies on sequences for primary key generation.</p>
+
+<p>If a sequence name is not explicitly set when using Oracle or Firebird, it
+will default to the commonly used pattern of: #{table_name}_seq</p>
+
+<p>If a sequence name is not explicitly set when using PostgreSQL, it will
+discover the sequence corresponding to your primary key for you.</p>
+
+<pre>class Project &lt; ActiveRecord::Base
+  set_sequence_name &quot;projectseq&quot;   # default would have been &quot;project_seq&quot;
+end</pre>
+
+
+
+
+

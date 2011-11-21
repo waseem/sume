@@ -1,0 +1,30 @@
+<h1>ActionView::Helpers::DebugHelper#debug</h1>
+
+
+<p>Returns a YAML representation of <tt>object</tt> wrapped with &lt;pre&gt;
+and &lt;/pre&gt;. If the object cannot be converted to YAML using
+<tt>to_yaml</tt>, <tt>inspect</tt> will be called instead. Useful for
+inspecting an object at the time of rendering.</p>
+
+<h4>Example</h4>
+
+<pre>@user = User.new({ :username =&gt; 'testing', :password =&gt; 'xyz', :age =&gt; 42}) %&gt;
+debug(@user)
+# =&gt;
+&lt;pre class='debug_dump'&gt;--- !ruby/object:User
+attributes:
+&amp;nbsp; updated_at:
+&amp;nbsp; username: testing
+
+&amp;nbsp; age: 42
+&amp;nbsp; password: xyz
+&amp;nbsp; created_at:
+attributes_cache: {}
+
+new_record: true
+&lt;/pre&gt;</pre>
+
+
+
+
+

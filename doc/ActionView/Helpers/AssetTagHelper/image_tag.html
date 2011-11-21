@@ -1,0 +1,48 @@
+<h1>ActionView::Helpers::AssetTagHelper#image_tag</h1>
+
+
+<p>Returns an html image tag for the <tt>source</tt>. The <tt>source</tt> can
+be a full path or a file that exists in your public images directory.</p>
+
+<h4>Options</h4>
+
+<p>You can add HTML attributes using the <tt>options</tt>. The
+<tt>options</tt> supports three additional keys for convenience and
+conformance:</p>
+<ul><li>
+<p><tt>:alt</tt>  - If no alt text is given, the file name part of the
+<tt>source</tt> is used (capitalized and without the extension)</p>
+</li><li>
+<p><tt>:size</tt> - Supplied as "{Width}x{Height}", so "30x45" becomes
+width="30" and height="45". <tt>:size</tt> will be ignored if the value is
+not in the correct format.</p>
+</li><li>
+<p><tt>:mouseover</tt> - Set an alternate image to be used when the
+onmouseover event is fired, and sets the original image to be replaced
+onmouseout. This can be used to implement an easy image toggle that fires
+on onmouseover.</p>
+</li></ul>
+
+<h4>Examples</h4>
+
+<pre>image_tag(&quot;icon&quot;)  # =&gt;
+  &lt;img src=&quot;/images/icon&quot; alt=&quot;Icon&quot; /&gt;
+image_tag(&quot;icon.png&quot;)  # =&gt;
+  &lt;img src=&quot;/images/icon.png&quot; alt=&quot;Icon&quot; /&gt;
+image_tag(&quot;icon.png&quot;, :size =&gt; &quot;16x10&quot;, :alt =&gt; &quot;Edit Entry&quot;)  # =&gt;
+  &lt;img src=&quot;/images/icon.png&quot; width=&quot;16&quot; height=&quot;10&quot; alt=&quot;Edit Entry&quot; /&gt;
+image_tag(&quot;/icons/icon.gif&quot;, :size =&gt; &quot;16x16&quot;)  # =&gt;
+  &lt;img src=&quot;/icons/icon.gif&quot; width=&quot;16&quot; height=&quot;16&quot; alt=&quot;Icon&quot; /&gt;
+image_tag(&quot;/icons/icon.gif&quot;, :height =&gt; '32', :width =&gt; '32') # =&gt;
+  &lt;img alt=&quot;Icon&quot; height=&quot;32&quot; src=&quot;/icons/icon.gif&quot; width=&quot;32&quot; /&gt;
+image_tag(&quot;/icons/icon.gif&quot;, :class =&gt; &quot;menu_icon&quot;) # =&gt;
+  &lt;img alt=&quot;Icon&quot; class=&quot;menu_icon&quot; src=&quot;/icons/icon.gif&quot; /&gt;
+image_tag(&quot;mouse.png&quot;, :mouseover =&gt; &quot;/images/mouse_over.png&quot;) # =&gt;
+  &lt;img src=&quot;/images/mouse.png&quot; onmouseover=&quot;this.src='/images/mouse_over.png'&quot; onmouseout=&quot;this.src='/images/mouse.png'&quot; alt=&quot;Mouse&quot; /&gt;
+image_tag(&quot;mouse.png&quot;, :mouseover =&gt; image_path(&quot;mouse_over.png&quot;)) # =&gt;
+  &lt;img src=&quot;/images/mouse.png&quot; onmouseover=&quot;this.src='/images/mouse_over.png'&quot; onmouseout=&quot;this.src='/images/mouse.png'&quot; alt=&quot;Mouse&quot; /&gt;</pre>
+
+
+
+
+

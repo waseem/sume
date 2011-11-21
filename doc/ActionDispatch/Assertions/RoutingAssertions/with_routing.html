@@ -1,0 +1,23 @@
+<h1>ActionDispatch::Assertions::RoutingAssertions#with_routing</h1>
+
+
+<p>A helper to make it easier to test different route configurations. This
+method temporarily replaces @routes with a new RouteSet instance.</p>
+
+<p>The new instance is yielded to the passed block. Typically the block will
+create some routes using <tt>map.draw { map.connect ... }</tt>:</p>
+
+<pre>with_routing do |set|
+  set.draw do |map|
+    map.connect ':controller/:action/:id'
+      assert_equal(
+        ['/content/10/show', {}],
+        map.generate(:controller =&gt; 'content', :id =&gt; 10, :action =&gt; 'show')
+    end
+  end
+end</pre>
+
+
+
+
+

@@ -1,0 +1,19 @@
+<h1>ActionDispatch::Routing::Mapper::Resources#member</h1>
+
+
+<p>To add a member route, add a member block into the resource block:</p>
+
+<pre>resources :photos do
+  member do
+    get 'preview'
+  end
+end</pre>
+
+<p>This will recognize <tt>/photos/1/preview</tt> with GET, and route to the
+preview action of <tt>PhotosController</tt>. It will also create the
+<tt>preview_photo_url</tt> and <tt>preview_photo_path</tt> helpers.</p>
+
+
+
+
+

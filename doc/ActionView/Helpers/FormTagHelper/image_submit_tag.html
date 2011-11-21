@@ -1,0 +1,37 @@
+<h1>ActionView::Helpers::FormTagHelper#image_submit_tag</h1>
+
+
+<p>Displays an image which when clicked will submit the form.</p>
+
+<p><tt>source</tt> is passed to AssetTagHelper#path_to_image</p>
+
+<h4>Options</h4>
+<ul><li>
+<p><tt>:confirm =&gt; 'question?'</tt> - This will add a JavaScript confirm
+prompt with the question specified. If the user accepts, the form is
+processed normally, otherwise no action is taken.</p>
+</li><li>
+<p><tt>:disabled</tt> - If set to true, the user will not be able to use this
+input.</p>
+</li><li>
+<p>Any other key creates standard HTML options for the tag.</p>
+</li></ul>
+
+<h4>Examples</h4>
+
+<pre>image_submit_tag(&quot;login.png&quot;)
+# =&gt; &lt;input src=&quot;/images/login.png&quot; type=&quot;image&quot; /&gt;
+
+image_submit_tag(&quot;purchase.png&quot;, :disabled =&gt; true)
+# =&gt; &lt;input disabled=&quot;disabled&quot; src=&quot;/images/purchase.png&quot; type=&quot;image&quot; /&gt;
+
+image_submit_tag(&quot;search.png&quot;, :class =&gt; 'search_button')
+# =&gt; &lt;input class=&quot;search_button&quot; src=&quot;/images/search.png&quot; type=&quot;image&quot; /&gt;
+
+image_submit_tag(&quot;agree.png&quot;, :disabled =&gt; true, :class =&gt; &quot;agree_disagree_button&quot;)
+# =&gt; &lt;input class=&quot;agree_disagree_button&quot; disabled=&quot;disabled&quot; src=&quot;/images/agree.png&quot; type=&quot;image&quot; /&gt;</pre>
+
+
+
+
+

@@ -1,0 +1,21 @@
+<h1>ActiveSupport::Dependencies::Loadable#unloadable</h1>
+
+
+<p>Mark the given constant as unloadable. Unloadable constants are removed
+each time dependencies are cleared.</p>
+
+<p>Note that marking a constant for unloading need only be done once. Setup or
+init scripts may list each unloadable constant that may need unloading;
+each constant will be removed for every subsequent clear, as opposed to for
+the first clear.</p>
+
+<p>The provided constant descriptor may be a (non-anonymous) module or class,
+or a qualified constant name as a string or symbol.</p>
+
+<p>Returns true if the constant was not previously marked for unloading, false
+otherwise.</p>
+
+
+
+
+

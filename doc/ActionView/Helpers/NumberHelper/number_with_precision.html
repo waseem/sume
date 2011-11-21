@@ -1,0 +1,49 @@
+<h1>ActionView::Helpers::NumberHelper#number_with_precision</h1>
+
+
+<p>Formats a <tt>number</tt> with the specified level of <tt>:precision</tt>
+(e.g., 112.32 has a precision of 2 if <tt>:significant</tt> is
+<tt>false</tt>, and 5 if <tt>:significant</tt> is <tt>true</tt>). You can
+customize the format in the <tt>options</tt> hash.</p>
+
+<h4>Options</h4>
+<ul><li>
+<p><tt>:locale</tt>     - Sets the locale to be used for formatting (defaults
+to current locale).</p>
+</li><li>
+<p><tt>:precision</tt>  - Sets the precision of the number (defaults to 3).</p>
+</li><li>
+<p><tt>:significant</tt>  - If <tt>true</tt>, precision will be the # of
+significant_digits. If <tt>false</tt>, the # of fractional digits (defaults
+to <tt>false</tt>)</p>
+</li><li>
+<p><tt>:separator</tt>  - Sets the separator between the fractional and
+integer digits (defaults to ".").</p>
+</li><li>
+<p><tt>:delimiter</tt>  - Sets the thousands delimiter (defaults to "").</p>
+</li><li>
+<p><tt>:strip_insignificant_zeros</tt>  - If <tt>true</tt> removes
+insignificant zeros after the decimal separator (defaults to
+<tt>false</tt>)</p>
+</li></ul>
+
+<h4>Examples</h4>
+
+<pre>number_with_precision(111.2345)                                            # =&gt; 111.235
+number_with_precision(111.2345, :precision =&gt; 2)                           # =&gt; 111.23
+number_with_precision(13, :precision =&gt; 5)                                 # =&gt; 13.00000
+number_with_precision(389.32314, :precision =&gt; 0)                          # =&gt; 389
+number_with_precision(111.2345, :significant =&gt; true)                      # =&gt; 111
+number_with_precision(111.2345, :precision =&gt; 1, :significant =&gt; true)     # =&gt; 100
+number_with_precision(13, :precision =&gt; 5, :significant =&gt; true)           # =&gt; 13.000
+number_with_precision(111.234, :locale =&gt; :fr)                             # =&gt; 111,234
+number_with_precision(13, :precision =&gt; 5, :significant =&gt; true, :strip_insignificant_zeros =&gt; true)
+# =&gt; 13
+number_with_precision(389.32314, :precision =&gt; 4, :significant =&gt; true)    # =&gt; 389.3
+number_with_precision(1111.2345, :precision =&gt; 2, :separator =&gt; ',', :delimiter =&gt; '.')
+# =&gt; 1.111,23</pre>
+
+
+
+
+

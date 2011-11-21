@@ -1,0 +1,18 @@
+<h1>ActiveSupport::Multibyte::Chars#rjust</h1>
+
+
+<p>Works just like <tt>String#rjust</tt>, only integer specifies characters
+instead of bytes.</p>
+
+<p>Example:</p>
+
+<pre>&quot;¾ cup&quot;.mb_chars.rjust(8).to_s
+# =&gt; &quot;   ¾ cup&quot;
+
+&quot;¾ cup&quot;.mb_chars.rjust(8, &quot; &quot;).to_s # Use non-breaking whitespace
+# =&gt; &quot;   ¾ cup&quot;</pre>
+
+
+
+
+

@@ -1,0 +1,8 @@
+= Active Record Validations
+
+Active Record includes the majority of its validations from <tt>ActiveModel::Validations</tt>
+all of which accept the <tt>:on</tt> argument to define the context where the
+validations are active. Active Record will always supply either the context of
+<tt>:create</tt> or <tt>:update</tt> dependent on whether the model is a
+<tt>new_record?</tt>.
+

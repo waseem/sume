@@ -1,0 +1,44 @@
+<h1>ActionView::Helpers::DateHelper#datetime_select</h1>
+
+
+<p>Returns a set of select tags (one for year, month, day, hour, and minute)
+pre-selected for accessing a specified datetime-based attribute (identified
+by <tt>method</tt>) on an object assigned to the template (identified by
+<tt>object</tt>).</p>
+
+<p>If anything is passed in the html_options hash it will be applied to every
+select tag in the set.</p>
+
+<h4>Examples</h4>
+
+<pre># Generates a datetime select that, when POSTed, will be stored in the article variable in the written_on
+# attribute.
+datetime_select(&quot;article&quot;, &quot;written_on&quot;)
+
+# Generates a datetime select with a year select that starts at 1995 that, when POSTed, will be stored in the
+# article variable in the written_on attribute.
+datetime_select(&quot;article&quot;, &quot;written_on&quot;, :start_year =&gt; 1995)
+
+# Generates a datetime select with a default value of 3 days from the current time that, when POSTed, will
+# be stored in the trip variable in the departing attribute.
+datetime_select(&quot;trip&quot;, &quot;departing&quot;, :default =&gt; 3.days.from_now)
+
+# Generate a datetime select with hours in the AM/PM format
+datetime_select(&quot;article&quot;, &quot;written_on&quot;, :ampm =&gt; true)
+
+# Generates a datetime select that discards the type that, when POSTed, will be stored in the article variable
+# as the written_on attribute.
+datetime_select(&quot;article&quot;, &quot;written_on&quot;, :discard_type =&gt; true)
+
+# Generates a datetime select with a custom prompt. Use &lt;tt&gt;:prompt =&gt; true&lt;/tt&gt; for generic prompts.
+datetime_select(&quot;article&quot;, &quot;written_on&quot;, :prompt =&gt; {:day =&gt; 'Choose day', :month =&gt; 'Choose month', :year =&gt; 'Choose year'})
+datetime_select(&quot;article&quot;, &quot;written_on&quot;, :prompt =&gt; {:hour =&gt; true}) # generic prompt for hours
+datetime_select(&quot;article&quot;, &quot;written_on&quot;, :prompt =&gt; true) # generic prompts for all</pre>
+
+<p>The selects are prepared for multi-parameter assignment to an Active Record
+object.</p>
+
+
+
+
+

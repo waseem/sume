@@ -1,0 +1,20 @@
+<h1>ActionDispatch::Routing::Mapper::Resources#collection</h1>
+
+
+<p>To add a route to the collection:</p>
+
+<pre>resources :photos do
+  collection do
+    get 'search'
+  end
+end</pre>
+
+<p>This will enable Rails to recognize paths such as <tt>/photos/search</tt>
+with GET, and route to the search action of <tt>PhotosController</tt>. It
+will also create the <tt>search_photos_url</tt> and
+<tt>search_photos_path</tt> route helpers.</p>
+
+
+
+
+

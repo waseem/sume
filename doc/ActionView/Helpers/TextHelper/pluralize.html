@@ -1,0 +1,25 @@
+<h1>ActionView::Helpers::TextHelper#pluralize</h1>
+
+
+<p>Attempts to pluralize the <tt>singular</tt> word unless <tt>count</tt> is
+1. If <tt>plural</tt> is supplied, it will use that when count is &gt; 1,
+otherwise it will use the Inflector to determine the plural form</p>
+
+<h4>Examples</h4>
+
+<pre>pluralize(1, 'person')
+# =&gt; 1 person
+
+pluralize(2, 'person')
+# =&gt; 2 people
+
+pluralize(3, 'person', 'users')
+# =&gt; 3 users
+
+pluralize(0, 'person')
+# =&gt; 0 people</pre>
+
+
+
+
+

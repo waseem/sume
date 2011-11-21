@@ -1,0 +1,36 @@
+<h1>ActionView::Helpers::CacheHelper#cache</h1>
+
+
+<p>This helper exposes a method for caching fragments of a view  rather than
+an entire action or page. This technique is useful caching pieces like
+menus, lists of newstopics, static HTML fragments, and so on. This method
+takes a block that contains the content you wish to cache.</p>
+
+<p>See ActionController::Caching::Fragments for usage instructions.</p>
+
+<h4>Examples</h4>
+
+<p>If you want to cache a navigation menu, you can do following:</p>
+
+<pre>&lt;% cache do %&gt;
+  &lt;%= render :partial =&gt; &quot;menu&quot; %&gt;
+&lt;% end %&gt;</pre>
+
+<p>You can also cache static content:</p>
+
+<pre>&lt;% cache do %&gt;
+   &lt;p&gt;Hello users!  Welcome to our website!&lt;/p&gt;
+&lt;% end %&gt;</pre>
+
+<p>Static content with embedded ruby content can be cached as  well:</p>
+
+<pre>&lt;% cache do %&gt;
+  Topics:
+  &lt;%= render :partial =&gt; &quot;topics&quot;, :collection =&gt; @topic_list %&gt;
+  &lt;i&gt;Topics listed alphabetically&lt;/i&gt;
+&lt;% end %&gt;</pre>
+
+
+
+
+

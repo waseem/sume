@@ -1,0 +1,22 @@
+<h1>ActiveSupport::Multibyte::Chars#[]=</h1>
+
+
+<p>Like <tt>String#[]=</tt>, except instead of byte offsets you specify
+character offsets.</p>
+
+<p>Example:</p>
+
+<pre>s = &quot;Müller&quot;
+s.mb_chars[2] = &quot;e&quot; # Replace character with offset 2
+s
+# =&gt; &quot;Müeler&quot;
+
+s = &quot;Müller&quot;
+s.mb_chars[1, 2] = &quot;ö&quot; # Replace 2 characters at character offset 1
+s
+# =&gt; &quot;Möler&quot;</pre>
+
+
+
+
+

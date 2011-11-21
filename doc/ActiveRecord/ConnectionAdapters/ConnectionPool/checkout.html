@@ -1,0 +1,26 @@
+<h1>ActiveRecord::ConnectionAdapters::ConnectionPool#checkout</h1>
+
+
+<p>Check-out a database connection from the pool, indicating that you want to
+use it. You should call #checkin when you no longer need this.</p>
+
+<p>This is done by either returning an existing connection, or by creating a
+new connection. If the maximum number of connections for this pool has
+already been reached, but the pool is empty (i.e. they're all being used),
+then this method will wait until a thread has checked in a connection. The
+wait time is bounded however: if no connection can be checked out within
+the timeout specified for this pool, then a ConnectionTimeoutError
+exception will be raised.</p>
+
+<p>Returns: an AbstractAdapter object.</p>
+
+<p>Raises:</p>
+<ul><li>
+<p>ConnectionTimeoutError: no connection can be obtained from the pool within
+the timeout period.</p>
+</li></ul>
+
+
+
+
+

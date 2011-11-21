@@ -1,0 +1,18 @@
+<h1>BigDecimal#as_json</h1>
+
+
+<p>A BigDecimal would be naturally represented as a JSON number. Most
+libraries, however, parse non-integer JSON numbers directly as floats.
+Clients using those libraries would get in general a wrong number and no
+way to recover other than manually inspecting the string with the JSON code
+itself.</p>
+
+<p>That's why a JSON string is returned. The JSON literal is not numeric, but
+if the other end knows by contract that the data is supposed to be a
+BigDecimal, it still has the chance to post-process the string and get the
+real value.</p>
+
+
+
+
+

@@ -1,0 +1,21 @@
+<h1>AbstractController::Callbacks::ClassMethods#_normalize_callback_options</h1>
+
+
+<p>If :only or :except are used, convert the options into the primitive form
+(:per_key) used by ActiveSupport::Callbacks. The basic idea is that :only
+=&gt; :index gets converted to :if =&gt; proc {|c| c.action_name == "index"
+}, but that the proc is only evaluated once per action for the lifetime of
+a Rails process.</p>
+
+<h4>Options</h4>
+<ul><li>
+<p><tt>only</tt>   - The callback should be run only for this action</p>
+</li><li>
+<p><tt>except</tt>  - The callback should be run for all actions except this
+action</p>
+</li></ul>
+
+
+
+
+

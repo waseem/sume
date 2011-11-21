@@ -1,0 +1,12 @@
+<h1>ActiveRecord::Reflection::ThroughReflection#association_primary_key</h1>
+
+
+<p>We want to use the klass from this reflection, rather than just delegate
+straight to the source_reflection, because the source_reflection may be
+polymorphic. We still need to respect the source_reflection's :primary_key
+option, though.</p>
+
+
+
+
+

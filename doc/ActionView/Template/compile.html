@@ -1,0 +1,27 @@
+<h1>ActionView::Template#compile</h1>
+
+
+<p>Among other things, this method is responsible for properly setting the
+encoding of the source. Until this point, we assume that the source is
+BINARY data. If no additional information is supplied, we assume the
+encoding is the same as <tt>Encoding.default_external</tt>.</p>
+
+<p>The user can also specify the encoding via a comment on the first line of
+the template (# encoding: NAME-OF-ENCODING). This will work with any
+template engine, as we process out the encoding comment before passing the
+source on to the template engine, leaving a blank line in its stead.</p>
+
+<p>If the template engine handles encodings, we send the encoded String to the
+engine without further processing. This allows the template engine to
+support additional mechanisms for specifying the encoding. For instance,
+ERB supports &lt;%# encoding: %&gt;</p>
+
+<p>Otherwise, after we figure out the correct encoding, we then encode the
+source into <tt>Encoding.default_internal</tt>. In general, this means that
+templates will be UTF-8 inside of Rails, regardless of the original source
+encoding.</p>
+
+
+
+
+

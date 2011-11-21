@@ -1,0 +1,30 @@
+<h1>ActionView::Helpers::FormHelper#search_field</h1>
+
+
+<p>Returns an input of type "search" for accessing a specified attribute
+(identified by <tt>method</tt>) on an object assigned to the template
+(identified by <tt>object</tt>). Inputs of type "search" may be styled
+differently by some browsers</p>
+
+<h4>Examples</h4>
+
+<pre>search_field(:user, :name)
+# =&gt; &lt;input id=&quot;user_name&quot; name=&quot;user[name]&quot; size=&quot;30&quot; type=&quot;search&quot; /&gt;
+search_field(:user, :name, :autosave =&gt; false)
+# =&gt; &lt;input autosave=&quot;false&quot; id=&quot;user_name&quot; name=&quot;user[name]&quot; size=&quot;30&quot; type=&quot;search&quot; /&gt;
+search_field(:user, :name, :results =&gt; 3)
+# =&gt; &lt;input id=&quot;user_name&quot; name=&quot;user[name]&quot; results=&quot;3&quot; size=&quot;30&quot; type=&quot;search&quot; /&gt;
+#  Assume request.host returns &quot;www.example.com&quot;
+search_field(:user, :name, :autosave =&gt; true)
+# =&gt; &lt;input autosave=&quot;com.example.www&quot; id=&quot;user_name&quot; name=&quot;user[name]&quot; results=&quot;10&quot; size=&quot;30&quot; type=&quot;search&quot; /&gt;
+search_field(:user, :name, :onsearch =&gt; true)
+# =&gt; &lt;input id=&quot;user_name&quot; incremental=&quot;true&quot; name=&quot;user[name]&quot; onsearch=&quot;true&quot; size=&quot;30&quot; type=&quot;search&quot; /&gt;
+search_field(:user, :name, :autosave =&gt; false, :onsearch =&gt; true)
+# =&gt; &lt;input autosave=&quot;false&quot; id=&quot;user_name&quot; incremental=&quot;true&quot; name=&quot;user[name]&quot; onsearch=&quot;true&quot; size=&quot;30&quot; type=&quot;search&quot; /&gt;
+search_field(:user, :name, :autosave =&gt; true, :onsearch =&gt; true)
+# =&gt; &lt;input autosave=&quot;com.example.www&quot; id=&quot;user_name&quot; incremental=&quot;true&quot; name=&quot;user[name]&quot; onsearch=&quot;true&quot; results=&quot;10&quot; size=&quot;30&quot; type=&quot;search&quot; /&gt;</pre>
+
+
+
+
+

@@ -1,0 +1,65 @@
+<h1>ActionView::Helpers::FormOptionsHelper#grouped_options_for_select</h1>
+
+
+<p>Returns a string of <tt>&lt;option&gt;</tt> tags, like
+<tt>options_for_select</tt>, but wraps them with <tt>&lt;optgroup&gt;</tt>
+tags.</p>
+
+<p>Parameters:</p>
+<ul><li>
+<p><tt>grouped_options</tt> - Accepts a nested array or hash of strings.  The
+first value serves as the <tt>&lt;optgroup&gt;</tt> label while the second
+value must be an array of options. The second value can be a nested array
+of text-value pairs. See <tt>options_for_select</tt> for more info.</p>
+
+<pre>Ex. [&quot;North America&quot;,[[&quot;United States&quot;,&quot;US&quot;],[&quot;Canada&quot;,&quot;CA&quot;]]]</pre>
+</li><li>
+<p><tt>selected_key</tt> - A value equal to the <tt>value</tt> attribute for
+one of the <tt>&lt;option&gt;</tt> tags, which will have the
+<tt>selected</tt> attribute set. Note: It is possible for this value to
+match multiple options as you might have the same option in multiple
+groups.  Each will then get <tt>selected=&quot;selected&quot;</tt>.</p>
+</li><li>
+<p><tt>prompt</tt> - set to true or a prompt string. When the select element
+doesn't have a value yet, this prepends an option with a generic prompt -
+"Please select" - or the given prompt string.</p>
+</li></ul>
+
+<p>Sample usage (Array):</p>
+
+<pre>grouped_options = [
+ ['North America',
+   [['United States','US'],'Canada']],
+ ['Europe',
+   ['Denmark','Germany','France']]
+]
+grouped_options_for_select(grouped_options)</pre>
+
+<p>Sample usage (Hash):</p>
+
+<pre>grouped_options = {
+ 'North America' =&gt; [['United States','US'], 'Canada'],
+ 'Europe' =&gt; ['Denmark','Germany','France']
+}
+grouped_options_for_select(grouped_options)</pre>
+
+<p>Possible output:</p>
+
+<pre>&lt;optgroup label=&quot;Europe&quot;&gt;
+  &lt;option value=&quot;Denmark&quot;&gt;Denmark&lt;/option&gt;
+  &lt;option value=&quot;Germany&quot;&gt;Germany&lt;/option&gt;
+  &lt;option value=&quot;France&quot;&gt;France&lt;/option&gt;
+&lt;/optgroup&gt;
+&lt;optgroup label=&quot;North America&quot;&gt;
+  &lt;option value=&quot;US&quot;&gt;United States&lt;/option&gt;
+  &lt;option value=&quot;Canada&quot;&gt;Canada&lt;/option&gt;
+&lt;/optgroup&gt;</pre>
+
+<p><b>Note:</b> Only the <tt>&lt;optgroup&gt;</tt> and <tt>&lt;option&gt;</tt>
+tags are returned, so you still have to wrap the output in an appropriate
+<tt>&lt;select&gt;</tt> tag.</p>
+
+
+
+
+

@@ -1,0 +1,57 @@
+<h1>ActionView::Helpers::FormTagHelper#form_tag</h1>
+
+
+<p>Starts a form tag that points the action to an url configured with
+<tt>url_for_options</tt> just like ActionController::Base#url_for. The
+method for the form defaults to POST.</p>
+
+<h4>Options</h4>
+<ul><li>
+<p><tt>:multipart</tt> - If set to true, the enctype is set to
+"multipart/form-data".</p>
+</li><li>
+<p><tt>:method</tt> - The method to use when submitting the form, usually
+either "get" or "post". If "put", "delete", or another verb is used, a
+hidden input with name <tt>_method</tt> is added to simulate the verb over
+post.</p>
+</li><li>
+<p><tt>:authenticity_token</tt> - Authenticity token to use in the form. Use
+only if you need to pass custom authenticity token string, or to not add
+authenticity_token field at all (by passing <tt>false</tt>).</p>
+</li><li>
+<p>A list of parameters to feed to the URL the form will be posted to.</p>
+</li><li>
+<p><tt>:remote</tt> - If set to true, will allow the Unobtrusive JavaScript
+drivers to control the submit behavior. By default this behavior is an ajax
+submit.</p>
+</li></ul>
+
+<h4>Examples</h4>
+
+<pre> form_tag('/posts')
+ # =&gt; &lt;form action=&quot;/posts&quot; method=&quot;post&quot;&gt;
+
+ form_tag('/posts/1', :method =&gt; :put)
+ # =&gt; &lt;form action=&quot;/posts/1&quot; method=&quot;put&quot;&gt;
+
+ form_tag('/upload', :multipart =&gt; true)
+ # =&gt; &lt;form action=&quot;/upload&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;
+
+ &lt;%= form_tag('/posts') do -%&gt;
+   &lt;div&gt;&lt;%= submit_tag 'Save' %&gt;&lt;/div&gt;
+ &lt;% end -%&gt;
+ # =&gt; &lt;form action=&quot;/posts&quot; method=&quot;post&quot;&gt;&lt;div&gt;&lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Save&quot; /&gt;&lt;/div&gt;&lt;/form&gt;
+
+&lt;%= form_tag('/posts', :remote =&gt; true) %&gt;
+ # =&gt; &lt;form action=&quot;/posts&quot; method=&quot;post&quot; data-remote=&quot;true&quot;&gt;
+
+ form_tag('http://far.away.com/form', :authenticity_token =&gt; false)
+ # form without authenticity token
+
+ form_tag('http://far.away.com/form', :authenticity_token =&gt; &quot;cf50faa3fe97702ca1ae&quot;)
+ # form with custom authenticity token</pre>
+
+
+
+
+

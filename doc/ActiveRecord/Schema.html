@@ -1,0 +1,29 @@
+= Active Record Schema
+
+Allows programmers to programmatically define a schema in a portable
+DSL. This means you can define tables, indexes, etc. without using SQL
+directly, so your applications can more easily support multiple
+databases.
+
+Usage:
+
+  ActiveRecord::Schema.define do
+    create_table :authors do |t|
+      t.string :name, :null => false
+    end
+
+    add_index :authors, :name, :unique
+
+    create_table :posts do |t|
+      t.integer :author_id, :null => false
+      t.string :subject
+      t.text :body
+      t.boolean :private, :default => false
+    end
+
+    add_index :posts, :author_id
+  end
+
+ActiveRecord::Schema is only supported by database adapters that also
+support migrations, the two features being very similar.
+

@@ -1,0 +1,19 @@
+<h1>Hash#except</h1>
+
+
+<p>Return a hash that includes everything but the given keys. This is useful
+for limiting a set of parameters to everything but a few known toggles:</p>
+
+<pre>@person.update_attributes(params[:person].except(:admin))</pre>
+
+<p>If the receiver responds to <tt>convert_key</tt>, the method is called on
+each of the arguments. This allows <tt>except</tt> to play nice with hashes
+with indifferent access for instance:</p>
+
+<pre>{:a =&gt; 1}.with_indifferent_access.except(:a)  # =&gt; {}
+{:a =&gt; 1}.with_indifferent_access.except(&quot;a&quot;) # =&gt; {}</pre>
+
+
+
+
+

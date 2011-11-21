@@ -1,0 +1,33 @@
+<h1>ActionView::Helpers::DateHelper#select_hour</h1>
+
+
+<p>Returns a select tag with options for each of the hours 0 through 23 with
+the current hour selected. The <tt>datetime</tt> can be either a
+<tt>Time</tt> or <tt>DateTime</tt> object or an integer.       Override the
+field name using the <tt>:field_name</tt> option, 'hour' by default.</p>
+
+<h4>Examples</h4>
+
+<pre>my_time = Time.now + 6.hours
+
+# Generates a select field for hours that defaults to the hour for the time in my_time.
+select_hour(my_time)
+
+# Generates a select field for hours that defaults to the number given.
+select_hour(13)
+
+# Generates a select field for hours that defaults to the hour for the time in my_time
+# that is named 'stride' rather than 'hour'.
+select_hour(my_time, :field_name =&gt; 'stride')
+
+# Generates a select field for hours with a custom prompt. Use &lt;tt&gt;:prompt =&gt; true&lt;/tt&gt; for a
+# generic prompt.
+select_hour(13, :prompt =&gt; 'Choose hour')
+
+# Generate a select field for hours in the AM/PM format
+select_hour(my_time, :ampm =&gt; true)</pre>
+
+
+
+
+

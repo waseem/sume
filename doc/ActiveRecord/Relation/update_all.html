@@ -1,0 +1,45 @@
+<h1>ActiveRecord::Relation#update_all</h1>
+
+
+<p>Updates all records with details given if they match a set of conditions
+supplied, limits and order can also be supplied. This method constructs a
+single SQL UPDATE statement and sends it straight to the database. It does
+not instantiate the involved models and it does not trigger Active Record
+callbacks or validations.</p>
+
+<h4>Parameters</h4>
+<ul><li>
+<p><tt>updates</tt> - A string, array, or hash representing the SET part of an
+SQL statement.</p>
+</li><li>
+<p><tt>conditions</tt> - A string, array, or hash representing the WHERE part
+of an SQL statement. See conditions in the intro.</p>
+</li><li>
+<p><tt>options</tt> - Additional options are <tt>:limit</tt> and
+<tt>:order</tt>, see the examples for usage.</p>
+</li></ul>
+
+<h4>Examples</h4>
+
+<pre># Update all customers with the given attributes
+Customer.update_all :wants_email =&gt; true
+
+# Update all books with 'Rails' in their title
+Book.update_all &quot;author = 'David'&quot;, &quot;title LIKE '%Rails%'&quot;
+
+# Update all avatars migrated more than a week ago
+Avatar.update_all ['migrated_at = ?', Time.now.utc], ['migrated_at &gt; ?', 1.week.ago]
+
+# Update all books that match conditions, but limit it to 5 ordered by date
+Book.update_all &quot;author = 'David'&quot;, &quot;title LIKE '%Rails%'&quot;, :order =&gt; 'created_at', :limit =&gt; 5
+
+# Conditions from the current relation also works
+Book.where('title LIKE ?', '%Rails%').update_all(:author =&gt; 'David')
+
+# The same idea applies to limit and order
+Book.where('title LIKE ?', '%Rails%').order(:created_at).limit(5).update_all(:author =&gt; 'David')</pre>
+
+
+
+
+

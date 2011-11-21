@@ -1,0 +1,15 @@
+<h1>HTML::Selector#next_selector</h1>
+
+
+<p>Called to create a dependent selector (sibling, descendant, etc). Passes
+the remainder of the statement that will be reduced to zero eventually, and
+array of substitution values.</p>
+
+<p>This method is called from four places, so it helps to put it here for
+reuse. The only logic deals with the need to detect comma separators
+(alternate) and apply them to the selector group of the top selector.</p>
+
+
+
+
+

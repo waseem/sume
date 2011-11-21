@@ -1,0 +1,14 @@
+<h1>ActiveRecord::Base#ensure_proper_type</h1>
+
+
+<p>Sets the attribute used for single table inheritance to this class name if
+this is not the ActiveRecord::Base descendant. Considering the hierarchy
+Reply &lt; Message &lt; ActiveRecord::Base, this makes it possible to do
+Reply.new without having to set <tt>Reply[Reply.inheritance_column] =
+&quot;Reply&quot;</tt> yourself. No such attribute would be set for objects
+of the Message class in that example.</p>
+
+
+
+
+

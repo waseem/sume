@@ -1,0 +1,29 @@
+<h1>ActiveRecord::Persistence#touch</h1>
+
+
+<p>Saves the record with the updated_at/on attributes set to the current time.
+Please note that no validation is performed and no callbacks are executed.
+If an attribute name is passed, that attribute is updated along with
+updated_at/on attributes.</p>
+
+<pre>product.touch               # updates updated_at/on
+product.touch(:designed_at) # updates the designed_at attribute and updated_at/on</pre>
+
+<p>If used along with <tt>belongs_to</tt> then <tt>touch</tt> will invoke
+<tt>touch</tt> method on associated object.</p>
+
+<pre>class Brake &lt; ActiveRecord::Base
+  belongs_to :car, :touch =&gt; true
+end
+
+class Car &lt; ActiveRecord::Base
+  belongs_to :corporation, :touch =&gt; true
+end
+
+# triggers @brake.car.touch and @brake.car.corporation.touch
+@brake.touch</pre>
+
+
+
+
+

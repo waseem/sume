@@ -1,0 +1,24 @@
+<h1>ActionView::Helpers::RenderingHelper#render</h1>
+
+
+<p>Returns the result of a render that's dictated by the options hash. The
+primary options are:</p>
+<ul><li>
+<p><tt>:partial</tt> - See ActionView::Partials.</p>
+</li><li>
+<p><tt>:file</tt> - Renders an explicit template file (this used to be the old
+default), add :locals to pass in those.</p>
+</li><li>
+<p><tt>:inline</tt> - Renders an inline template similar to how it's done in
+the controller.</p>
+</li><li>
+<p><tt>:text</tt> - Renders the text passed in out.</p>
+</li></ul>
+
+<p>If no options hash is passed or :update specified, the default is to render
+a partial and use the second parameter as the locals hash.</p>
+
+
+
+
+

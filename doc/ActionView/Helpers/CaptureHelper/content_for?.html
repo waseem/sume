@@ -1,0 +1,28 @@
+<h1>ActionView::Helpers::CaptureHelper#content_for?</h1>
+
+
+<p>content_for? simply checks whether any content has been captured yet using
+content_for Useful to render parts of your layout differently based on what
+is in your views.</p>
+
+<h4>Examples</h4>
+
+<p>Perhaps you will use different css in you layout if no content_for
+:right_column</p>
+
+<pre>&lt;%# This is the layout %&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot; xml:lang=&quot;en&quot; lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;title&gt;My Website&lt;/title&gt;
+  &lt;%= yield :script %&gt;
+&lt;/head&gt;
+&lt;body class=&quot;&lt;%= content_for?(:right_col) ? 'one-column' : 'two-column' %&gt;&quot;&gt;
+  &lt;%= yield %&gt;
+  &lt;%= yield :right_col %&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+
+
+
+
+

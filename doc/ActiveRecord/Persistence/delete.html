@@ -1,0 +1,18 @@
+<h1>ActiveRecord::Persistence#delete</h1>
+
+
+<p>Deletes the record in the database and freezes this instance to reflect
+that no changes should be made (since they can't be persisted). Returns the
+frozen instance.</p>
+
+<p>The row is simply removed with an SQL <tt>DELETE</tt> statement on the
+record's primary key, and no callbacks are executed.</p>
+
+<p>To enforce the object's <tt>before_destroy</tt> and <tt>after_destroy</tt>
+callbacks, Observer methods, or any <tt>:dependent</tt> association
+options, use <tt>#destroy</tt>.</p>
+
+
+
+
+

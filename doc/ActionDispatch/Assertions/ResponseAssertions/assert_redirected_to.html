@@ -1,0 +1,24 @@
+<h1>ActionDispatch::Assertions::ResponseAssertions#assert_redirected_to</h1>
+
+
+<p>Assert that the redirection options passed in match those of the redirect
+called in the latest action. This match can be partial, such that
+<tt>assert_redirected_to(:controller =&gt; &quot;weblog&quot;)</tt> will
+also match the redirection of <tt>redirect_to(:controller =&gt;
+&quot;weblog&quot;, :action =&gt; &quot;show&quot;)</tt> and so on.</p>
+
+<h4>Examples</h4>
+
+<pre># assert that the redirection was to the &quot;index&quot; action on the WeblogController
+assert_redirected_to :controller =&gt; &quot;weblog&quot;, :action =&gt; &quot;index&quot;
+
+# assert that the redirection was to the named route login_url
+assert_redirected_to login_url
+
+# assert that the redirection was to the url for @customer
+assert_redirected_to @customer</pre>
+
+
+
+
+

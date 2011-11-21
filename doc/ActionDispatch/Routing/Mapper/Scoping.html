@@ -1,0 +1,55 @@
+You may wish to organize groups of controllers under a namespace.
+Most commonly, you might group a number of administrative controllers
+under an +admin+ namespace. You would place these controllers under
+the <tt>app/controllers/admin</tt> directory, and you can group them
+together in your router:
+
+  namespace "admin" do
+    resources :posts, :comments
+  end
+
+This will create a number of routes for each of the posts and comments
+controller. For <tt>Admin::PostsController</tt>, Rails will create:
+
+  GET	    /admin/posts
+  GET	    /admin/posts/new
+  POST	  /admin/posts
+  GET	    /admin/posts/1
+  GET	    /admin/posts/1/edit
+  PUT	    /admin/posts/1
+  DELETE  /admin/posts/1
+
+If you want to route /posts (without the prefix /admin) to
+<tt>Admin::PostsController</tt>, you could use
+
+  scope :module => "admin" do
+    resources :posts
+  end
+
+or, for a single case
+
+  resources :posts, :module => "admin"
+
+If you want to route /admin/posts to +PostsController+
+(without the Admin:: module prefix), you could use
+
+  scope "/admin" do
+    resources :posts
+  end
+
+or, for a single case
+
+  resources :posts, :path => "/admin/posts"
+
+In each of these cases, the named routes remain the same as if you did
+not use scope. In the last case, the following paths map to
++PostsController+:
+
+  GET	    /admin/posts
+  GET	    /admin/posts/new
+  POST	  /admin/posts
+  GET	    /admin/posts/1
+  GET	    /admin/posts/1/edit
+  PUT	    /admin/posts/1
+  DELETE  /admin/posts/1
+

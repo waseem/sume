@@ -1,0 +1,67 @@
+<h1>ActionController::DataStreaming#send_file</h1>
+
+
+<p>Sends the file. This uses a server-appropriate method (such as X-Sendfile)
+via the Rack::Sendfile middleware. The header to use is set via
+config.action_dispatch.x_sendfile_header. Your server can also configure
+this for you by setting the X-Sendfile-Type header.</p>
+
+<p>Be careful to sanitize the path parameter if it is coming from a web page.
+<tt>send_file(params[:path])</tt> allows a malicious user to download any
+file on your server.</p>
+
+<p>Options:</p>
+<ul><li>
+<p><tt>:filename</tt> - suggests a filename for the browser to use. Defaults
+to <tt>File.basename(path)</tt>.</p>
+</li><li>
+<p><tt>:type</tt> - specifies an HTTP content type. Defaults to
+'application/octet-stream'. You can specify either a string or a symbol for
+a registered type register with <tt>Mime::Type.register</tt>, for example
+:json</p>
+</li><li>
+<p><tt>:disposition</tt> - specifies whether the file will be shown inline or
+downloaded. Valid values are 'inline' and 'attachment' (default).</p>
+</li><li>
+<p><tt>:status</tt> - specifies the status code to send with the response.
+Defaults to 200.</p>
+</li><li>
+<p><tt>:url_based_filename</tt> - set to <tt>true</tt> if you want the browser
+guess the filename from the URL, which is necessary for i18n filenames on
+certain browsers (setting <tt>:filename</tt> overrides this option).</p>
+</li></ul>
+
+<p>The default Content-Type and Content-Disposition headers are set to
+download arbitrary binary files in as many browsers as possible.  IE
+versions 4, 5, 5.5, and 6 are all known to have a variety of quirks
+(especially when downloading over SSL).</p>
+
+<p>Simple download:</p>
+
+<pre>send_file '/path/to.zip'</pre>
+
+<p>Show a JPEG in the browser:</p>
+
+<pre>send_file '/path/to.jpeg', :type =&gt; 'image/jpeg', :disposition =&gt; 'inline'</pre>
+
+<p>Show a 404 page in the browser:</p>
+
+<pre>send_file '/path/to/404.html', :type =&gt; 'text/html; charset=utf-8', :status =&gt; 404</pre>
+
+<p>Read about the other Content-* HTTP headers if you'd like to provide the
+user with more information (such as Content-Description) in <a
+href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11">www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11</a>.</p>
+
+<p>Also be aware that the document may be cached by proxies and browsers. The
+Pragma and Cache-Control headers declare how the file may be cached by
+intermediaries.  They default to require clients to validate with the
+server before releasing cached responses.  See <a
+href="http://www.mnot.net/cache_docs">www.mnot.net/cache_docs</a>/ for an
+overview of web caching and <a
+href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9">www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9</a>
+for the Cache-Control header spec.</p>
+
+
+
+
+

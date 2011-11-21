@@ -1,0 +1,116 @@
+<h1>ActionDispatch::Assertions::SelectorAssertions#assert_select</h1>
+
+
+<p>An assertion that selects elements and makes one or more equality tests.</p>
+
+<p>If the first argument is an element, selects all matching elements starting
+from (and including) that element and all its children in depth-first
+order.</p>
+
+<p>If no element if specified, calling <tt>assert_select</tt> selects from the
+response HTML unless <tt>assert_select</tt> is called from within an
+<tt>assert_select</tt> block.</p>
+
+<p>When called with a block <tt>assert_select</tt> passes an array of selected
+elements to the block. Calling <tt>assert_select</tt> from the block, with
+no element specified, runs the assertion on the complete set of elements
+selected by the enclosing assertion. Alternatively the array may be
+iterated through so that <tt>assert_select</tt> can be called separately
+for each element.</p>
+
+<h4>Example</h4>
+
+<p>If the response contains two ordered lists, each with four list elements
+then:</p>
+
+<pre>assert_select &quot;ol&quot; do |elements|
+  elements.each do |element|
+    assert_select element, &quot;li&quot;, 4
+  end
+end</pre>
+
+<p>will pass, as will:</p>
+
+<pre>assert_select &quot;ol&quot; do
+  assert_select &quot;li&quot;, 8
+end</pre>
+
+<p>The selector may be a CSS selector expression (String), an expression with
+substitution values, or an HTML::Selector object.</p>
+
+<h3>Equality Tests</h3>
+
+<p>The equality test may be one of the following:</p>
+<ul><li>
+<p><tt>true</tt> - Assertion is true if at least one element selected.</p>
+</li><li>
+<p><tt>false</tt> - Assertion is true if no element selected.</p>
+</li><li>
+<p><tt>String/Regexp</tt> - Assertion is true if the text value of at least
+one element matches the string or regular expression.</p>
+</li><li>
+<p><tt>Integer</tt> - Assertion is true if exactly that number of elements are
+selected.</p>
+</li><li>
+<p><tt>Range</tt> - Assertion is true if the number of selected elements fit
+the range.</p>
+</li></ul>
+
+<p>If no equality test specified, the assertion is true if at least one
+element selected.</p>
+
+<p>To perform more than one equality tests, use a hash with the following
+keys:</p>
+<ul><li>
+<p><tt>:text</tt> - Narrow the selection to elements that have this text value
+(string or regexp).</p>
+</li><li>
+<p><tt>:html</tt> - Narrow the selection to elements that have this HTML
+content (string or regexp).</p>
+</li><li>
+<p><tt>:count</tt> - Assertion is true if the number of selected elements is
+equal to this value.</p>
+</li><li>
+<p><tt>:minimum</tt> - Assertion is true if the number of selected elements is
+at least this value.</p>
+</li><li>
+<p><tt>:maximum</tt> - Assertion is true if the number of selected elements is
+at most this value.</p>
+</li></ul>
+
+<p>If the method is called with a block, once all equality tests are evaluated
+the block is called with an array of all matched elements.</p>
+
+<h4>Examples</h4>
+
+<pre># At least one form element
+assert_select &quot;form&quot;
+
+# Form element includes four input fields
+assert_select &quot;form input&quot;, 4
+
+# Page title is &quot;Welcome&quot;
+assert_select &quot;title&quot;, &quot;Welcome&quot;
+
+# Page title is &quot;Welcome&quot; and there is only one title element
+assert_select &quot;title&quot;, {:count =&gt; 1, :text =&gt; &quot;Welcome&quot;},
+    &quot;Wrong title or more than one title element&quot;
+
+# Page contains no forms
+assert_select &quot;form&quot;, false, &quot;This page must contain no forms&quot;
+
+# Test the content and style
+assert_select &quot;body div.header ul.menu&quot;
+
+# Use substitution values
+assert_select &quot;ol&gt;li#?&quot;, /item-\d+/
+
+# All input fields in the form have a name
+assert_select &quot;form input&quot; do
+  assert_select &quot;[name=?]&quot;, /.+/  # Not empty
+end</pre>
+
+
+
+
+

@@ -1,0 +1,14 @@
+<h1>ActiveRecord::SpawnMethods#except</h1>
+
+
+<p>Removes from the query the condition(s) specified in <tt>skips</tt>.</p>
+
+<p>Example:</p>
+
+<pre>Post.order('id asc').except(:order)                  # discards the order condition
+Post.where('id &gt; 10').order('id asc').except(:where) # discards the where condition but keeps the order</pre>
+
+
+
+
+

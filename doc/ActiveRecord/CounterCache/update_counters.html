@@ -1,0 +1,40 @@
+<h1>ActiveRecord::CounterCache#update_counters</h1>
+
+
+<p>A generic "counter updater" implementation, intended primarily to be used
+by increment_counter and decrement_counter, but which may also be useful on
+its own. It simply does a direct SQL update for the record with the given
+ID, altering the given hash of counters by the amount given by the
+corresponding value:</p>
+
+<h4>Parameters</h4>
+<ul><li>
+<p><tt>id</tt> - The id of the object you wish to update a counter on or an
+Array of ids.</p>
+</li><li>
+<p><tt>counters</tt> - An Array of Hashes containing the names of the fields
+to update as keys and the amount to update the field by as values.</p>
+</li></ul>
+
+<h4>Examples</h4>
+
+<pre># For the Post with id of 5, decrement the comment_count by 1, and
+# increment the action_count by 1
+Post.update_counters 5, :comment_count =&gt; -1, :action_count =&gt; 1
+# Executes the following SQL:
+# UPDATE posts
+#    SET comment_count = COALESCE(comment_count, 0) - 1,
+#        action_count = COALESCE(action_count, 0) + 1
+#  WHERE id = 5
+
+# For the Posts with id of 10 and 15, increment the comment_count by 1
+Post.update_counters [10, 15], :comment_count =&gt; 1
+# Executes the following SQL:
+# UPDATE posts
+#    SET comment_count = COALESCE(comment_count, 0) + 1,
+#  WHERE id IN (10, 15)</pre>
+
+
+
+
+

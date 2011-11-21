@@ -1,0 +1,15 @@
+<h1>ActiveRecord::SpawnMethods#only</h1>
+
+
+<p>Removes any condition from the query other than the one(s) specified in
+<tt>onlies</tt>.</p>
+
+<p>Example:</p>
+
+<pre>Post.order('id asc').only(:where)         # discards the order condition
+Post.order('id asc').only(:where, :order) # uses the specified order</pre>
+
+
+
+
+

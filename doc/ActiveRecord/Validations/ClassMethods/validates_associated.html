@@ -1,0 +1,45 @@
+<h1>ActiveRecord::Validations::ClassMethods#validates_associated</h1>
+
+
+<p>Validates whether the associated object or objects are all valid
+themselves. Works with any kind of association.</p>
+
+<pre>class Book &lt; ActiveRecord::Base
+  has_many :pages
+  belongs_to :library
+
+  validates_associated :pages, :library
+end</pre>
+
+<p>WARNING: This validation must not be used on both ends of an association.
+Doing so will lead to a circular dependency and cause infinite recursion.</p>
+
+<p>NOTE: This validation will not fail if the association hasn't been
+assigned. If you want to ensure that the association is both present and
+guaranteed to be valid, you also need to use
+<tt>validates_presence_of</tt>.</p>
+
+<p>Configuration options:</p>
+<ul><li>
+<p><tt>:message</tt> - A custom error message (default is: "is invalid")</p>
+</li><li>
+<p><tt>:on</tt> - Specifies when this validation is active. Runs in all
+validation contexts by default (<tt>nil</tt>), other options are
+<tt>:create</tt> and <tt>:update</tt>.</p>
+</li><li>
+<p><tt>:if</tt> - Specifies a method, proc or string to call to determine if
+the validation should occur (e.g. <tt>:if =&gt; :allow_validation</tt>, or
+<tt>:if =&gt; Proc.new { |user| user.signup_step &gt; 2 }</tt>).  The
+method, proc or string should return or evaluate to a true or false value.</p>
+</li><li>
+<p><tt>:unless</tt> - Specifies a method, proc or string to call to determine
+if the validation should not occur (e.g. <tt>:unless =&gt;
+:skip_validation</tt>, or <tt>:unless =&gt; Proc.new { |user|
+user.signup_step &lt;= 2 }</tt>).  The method, proc or string should return
+or evaluate to a true or false value.</p>
+</li></ul>
+
+
+
+
+

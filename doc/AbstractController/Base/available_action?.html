@@ -1,0 +1,15 @@
+<h1>AbstractController::Base#available_action?</h1>
+
+
+<p>Returns true if a method for the action is available and can be dispatched,
+false otherwise.</p>
+
+<p>Notice that <tt>action_methods.include?(&quot;foo&quot;)</tt> may return
+false and <tt>available_action?(&quot;foo&quot;)</tt> returns true because
+available action consider actions that are also available through other
+means, for example, implicit render ones.</p>
+
+
+
+
+

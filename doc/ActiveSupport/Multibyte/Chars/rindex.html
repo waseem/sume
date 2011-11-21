@@ -1,0 +1,16 @@
+<h1>ActiveSupport::Multibyte::Chars#rindex</h1>
+
+
+<p>Returns the position <em>needle</em> in the string, counting in codepoints,
+searching backward from <em>offset</em> or the end of the string. Returns
+<tt>nil</tt> if <em>needle</em> isn’t found.</p>
+
+<p>Example:</p>
+
+<pre>'Café périferôl'.mb_chars.rindex('é')   # =&gt; 6
+'Café périferôl'.mb_chars.rindex(/\w/u) # =&gt; 13</pre>
+
+
+
+
+

@@ -1,0 +1,44 @@
+<h1>ActionView::Helpers::DateHelper#select_time</h1>
+
+
+<p>Returns a set of html select-tags (one for hour and minute). You can set
+<tt>:time_separator</tt> key to format the output, and the
+<tt>:include_seconds</tt> option to include an input for seconds.</p>
+
+<p>If anything is passed in the html_options hash it will be applied to every
+select tag in the set.</p>
+
+<h4>Examples</h4>
+
+<pre>my_time = Time.now + 5.days + 7.hours + 3.minutes + 14.seconds
+
+# Generates a time select that defaults to the time in my_time.
+select_time(my_time)
+
+# Generates a time select that defaults to the current time (no specified time).
+select_time()
+
+# Generates a time select that defaults to the time in my_time,
+# which has fields separated by ':'.
+select_time(my_time, :time_separator =&gt; ':')
+
+# Generates a time select that defaults to the time in my_time,
+# that also includes an input for seconds.
+select_time(my_time, :include_seconds =&gt; true)
+
+# Generates a time select that defaults to the time in my_time, that has fields
+# separated by ':' and includes an input for seconds.
+select_time(my_time, :time_separator =&gt; ':', :include_seconds =&gt; true)
+
+# Generate a time select field with hours in the AM/PM format
+select_time(my_time, :ampm =&gt; true)
+
+# Generates a time select with a custom prompt. Use &lt;tt&gt;:prompt&lt;/tt&gt; to true for generic prompts.
+select_time(my_time, :prompt =&gt; {:day =&gt; 'Choose day', :month =&gt; 'Choose month', :year =&gt; 'Choose year'})
+select_time(my_time, :prompt =&gt; {:hour =&gt; true}) # generic prompt for hours
+select_time(my_time, :prompt =&gt; true) # generic prompts for all</pre>
+
+
+
+
+

@@ -1,0 +1,17 @@
+<h1>ActiveRecord::Persistence#update_attributes</h1>
+
+
+<p>Updates the attributes of the model from the passed-in hash and saves the
+record, all wrapped in a transaction. If the object is invalid, the saving
+will fail and false will be returned.</p>
+
+<p>When updating model attributes, mass-assignment security protection is
+respected. If no <tt>:as</tt> option is supplied then the <tt>:default</tt>
+role will be used. If you want to bypass the protection given by
+<tt>attr_protected</tt> and <tt>attr_accessible</tt> then you can do so
+using the <tt>:without_protection</tt> option.</p>
+
+
+
+
+

@@ -1,0 +1,20 @@
+<h1>Module#mattr_accessor</h1>
+
+
+<p>Extends the module object with module and instance accessors for class
+attributes, just like the native attr* accessors for instance attributes.</p>
+
+<pre>module AppConfiguration
+  mattr_accessor :google_api_key
+  self.google_api_key = &quot;123456789&quot;
+
+  mattr_accessor :paypal_url
+  self.paypal_url = &quot;www.sandbox.paypal.com&quot;
+end
+
+AppConfiguration.google_api_key = &quot;overriding the api key!&quot;</pre>
+
+
+
+
+

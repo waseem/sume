@@ -1,0 +1,63 @@
+<h1>Array.wrap</h1>
+
+
+<p>Wraps its argument in an array unless it is already an array (or
+array-like).</p>
+
+<p>Specifically:</p>
+<ul><li>
+<p>If the argument is <tt>nil</tt> an empty list is returned.</p>
+</li><li>
+<p>Otherwise, if the argument responds to <tt>to_ary</tt> it is invoked, and
+its result returned.</p>
+</li><li>
+<p>Otherwise, returns an array with the argument as its single element.</p>
+
+<p>Array.wrap(nil)       # =&gt; [] Array.wrap([1, 2, 3]) # =&gt; [1, 2, 3]
+Array.wrap(0)         # =&gt; [0]</p>
+</li></ul>
+
+<p>This method is similar in purpose to <tt>Kernel#Array</tt>, but there are
+some differences:</p>
+<ul><li>
+<p>If the argument responds to <tt>to_ary</tt> the method is invoked.
+<tt>Kernel#Array</tt></p>
+</li></ul>
+
+<p>moves on to try <tt>to_a</tt> if the returned value is <tt>nil</tt>, but
+<tt>Array.wrap</tt> returns such a <tt>nil</tt> right away.</p>
+<ul><li>
+<p>If the returned value from <tt>to_ary</tt> is neither <tt>nil</tt> nor an
+<tt>Array</tt> object, <tt>Kernel#Array</tt></p>
+</li></ul>
+
+<p>raises an exception, while <tt>Array.wrap</tt> does not, it just returns
+the value.</p>
+<ul><li>
+<p>It does not call <tt>to_a</tt> on the argument, though special-cases
+<tt>nil</tt> to return an empty array.</p>
+</li></ul>
+
+<p>The last point is particularly worth comparing for some enumerables:</p>
+
+<pre>Array(:foo =&gt; :bar)      # =&gt; [[:foo, :bar]]
+Array.wrap(:foo =&gt; :bar) # =&gt; [{:foo =&gt; :bar}]
+
+Array(&quot;foo\nbar&quot;)        # =&gt; [&quot;foo\n&quot;, &quot;bar&quot;], in Ruby 1.8
+Array.wrap(&quot;foo\nbar&quot;)   # =&gt; [&quot;foo\nbar&quot;]</pre>
+
+<p>There's also a related idiom that uses the splat operator:</p>
+
+<pre>[*object]</pre>
+
+<p>which returns <tt>[nil]</tt> for <tt>nil</tt>, and calls to
+<tt>Array(object)</tt> otherwise.</p>
+
+<p>Thus, in this case the behavior is different for <tt>nil</tt>, and the
+differences with <tt>Kernel#Array</tt> explained above apply to the rest of
+<tt>object</tt>s.</p>
+
+
+
+
+

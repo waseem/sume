@@ -1,0 +1,32 @@
+<h1>ActionView::Helpers::FormTagHelper#radio_button_tag</h1>
+
+
+<p>Creates a radio button; use groups of radio buttons named the same to allow
+users to select from a group of options.</p>
+
+<h4>Options</h4>
+<ul><li>
+<p><tt>:disabled</tt> - If set to true, the user will not be able to use this
+input.</p>
+</li><li>
+<p>Any other key creates standard HTML options for the tag.</p>
+</li></ul>
+
+<h4>Examples</h4>
+
+<pre>radio_button_tag 'gender', 'male'
+# =&gt; &lt;input id=&quot;gender_male&quot; name=&quot;gender&quot; type=&quot;radio&quot; value=&quot;male&quot; /&gt;
+
+radio_button_tag 'receive_updates', 'no', true
+# =&gt; &lt;input checked=&quot;checked&quot; id=&quot;receive_updates_no&quot; name=&quot;receive_updates&quot; type=&quot;radio&quot; value=&quot;no&quot; /&gt;
+
+radio_button_tag 'time_slot', &quot;3:00 p.m.&quot;, false, :disabled =&gt; true
+# =&gt; &lt;input disabled=&quot;disabled&quot; id=&quot;time_slot_300_pm&quot; name=&quot;time_slot&quot; type=&quot;radio&quot; value=&quot;3:00 p.m.&quot; /&gt;
+
+radio_button_tag 'color', &quot;green&quot;, true, :class =&gt; &quot;color_input&quot;
+# =&gt; &lt;input checked=&quot;checked&quot; class=&quot;color_input&quot; id=&quot;color_green&quot; name=&quot;color&quot; type=&quot;radio&quot; value=&quot;green&quot; /&gt;</pre>
+
+
+
+
+

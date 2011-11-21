@@ -1,0 +1,13 @@
+A cache store implementation which stores data in Memcached:
+http://www.danga.com/memcached/
+
+This is currently the most popular cache store for production websites.
+
+Special features:
+- Clustering and load balancing. One can specify multiple memcached servers,
+  and MemCacheStore will load balance between all available servers. If a
+  server goes down, then MemCacheStore will ignore it until it comes back up.
+
+MemCacheStore implements the Strategy::LocalCache strategy which implements
+an in memory cache inside of a block.
+

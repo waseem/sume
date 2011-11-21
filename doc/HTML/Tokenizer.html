@@ -1,0 +1,12 @@
+A simple HTML tokenizer. It simply breaks a stream of text into tokens, where each
+token is a string. Each string represents either "text", or an HTML element.
+
+This currently assumes valid XHTML, which means no free < or > characters.
+
+Usage:
+
+  tokenizer = HTML::Tokenizer.new(text)
+  while token = tokenizer.next
+    p token
+  end
+

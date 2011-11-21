@@ -1,0 +1,57 @@
+<h1>ActionView::Helpers::RenderingHelper#_layout_for</h1>
+
+
+<p>Overwrites _layout_for in the context object so it supports the case a
+block is passed to a partial. Returns the contents that are yielded to a
+layout, given a name or a block.</p>
+
+<p>You can think of a layout as a method that is called with a block. If the
+user calls <tt>yield :some_name</tt>, the block, by default, returns
+<tt>content_for(:some_name)</tt>. If the user calls simply <tt>yield</tt>,
+the default block returns <tt>content_for(:layout)</tt>.</p>
+
+<p>The user can override this default by passing a block to the layout:</p>
+
+<pre># The template
+&lt;%= render :layout =&gt; &quot;my_layout&quot; do %&gt;
+  Content
+&lt;% end %&gt;
+
+# The layout
+&lt;html&gt;
+  &lt;%= yield %&gt;
+&lt;/html&gt;</pre>
+
+<p>In this case, instead of the default block, which would return
+<tt>content_for(:layout)</tt>, this method returns the block that was
+passed in to <tt>render :layout</tt>, and the response would be</p>
+
+<pre>&lt;html&gt;
+  Content
+&lt;/html&gt;</pre>
+
+<p>Finally, the block can take block arguments, which can be passed in by
+<tt>yield</tt>:</p>
+
+<pre># The template
+&lt;%= render :layout =&gt; &quot;my_layout&quot; do |customer| %&gt;
+  Hello &lt;%= customer.name %&gt;
+&lt;% end %&gt;
+
+# The layout
+&lt;html&gt;
+  &lt;%= yield Struct.new(:name).new(&quot;David&quot;) %&gt;
+&lt;/html&gt;</pre>
+
+<p>In this case, the layout would receive the block passed into <tt>render
+:layout</tt>, and the struct specified would be passed into the block as an
+argument. The result would be</p>
+
+<pre>&lt;html&gt;
+  Hello David
+&lt;/html&gt;</pre>
+
+
+
+
+

@@ -1,0 +1,30 @@
+<h1>ActionDispatch::Assertions::RoutingAssertions#assert_generates</h1>
+
+
+<p>Asserts that the provided options can be used to generate the provided
+path.  This is the inverse of <tt>assert_recognizes</tt>. The
+<tt>extras</tt> parameter is used to tell the request the names and values
+of additional request parameters that would be in a query string. The
+<tt>message</tt> parameter allows you to specify a custom error message for
+assertion failures.</p>
+
+<p>The <tt>defaults</tt> parameter is unused.</p>
+
+<h4>Examples</h4>
+
+<pre># Asserts that the default action is generated for a route with no action
+assert_generates &quot;/items&quot;, :controller =&gt; &quot;items&quot;, :action =&gt; &quot;index&quot;
+
+# Tests that the list action is properly routed
+assert_generates &quot;/items/list&quot;, :controller =&gt; &quot;items&quot;, :action =&gt; &quot;list&quot;
+
+# Tests the generation of a route with a parameter
+assert_generates &quot;/items/list/1&quot;, { :controller =&gt; &quot;items&quot;, :action =&gt; &quot;list&quot;, :id =&gt; &quot;1&quot; }
+
+# Asserts that the generated route gives us our custom route
+assert_generates &quot;changesets/12&quot;, { :controller =&gt; 'scm', :action =&gt; 'show_diff', :revision =&gt; &quot;12&quot; }</pre>
+
+
+
+
+

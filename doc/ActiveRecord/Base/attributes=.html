@@ -1,0 +1,26 @@
+<h1>ActiveRecord::Base#attributes=</h1>
+
+
+<p>Allows you to set all the attributes at once by passing in a hash with keys
+matching the attribute names (which again matches the column names).</p>
+
+<p>If any attributes are protected by either <tt>attr_protected</tt> or
+<tt>attr_accessible</tt> then only settable attributes will be assigned.</p>
+
+<p>The <tt>guard_protected_attributes</tt> argument is now deprecated, use the
+<tt>assign_attributes</tt> method if you want to bypass mass-assignment
+security.</p>
+
+<pre>class User &lt; ActiveRecord::Base
+  attr_protected :is_admin
+end
+
+user = User.new
+user.attributes = { :username =&gt; 'Phusion', :is_admin =&gt; true }
+user.username   # =&gt; &quot;Phusion&quot;
+user.is_admin?  # =&gt; false</pre>
+
+
+
+
+

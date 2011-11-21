@@ -1,0 +1,74 @@
+<h1>Class#class_attribute</h1>
+
+
+<p>Declare a class-level attribute whose value is inheritable by subclasses.
+Subclasses can change their own value and it will not impact parent class.</p>
+
+<pre>class Base
+  class_attribute :setting
+end
+
+class Subclass &lt; Base
+end
+
+Base.setting = true
+Subclass.setting            # =&gt; true
+Subclass.setting = false
+Subclass.setting            # =&gt; false
+Base.setting                # =&gt; true</pre>
+
+<p>In the above case as long as Subclass does not assign a value to setting by
+performing <tt>Subclass.setting = <em>something</em> </tt>,
+<tt>Subclass.setting</tt> would read value assigned to parent class. Once
+Subclass assigns a value then the value assigned by Subclass would be
+returned.</p>
+
+<p>This matches normal Ruby method inheritance: think of writing an attribute
+on a subclass as overriding the reader method. However, you need to be
+aware when using <tt>class_attribute</tt> with mutable structures as
+<tt>Array</tt> or <tt>Hash</tt>. In such cases, you don't want to do
+changes in places but use setters:</p>
+
+<pre>Base.setting = []
+Base.setting                # =&gt; []
+Subclass.setting            # =&gt; []
+
+# Appending in child changes both parent and child because it is the same object:
+Subclass.setting &lt;&lt; :foo
+Base.setting               # =&gt; [:foo]
+Subclass.setting           # =&gt; [:foo]
+
+# Use setters to not propagate changes:
+Base.setting = []
+Subclass.setting += [:foo]
+Base.setting               # =&gt; []
+Subclass.setting           # =&gt; [:foo]</pre>
+
+<p>For convenience, a query method is defined as well:</p>
+
+<pre>Subclass.setting?       # =&gt; false</pre>
+
+<p>Instances may overwrite the class value in the same way:</p>
+
+<pre>Base.setting = true
+object = Base.new
+object.setting          # =&gt; true
+object.setting = false
+object.setting          # =&gt; false
+Base.setting            # =&gt; true</pre>
+
+<p>To opt out of the instance reader method, pass :instance_reader =&gt;
+false.</p>
+
+<pre>object.setting          # =&gt; NoMethodError
+object.setting?         # =&gt; NoMethodError</pre>
+
+<p>To opt out of the instance writer method, pass :instance_writer =&gt;
+false.</p>
+
+<pre>object.setting = false  # =&gt; NoMethodError</pre>
+
+
+
+
+

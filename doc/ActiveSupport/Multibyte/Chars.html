@@ -1,0 +1,30 @@
+Chars enables you to work transparently with UTF-8 encoding in the Ruby String class without having extensive
+knowledge about the encoding. A Chars object accepts a string upon initialization and proxies String methods in an
+encoding safe manner. All the normal String methods are also implemented on the proxy.
+
+String methods are proxied through the Chars object, and can be accessed through the +mb_chars+ method. Methods
+which would normally return a String object now return a Chars object so methods can be chained.
+
+  "The Perfect String  ".mb_chars.downcase.strip.normalize # => "the perfect string"
+
+Chars objects are perfectly interchangeable with String objects as long as no explicit class checks are made.
+If certain methods do explicitly check the class, call +to_s+ before you pass chars objects to them.
+
+  bad.explicit_checking_method "T".mb_chars.downcase.to_s
+
+The default Chars implementation assumes that the encoding of the string is UTF-8, if you want to handle different
+encodings you can write your own multibyte string handler and configure it through
+ActiveSupport::Multibyte.proxy_class.
+
+  class CharsForUTF32
+    def size
+      @wrapped_string.size / 4
+    end
+
+    def self.accepts?(string)
+      string.length % 4 == 0
+    end
+  end
+
+  ActiveSupport::Multibyte.proxy_class = CharsForUTF32
+

@@ -1,0 +1,24 @@
+<h1>ERB::Util#j</h1>
+
+
+<p>A utility method for escaping HTML entities in JSON strings using uXXXX
+JavaScript escape sequences for string literals:</p>
+
+<pre>json_escape(&quot;is a &gt; 0 &amp; a &lt; 10?&quot;)
+# =&gt; is a \u003E 0 \u0026 a \u003C 10?</pre>
+
+<p>Note that after this operation is performed the output is not valid JSON.
+In particular double quotes are removed:</p>
+
+<pre>json_escape('{&quot;name&quot;:&quot;john&quot;,&quot;created_at&quot;:&quot;2010-04-28T01:39:31Z&quot;,&quot;id&quot;:1}')
+# =&gt; {name:john,created_at:2010-04-28T01:39:31Z,id:1}</pre>
+
+<p>This method is also aliased as <tt>j</tt>, and available as a helper in
+Rails templates:</p>
+
+<pre>&lt;%=j @person.to_json %&gt;</pre>
+
+
+
+
+

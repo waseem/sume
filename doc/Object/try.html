@@ -1,0 +1,46 @@
+<h1>Object#try</h1>
+
+
+<p>Invokes the method identified by the symbol <tt>method</tt>, passing it any
+arguments and/or the block specified, just like the regular Ruby
+<tt>Object#send</tt> does.</p>
+
+<p><b>Unlike</b> that method however, a <tt>NoMethodError</tt> exception will
+<b>not</b> be raised and <tt>nil</tt> will be returned instead, if the
+receiving object is a <tt>nil</tt> object or NilClass.</p>
+
+<p>If try is called without a method to call, it will yield any given block
+with the object.</p>
+
+<h4>Examples</h4>
+
+<p>Without <tt>try</tt></p>
+
+<pre>@person &amp;&amp; @person.name</pre>
+
+<p>or</p>
+
+<pre>@person ? @person.name : nil</pre>
+
+<p>With <tt>try</tt></p>
+
+<pre>@person.try(:name)</pre>
+
+<p><tt>try</tt> also accepts arguments and/or a block, for the method it is
+trying</p>
+
+<pre>Person.try(:find, 1)
+@people.try(:collect) {|p| p.name}</pre>
+
+<p>Without a method argument try will yield to the block unless the receiver
+is nil.</p>
+
+<pre>@person.try { |p| &quot;#{p.first_name} #{p.last_name}&quot; }</pre>
+
+<p>-- <tt>try</tt> behaves like <tt>Object#send</tt>, unless called on
+<tt>NilClass</tt>.</p>
+
+
+
+
+

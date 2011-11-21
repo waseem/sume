@@ -1,0 +1,30 @@
+<h1>ActiveRecord::Reflection::ThroughReflection#conditions</h1>
+
+
+<p>Consider the following example:</p>
+
+<pre>class Person
+  has_many :articles
+  has_many :comment_tags, :through =&gt; :articles
+end
+
+class Article
+  has_many :comments
+  has_many :comment_tags, :through =&gt; :comments, :source =&gt; :tags
+end
+
+class Comment
+  has_many :tags
+end</pre>
+
+<p>There may be conditions on Person.comment_tags, Article.comment_tags and/or
+Comment.tags, but only Comment.tags will be represented in the #chain. So
+this method creates an array of conditions corresponding to the chain. Each
+item in the #conditions array corresponds to an item in the #chain, and is
+itself an array of conditions from an arbitrary number of relevant
+reflections, plus any :source_type or polymorphic :as constraints.</p>
+
+
+
+
+

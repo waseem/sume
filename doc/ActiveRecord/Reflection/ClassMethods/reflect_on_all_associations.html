@@ -1,0 +1,17 @@
+<h1>ActiveRecord::Reflection::ClassMethods#reflect_on_all_associations</h1>
+
+
+<p>Returns an array of AssociationReflection objects for all the associations
+in the class. If you only want to reflect on a certain association type,
+pass in the symbol (<tt>:has_many</tt>, <tt>:has_one</tt>,
+<tt>:belongs_to</tt>) as the first parameter.</p>
+
+<p>Example:</p>
+
+<pre>Account.reflect_on_all_associations             # returns an array of all associations
+Account.reflect_on_all_associations(:has_many)  # returns an array of all has_many associations</pre>
+
+
+
+
+

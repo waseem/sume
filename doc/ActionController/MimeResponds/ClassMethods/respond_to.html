@@ -1,0 +1,31 @@
+<h1>ActionController::MimeResponds::ClassMethods#respond_to</h1>
+
+
+<p>Defines mime types that are rendered by default when invoking
+<tt>respond_with</tt>.</p>
+
+<p>Examples:</p>
+
+<pre>respond_to :html, :xml, :json</pre>
+
+<p>Specifies that all actions in the controller respond to requests for
+<tt>:html</tt>, <tt>:xml</tt> and <tt>:json</tt>.</p>
+
+<p>To specify on per-action basis, use <tt>:only</tt> and <tt>:except</tt>
+with an array of actions or a single action:</p>
+
+<pre>respond_to :html
+respond_to :xml, :json, :except =&gt; [ :edit ]</pre>
+
+<p>This specifies that all actions respond to <tt>:html</tt> and all actions
+except <tt>:edit</tt> respond to <tt>:xml</tt> and <tt>:json</tt>.</p>
+
+<pre>respond_to :json, :only =&gt; :create</pre>
+
+<p>This specifies that the <tt>:create</tt> action and no other responds to
+<tt>:json</tt>.</p>
+
+
+
+
+

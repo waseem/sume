@@ -1,0 +1,68 @@
+<h1>ActionDispatch::Routing::Mapper::Scoping#constraints</h1>
+
+
+<h3>Parameter Restriction</h3>
+
+<p>Allows you to constrain the nested routes based on a set of rules. For
+instance, in order to change the routes to allow for a dot character in the
+<tt>id</tt> parameter:</p>
+
+<pre>constraints(:id =&gt; /\d+\.\d+) do
+  resources :posts
+end</pre>
+
+<p>Now routes such as <tt>/posts/1</tt> will no longer be valid, but
+<tt>/posts/1.1</tt> will be. The <tt>id</tt> parameter must match the
+constraint passed in for this example.</p>
+
+<p>You may use this to also restrict other parameters:</p>
+
+<pre>resources :posts do
+  constraints(:post_id =&gt; /\d+\.\d+) do
+    resources :comments
+  end
+end</pre>
+
+<h3>Restricting based on IP</h3>
+
+<p>Routes can also be constrained to an IP or a certain range of IP addresses:</p>
+
+<pre>constraints(:ip =&gt; /192.168.\d+.\d+/) do
+  resources :posts
+end</pre>
+
+<p>Any user connecting from the 192.168.* range will be able to see this
+resource, where as any user connecting outside of this range will be told
+there is no such route.</p>
+
+<h3>Dynamic request matching</h3>
+
+<p>Requests to routes can be constrained based on specific criteria:</p>
+
+<pre>constraints(lambda { |req| req.env[&quot;HTTP_USER_AGENT&quot;] =~ /iPhone/ }) do
+  resources :iphones
+end</pre>
+
+<p>You are able to move this logic out into a class if it is too complex for
+routes. This class must have a <tt>matches?</tt> method defined on it which
+either returns <tt>true</tt> if the user should be given access to that
+route, or <tt>false</tt> if the user should not.</p>
+
+<pre>class Iphone
+  def self.matches(request)
+    request.env[&quot;HTTP_USER_AGENT&quot;] =~ /iPhone/
+  end
+end</pre>
+
+<p>An expected place for this code would be <tt>lib/constraints</tt>.</p>
+
+<p>This class is then used like this:</p>
+
+<pre>constraints(Iphone) do
+  resources :iphones
+end</pre>
+
+
+
+
+

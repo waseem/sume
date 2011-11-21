@@ -1,0 +1,19 @@
+<h1>ActiveRecord::Reflection::ThroughReflection#chain</h1>
+
+
+<p>Returns an array of reflections which are involved in this association.
+Each item in the array corresponds to a table which will be part of the
+query for this association.</p>
+
+<p>The chain is built by recursively calling #chain on the source reflection
+and the through reflection. The base case for the recursion is a normal
+association, which just returns</p>
+<dl class="rdoc-list"><dt>self</dt>
+<dd>
+<p>as its #chain.</p>
+</dd></dl>
+
+
+
+
+

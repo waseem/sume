@@ -1,0 +1,34 @@
+<h1>ActionView::Helpers::NumberHelper#number_to_phone</h1>
+
+
+<p>Formats a <tt>number</tt> into a US phone number (e.g., (555) 123-9876).
+You can customize the format in the <tt>options</tt> hash.</p>
+
+<h4>Options</h4>
+<ul><li>
+<p><tt>:area_code</tt>  - Adds parentheses around the area code.</p>
+</li><li>
+<p><tt>:delimiter</tt>  - Specifies the delimiter to use (defaults to "-").</p>
+</li><li>
+<p><tt>:extension</tt>  - Specifies an extension to add to the end of the
+generated number.</p>
+</li><li>
+<p><tt>:country_code</tt>  - Sets the country code for the phone number.</p>
+</li></ul>
+
+<h4>Examples</h4>
+
+<pre>number_to_phone(5551234)                                           # =&gt; 555-1234
+number_to_phone(1235551234)                                        # =&gt; 123-555-1234
+number_to_phone(1235551234, :area_code =&gt; true)                    # =&gt; (123) 555-1234
+number_to_phone(1235551234, :delimiter =&gt; &quot; &quot;)                     # =&gt; 123 555 1234
+number_to_phone(1235551234, :area_code =&gt; true, :extension =&gt; 555) # =&gt; (123) 555-1234 x 555
+number_to_phone(1235551234, :country_code =&gt; 1)                    # =&gt; +1-123-555-1234
+
+number_to_phone(1235551234, :country_code =&gt; 1, :extension =&gt; 1343, :delimiter =&gt; &quot;.&quot;)
+=&gt; +1.123.555.1234 x 1343</pre>
+
+
+
+
+

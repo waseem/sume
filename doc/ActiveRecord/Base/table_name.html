@@ -1,0 +1,55 @@
+<h1>ActiveRecord::Base.table_name</h1>
+
+
+<p>Guesses the table name (in forced lower-case) based on the name of the
+class in the inheritance hierarchy descending directly from
+ActiveRecord::Base. So if the hierarchy looks like: Reply &lt; Message &lt;
+ActiveRecord::Base, then Message is used to guess the table name even when
+called on Reply. The rules used to do the guess are handled by the
+Inflector class in Active Support, which knows almost all common English
+inflections. You can add new inflections in
+config/initializers/inflections.rb.</p>
+
+<p>Nested classes are given table names prefixed by the singular form of the
+parent's table name. Enclosing modules are not considered.</p>
+
+<h4>Examples</h4>
+
+<pre>class Invoice &lt; ActiveRecord::Base
+end
+
+file                  class               table_name
+invoice.rb            Invoice             invoices
+
+class Invoice &lt; ActiveRecord::Base
+  class Lineitem &lt; ActiveRecord::Base
+  end
+end
+
+file                  class               table_name
+invoice.rb            Invoice::Lineitem   invoice_lineitems
+
+module Invoice
+  class Lineitem &lt; ActiveRecord::Base
+  end
+end
+
+file                  class               table_name
+invoice/lineitem.rb   Invoice::Lineitem   lineitems</pre>
+
+<p>Additionally, the class-level <tt>table_name_prefix</tt> is prepended and
+the <tt>table_name_suffix</tt> is appended. So if you have "myapp_" as a
+prefix, the table name guess for an Invoice class becomes "myapp_invoices".
+Invoice::Lineitem becomes "myapp_invoice_lineitems".</p>
+
+<p>You can also overwrite this class method to allow for unguessable links,
+such as a Mouse class with a link to a "mice" table. Example:</p>
+
+<pre>class Mouse &lt; ActiveRecord::Base
+  set_table_name &quot;mice&quot;
+end</pre>
+
+
+
+
+

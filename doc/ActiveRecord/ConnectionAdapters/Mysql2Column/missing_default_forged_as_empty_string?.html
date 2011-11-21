@@ -1,0 +1,14 @@
+<h1>ActiveRecord::ConnectionAdapters::Mysql2Column#missing_default_forged_as_empty_string?</h1>
+
+
+<p>MySQL misreports NOT NULL column default when none is given. We can't
+detect this for columns which may have a legitimate " default (string) but
+we can for others (integer, datetime, boolean, and the rest).</p>
+
+<p>Test whether the column has default ", is not null, and is not a type
+allowing default ".</p>
+
+
+
+
+

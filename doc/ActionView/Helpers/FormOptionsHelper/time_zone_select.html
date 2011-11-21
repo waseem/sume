@@ -1,0 +1,39 @@
+<h1>ActionView::Helpers::FormOptionsHelper#time_zone_select</h1>
+
+
+<p>Return select and option tags for the given object and method, using
+#time_zone_options_for_select to generate the list of option tags.</p>
+
+<p>In addition to the <tt>:include_blank</tt> option documented above, this
+method also supports a <tt>:model</tt> option, which defaults to
+ActiveSupport::TimeZone. This may be used by users to specify a different
+time zone model object. (See <tt>time_zone_options_for_select</tt> for more
+information.)</p>
+
+<p>You can also supply an array of ActiveSupport::TimeZone objects as
+<tt>priority_zones</tt>, so that they will be listed above the rest of the
+(long) list. (You can use ActiveSupport::TimeZone.us_zones as a convenience
+for obtaining a list of the US time zones, or a Regexp to select the zones
+of your choice)</p>
+
+<p>Finally, this method supports a <tt>:default</tt> option, which selects a
+default ActiveSupport::TimeZone if the object's time zone is <tt>nil</tt>.</p>
+
+<p>Examples:</p>
+
+<pre>time_zone_select( &quot;user&quot;, &quot;time_zone&quot;, nil, :include_blank =&gt; true)
+
+time_zone_select( &quot;user&quot;, &quot;time_zone&quot;, nil, :default =&gt; &quot;Pacific Time (US &amp; Canada)&quot; )
+
+time_zone_select( &quot;user&quot;, 'time_zone', ActiveSupport::TimeZone.us_zones, :default =&gt; &quot;Pacific Time (US &amp; Canada)&quot;)
+
+time_zone_select( &quot;user&quot;, 'time_zone', [ ActiveSupport::TimeZone['Alaska'], ActiveSupport::TimeZone['Hawaii'] ])
+
+time_zone_select( &quot;user&quot;, 'time_zone', /Australia/)
+
+time_zone_select( &quot;user&quot;, &quot;time_zone&quot;, ActiveSupport::TimeZone.all.sort, :model =&gt; ActiveSupport::TimeZone)</pre>
+
+
+
+
+

@@ -1,0 +1,49 @@
+<h1>ActionView::Helpers::DateHelper#time_select</h1>
+
+
+<p>Returns a set of select tags (one for hour, minute and optionally second)
+pre-selected for accessing a specified time-based attribute (identified by
+<tt>method</tt>) on an object assigned to the template (identified by
+<tt>object</tt>). You can include the seconds with
+<tt>:include_seconds</tt>. You can get hours in the AM/PM format with
+<tt>:ampm</tt> option.</p>
+
+<p>This method will also generate 3 input hidden tags, for the actual year,
+month and day unless the option <tt>:ignore_date</tt> is set to
+<tt>true</tt>. If you set the <tt>:ignore_date</tt> to <tt>true</tt>, you
+must have a <tt>date_select</tt> on the same method within the form
+otherwise an exception will be raised.</p>
+
+<p>If anything is passed in the html_options hash it will be applied to every
+select tag in the set.</p>
+
+<h4>Examples</h4>
+
+<pre># Creates a time select tag that, when POSTed, will be stored in the article variable in the sunrise attribute.
+time_select(&quot;article&quot;, &quot;sunrise&quot;)
+
+# Creates a time select tag with a seconds field that, when POSTed, will be stored in the article variables in
+# the sunrise attribute.
+time_select(&quot;article&quot;, &quot;start_time&quot;, :include_seconds =&gt; true)
+
+# You can set the &lt;tt&gt;:minute_step&lt;/tt&gt; to 15 which will give you: 00, 15, 30 and 45.
+time_select 'game', 'game_time', {:minute_step =&gt; 15}
+
+# Creates a time select tag with a custom prompt. Use &lt;tt&gt;:prompt =&gt; true&lt;/tt&gt; for generic prompts.
+time_select(&quot;article&quot;, &quot;written_on&quot;, :prompt =&gt; {:hour =&gt; 'Choose hour', :minute =&gt; 'Choose minute', :second =&gt; 'Choose seconds'})
+time_select(&quot;article&quot;, &quot;written_on&quot;, :prompt =&gt; {:hour =&gt; true}) # generic prompt for hours
+time_select(&quot;article&quot;, &quot;written_on&quot;, :prompt =&gt; true) # generic prompts for all
+
+# You can set :ampm option to true which will show the hours as: 12 PM, 01 AM .. 11 PM.
+time_select 'game', 'game_time', {:ampm =&gt; true}</pre>
+
+<p>The selects are prepared for multi-parameter assignment to an Active Record
+object.</p>
+
+<p>Note: If the day is not included as an option but the month is, the day
+will be set to the 1st to ensure that all month choices are valid.</p>
+
+
+
+
+

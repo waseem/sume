@@ -1,0 +1,54 @@
+<h1>ActiveRecord::Associations::Preloader#initialize</h1>
+
+
+<p>Eager loads the named associations for the given Active Record record(s).</p>
+
+<p>In this description, 'association name' shall refer to the name passed to
+an association creation method. For example, a model that specifies
+<tt>belongs_to :author</tt>, <tt>has_many :buyers</tt> has association
+names <tt>:author</tt> and <tt>:buyers</tt>.</p>
+
+<h2>Parameters</h2>
+
+<p><tt>records</tt> is an array of ActiveRecord::Base. This array needs not be
+flat, i.e. <tt>records</tt> itself may also contain arrays of records. In
+any case, <tt>preload_associations</tt> will preload the all associations
+records by flattening <tt>records</tt>.</p>
+
+<p><tt>associations</tt> specifies one or more associations that you want to
+preload. It may be:</p>
+<ul><li>
+<p>a Symbol or a String which specifies a single association name. For
+example, specifying <tt>:books</tt> allows this method to preload all books
+for an Author.</p>
+</li><li>
+<p>an Array which specifies multiple association names. This array is
+processed recursively. For example, specifying <tt>[:avatar, :books]</tt>
+allows this method to preload an author's avatar as well as all of his
+books.</p>
+</li><li>
+<p>a Hash which specifies multiple association names, as well as association
+names for the to-be-preloaded association objects. For example, specifying
+<tt>{ :author =&gt; :avatar }</tt> will preload a book's author, as well as
+that author's avatar.</p>
+</li></ul>
+
+<p><tt>:associations</tt> has the same format as the <tt>:include</tt> option
+for <tt>ActiveRecord::Base.find</tt>. So <tt>associations</tt> could look
+like this:</p>
+
+<pre>:books
+[ :books, :author ]
+{ :author =&gt; :avatar }
+[ :books, { :author =&gt; :avatar } ]</pre>
+
+<p><tt>options</tt> contains options that will be passed to
+ActiveRecord::Base#find (which is called under the hood for preloading
+records). But it is passed only one level deep in the <tt>associations</tt>
+argument, i.e. it's not passed to the child associations when
+<tt>associations</tt> is a Hash.</p>
+
+
+
+
+

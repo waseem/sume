@@ -1,0 +1,28 @@
+<h1>ActionView::Helpers::FormTagHelper#number_field_tag</h1>
+
+
+<p>Creates a number field.</p>
+
+<h4>Options</h4>
+<ul><li>
+<p><tt>:min</tt> - The minimum acceptable value.</p>
+</li><li>
+<p><tt>:max</tt> - The maximum acceptable value.</p>
+</li><li>
+<p><tt>:in</tt> - A range specifying the <tt>:min</tt> and <tt>:max</tt>
+values.</p>
+</li><li>
+<p><tt>:step</tt> - The acceptable value granularity.</p>
+</li><li>
+<p>Otherwise accepts the same options as text_field_tag.</p>
+</li></ul>
+
+<h4>Examples</h4>
+
+<pre>number_field_tag 'quantity', nil, :in =&gt; 1...10
+=&gt; &lt;input id=&quot;quantity&quot; name=&quot;quantity&quot; min=&quot;1&quot; max=&quot;9&quot; /&gt;</pre>
+
+
+
+
+

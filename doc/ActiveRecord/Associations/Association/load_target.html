@@ -1,0 +1,18 @@
+<h1>ActiveRecord::Associations::Association#load_target</h1>
+
+
+<p>Loads the target if needed and returns it.</p>
+
+<p>This method is abstract in the sense that it relies on
+<tt>find_target</tt>, which is expected to be provided by descendants.</p>
+
+<p>If the target is already loaded it is just returned. Thus, you can call
+<tt>load_target</tt> unconditionally to get the target.</p>
+
+<p>ActiveRecord::RecordNotFound is rescued within the method, and it is not
+reraised. The proxy is reset and <tt>nil</tt> is the return value.</p>
+
+
+
+
+

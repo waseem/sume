@@ -1,0 +1,23 @@
+<h1>NilClass#try</h1>
+
+
+<p>Calling <tt>try</tt> on <tt>nil</tt> always returns <tt>nil</tt>. It
+becomes specially helpful when navigating through associations that may
+return <tt>nil</tt>.</p>
+
+<h3>Examples</h3>
+
+<pre>nil.try(:name) # =&gt; nil</pre>
+
+<p>Without <tt>try</tt></p>
+
+<pre>@person &amp;&amp; !@person.children.blank? &amp;&amp; @person.children.first.name</pre>
+
+<p>With <tt>try</tt></p>
+
+<pre>@person.try(:children).try(:first).try(:name)</pre>
+
+
+
+
+

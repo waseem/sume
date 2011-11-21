@@ -1,0 +1,54 @@
+<h1>ActionView::Helpers::NumberHelper#number_to_currency</h1>
+
+
+<p>Formats a <tt>number</tt> into a currency string (e.g., $13.65). You can
+customize the format in the <tt>options</tt> hash.</p>
+
+<h4>Options</h4>
+<ul><li>
+<p><tt>:locale</tt>           - Sets the locale to be used for formatting
+(defaults to current locale).</p>
+</li><li>
+<p><tt>:precision</tt>        - Sets the level of precision (defaults to 2).</p>
+</li><li>
+<p><tt>:unit</tt>             - Sets the denomination of the currency
+(defaults to "$").</p>
+</li><li>
+<p><tt>:separator</tt>        - Sets the separator between the units (defaults
+to ".").</p>
+</li><li>
+<p><tt>:delimiter</tt>        - Sets the thousands delimiter (defaults to
+",").</p>
+</li><li>
+<p><tt>:format</tt>           - Sets the format for non-negative numbers
+(defaults to "%u%n").</p>
+
+<pre>Fields are &lt;tt&gt;%u&lt;/tt&gt; for the currency, and &lt;tt&gt;%n&lt;/tt&gt;
+for the number.</pre>
+</li><li>
+<p><tt>:negative_format</tt>  - Sets the format for negative numbers (defaults
+to prepending</p>
+
+<pre>an hyphen to the formatted number given by &lt;tt&gt;:format&lt;/tt&gt;).
+Accepts the same fields than &lt;tt&gt;:format&lt;/tt&gt;, except
+&lt;tt&gt;%n&lt;/tt&gt; is here the absolute value of the number.</pre>
+</li></ul>
+
+<h4>Examples</h4>
+
+<pre>number_to_currency(1234567890.50)                    # =&gt; $1,234,567,890.50
+number_to_currency(1234567890.506)                   # =&gt; $1,234,567,890.51
+number_to_currency(1234567890.506, :precision =&gt; 3)  # =&gt; $1,234,567,890.506
+number_to_currency(1234567890.506, :locale =&gt; :fr)   # =&gt; 1 234 567 890,506 €
+
+number_to_currency(-1234567890.50, :negative_format =&gt; &quot;(%u%n)&quot;)
+# =&gt; ($1,234,567,890.51)
+number_to_currency(1234567890.50, :unit =&gt; &quot;&amp;pound;&quot;, :separator =&gt; &quot;,&quot;, :delimiter =&gt; &quot;&quot;)
+# =&gt; &amp;pound;1234567890,50
+number_to_currency(1234567890.50, :unit =&gt; &quot;&amp;pound;&quot;, :separator =&gt; &quot;,&quot;, :delimiter =&gt; &quot;&quot;, :format =&gt; &quot;%n %u&quot;)
+# =&gt; 1234567890,50 &amp;pound;</pre>
+
+
+
+
+

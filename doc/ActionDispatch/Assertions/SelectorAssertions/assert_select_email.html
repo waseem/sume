@@ -1,0 +1,26 @@
+<h1>ActionDispatch::Assertions::SelectorAssertions#assert_select_email</h1>
+
+
+<p>Extracts the body of an email and runs nested assertions on it.</p>
+
+<p>You must enable deliveries for this assertion to work, use:</p>
+
+<pre>ActionMailer::Base.perform_deliveries = true</pre>
+
+<h4>Examples</h4>
+
+<pre>assert_select_email do
+  assert_select &quot;h1&quot;, &quot;Email alert&quot;
+end
+
+assert_select_email do
+  items = assert_select &quot;ol&gt;li&quot;
+  items.each do
+     # Work with items here...
+  end
+end</pre>
+
+
+
+
+

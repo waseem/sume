@@ -1,0 +1,29 @@
+<h1>ActiveRecord::Relation#destroy</h1>
+
+
+<p>Destroy an object (or multiple objects) that has the given id, the object
+is instantiated first, therefore all callbacks and filters are fired off
+before the object is deleted.  This method is less efficient than
+ActiveRecord#delete but allows cleanup methods and other actions to be run.</p>
+
+<p>This essentially finds the object (or multiple objects) with the given id,
+creates a new object from the attributes, and then calls destroy on it.</p>
+
+<h4>Parameters</h4>
+<ul><li>
+<p><tt>id</tt> - Can be either an Integer or an Array of Integers.</p>
+</li></ul>
+
+<h4>Examples</h4>
+
+<pre># Destroy a single object
+Todo.destroy(1)
+
+# Destroy multiple objects
+todos = [1,2,3]
+Todo.destroy(todos)</pre>
+
+
+
+
+

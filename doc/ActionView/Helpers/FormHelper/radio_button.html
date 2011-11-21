@@ -1,0 +1,28 @@
+<h1>ActionView::Helpers::FormHelper#radio_button</h1>
+
+
+<p>Returns a radio button tag for accessing a specified attribute (identified
+by <tt>method</tt>) on an object assigned to the template (identified by
+<tt>object</tt>). If the current value of <tt>method</tt> is
+<tt>tag_value</tt> the radio button will be checked.</p>
+
+<p>To force the radio button to be checked pass <tt>:checked =&gt; true</tt>
+in the <tt>options</tt> hash. You may pass HTML options there as well.</p>
+
+<h4>Examples</h4>
+
+<pre># Let's say that @post.category returns &quot;rails&quot;:
+radio_button(&quot;post&quot;, &quot;category&quot;, &quot;rails&quot;)
+radio_button(&quot;post&quot;, &quot;category&quot;, &quot;java&quot;)
+# =&gt; &lt;input type=&quot;radio&quot; id=&quot;post_category_rails&quot; name=&quot;post[category]&quot; value=&quot;rails&quot; checked=&quot;checked&quot; /&gt;
+#    &lt;input type=&quot;radio&quot; id=&quot;post_category_java&quot; name=&quot;post[category]&quot; value=&quot;java&quot; /&gt;
+
+radio_button(&quot;user&quot;, &quot;receive_newsletter&quot;, &quot;yes&quot;)
+radio_button(&quot;user&quot;, &quot;receive_newsletter&quot;, &quot;no&quot;)
+# =&gt; &lt;input type=&quot;radio&quot; id=&quot;user_receive_newsletter_yes&quot; name=&quot;user[receive_newsletter]&quot; value=&quot;yes&quot; /&gt;
+#    &lt;input type=&quot;radio&quot; id=&quot;user_receive_newsletter_no&quot; name=&quot;user[receive_newsletter]&quot; value=&quot;no&quot; checked=&quot;checked&quot; /&gt;</pre>
+
+
+
+
+

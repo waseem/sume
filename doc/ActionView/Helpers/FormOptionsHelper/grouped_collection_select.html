@@ -1,0 +1,74 @@
+<h1>ActionView::Helpers::FormOptionsHelper#grouped_collection_select</h1>
+
+
+<p>Returns <tt>&lt;select&gt;</tt>, <tt>&lt;optgroup&gt;</tt> and
+<tt>&lt;option&gt;</tt> tags for the collection of existing return values
+of <tt>method</tt> for <tt>object</tt>'s class. The value returned from
+calling <tt>method</tt> on the instance <tt>object</tt> will be selected.
+If calling <tt>method</tt> returns <tt>nil</tt>, no selection is made
+without including <tt>:prompt</tt> or <tt>:include_blank</tt> in the
+<tt>options</tt> hash.</p>
+
+<p>Parameters:</p>
+<ul><li>
+<p><tt>object</tt> - The instance of the class to be used for the select tag</p>
+</li><li>
+<p><tt>method</tt> - The attribute of <tt>object</tt> corresponding to the
+select tag</p>
+</li><li>
+<p><tt>collection</tt> - An array of objects representing the
+<tt>&lt;optgroup&gt;</tt> tags.</p>
+</li><li>
+<p><tt>group_method</tt> - The name of a method which, when called on a member
+of <tt>collection</tt>, returns an array of child objects representing the
+<tt>&lt;option&gt;</tt> tags.</p>
+</li><li>
+<p><tt>group_label_method</tt> - The name of a method which, when called on a
+member of <tt>collection</tt>, returns a string to be used as the
+<tt>label</tt> attribute for its <tt>&lt;optgroup&gt;</tt> tag.</p>
+</li><li>
+<p><tt>option_key_method</tt> - The name of a method which, when called on a
+child object of a member of <tt>collection</tt>, returns a value to be used
+as the <tt>value</tt> attribute for its <tt>&lt;option&gt;</tt> tag.</p>
+</li><li>
+<p><tt>option_value_method</tt> - The name of a method which, when called on a
+child object of a member of <tt>collection</tt>, returns a value to be used
+as the contents of its <tt>&lt;option&gt;</tt> tag.</p>
+</li></ul>
+
+<p>Example object structure for use with this method:</p>
+
+<pre>class Continent &lt; ActiveRecord::Base
+  has_many :countries
+  # attribs: id, name
+end
+class Country &lt; ActiveRecord::Base
+  belongs_to :continent
+  # attribs: id, name, continent_id
+end
+class City &lt; ActiveRecord::Base
+  belongs_to :country
+  # attribs: id, name, country_id
+end</pre>
+
+<p>Sample usage:</p>
+
+<pre>grouped_collection_select(:city, :country_id, @continents, :countries, :name, :id, :name)</pre>
+
+<p>Possible output:</p>
+
+<pre>&lt;select name=&quot;city[country_id]&quot;&gt;
+  &lt;optgroup label=&quot;Africa&quot;&gt;
+    &lt;option value=&quot;1&quot;&gt;South Africa&lt;/option&gt;
+    &lt;option value=&quot;3&quot;&gt;Somalia&lt;/option&gt;
+  &lt;/optgroup&gt;
+  &lt;optgroup label=&quot;Europe&quot;&gt;
+    &lt;option value=&quot;7&quot; selected=&quot;selected&quot;&gt;Denmark&lt;/option&gt;
+    &lt;option value=&quot;2&quot;&gt;Ireland&lt;/option&gt;
+  &lt;/optgroup&gt;
+&lt;/select&gt;</pre>
+
+
+
+
+

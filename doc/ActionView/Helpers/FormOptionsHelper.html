@@ -1,0 +1,92 @@
+Provides a number of methods for turning different kinds of containers into a set of option tags.
+== Options
+The <tt>collection_select</tt>, <tt>select</tt> and <tt>time_zone_select</tt> methods take an <tt>options</tt> parameter, a hash:
+
+* <tt>:include_blank</tt> - set to true or a prompt string if the first option element of the select element is a blank. Useful if there is not a default value required for the select element.
+
+For example,
+
+  select("post", "category", Post::CATEGORIES, => true)
+
+could become:
+
+  <select name="post[category]">
+    <option></option>
+    <option>joke</option>
+    <option>poem</option>
+  </select>
+
+Another common case is a select tag for an <tt>belongs_to</tt>-associated object.
+
+Example with @post.person_id => 2:
+
+  select("post", "person_id", Person.all.collect {|p| [ p.name, p.id ] }, => 'None')
+
+could become:
+
+  <select name="post[person_id]">
+    <option value="">None</option>
+    <option value="1">David</option>
+    <option value="2" selected="selected">Sam</option>
+    <option value="3">Tobias</option>
+  </select>
+
+* <tt>:prompt</tt> - set to true or a prompt string. When the select element doesn't have a value yet, this prepends an option with a generic prompt -- "Please select" -- or the given prompt string.
+
+Example:
+
+  select("post", "person_id", Person.all.collect {|p| [ p.name, p.id ] }, => 'Select Person')
+
+could become:
+
+  <select name="post[person_id]">
+    <option value="">Select Person</option>
+    <option value="1">David</option>
+    <option value="2">Sam</option>
+    <option value="3">Tobias</option>
+  </select>
+
+Like the other form helpers, +select+ can accept an <tt>:index</tt> option to manually set the ID used in the resulting output. Unlike other helpers, +select+ expects this
+option to be in the +html_options+ parameter.
+
+Example:
+
+  select("album[]", "genre", %w[rap rock country], {}, { :index => nil })
+
+becomes:
+
+  <select name="album[][genre]" id="album__genre">
+    <option value="rap">rap</option>
+    <option value="rock">rock</option>
+    <option value="country">country</option>
+  </select>
+
+* <tt>:disabled</tt> - can be a single value or an array of values that will be disabled options in the final output.
+
+Example:
+
+  select("post", "category", Post::CATEGORIES, => 'restricted')
+
+could become:
+
+  <select name="post[category]">
+    <option></option>
+    <option>joke</option>
+    <option>poem</option>
+    <option disabled="disabled">restricted</option>
+  </select>
+
+When used with the <tt>collection_select</tt> helper, <tt>:disabled</tt> can also be a Proc that identifies those options that should be disabled.
+
+Example:
+
+  collection_select(:post, :category_id, Category.all, :id, :name, => lambda{|category| category.archived? })
+
+If the categories "2008 stuff" and "Christmas" return true when the method <tt>archived?</tt> is called, this would return:
+  <select name="post[category_id]">
+    <option value="1" disabled="disabled">2008 stuff</option>
+    <option value="2" disabled="disabled">Christmas</option>
+    <option value="3">Jokes</option>
+    <option value="4">Poems</option>
+  </select>
+

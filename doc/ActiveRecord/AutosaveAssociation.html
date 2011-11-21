@@ -1,0 +1,113 @@
+= Active Record Autosave Association
+
++AutosaveAssociation+ is a module that takes care of automatically saving
+associated records when their parent is saved. In addition to saving, it
+also destroys any associated records that were marked for destruction.
+(See +mark_for_destruction+ and <tt>marked_for_destruction?</tt>).
+
+Saving of the parent, its associations, and the destruction of marked
+associations, all happen inside a transaction. This should never leave the
+database in an inconsistent state.
+
+If validations for any of the associations fail, their error messages will
+be applied to the parent.
+
+Note that it also means that associations marked for destruction won't
+be destroyed directly. They will however still be marked for destruction.
+
+Note that <tt>:autosave => false</tt> is not same as not declaring <tt>:autosave</tt>.
+When the <tt>:autosave</tt> option is not present new associations are saved.
+
+=== One-to-one Example
+
+  class Post
+    has_one :author, :autosave => true
+  end
+
+Saving changes to the parent and its associated model can now be performed
+automatically _and_ atomically:
+
+  post = Post.find(1)
+  post.title       # => "The current global position of migrating ducks"
+  post.author.name # => "alloy"
+
+  post.title = "On the migration of ducks"
+  post.author.name = "Eloy Duran"
+
+  post.save
+  post.reload
+  post.title       # => "On the migration of ducks"
+  post.author.name # => "Eloy Duran"
+
+Destroying an associated model, as part of the parent's save action, is as
+simple as marking it for destruction:
+
+  post.author.mark_for_destruction
+  post.author.marked_for_destruction? # => true
+
+Note that the model is _not_ yet removed from the database:
+
+  id = post.author.id
+  Author.find_by_id(id).nil? # => false
+
+  post.save
+  post.reload.author # => nil
+
+Now it _is_ removed from the database:
+
+  Author.find_by_id(id).nil? # => true
+
+=== One-to-many Example
+
+When <tt>:autosave</tt> is not declared new children are saved when their parent is saved:
+
+  class Post
+    has_many :comments # :autosave option is no declared
+  end
+
+  post = Post.new(:title => 'ruby rocks')
+  post.comments.build(:body => 'hello world')
+  post.save # => saves both post and comment
+
+  post = Post.create(:title => 'ruby rocks')
+  post.comments.build(:body => 'hello world')
+  post.save # => saves both post and comment
+
+  post = Post.create(:title => 'ruby rocks')
+  post.comments.create(:body => 'hello world')
+  post.save # => saves both post and comment
+
+When <tt>:autosave</tt> is true all children is saved, no matter whether they are new records:
+
+  class Post
+    has_many :comments, :autosave => true
+  end
+
+  post = Post.create(:title => 'ruby rocks')
+  post.comments.create(:body => 'hello world')
+  post.comments[0].body = 'hi everyone'
+  post.save # => saves both post and comment, with 'hi everyone' as body
+
+Destroying one of the associated models as part of the parent's save action
+is as simple as marking it for destruction:
+
+  post.comments.last.mark_for_destruction
+  post.comments.last.marked_for_destruction? # => true
+  post.comments.length # => 2
+
+Note that the model is _not_ yet removed from the database:
+
+  id = post.comments.last.id
+  Comment.find_by_id(id).nil? # => false
+
+  post.save
+  post.reload.comments.length # => 1
+
+Now it _is_ removed from the database:
+
+  Comment.find_by_id(id).nil? # => true
+
+=== Validation
+
+Children records are validated unless <tt>:validate</tt> is +false+.
+

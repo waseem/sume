@@ -1,0 +1,21 @@
+<h1>ActionView::Helpers::AssetTagHelper::StylesheetTagHelpers#stylesheet_path</h1>
+
+
+<p>Computes the path to a stylesheet asset in the public stylesheets
+directory. If the <tt>source</tt> filename has no extension, <tt>.css</tt>
+will be appended (except for explicit URIs). Full paths from the document
+root will be passed through. Used internally by
+<tt>stylesheet_link_tag</tt> to build the stylesheet path.</p>
+
+<h4>Examples</h4>
+
+<pre>stylesheet_path &quot;style&quot;                                  # =&gt; /stylesheets/style.css
+stylesheet_path &quot;dir/style.css&quot;                          # =&gt; /stylesheets/dir/style.css
+stylesheet_path &quot;/dir/style.css&quot;                         # =&gt; /dir/style.css
+stylesheet_path &quot;http://www.example.com/css/style&quot;       # =&gt; http://www.example.com/css/style
+stylesheet_path &quot;http://www.example.com/css/style.css&quot;   # =&gt; http://www.example.com/css/style.css</pre>
+
+
+
+
+

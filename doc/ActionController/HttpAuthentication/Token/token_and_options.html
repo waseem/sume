@@ -1,0 +1,19 @@
+<h1>ActionController::HttpAuthentication::Token#token_and_options</h1>
+
+
+<p>Parses the token and options out of the token authorization header.  If the
+header looks like this:</p>
+
+<pre>Authorization: Token token=&quot;abc&quot;, nonce=&quot;def&quot;</pre>
+
+<p>Then the returned token is "abc", and the options is {:nonce =&gt; "def"}</p>
+
+<p>request - ActionDispatch::Request instance with the current headers.</p>
+
+<p>Returns an Array of [String, Hash] if a token is present. Returns nil if no
+token is found.</p>
+
+
+
+
+

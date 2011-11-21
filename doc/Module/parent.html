@@ -1,0 +1,23 @@
+<h1>Module#parent</h1>
+
+
+<p>Returns the module which contains this one according to its name.</p>
+
+<pre>module M
+  module N
+  end
+end
+X = M::N
+
+M::N.parent # =&gt; M
+X.parent    # =&gt; M</pre>
+
+<p>The parent of top-level and anonymous modules is Object.</p>
+
+<pre>M.parent          # =&gt; Object
+Module.new.parent # =&gt; Object</pre>
+
+
+
+
+

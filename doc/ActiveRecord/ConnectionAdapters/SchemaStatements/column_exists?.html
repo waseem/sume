@@ -1,0 +1,20 @@
+<h1>ActiveRecord::ConnectionAdapters::SchemaStatements#column_exists?</h1>
+
+
+<p>Checks to see if a column exists in a given table.</p>
+
+<h3>Examples</h3>
+
+<pre># Check a column exists
+column_exists?(:suppliers, :name)
+
+# Check a column exists of a particular type
+column_exists?(:suppliers, :name, :string)
+
+# Check a column exists with a specific definition
+column_exists?(:suppliers, :name, :string, :limit =&gt; 100)</pre>
+
+
+
+
+

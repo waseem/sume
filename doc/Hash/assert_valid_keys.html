@@ -1,0 +1,17 @@
+<h1>Hash#assert_valid_keys</h1>
+
+
+<p>Validate all keys in a hash match *valid keys, raising ArgumentError on a
+mismatch. Note that keys are NOT treated indifferently, meaning if you use
+strings for keys but assert symbols as keys, this will fail.</p>
+
+<h4>Examples</h4>
+
+<pre>{ :name =&gt; &quot;Rob&quot;, :years =&gt; &quot;28&quot; }.assert_valid_keys(:name, :age) # =&gt; raises &quot;ArgumentError: Unknown key: years&quot;
+{ :name =&gt; &quot;Rob&quot;, :age =&gt; &quot;28&quot; }.assert_valid_keys(&quot;name&quot;, &quot;age&quot;) # =&gt; raises &quot;ArgumentError: Unknown key: name&quot;
+{ :name =&gt; &quot;Rob&quot;, :age =&gt; &quot;28&quot; }.assert_valid_keys(:name, :age) # =&gt; passes, raises nothing</pre>
+
+
+
+
+

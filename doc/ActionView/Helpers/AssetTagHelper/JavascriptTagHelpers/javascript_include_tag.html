@@ -1,0 +1,110 @@
+<h1>ActionView::Helpers::AssetTagHelper::JavascriptTagHelpers#javascript_include_tag</h1>
+
+
+<p>Returns an HTML script tag for each of the <tt>sources</tt> provided.</p>
+
+<p>Sources may be paths to JavaScript files. Relative paths are assumed to be
+relative to <tt>public/javascripts</tt>, full paths are assumed to be
+relative to the document root. Relative paths are idiomatic, use absolute
+paths only when needed.</p>
+
+<p>When passing paths, the ".js" extension is optional.</p>
+
+<p>If the application is not using the asset pipeline, to include the default
+JavaScript expansion pass <tt>:defaults</tt> as source. By default,
+<tt>:defaults</tt> loads jQuery, and that can be overridden in
+<tt>config/application.rb</tt>:</p>
+
+<pre>config.action_view.javascript_expansions[:defaults] = %w(foo.js bar.js)</pre>
+
+<p>When using <tt>:defaults</tt>, if an <tt>application.js</tt> file exists in
+<tt>public/javascripts</tt> it will be included as well at the end.</p>
+
+<p>You can modify the HTML attributes of the script tag by passing a hash as
+the last argument.</p>
+
+<h4>Examples</h4>
+
+<pre>javascript_include_tag &quot;xmlhr&quot;
+# =&gt; &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/xmlhr.js?1284139606&quot;&gt;&lt;/script&gt;
+
+javascript_include_tag &quot;xmlhr.js&quot;
+# =&gt; &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/xmlhr.js?1284139606&quot;&gt;&lt;/script&gt;
+
+javascript_include_tag &quot;common.javascript&quot;, &quot;/elsewhere/cools&quot;
+# =&gt; &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/common.javascript?1284139606&quot;&gt;&lt;/script&gt;
+#    &lt;script type=&quot;text/javascript&quot; src=&quot;/elsewhere/cools.js?1423139606&quot;&gt;&lt;/script&gt;
+
+javascript_include_tag &quot;http://www.example.com/xmlhr&quot;
+# =&gt; &lt;script type=&quot;text/javascript&quot; src=&quot;http://www.example.com/xmlhr.js?1284139606&quot;&gt;&lt;/script&gt;
+
+javascript_include_tag &quot;http://www.example.com/xmlhr.js&quot;
+# =&gt; &lt;script type=&quot;text/javascript&quot; src=&quot;http://www.example.com/xmlhr.js?1284139606&quot;&gt;&lt;/script&gt;
+
+javascript_include_tag :defaults
+# =&gt; &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/jquery.js?1284139606&quot;&gt;&lt;/script&gt;
+#    &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/rails.js?1284139606&quot;&gt;&lt;/script&gt;
+#    &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/application.js?1284139606&quot;&gt;&lt;/script&gt;</pre>
+<ul><li>
+<h1>The application.js file is only referenced if it exists</h1>
+</li></ul>
+
+<p>You can also include all JavaScripts in the <tt>javascripts</tt> directory
+using <tt>:all</tt> as the source:</p>
+
+<pre>javascript_include_tag :all
+# =&gt; &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/jquery.js?1284139606&quot;&gt;&lt;/script&gt;
+#    &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/rails.js?1284139606&quot;&gt;&lt;/script&gt;
+#    &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/application.js?1284139606&quot;&gt;&lt;/script&gt;
+#    &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/shop.js?1284139606&quot;&gt;&lt;/script&gt;
+#    &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/checkout.js?1284139606&quot;&gt;&lt;/script&gt;</pre>
+
+<p>Note that your defaults of choice will be included first, so they will be
+available to all subsequently included files.</p>
+
+<p>If you want Rails to search in all the subdirectories under
+<tt>public/javascripts</tt>, you should explicitly set <tt>:recursive</tt>:</p>
+
+<pre>javascript_include_tag :all, :recursive =&gt; true</pre>
+
+<h2>Caching multiple JavaScripts into one</h2>
+
+<p>You can also cache multiple JavaScripts into one file, which requires less
+HTTP connections to download and can better be compressed by gzip (leading
+to faster transfers). Caching will only happen if
+<tt>config.perform_caching</tt> is set to true (which is the case by
+default for the Rails production environment, but not for the development
+environment).</p>
+
+<h4>Examples</h4>
+
+<pre># assuming config.perform_caching is false
+javascript_include_tag :all, :cache =&gt; true
+# =&gt; &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/jquery.js?1284139606&quot;&gt;&lt;/script&gt;
+#    &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/rails.js?1284139606&quot;&gt;&lt;/script&gt;
+#    &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/application.js?1284139606&quot;&gt;&lt;/script&gt;
+#    &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/shop.js?1284139606&quot;&gt;&lt;/script&gt;
+#    &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/checkout.js?1284139606&quot;&gt;&lt;/script&gt;
+
+# assuming config.perform_caching is true
+javascript_include_tag :all, :cache =&gt; true
+# =&gt; &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/all.js?1344139789&quot;&gt;&lt;/script&gt;
+
+# assuming config.perform_caching is false
+javascript_include_tag &quot;jquery&quot;, &quot;cart&quot;, &quot;checkout&quot;, :cache =&gt; &quot;shop&quot;
+# =&gt; &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/jquery.js?1284139606&quot;&gt;&lt;/script&gt;
+#    &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/cart.js?1289139157&quot;&gt;&lt;/script&gt;
+#    &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/checkout.js?1299139816&quot;&gt;&lt;/script&gt;
+
+# assuming config.perform_caching is true
+javascript_include_tag &quot;jquery&quot;, &quot;cart&quot;, &quot;checkout&quot;, :cache =&gt; &quot;shop&quot;
+# =&gt; &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/shop.js?1299139816&quot;&gt;&lt;/script&gt;</pre>
+
+<p>The <tt>:recursive</tt> option is also available for caching:</p>
+
+<pre>javascript_include_tag :all, :cache =&gt; true, :recursive =&gt; true</pre>
+
+
+
+
+

@@ -1,0 +1,45 @@
+The \Rails framework provides a large number of helpers for working with assets, dates, forms,
+numbers and model objects, to name a few. These helpers are available to all templates
+by default.
+
+In addition to using the standard template helpers provided, creating custom helpers to
+extract complicated logic or reusable functionality is strongly encouraged. By default, the controller will
+include a helper whose name matches that of the controller, e.g., <tt>MyController</tt> will automatically
+include <tt>MyHelper</tt>.
+
+Additional helpers can be specified using the +helper+ class method in ActionController::Base or any
+controller which inherits from it.
+
+==== Examples
+The +to_s+ method from the \Time class can be wrapped in a helper method to display a custom message if
+a \Time object is blank:
+
+  module FormattedTimeHelper
+    def format_time(time, format=:long, blank_message="&nbsp;")
+      time.blank? ? blank_message : time.to_s(format)
+    end
+  end
+
+FormattedTimeHelper can now be included in a controller, using the +helper+ class method:
+
+  class EventsController < ActionController::Base
+    helper FormattedTimeHelper
+    def index
+      @events = Event.find(:all)
+    end
+  end
+
+Then, in any view rendered by <tt>EventController</tt>, the <tt>format_time</tt> method can be called:
+
+  <% @events.each do |event| -%>
+    <p>
+      <%= format_time(event.time, :short, "N/A") %> | <%= event.name %>
+    </p>
+  <% end -%>
+
+Finally, assuming we have two event instances, one which has a time and one which does not,
+the output might look like this:
+
+  23 Aug 11:30 | Carolina Railhawks Soccer Match
+  N/A | Carolina Railhaws Training Workshop
+

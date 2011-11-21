@@ -1,0 +1,256 @@
+<h1>ActionView::Helpers::FormHelper#form_for</h1>
+
+
+<p>Creates a form and a scope around a specific model object that is used as a
+base for questioning about values for the fields.</p>
+
+<p>Rails provides succinct resource-oriented form generation with
+<tt>form_for</tt> like this:</p>
+
+<pre>&lt;%= form_for @offer do |f| %&gt;
+  &lt;%= f.label :version, 'Version' %&gt;:
+  &lt;%= f.text_field :version %&gt;&lt;br /&gt;
+  &lt;%= f.label :author, 'Author' %&gt;:
+  &lt;%= f.text_field :author %&gt;&lt;br /&gt;
+  &lt;%= f.submit %&gt;
+&lt;% end %&gt;</pre>
+
+<p>There, <tt>form_for</tt> is able to generate the rest of RESTful form
+parameters based on introspection on the record, but to understand what it
+does we need to dig first into the alternative generic usage it is based
+upon.</p>
+
+<h3>Generic form_for</h3>
+
+<p>The generic way to call <tt>form_for</tt> yields a form builder around a
+model:</p>
+
+<pre>&lt;%= form_for :person do |f| %&gt;
+  First name: &lt;%= f.text_field :first_name %&gt;&lt;br /&gt;
+  Last name : &lt;%= f.text_field :last_name %&gt;&lt;br /&gt;
+  Biography : &lt;%= f.text_area :biography %&gt;&lt;br /&gt;
+  Admin?    : &lt;%= f.check_box :admin %&gt;&lt;br /&gt;
+  &lt;%= f.submit %&gt;
+&lt;% end %&gt;</pre>
+
+<p>There, the argument is a symbol or string with the name of the object the
+form is about.</p>
+
+<p>The form builder acts as a regular form helper that somehow carries the
+model. Thus, the idea is that</p>
+
+<pre>&lt;%= f.text_field :first_name %&gt;</pre>
+
+<p>gets expanded to</p>
+
+<pre>&lt;%= text_field :person, :first_name %&gt;</pre>
+
+<p>The rightmost argument to <tt>form_for</tt> is an optional hash of options:</p>
+<ul><li>
+<p><tt>:url</tt> - The URL the form is submitted to. It takes the same fields
+you pass to <tt>url_for</tt> or <tt>link_to</tt>. In particular you may
+pass here a named route directly as well. Defaults to the current action.</p>
+</li><li>
+<p><tt>:html</tt> - Optional HTML attributes for the form tag.</p>
+</li></ul>
+
+<p>Also note that <tt>form_for</tt> doesn't create an exclusive scope. It's
+still possible to use both the stand-alone FormHelper methods and methods
+from FormTagHelper. For example:</p>
+
+<pre>&lt;%= form_for @person do |f| %&gt;
+  First name: &lt;%= f.text_field :first_name %&gt;
+  Last name : &lt;%= f.text_field :last_name %&gt;
+  Biography : &lt;%= text_area :person, :biography %&gt;
+  Admin?    : &lt;%= check_box_tag &quot;person[admin]&quot;, @person.company.admin? %&gt;
+  &lt;%= f.submit %&gt;
+&lt;% end %&gt;</pre>
+
+<p>This also works for the methods in FormOptionHelper and DateHelper that are
+designed to work with an object as base, like
+FormOptionHelper#collection_select and DateHelper#datetime_select.</p>
+
+<h3>Resource-oriented style</h3>
+
+<p>As we said above, in addition to manually configuring the <tt>form_for</tt>
+call, you can rely on automated resource identification, which will use the
+conventions and named routes of that approach. This is the preferred way to
+use <tt>form_for</tt> nowadays.</p>
+
+<p>For example, if <tt>@post</tt> is an existing record you want to edit</p>
+
+<pre>&lt;%= form_for @post do |f| %&gt;
+  ...
+&lt;% end %&gt;</pre>
+
+<p>is equivalent to something like:</p>
+
+<pre>&lt;%= form_for @post, :as =&gt; :post, :url =&gt; post_path(@post), :method =&gt; :put, :html =&gt; { :class =&gt; &quot;edit_post&quot;, :id =&gt; &quot;edit_post_45&quot; } do |f| %&gt;
+  ...
+&lt;% end %&gt;</pre>
+
+<p>And for new records</p>
+
+<pre>&lt;%= form_for(Post.new) do |f| %&gt;
+  ...
+&lt;% end %&gt;</pre>
+
+<p>is equivalent to something like:</p>
+
+<pre>&lt;%= form_for @post, :as =&gt; :post, :url =&gt; posts_path, :html =&gt; { :class =&gt; &quot;new_post&quot;, :id =&gt; &quot;new_post&quot; } do |f| %&gt;
+  ...
+&lt;% end %&gt;</pre>
+
+<p>You can also overwrite the individual conventions, like this:</p>
+
+<pre>&lt;%= form_for(@post, :url =&gt; super_posts_path) do |f| %&gt;
+  ...
+&lt;% end %&gt;</pre>
+
+<p>You can also set the answer format, like this:</p>
+
+<pre>&lt;%= form_for(@post, :format =&gt; :json) do |f| %&gt;
+  ...
+&lt;% end %&gt;</pre>
+
+<p>If you have an object that needs to be represented as a different
+parameter, like a Person that acts as a Client:</p>
+
+<pre>&lt;%= form_for(@person, :as =&gt; :client) do |f| %&gt;
+  ...
+&lt;% end %&gt;</pre>
+
+<p>For namespaced routes, like <tt>admin_post_url</tt>:</p>
+
+<pre>&lt;%= form_for([:admin, @post]) do |f| %&gt;
+ ...
+&lt;% end %&gt;</pre>
+
+<p>If your resource has associations defined, for example, you want to add
+comments to the document given that the routes are set correctly:</p>
+
+<pre>&lt;%= form_for([@document, @comment]) do |f| %&gt;
+ ...
+&lt;% end %&gt;</pre>
+
+<p>Where <tt>@document = Document.find(params[:id])</tt> and <tt>@comment =
+Comment.new</tt>.</p>
+
+<h3>Setting the method</h3>
+
+<p>You can force the form to use the full array of HTTP verbs by setting</p>
+
+<pre>:method =&gt; (:get|:post|:put|:delete)</pre>
+
+<p>in the options hash. If the verb is not GET or POST, which are natively
+supported by HTML forms, the form will be set to POST and a hidden input
+called _method will carry the intended verb for the server to interpret.</p>
+
+<h3>Unobtrusive JavaScript</h3>
+
+<p>Specifying:</p>
+
+<pre>:remote =&gt; true</pre>
+
+<p>in the options hash creates a form that will allow the unobtrusive
+JavaScript drivers to modify its behavior. The expected default behavior is
+an XMLHttpRequest in the background instead of the regular POST
+arrangement, but ultimately the behavior is the choice of the JavaScript
+driver implementor. Even though it's using JavaScript to serialize the form
+elements, the form submission will work just like a regular submission as
+viewed by the receiving side (all elements available in <tt>params</tt>).</p>
+
+<p>Example:</p>
+
+<pre>&lt;%= form_for(@post, :remote =&gt; true) do |f| %&gt;
+  ...
+&lt;% end %&gt;</pre>
+
+<p>The HTML generated for this would be:</p>
+
+<pre>&lt;form action='http://www.example.com' method='post' data-remote='true'&gt;
+  &lt;div style='margin:0;padding:0;display:inline'&gt;
+    &lt;input name='_method' type='hidden' value='put' /&gt;
+  &lt;/div&gt;
+  ...
+&lt;/form&gt;</pre>
+
+<h3>Removing hidden model id's</h3>
+
+<p>The form_for method automatically includes the model id as a hidden field
+in the form. This is used to maintain the correlation between the form data
+and its associated model. Some ORM systems do not use IDs on nested models
+so in this case you want to be able to disable the hidden id.</p>
+
+<p>In the following example the Post model has many Comments stored within it
+in a NoSQL database, thus there is no primary key for comments.</p>
+
+<p>Example:</p>
+
+<pre>&lt;%= form_for(@post) do |f| %&gt;
+  &lt;% f.fields_for(:comments, :include_id =&gt; false) do |cf| %&gt;
+    ...
+  &lt;% end %&gt;
+&lt;% end %&gt;</pre>
+
+<h3>Customized form builders</h3>
+
+<p>You can also build forms using a customized FormBuilder class. Subclass
+FormBuilder and override or define some more helpers, then use your custom
+builder. For example, let's say you made a helper to automatically add
+labels to form inputs.</p>
+
+<pre>&lt;%= form_for @person, :url =&gt; { :action =&gt; &quot;create&quot; }, :builder =&gt; LabellingFormBuilder do |f| %&gt;
+  &lt;%= f.text_field :first_name %&gt;
+  &lt;%= f.text_field :last_name %&gt;
+  &lt;%= f.text_area :biography %&gt;
+  &lt;%= f.check_box :admin %&gt;
+  &lt;%= f.submit %&gt;
+&lt;% end %&gt;</pre>
+
+<p>In this case, if you use this:</p>
+
+<pre>&lt;%= render f %&gt;</pre>
+
+<p>The rendered template is <tt>people/_labelling_form</tt> and the local
+variable referencing the form builder is called <tt>labelling_form</tt>.</p>
+
+<p>The custom FormBuilder class is automatically merged with the options of a
+nested fields_for call, unless it's explicitly set.</p>
+
+<p>In many cases you will want to wrap the above in another helper, so you
+could do something like the following:</p>
+
+<pre>def labelled_form_for(record_or_name_or_array, *args, &amp;proc)
+  options = args.extract_options!
+  form_for(record_or_name_or_array, *(args &lt;&lt; options.merge(:builder =&gt; LabellingFormBuilder)), &amp;proc)
+end</pre>
+
+<p>If you don't need to attach a form to a model instance, then check out
+FormTagHelper#form_tag.</p>
+
+<h3>Form to external resources</h3>
+
+<p>When you build forms to external resources sometimes you need to set an
+authenticity token or just render a form without it, for example when you
+submit data to a payment gateway number and types of fields could be
+limited.</p>
+
+<p>To set an authenticity token you need to pass an
+<tt>:authenticity_token</tt> parameter</p>
+
+<pre>&lt;%= form_for @invoice, :url =&gt; external_url, :authenticity_token =&gt; 'external_token' do |f|
+  ...
+&lt;% end %&gt;</pre>
+
+<p>If you don't want to an authenticity token field be rendered at all just
+pass <tt>false</tt>:</p>
+
+<pre>&lt;%= form_for @invoice, :url =&gt; external_url, :authenticity_token =&gt; false do |f|
+  ...
+&lt;% end %&gt;</pre>
+
+
+
+
+

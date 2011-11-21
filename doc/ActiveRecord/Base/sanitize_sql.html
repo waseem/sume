@@ -1,0 +1,14 @@
+<h1>ActiveRecord::Base.sanitize_sql</h1>
+
+
+<p>Accepts an array, hash, or string of SQL conditions and sanitizes them into
+a valid SQL fragment for a WHERE clause.</p>
+
+<pre>[&quot;name='%s' and group_id='%s'&quot;, &quot;foo'bar&quot;, 4]  returns  &quot;name='foo''bar' and group_id='4'&quot;
+{ :name =&gt; &quot;foo'bar&quot;, :group_id =&gt; 4 }  returns &quot;name='foo''bar' and group_id='4'&quot;
+&quot;name='foo''bar' and group_id='4'&quot; returns &quot;name='foo''bar' and group_id='4'&quot;</pre>
+
+
+
+
+

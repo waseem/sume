@@ -1,0 +1,83 @@
+<h1>Array#to_xml</h1>
+
+
+<p>Returns a string that represents the array in XML by invoking
+<tt>to_xml</tt> on each element. Active Record collections delegate their
+representation in XML to this method.</p>
+
+<p>All elements are expected to respond to <tt>to_xml</tt>, if any of them
+does not then an exception is raised.</p>
+
+<p>The root node reflects the class name of the first element in plural if all
+elements belong to the same type and that's not Hash:</p>
+
+<pre>customer.projects.to_xml
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;projects type=&quot;array&quot;&gt;
+  &lt;project&gt;
+    &lt;amount type=&quot;decimal&quot;&gt;20000.0&lt;/amount&gt;
+    &lt;customer-id type=&quot;integer&quot;&gt;1567&lt;/customer-id&gt;
+    &lt;deal-date type=&quot;date&quot;&gt;2008-04-09&lt;/deal-date&gt;
+    ...
+  &lt;/project&gt;
+  &lt;project&gt;
+    &lt;amount type=&quot;decimal&quot;&gt;57230.0&lt;/amount&gt;
+    &lt;customer-id type=&quot;integer&quot;&gt;1567&lt;/customer-id&gt;
+    &lt;deal-date type=&quot;date&quot;&gt;2008-04-15&lt;/deal-date&gt;
+    ...
+  &lt;/project&gt;
+&lt;/projects&gt;</pre>
+
+<p>Otherwise the root element is "records":</p>
+
+<pre>[{:foo =&gt; 1, :bar =&gt; 2}, {:baz =&gt; 3}].to_xml
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;records type=&quot;array&quot;&gt;
+  &lt;record&gt;
+    &lt;bar type=&quot;integer&quot;&gt;2&lt;/bar&gt;
+    &lt;foo type=&quot;integer&quot;&gt;1&lt;/foo&gt;
+  &lt;/record&gt;
+  &lt;record&gt;
+    &lt;baz type=&quot;integer&quot;&gt;3&lt;/baz&gt;
+  &lt;/record&gt;
+&lt;/records&gt;</pre>
+
+<p>If the collection is empty the root element is "nil-classes" by default:</p>
+
+<pre>[].to_xml
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;nil-classes type=&quot;array&quot;/&gt;</pre>
+
+<p>To ensure a meaningful root element use the <tt>:root</tt> option:</p>
+
+<pre>customer_with_no_projects.projects.to_xml(:root =&gt; &quot;projects&quot;)
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;projects type=&quot;array&quot;/&gt;</pre>
+
+<p>By default name of the node for the children of root is
+<tt>root.singularize</tt>. You can change it with the <tt>:children</tt>
+option.</p>
+
+<p>The <tt>options</tt> hash is passed downwards:</p>
+
+<pre>Message.all.to_xml(:skip_types =&gt; true)
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;messages&gt;
+  &lt;message&gt;
+    &lt;created-at&gt;2008-03-07T09:58:18+01:00&lt;/created-at&gt;
+    &lt;id&gt;1&lt;/id&gt;
+    &lt;name&gt;1&lt;/name&gt;
+    &lt;updated-at&gt;2008-03-07T09:58:18+01:00&lt;/updated-at&gt;
+    &lt;user-id&gt;1&lt;/user-id&gt;
+  &lt;/message&gt;
+&lt;/messages&gt;</pre>
+
+
+
+
+

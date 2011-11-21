@@ -1,0 +1,19 @@
+<h1>ActionView::Helpers::AssetTagHelper::JavascriptTagHelpers::ClassMethods#register_javascript_expansion</h1>
+
+
+<p>Register one or more javascript files to be included when <tt>symbol</tt>
+is passed to <tt>javascript_include_tag</tt>. This method is typically
+intended to be called from plugin initialization to register javascript
+files that the plugin installed in <tt>public/javascripts</tt>.</p>
+
+<pre>ActionView::Helpers::AssetTagHelper.register_javascript_expansion :monkey =&gt; [&quot;head&quot;, &quot;body&quot;, &quot;tail&quot;]
+
+javascript_include_tag :monkey # =&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/head.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/body.js&quot;&gt;&lt;/script&gt;
+  &lt;script type=&quot;text/javascript&quot; src=&quot;/javascripts/tail.js&quot;&gt;&lt;/script&gt;</pre>
+
+
+
+
+

@@ -1,0 +1,60 @@
+Wraps the parameters hash into a nested hash. This will allow clients to submit
+POST requests without having to specify any root elements.
+
+This functionality is enabled in +config/initializers/wrap_parameters.rb+
+and can be customized. If you are upgrading to \Rails 3.1, this file will
+need to be created for the functionality to be enabled.
+
+You could also turn it on per controller by setting the format array to
+a non-empty array:
+
+    class UsersController < ApplicationController
+      wrap_parameters :format => [:json, :xml]
+    end
+
+If you enable +ParamsWrapper+ for +:json+ format, instead of having to
+send JSON parameters like this:
+
+    {"name": "Konata"}
+
+You can send parameters like this:
+
+    "Konata"
+
+And it will be wrapped into a nested hash with the key name matching the
+controller's name. For example, if you're posting to +UsersController+,
+your new +params+ hash will look like this:
+
+    => "Konata", "user" => {"name" => "Konata"}
+
+You can also specify the key in which the parameters should be wrapped to,
+and also the list of attributes it should wrap by using either +:include+ or
++:exclude+ options like this:
+
+    class UsersController < ApplicationController
+      wrap_parameters :person, :include => [:username, :password]
+    end
+
+If you're going to pass the parameters to an +ActiveModel+ object (such as
++User.new(params[:user])+), you might consider passing the model class to
+the method instead. The +ParamsWrapper+ will actually try to determine the
+list of attribute names from the model and only wrap those attributes:
+
+    class UsersController < ApplicationController
+      wrap_parameters Person
+    end
+
+You still could pass +:include+ and +:exclude+ to set the list of attributes
+you want to wrap.
+
+By default, if you don't specify the key in which the parameters would be
+wrapped to, +ParamsWrapper+ will actually try to determine if there's
+a model related to it or not. This controller, for example:
+
+    class Admin::UsersController < ApplicationController
+    end
+
+will try to check if +Admin::User+ or +User+ model exists, and use it to
+determine the wrapper key respectively. If both models don't exist,
+it will then fallback to use +user+ as the key.
+

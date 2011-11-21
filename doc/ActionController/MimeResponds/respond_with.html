@@ -1,0 +1,41 @@
+<h1>ActionController::MimeResponds#respond_with</h1>
+
+
+<p>respond_with wraps a resource around a responder for default
+representation. First it invokes respond_to, if a response cannot be found
+(ie. no block for the request was given and template was not available), it
+instantiates an ActionController::Responder with the controller and
+resource.</p>
+
+<h4>Example</h4>
+
+<pre>def index
+  @users = User.all
+  respond_with(@users)
+end</pre>
+
+<p>It also accepts a block to be given. It's used to overwrite a default
+response:</p>
+
+<pre>def create
+  @user = User.new(params[:user])
+  flash[:notice] = &quot;User was successfully created.&quot; if @user.save
+
+  respond_with(@user) do |format|
+    format.html { render }
+  end
+end</pre>
+
+<p>All options given to respond_with are sent to the underlying responder,
+except for the option :responder itself. Since the responder interface is
+quite simple (it just needs to respond to call), you can even give a proc
+to it.</p>
+
+<p>In order to use respond_with, first you need to declare the formats your
+controller responds to in the class level with a call to
+<tt>respond_to</tt>.</p>
+
+
+
+
+

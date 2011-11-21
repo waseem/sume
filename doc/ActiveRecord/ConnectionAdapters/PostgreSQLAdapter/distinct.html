@@ -1,0 +1,15 @@
+<h1>ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#distinct</h1>
+
+
+<p>Returns a SELECT DISTINCT clause for a given set of columns and a given
+ORDER BY clause.</p>
+
+<p>PostgreSQL requires the ORDER BY columns in the select list for distinct
+queries, and requires that the ORDER BY include the distinct column.</p>
+
+<pre>distinct(&quot;posts.id&quot;, &quot;posts.created_at desc&quot;)</pre>
+
+
+
+
+

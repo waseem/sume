@@ -1,0 +1,44 @@
+<h1>Object#with_options</h1>
+
+
+<p>An elegant way to factor duplication out of options passed to a series of
+method calls. Each method called in the block, with the block variable as
+the receiver, will have its options merged with the default
+<tt>options</tt> hash provided. Each method called on the block variable
+must take an options hash as its final argument.</p>
+
+<p>Without <tt>with_options&gt;</tt>, this code contains duplication:</p>
+
+<pre>class Account &lt; ActiveRecord::Base
+  has_many :customers, :dependent =&gt; :destroy
+  has_many :products,  :dependent =&gt; :destroy
+  has_many :invoices,  :dependent =&gt; :destroy
+  has_many :expenses,  :dependent =&gt; :destroy
+end</pre>
+
+<p>Using <tt>with_options</tt>, we can remove the duplication:</p>
+
+<pre>class Account &lt; ActiveRecord::Base
+  with_options :dependent =&gt; :destroy do |assoc|
+    assoc.has_many :customers
+    assoc.has_many :products
+    assoc.has_many :invoices
+    assoc.has_many :expenses
+  end
+end</pre>
+
+<p>It can also be used with an explicit receiver:</p>
+
+<pre>I18n.with_options :locale =&gt; user.locale, :scope =&gt; &quot;newsletter&quot; do |i18n|
+  subject i18n.t :subject
+  body    i18n.t :body, :user_name =&gt; user.name
+end</pre>
+
+<p><tt>with_options</tt> can also be nested since the call is forwarded to its
+receiver. Each nesting level will merge inherited defaults in addition to
+their own.</p>
+
+
+
+
+

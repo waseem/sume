@@ -1,0 +1,25 @@
+<h1>ActionView::Helpers::AtomFeedHelper::AtomFeedBuilder#entry</h1>
+
+
+<p>Creates an entry tag for a specific record and prefills the id using class
+and id.</p>
+
+<p>Options:</p>
+<ul><li>
+<p><tt>:published</tt>: Time first published. Defaults to the created_at
+attribute on the record if one such exists.</p>
+</li><li>
+<p><tt>:updated</tt>: Time of update. Defaults to the updated_at attribute on
+the record if one such exists.</p>
+</li><li>
+<p><tt>:url</tt>: The URL for this entry. Defaults to the polymorphic_url for
+the record.</p>
+</li><li>
+<p><tt>:id</tt>: The ID for this entry. Defaults to "<a
+href="http://:schema_date">tag:#{@view.request.host},#{@feed_options</a>}:#{record.class}/#{record.id}"</p>
+</li></ul>
+
+
+
+
+

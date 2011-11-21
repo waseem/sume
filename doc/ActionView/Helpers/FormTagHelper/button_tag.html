@@ -1,0 +1,46 @@
+<h1>ActionView::Helpers::FormTagHelper#button_tag</h1>
+
+
+<p>Creates a button element that defines a <tt>submit</tt> button,
+<tt>reset</tt>button or a generic button which can be used in JavaScript,
+for example. You can use the button tag as a regular submit tag but it
+isn't supported in legacy browsers. However, the button tag allows richer
+labels such as images and emphasis, so this helper will also accept a
+block.</p>
+
+<h4>Options</h4>
+<ul><li>
+<p><tt>:confirm =&gt; 'question?'</tt> - If present, the unobtrusive
+JavaScript drivers will provide a prompt with the question specified. If
+the user accepts, the form is processed normally, otherwise no action is
+taken.</p>
+</li><li>
+<p><tt>:disabled</tt> - If true, the user will not be able to use this input.</p>
+</li><li>
+<p><tt>:disable_with</tt> - Value of this parameter will be used as the value
+for a disabled version of the submit button when the form is submitted.
+This feature is provided by the unobtrusive JavaScript driver.</p>
+</li><li>
+<p>Any other key creates standard HTML options for the tag.</p>
+</li></ul>
+
+<h4>Examples</h4>
+
+<pre>button_tag
+# =&gt; &lt;button name=&quot;button&quot; type=&quot;submit&quot;&gt;Button&lt;/button&gt;
+
+button_tag(:type =&gt; 'button') do
+  content_tag(:strong, 'Ask me!')
+end
+# =&gt; &lt;button name=&quot;button&quot; type=&quot;button&quot;&gt;
+       &lt;strong&gt;Ask me!&lt;/strong&gt;
+     &lt;/button&gt;
+
+button_tag &quot;Checkout&quot;, :disable_with =&gt; &quot;Please wait...&quot;
+# =&gt; &lt;button data-disable-with=&quot;Please wait...&quot; name=&quot;button&quot;
+             type=&quot;submit&quot;&gt;Checkout&lt;/button&gt;</pre>
+
+
+
+
+

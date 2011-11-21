@@ -1,0 +1,60 @@
+<h1>ActionView::Helpers::FormHelper#label</h1>
+
+
+<p>Returns a label tag tailored for labelling an input field for a specified
+attribute (identified by <tt>method</tt>) on an object assigned to the
+template (identified by <tt>object</tt>). The text of label will default to
+the attribute name unless a translation is found in the current I18n locale
+(through helpers.label.&lt;modelname&gt;.&lt;attribute&gt;) or you specify
+it explicitly. Additional options on the label tag can be passed as a hash
+with <tt>options</tt>. These options will be tagged onto the HTML as an
+HTML element attribute as in the example shown, except for the
+<tt>:value</tt> option, which is designed to target labels for radio_button
+tags (where the value is used in the ID of the input tag).</p>
+
+<h4>Examples</h4>
+
+<pre>label(:post, :title)
+# =&gt; &lt;label for=&quot;post_title&quot;&gt;Title&lt;/label&gt;
+
+You can localize your labels based on model and attribute names.
+For example you can define the following in your locale (e.g. en.yml)
+
+helpers:
+  label:
+    post:
+      body: &quot;Write your entire text here&quot;
+
+Which then will result in
+
+label(:post, :body)
+# =&gt; &lt;label for=&quot;post_body&quot;&gt;Write your entire text here&lt;/label&gt;</pre>
+
+<p>Localization can also be based purely on the translation of the
+attribute-name (if you are using ActiveRecord):</p>
+
+<pre>activerecord:
+  attributes:
+    post:
+      cost: &quot;Total cost&quot;
+
+label(:post, :cost)
+# =&gt; &lt;label for=&quot;post_cost&quot;&gt;Total cost&lt;/label&gt;
+
+label(:post, :title, &quot;A short title&quot;)
+# =&gt; &lt;label for=&quot;post_title&quot;&gt;A short title&lt;/label&gt;
+
+label(:post, :title, &quot;A short title&quot;, :class =&gt; &quot;title_label&quot;)
+# =&gt; &lt;label for=&quot;post_title&quot; class=&quot;title_label&quot;&gt;A short title&lt;/label&gt;
+
+label(:post, :privacy, &quot;Public Post&quot;, :value =&gt; &quot;public&quot;)
+# =&gt; &lt;label for=&quot;post_privacy_public&quot;&gt;Public Post&lt;/label&gt;
+
+label(:post, :terms) do
+  'Accept &lt;a href=&quot;/terms&quot;&gt;Terms&lt;/a&gt;.'
+end</pre>
+
+
+
+
+

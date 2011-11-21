@@ -1,0 +1,48 @@
+<h1>ActionView::Helpers::DateHelper#select_date</h1>
+
+
+<p>Returns a set of html select-tags (one for year, month, and day)
+pre-selected with the <tt>date</tt>. It's possible to explicitly set the
+order of the tags using the <tt>:order</tt> option with an array of symbols
+<tt>:year</tt>, <tt>:month</tt> and <tt>:day</tt> in the desired order. If
+the array passed to the <tt>:order</tt> option does not contain all the
+three symbols, all tags will be hidden.</p>
+
+<p>If anything is passed in the html_options hash it will be applied to every
+select tag in the set.</p>
+
+<h4>Examples</h4>
+
+<pre>my_date = Time.now + 6.days
+
+# Generates a date select that defaults to the date in my_date (six days after today).
+select_date(my_date)
+
+# Generates a date select that defaults to today (no specified date).
+select_date()
+
+# Generates a date select that defaults to the date in my_date (six days after today)
+# with the fields ordered year, month, day rather than month, day, year.
+select_date(my_date, :order =&gt; [:year, :month, :day])
+
+# Generates a date select that discards the type of the field and defaults to the date in
+# my_date (six days after today).
+select_date(my_date, :discard_type =&gt; true)
+
+# Generates a date select that defaults to the date in my_date,
+# which has fields separated by '/'.
+select_date(my_date, :date_separator =&gt; '/')
+
+# Generates a date select that defaults to the datetime in my_date (six days after today)
+# prefixed with 'payday' rather than 'date'.
+select_date(my_date, :prefix =&gt; 'payday')
+
+# Generates a date select with a custom prompt. Use &lt;tt&gt;:prompt =&gt; true&lt;/tt&gt; for generic prompts.
+select_date(my_date, :prompt =&gt; {:day =&gt; 'Choose day', :month =&gt; 'Choose month', :year =&gt; 'Choose year'})
+select_date(my_date, :prompt =&gt; {:hour =&gt; true}) # generic prompt for hours
+select_date(my_date, :prompt =&gt; true) # generic prompts for all</pre>
+
+
+
+
+

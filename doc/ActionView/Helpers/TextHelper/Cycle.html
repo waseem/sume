@@ -1,0 +1,47 @@
+<h1>ActionView::Helpers::TextHelper#cycle</h1>
+
+
+<p>Creates a Cycle object whose <em>to_s</em> method cycles through elements
+of an array every time it is called. This can be used for example, to
+alternate classes for table rows.  You can use named cycles to allow
+nesting in loops. Passing a Hash as the last parameter with a
+<tt>:name</tt> key will create a named cycle. The default name for a cycle
+without a <tt>:name</tt> key is <tt>&quot;default&quot;</tt>. You can
+manually reset a cycle by calling reset_cycle and passing the name of the
+cycle. The current cycle string can be obtained anytime using the
+current_cycle method.</p>
+
+<h4>Examples</h4>
+
+<pre> # Alternate CSS classes for even and odd numbers...
+ @items = [1,2,3,4]
+ &lt;table&gt;
+ &lt;% @items.each do |item| %&gt;
+   &lt;tr class=&quot;&lt;%= cycle(&quot;odd&quot;, &quot;even&quot;) -%&gt;&quot;&gt;
+     &lt;td&gt;item&lt;/td&gt;
+   &lt;/tr&gt;
+ &lt;% end %&gt;
+ &lt;/table&gt;
+
+ # Cycle CSS classes for rows, and text colors for values within each row
+ @items = x = [{:first =&gt; 'Robert', :middle =&gt; 'Daniel', :last =&gt; 'James'},
+              {:first =&gt; 'Emily', :middle =&gt; 'Shannon', :maiden =&gt; 'Pike', :last =&gt; 'Hicks'},
+             {:first =&gt; 'June', :middle =&gt; 'Dae', :last =&gt; 'Jones'}]
+ &lt;% @items.each do |item| %&gt;
+   &lt;tr class=&quot;&lt;%= cycle(&quot;odd&quot;, &quot;even&quot;, :name =&gt; &quot;row_class&quot;) -%&gt;&quot;&gt;
+     &lt;td&gt;
+       &lt;% item.values.each do |value| %&gt;
+         &lt;%# Create a named cycle &quot;colors&quot; %&gt;
+         &lt;span style=&quot;color:&lt;%= cycle(&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;, :name =&gt; &quot;colors&quot;) -%&gt;&quot;&gt;
+           &lt;%= value %&gt;
+         &lt;/span&gt;
+       &lt;% end %&gt;
+       &lt;% reset_cycle(&quot;colors&quot;) %&gt;
+     &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;% end %&gt;</pre>
+
+
+
+
+

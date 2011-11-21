@@ -1,0 +1,27 @@
+<h1>ActionView::Helpers::FormHelper#file_field</h1>
+
+
+<p>Returns a file upload input tag tailored for accessing a specified
+attribute (identified by <tt>method</tt>) on an object assigned to the
+template (identified by <tt>object</tt>). Additional options on the input
+tag can be passed as a hash with <tt>options</tt>. These options will be
+tagged onto the HTML as an HTML element attribute as in the example shown.</p>
+
+<p>Using this method inside a <tt>form_for</tt> block will set the enclosing
+form's encoding to <tt>multipart/form-data</tt>.</p>
+
+<h4>Examples</h4>
+
+<pre>file_field(:user, :avatar)
+# =&gt; &lt;input type=&quot;file&quot; id=&quot;user_avatar&quot; name=&quot;user[avatar]&quot; /&gt;
+
+file_field(:post, :attached, :accept =&gt; 'text/html')
+# =&gt; &lt;input type=&quot;file&quot; id=&quot;post_attached&quot; name=&quot;post[attached]&quot; /&gt;
+
+file_field(:attachment, :file, :class =&gt; 'file_input')
+# =&gt; &lt;input type=&quot;file&quot; id=&quot;attachment_file&quot; name=&quot;attachment[file]&quot; class=&quot;file_input&quot; /&gt;</pre>
+
+
+
+
+

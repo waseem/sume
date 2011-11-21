@@ -1,0 +1,39 @@
+<h1>Time.zone=</h1>
+
+
+<p>Sets <tt>Time.zone</tt> to a TimeZone object for the current
+request/thread.</p>
+
+<p>This method accepts any of the following:</p>
+<ul><li>
+<p>A Rails TimeZone object.</p>
+</li><li>
+<p>An identifier for a Rails TimeZone object (e.g., "Eastern Time (US &amp;
+Canada)", <tt>-5.hours</tt>).</p>
+</li><li>
+<p>A TZInfo::Timezone object.</p>
+</li><li>
+<p>An identifier for a TZInfo::Timezone object (e.g., "America/New_York").</p>
+</li></ul>
+
+<p>Here's an example of how you might set <tt>Time.zone</tt> on a per request
+basis and reset it when the request is done.
+<tt>current_user.time_zone</tt> just needs to return a string identifying
+the user's preferred time zone:</p>
+
+<pre>class ApplicationController &lt; ActionController::Base
+  around_filter :set_time_zone
+
+  def set_time_zone
+    old_time_zone = Time.zone
+    Time.zone = current_user.time_zone if logged_in?
+    yield
+  ensure
+    Time.zone = old_time_zone
+  end
+end</pre>
+
+
+
+
+

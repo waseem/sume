@@ -1,0 +1,22 @@
+<h1>ActionView::Helpers::JavaScriptHelper#link_to_function</h1>
+
+
+<p>Returns a link whose <tt>onclick</tt> handler triggers the passed
+JavaScript.</p>
+
+<p>The helper receives a name, JavaScript code, and an optional hash of HTML
+options. The name is used as the link text and the JavaScript code goes
+into the <tt>onclick</tt> attribute. If <tt>html_options</tt> has an
+<tt>:onclick</tt>, that one is put before <tt>function</tt>. Once all the
+JavaScript is set, the helper appends "; return false;".</p>
+
+<p>The <tt>href</tt> attribute of the tag is set to "#" unles
+<tt>html_options</tt> has one.</p>
+
+<pre>link_to_function &quot;Greeting&quot;, &quot;alert('Hello world!')&quot;, :class =&gt; &quot;nav_link&quot;
+# =&gt; &lt;a class=&quot;nav_link&quot; href=&quot;#&quot; onclick=&quot;alert('Hello world!'); return false;&quot;&gt;Greeting&lt;/a&gt;</pre>
+
+
+
+
+

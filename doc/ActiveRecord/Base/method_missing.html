@@ -1,0 +1,20 @@
+<h1>ActiveRecord::Base.method_missing</h1>
+
+
+<p>Enables dynamic finders like <tt>User.find_by_user_name(user_name)</tt> and
+&lt;tt&gt;User.scoped_by_user_name(user_name). Refer to Dynamic
+attribute-based finders section at the top of this file for more detailed
+information.</p>
+
+<p>It's even possible to use all the additional parameters to <tt>find</tt>.
+For example, the full interface for <tt>find_all_by_amount</tt> is actually
+<tt>find_all_by_amount(amount, options)</tt>.</p>
+
+<p>Each dynamic finder using <tt>scoped_by_*</tt> is also defined in the class
+after it is first invoked, so that future attempts to use it do not run
+through method_missing.</p>
+
+
+
+
+

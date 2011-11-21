@@ -1,0 +1,45 @@
+<h1>ActionView::Helpers::FormOptionsHelper#collection_select</h1>
+
+
+<p>Returns <tt>&lt;select&gt;</tt> and <tt>&lt;option&gt;</tt> tags for the
+collection of existing return values of <tt>method</tt> for
+<tt>object</tt>'s class. The value returned from calling <tt>method</tt> on
+the instance <tt>object</tt> will be selected. If calling <tt>method</tt>
+returns <tt>nil</tt>, no selection is made without including
+<tt>:prompt</tt> or <tt>:include_blank</tt> in the <tt>options</tt> hash.</p>
+
+<p>The <tt>:value_method</tt> and <tt>:text_method</tt> parameters are methods
+to be called on each member of <tt>collection</tt>. The return values are
+used as the <tt>value</tt> attribute and contents of each
+<tt>&lt;option&gt;</tt> tag, respectively.</p>
+
+<p>Example object structure for use with this method:</p>
+
+<pre>class Post &lt; ActiveRecord::Base
+  belongs_to :author
+end
+class Author &lt; ActiveRecord::Base
+  has_many :posts
+  def name_with_initial
+    &quot;#{first_name.first}. #{last_name}&quot;
+  end
+end</pre>
+
+<p>Sample usage (selecting the associated Author for an instance of Post,
+<tt>@post</tt>):</p>
+
+<pre>collection_select(:post, :author_id, Author.all, :id, :name_with_initial, :prompt =&gt; true)</pre>
+
+<p>If <tt>@post.author_id</tt> is already <tt>1</tt>, this would return:</p>
+
+<pre>&lt;select name=&quot;post[author_id]&quot;&gt;
+  &lt;option value=&quot;&quot;&gt;Please select&lt;/option&gt;
+  &lt;option value=&quot;1&quot; selected=&quot;selected&quot;&gt;D. Heinemeier Hansson&lt;/option&gt;
+  &lt;option value=&quot;2&quot;&gt;D. Thomas&lt;/option&gt;
+  &lt;option value=&quot;3&quot;&gt;M. Clark&lt;/option&gt;
+&lt;/select&gt;</pre>
+
+
+
+
+

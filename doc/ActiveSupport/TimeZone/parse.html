@@ -1,0 +1,19 @@
+<h1>ActiveSupport::TimeZone#parse</h1>
+
+
+<p>Method for creating new ActiveSupport::TimeWithZone instance in time zone
+of <tt>self</tt> from parsed string. Example:</p>
+
+<pre>Time.zone = &quot;Hawaii&quot;                      # =&gt; &quot;Hawaii&quot;
+Time.zone.parse('1999-12-31 14:00:00')    # =&gt; Fri, 31 Dec 1999 14:00:00 HST -10:00</pre>
+
+<p>If upper components are missing from the string, they are supplied from
+TimeZone#now:</p>
+
+<pre>Time.zone.now                 # =&gt; Fri, 31 Dec 1999 14:00:00 HST -10:00
+Time.zone.parse('22:30:00')   # =&gt; Fri, 31 Dec 1999 22:30:00 HST -10:00</pre>
+
+
+
+
+

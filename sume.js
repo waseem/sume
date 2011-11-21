@@ -11,11 +11,6 @@ Sume.SearchResultList = Backbone.Collection.extend({
 Sume.searchResults = new Sume.SearchResultList()
 
 Sume.SearchEngine = {
-  locations: { "ActiveRecord::Base": "ActiveRecord/Base.html",
-               "ActiveSupport::Concern": "ActiveSupport/Concern.html",
-               "distance_of_time_in_words": "ActionView/Helpers/DateHelper/distance_of_time_in_words.html",
-               "find": "ActiveRecord/FinderMethods/find.html",
-               "ActiveRecord::FinderMethods.find": "ActiveRecord/FinderMethods/find.html" },
   search: function() {
     $('#search_autocomplete').hide();
     active = $('#search_autocomplete li.active')
@@ -26,8 +21,8 @@ Sume.SearchEngine = {
       term = location.hash.split("/")[1]
     }
 
-    if (this.locations[term]) {
-      $.get(this.locations[term], function(html) {
+    if (Sume.paths[term]) {
+      $.get("doc/" + Sume.paths[term], function(html) {
         $('#docs').html(html)
       })
       Backbone.history.navigate("search/" + term, false)
@@ -39,18 +34,14 @@ Sume.SearchEngine = {
 }
 
 Sume.AutoCompleteController = {
-  autocomplete_data: ["ActiveRecord::Base",
-                      "ActiveSupport::Concern",
-                      "distance_of_time_in_words",
-                      "find"],
 
   fuzzies: [/[A-Z]\w+\.find/],
-  fuzzy_matches: ["ActiveRecord::FinderMethods.find"],
+  fuzzy_matches: ["ActiveRecord::FinderMethods#find"],
 
   search: function(term) {
     $('#search_autocomplete').show()
     $('#search_autocomplete').empty()
-    var results = $.grep(this.autocomplete_data, function(element) {
+    var results = $.grep(Sume.index, function(element) {
       return element.search(new RegExp(term, "i")) != -1;
     })
 
@@ -63,9 +54,29 @@ Sume.AutoCompleteController = {
       fuzzy_results[key] = this.fuzzy_matches[index]
     }
 
-    results = results.concat(fuzzy_results)
+    if (results.length == 0 && fuzzy_results.length == 0) {
+      var results = $.grep(Sume.index, function(element) {
+        return element.search(new RegExp(term.split("").join(".*"), "i")) != -1;
+      })
+    }
 
+    // sort search results by weight
+    results.sort(function(result, other_result) {
+      index = Sume.index.indexOf(result)
+      other_index = Sume.index.indexOf(other_result)
 
+      if (Sume.weights[index] < Sume.weights[other_index]) {
+        return 1
+      }
+      else if (Sume.weights[index] > Sume.weights[other_index]) {
+        return -1
+      }
+      else {
+        return 0
+      }
+    })
+
+    results = results.concat(fuzzy_results).slice(0, 10)
     $.each(results, function (index, term) {
       Sume.searchResults.add({term : term})
     })
@@ -82,6 +93,7 @@ Sume.SearchResultsView = Backbone.View.extend({
   },
 
   renderItem: function(model) {
+    // console.log("apppending model: " + model.attributes["term"])
     var view = new Sume.SearchResultView({model : model})
     $(this.el).append(view.el)
   }

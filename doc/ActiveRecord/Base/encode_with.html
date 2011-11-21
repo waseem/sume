@@ -1,0 +1,20 @@
+<h1>ActiveRecord::Base#encode_with</h1>
+
+
+<p>Populate <tt>coder</tt> with attributes about this record that should be
+serialized. The structure of <tt>coder</tt> defined in this method is
+guaranteed to match the structure of <tt>coder</tt> passed to the
+<tt>init_with</tt> method.</p>
+
+<p>Example:</p>
+
+<pre>class Post &lt; ActiveRecord::Base
+end
+coder = {}
+Post.new.encode_with(coder)
+coder # =&gt; { 'id' =&gt; nil, ... }</pre>
+
+
+
+
+

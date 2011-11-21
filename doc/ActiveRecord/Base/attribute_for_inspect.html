@@ -1,0 +1,20 @@
+<h1>ActiveRecord::Base#attribute_for_inspect</h1>
+
+
+<p>Returns an <tt>#inspect</tt>-like string for the value of the attribute
+<tt>attr_name</tt>. String attributes are truncated upto 50 characters, and
+Date and Time attributes are returned in the <tt>:db</tt> format. Other
+attributes return the value of <tt>#inspect</tt> without modification.</p>
+
+<pre>person = Person.create!(:name =&gt; &quot;David Heinemeier Hansson &quot; * 3)
+
+person.attribute_for_inspect(:name)
+# =&gt; '&quot;David Heinemeier Hansson David Heinemeier Hansson D...&quot;'
+
+person.attribute_for_inspect(:created_at)
+# =&gt; '&quot;2009-01-12 04:48:57&quot;'</pre>
+
+
+
+
+

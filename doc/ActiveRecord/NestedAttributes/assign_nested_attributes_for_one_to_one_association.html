@@ -1,0 +1,18 @@
+<h1>ActiveRecord::NestedAttributes#assign_nested_attributes_for_one_to_one_association</h1>
+
+
+<p>Assigns the given attributes to the association.</p>
+
+<p>If update_only is false and the given attributes include an <tt>:id</tt>
+that matches the existing record's id, then the existing record will be
+modified. If update_only is true, a new record is only created when no
+object exists. Otherwise a new record will be built.</p>
+
+<p>If the given attributes include a matching <tt>:id</tt> attribute, or
+update_only is true, and a <tt>:_destroy</tt> key set to a truthy value,
+then the existing record will be marked for destruction.</p>
+
+
+
+
+

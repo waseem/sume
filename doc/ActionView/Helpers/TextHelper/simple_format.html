@@ -1,0 +1,39 @@
+<h1>ActionView::Helpers::TextHelper#simple_format</h1>
+
+
+<p>Returns <tt>text</tt> transformed into HTML using simple formatting rules.
+Two or more consecutive newlines(<tt>\n\n</tt>) are considered as a
+paragraph and wrapped in <tt>&lt;p&gt;</tt> tags. One newline (<tt>\n</tt>)
+is considered as a linebreak and a <tt>&lt;br /&gt;</tt> tag is appended.
+This method does not remove the newlines from the <tt>text</tt>.</p>
+
+<p>You can pass any HTML attributes into <tt>html_options</tt>.  These will be
+added to all created paragraphs.</p>
+
+<h4>Options</h4>
+<ul><li>
+<p><tt>:sanitize</tt> - If <tt>false</tt>, does not sanitize <tt>text</tt>.</p>
+</li></ul>
+
+<h4>Examples</h4>
+
+<pre>my_text = &quot;Here is some basic text...\n...with a line break.&quot;
+
+simple_format(my_text)
+# =&gt; &quot;&lt;p&gt;Here is some basic text...\n&lt;br /&gt;...with a line break.&lt;/p&gt;&quot;
+
+more_text = &quot;We want to put a paragraph...\n\n...right there.&quot;
+
+simple_format(more_text)
+# =&gt; &quot;&lt;p&gt;We want to put a paragraph...&lt;/p&gt;\n\n&lt;p&gt;...right there.&lt;/p&gt;&quot;
+
+simple_format(&quot;Look ma! A class!&quot;, :class =&gt; 'description')
+# =&gt; &quot;&lt;p class='description'&gt;Look ma! A class!&lt;/p&gt;&quot;
+
+simple_format(&quot;&lt;span&gt;I'm allowed!&lt;/span&gt; It's true.&quot;, {}, :sanitize =&gt; false)
+# =&gt; &quot;&lt;p&gt;&lt;span&gt;I'm allowed!&lt;/span&gt; It's true.&lt;/p&gt;&quot;</pre>
+
+
+
+
+

@@ -1,0 +1,44 @@
+<h1>ActionController::DataStreaming#send_data</h1>
+
+
+<p>Sends the given binary data to the browser. This method is similar to
+<tt>render :text =&gt; data</tt>, but also allows you to specify whether
+the browser should display the response as a file attachment (i.e. in a
+download dialog) or as inline data. You may also set the content type, the
+apparent file name, and other things.</p>
+
+<p>Options:</p>
+<ul><li>
+<p><tt>:filename</tt> - suggests a filename for the browser to use.</p>
+</li><li>
+<p><tt>:type</tt> - specifies an HTTP content type. Defaults to
+'application/octet-stream'. You can specify either a string or a symbol for
+a registered type register with <tt>Mime::Type.register</tt>, for example
+:json</p>
+</li><li>
+<p><tt>:disposition</tt> - specifies whether the file will be shown inline or
+downloaded. Valid values are 'inline' and 'attachment' (default).</p>
+</li><li>
+<p><tt>:status</tt> - specifies the status code to send with the response.
+Defaults to 200.</p>
+</li></ul>
+
+<p>Generic data download:</p>
+
+<pre>send_data buffer</pre>
+
+<p>Download a dynamically-generated tarball:</p>
+
+<pre>send_data generate_tgz('dir'), :filename =&gt; 'dir.tgz'</pre>
+
+<p>Display an image Active Record in the browser:</p>
+
+<pre>send_data image.data, :type =&gt; image.content_type, :disposition =&gt; 'inline'</pre>
+
+<p>See <tt>send_file</tt> for more information on HTTP Content-* headers and
+caching.</p>
+
+
+
+
+

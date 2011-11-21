@@ -1,0 +1,32 @@
+Represents an SQL table in an abstract way for updating a table.
+Also see TableDefinition and SchemaStatements#create_table
+
+Available transformations are:
+
+  change_table :table do |t|
+    t.column
+    t.index
+    t.timestamps
+    t.change
+    t.change_default
+    t.rename
+    t.references
+    t.belongs_to
+    t.string
+    t.text
+    t.integer
+    t.float
+    t.decimal
+    t.datetime
+    t.timestamp
+    t.time
+    t.date
+    t.binary
+    t.boolean
+    t.remove
+    t.remove_references
+    t.remove_belongs_to
+    t.remove_index
+    t.remove_timestamps
+  end
+

@@ -1,0 +1,74 @@
+Makes it dead easy to do HTTP Token authentication.
+
+Simple Token example:
+
+  class PostsController < ApplicationController
+    TOKEN = "secret"
+
+    before_filter :authenticate, :except => [ :index ]
+
+    def index
+      render :text => "Everyone can see me!"
+    end
+
+    def edit
+      render :text => "I'm only accessible if you know the password"
+    end
+
+    private
+      def authenticate
+        authenticate_or_request_with_http_token do |token, options|
+          token == TOKEN
+        end
+      end
+  end
+
+
+Here is a more advanced Token example where only Atom feeds and the XML API is protected by HTTP token authentication,
+the regular HTML interface is protected by a session approach:
+
+  class ApplicationController < ActionController::Base
+    before_filter :set_account, :authenticate
+
+    protected
+      def set_account
+        @account = Account.find_by_url_name(request.subdomains.first)
+      end
+
+      def authenticate
+        case request.format
+        when Mime::XML, Mime::ATOM
+          if user = authenticate_with_http_token { |t, o| @account.users.authenticate(t, o) }
+            @current_user = user
+          else
+            request_http_token_authentication
+          end
+        else
+          if session_authenticated?
+            @current_user = @account.users.find(session[:authenticated][:user_id])
+          else
+            redirect_to(login_url) and return false
+          end
+        end
+      end
+  end
+
+
+In your integration tests, you can do something like this:
+
+  def test_access_granted_from_xml
+    get(
+      "/notes/1.xml", nil,
+      :authorization => ActionController::HttpAuthentication::Token.encode_credentials(users(:dhh).token)
+    )
+
+    assert_equal 200, status
+  end
+
+
+On shared hosts, Apache sometimes doesn't pass authentication headers to
+FCGI instances. If your environment matches this description and you cannot
+authenticate, try this rule in your Apache setup:
+
+  RewriteRule ^(.*)$ dispatch.fcgi [E=X-HTTP_AUTHORIZATION:%HTTP:Authorization,QSA,L]
+

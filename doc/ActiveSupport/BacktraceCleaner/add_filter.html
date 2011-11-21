@@ -1,0 +1,15 @@
+<h1>ActiveSupport::BacktraceCleaner#add_filter</h1>
+
+
+<p>Adds a filter from the block provided. Each line in the backtrace will be
+mapped against this filter.</p>
+
+<p>Example:</p>
+
+<pre># Will turn &quot;/my/rails/root/app/models/person.rb&quot; into &quot;/app/models/person.rb&quot;
+backtrace_cleaner.add_filter { |line| line.gsub(Rails.root, '') }</pre>
+
+
+
+
+

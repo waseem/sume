@@ -1,0 +1,26 @@
+<h1>ActionView::Helpers::FormOptionsHelper#time_zone_options_for_select</h1>
+
+
+<p>Returns a string of option tags for pretty much any time zone in the world.
+Supply a ActiveSupport::TimeZone name as <tt>selected</tt> to have it
+marked as the selected option tag. You can also supply an array of
+ActiveSupport::TimeZone objects as <tt>priority_zones</tt>, so that they
+will be listed above the rest of the (long) list. (You can use
+ActiveSupport::TimeZone.us_zones as a convenience for obtaining a list of
+the US time zones, or a Regexp to select the zones of your choice)</p>
+
+<p>The <tt>selected</tt> parameter must be either <tt>nil</tt>, or a string
+that names a ActiveSupport::TimeZone.</p>
+
+<p>By default, <tt>model</tt> is the ActiveSupport::TimeZone constant (which
+can be obtained in Active Record as a value object). The only requirement
+is that the <tt>model</tt> parameter be an object that responds to
+<tt>all</tt>, and returns an array of objects that represent time zones.</p>
+
+<p>NOTE: Only the option tags are returned, you have to wrap this call in a
+regular HTML select tag.</p>
+
+
+
+
+

@@ -1,0 +1,24 @@
+The record identifier encapsulates a number of naming conventions for dealing with records, like Active Records or
+Active Resources or pretty much any other model type that has an id. These patterns are then used to try elevate
+the view actions to a higher logical level. Example:
+
+  # routes
+  resources :posts
+
+  # view
+  <%= div_for(post) do %>    <div id="post_45" class="post">
+    <%= post.body %>           What a wonderful world!
+  <% end %>                  </div>
+
+  # controller
+  def destroy
+    post = Post.find(params[:id])
+    post.destroy
+
+    redirect_to(post) # Calls polymorphic_url(post) which in turn calls post_url(post)
+  end
+
+As the example above shows, you can stop caring to a large extent what the actual id of the post is.
+You just know that one is being assigned and that the subsequent calls in redirect_to expect that
+same naming convention and allows you to write less code if you follow it.
+

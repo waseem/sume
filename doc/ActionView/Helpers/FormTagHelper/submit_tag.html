@@ -1,0 +1,50 @@
+<h1>ActionView::Helpers::FormTagHelper#submit_tag</h1>
+
+
+<p>Creates a submit button with the text <tt>value</tt> as the caption.</p>
+
+<h4>Options</h4>
+<ul><li>
+<p><tt>:confirm =&gt; 'question?'</tt> - If present the unobtrusive JavaScript
+drivers will provide a prompt with the question specified. If the user
+accepts, the form is processed normally, otherwise no action is taken.</p>
+</li><li>
+<p><tt>:disabled</tt> - If true, the user will not be able to use this input.</p>
+</li><li>
+<p><tt>:disable_with</tt> - Value of this parameter will be used as the value
+for a disabled version of the submit button when the form is submitted.
+This feature is provided by the unobtrusive JavaScript driver.</p>
+</li><li>
+<p>Any other key creates standard HTML options for the tag.</p>
+</li></ul>
+
+<h4>Examples</h4>
+
+<pre>submit_tag
+# =&gt; &lt;input name=&quot;commit&quot; type=&quot;submit&quot; value=&quot;Save changes&quot; /&gt;
+
+submit_tag &quot;Edit this article&quot;
+# =&gt; &lt;input name=&quot;commit&quot; type=&quot;submit&quot; value=&quot;Edit this article&quot; /&gt;
+
+submit_tag &quot;Save edits&quot;, :disabled =&gt; true
+# =&gt; &lt;input disabled=&quot;disabled&quot; name=&quot;commit&quot; type=&quot;submit&quot; value=&quot;Save edits&quot; /&gt;
+
+submit_tag &quot;Complete sale&quot;, :disable_with =&gt; &quot;Please wait...&quot;
+# =&gt; &lt;input name=&quot;commit&quot; data-disable-with=&quot;Please wait...&quot;
+#    type=&quot;submit&quot; value=&quot;Complete sale&quot; /&gt;
+
+submit_tag nil, :class =&gt; &quot;form_submit&quot;
+# =&gt; &lt;input class=&quot;form_submit&quot; name=&quot;commit&quot; type=&quot;submit&quot; /&gt;
+
+submit_tag &quot;Edit&quot;, :disable_with =&gt; &quot;Editing...&quot;, :class =&gt; &quot;edit_button&quot;
+# =&gt; &lt;input class=&quot;edit_button&quot; data-disable_with=&quot;Editing...&quot;
+#    name=&quot;commit&quot; type=&quot;submit&quot; value=&quot;Edit&quot; /&gt;
+
+submit_tag &quot;Save&quot;, :confirm =&gt; &quot;Are you sure?&quot;
+# =&gt; &lt;input name='commit' type='submit' value='Save'
+      data-confirm=&quot;Are you sure?&quot; /&gt;</pre>
+
+
+
+
+

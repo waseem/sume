@@ -1,0 +1,34 @@
+<h1>ActionView::Helpers::FormHelper#text_area</h1>
+
+
+<p>Returns a textarea opening and closing tag set tailored for accessing a
+specified attribute (identified by <tt>method</tt>) on an object assigned
+to the template (identified by <tt>object</tt>). Additional options on the
+input tag can be passed as a hash with <tt>options</tt>.</p>
+
+<h4>Examples</h4>
+
+<pre>text_area(:post, :body, :cols =&gt; 20, :rows =&gt; 40)
+# =&gt; &lt;textarea cols=&quot;20&quot; rows=&quot;40&quot; id=&quot;post_body&quot; name=&quot;post[body]&quot;&gt;
+#      #{@post.body}
+#    &lt;/textarea&gt;
+
+text_area(:comment, :text, :size =&gt; &quot;20x30&quot;)
+# =&gt; &lt;textarea cols=&quot;20&quot; rows=&quot;30&quot; id=&quot;comment_text&quot; name=&quot;comment[text]&quot;&gt;
+#      #{@comment.text}
+#    &lt;/textarea&gt;
+
+text_area(:application, :notes, :cols =&gt; 40, :rows =&gt; 15, :class =&gt; 'app_input')
+# =&gt; &lt;textarea cols=&quot;40&quot; rows=&quot;15&quot; id=&quot;application_notes&quot; name=&quot;application[notes]&quot; class=&quot;app_input&quot;&gt;
+#      #{@application.notes}
+#    &lt;/textarea&gt;
+
+text_area(:entry, :body, :size =&gt; &quot;20x20&quot;, :disabled =&gt; 'disabled')
+# =&gt; &lt;textarea cols=&quot;20&quot; rows=&quot;20&quot; id=&quot;entry_body&quot; name=&quot;entry[body]&quot; disabled=&quot;disabled&quot;&gt;
+#      #{@entry.body}
+#    &lt;/textarea&gt;</pre>
+
+
+
+
+

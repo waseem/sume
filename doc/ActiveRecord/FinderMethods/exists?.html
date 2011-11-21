@@ -1,0 +1,39 @@
+<h1>ActiveRecord::FinderMethods#exists?</h1>
+
+
+<p>Returns true if a record exists in the table that matches the <tt>id</tt>
+or conditions given, or false otherwise. The argument can take five forms:</p>
+<ul><li>
+<p>Integer - Finds the record with this primary key.</p>
+</li><li>
+<p>String - Finds the record with a primary key corresponding to this string
+(such as <tt>'5'</tt>).</p>
+</li><li>
+<p>Array - Finds the record that matches these <tt>find</tt>-style conditions
+(such as <tt>['color = ?', 'red']</tt>).</p>
+</li><li>
+<p>Hash - Finds the record that matches these <tt>find</tt>-style conditions
+(such as <tt>{:color =&gt; 'red'}</tt>).</p>
+</li><li>
+<p>No args - Returns false if the table is empty, true otherwise.</p>
+</li></ul>
+
+<p>For more information about specifying conditions as a Hash or Array, see
+the Conditions section in the introduction to ActiveRecord::Base.</p>
+
+<p>Note: You can't pass in a condition as a string (like <tt>name =
+'Jamie'</tt>), since it would be sanitized and then queried against the
+primary key column, like <tt>id = 'name = \'Jamie\''</tt>.</p>
+
+<h4>Examples</h4>
+
+<pre>Person.exists?(5)
+Person.exists?('5')
+Person.exists?(:name =&gt; &quot;David&quot;)
+Person.exists?(['name LIKE ?', &quot;%#{query}%&quot;])
+Person.exists?</pre>
+
+
+
+
+

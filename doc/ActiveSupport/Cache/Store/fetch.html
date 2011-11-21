@@ -1,0 +1,101 @@
+<h1>ActiveSupport::Cache::Store#fetch</h1>
+
+
+<p>Fetches data from the cache, using the given key. If there is data in the
+cache with the given key, then that data is returned.</p>
+
+<p>If there is no such data in the cache (a cache miss occurred), then nil
+will be returned. However, if a block has been passed, then that block will
+be run in the event of a cache miss. The return value of the block will be
+written to the cache under the given cache key, and that return value will
+be returned.</p>
+
+<pre>cache.write(&quot;today&quot;, &quot;Monday&quot;)
+cache.fetch(&quot;today&quot;)  # =&gt; &quot;Monday&quot;
+
+cache.fetch(&quot;city&quot;)   # =&gt; nil
+cache.fetch(&quot;city&quot;) do
+  &quot;Duckburgh&quot;
+end
+cache.fetch(&quot;city&quot;)   # =&gt; &quot;Duckburgh&quot;</pre>
+
+<p>You may also specify additional options via the <tt>options</tt> argument.
+Setting <tt>:force =&gt; true</tt> will force a cache miss:</p>
+
+<pre>cache.write(&quot;today&quot;, &quot;Monday&quot;)
+cache.fetch(&quot;today&quot;, :force =&gt; true)  # =&gt; nil</pre>
+
+<p>Setting <tt>:compress</tt> will store a large cache entry set by the call
+in a compressed format.</p>
+
+<p>Setting <tt>:expires_in</tt> will set an expiration time on the cache. All
+caches support auto expiring content after a specified number of seconds.
+This value can be specified as an option to the construction in which call
+all entries will be affected. Or it can be supplied to the <tt>fetch</tt>
+or <tt>write</tt> method for just one entry.</p>
+
+<pre>cache = ActiveSupport::Cache::MemoryStore.new(:expires_in =&gt; 5.minutes)
+cache.write(key, value, :expires_in =&gt; 1.minute)  # Set a lower value for one entry</pre>
+
+<p>Setting <tt>:race_condition_ttl</tt> is very useful in situations where a
+cache entry is used very frequently and is under heavy load. If a cache
+expires and due to heavy load seven different processes will try to read
+data natively and then they all will try to write to cache. To avoid that
+case the first process to find an expired cache entry will bump the cache
+expiration time by the value set in <tt>:race_condition_ttl</tt>. Yes this
+process is extending the time for a stale value by another few seconds.
+Because of extended life of the previous cache, other processes will
+continue to use slightly stale data for a just a big longer. In the
+meantime that first process will go ahead and will write into cache the new
+value. After that all the processes will start getting new value. The key
+is to keep <tt>:race_condition_ttl</tt> small.</p>
+
+<p>If the process regenerating the entry errors out, the entry will be
+regenerated after the specified number of seconds. Also note that the life
+of stale cache is extended only if it expired recently. Otherwise a new
+value is generated and <tt>:race_condition_ttl</tt> does not play any role.</p>
+
+<pre># Set all values to expire after one minute.
+cache = ActiveSupport::Cache::MemoryCache.new(:expires_in =&gt; 1.minute)
+
+cache.write(&quot;foo&quot;, &quot;original value&quot;)
+val_1 = nil
+val_2 = nil
+sleep 60
+
+Thread.new do
+  val_1 = cache.fetch(&quot;foo&quot;, :race_condition_ttl =&gt; 10) do
+    sleep 1
+    &quot;new value 1&quot;
+  end
+end
+
+Thread.new do
+  val_2 = cache.fetch(&quot;foo&quot;, :race_condition_ttl =&gt; 10) do
+    &quot;new value 2&quot;
+  end
+end
+
+# val_1 =&gt; &quot;new value 1&quot;
+# val_2 =&gt; &quot;original value&quot;
+# sleep 10 # First thread extend the life of cache by another 10 seconds
+# cache.fetch(&quot;foo&quot;) =&gt; &quot;new value 1&quot;</pre>
+
+<p>Other options will be handled by the specific cache store implementation.
+Internally, #fetch calls #read_entry, and calls #write_entry on a cache
+miss. <tt>options</tt> will be passed to the #read and #write calls.</p>
+
+<p>For example, MemCacheStore's #write method supports the <tt>:raw</tt>
+option, which tells the memcached server to store all values as strings. We
+can use this option with #fetch too:</p>
+
+<pre>cache = ActiveSupport::Cache::MemCacheStore.new
+cache.fetch(&quot;foo&quot;, :force =&gt; true, :raw =&gt; true) do
+  :bar
+end
+cache.fetch(&quot;foo&quot;)  # =&gt; &quot;bar&quot;</pre>
+
+
+
+
+

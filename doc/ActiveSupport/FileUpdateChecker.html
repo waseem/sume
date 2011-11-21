@@ -1,0 +1,13 @@
+This class is responsible to track files and invoke the given block
+whenever one of these files are changed. For example, this class
+is used by Rails to reload the I18n framework whenever they are
+changed upon a new request.
+
+  i18n_reloader = ActiveSupport::FileUpdateChecker.new(paths) do
+    I18n.reload!
+  end
+
+  ActionDispatch::Reloader.to_prepare do
+    i18n_reloader.execute_if_updated
+  end
+

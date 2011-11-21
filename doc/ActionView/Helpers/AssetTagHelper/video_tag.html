@@ -1,0 +1,47 @@
+<h1>ActionView::Helpers::AssetTagHelper#video_tag</h1>
+
+
+<p>Returns an html video tag for the <tt>sources</tt>. If <tt>sources</tt> is
+a string, a single video tag will be returned. If <tt>sources</tt> is an
+array, a video tag with nested source tags for each source will be
+returned. The <tt>sources</tt> can be full paths or files that exists in
+your public videos directory.</p>
+
+<h4>Options</h4>
+
+<p>You can add HTML attributes using the <tt>options</tt>. The
+<tt>options</tt> supports two additional keys for convenience and
+conformance:</p>
+<ul><li>
+<p><tt>:poster</tt> - Set an image (like a screenshot) to be shown before the
+video loads. The path is calculated like the <tt>src</tt> of
+<tt>image_tag</tt>.</p>
+</li><li>
+<p><tt>:size</tt> - Supplied as "{Width}x{Height}", so "30x45" becomes
+width="30" and height="45". <tt>:size</tt> will be ignored if the value is
+not in the correct format.</p>
+</li></ul>
+
+<h4>Examples</h4>
+
+<pre>video_tag(&quot;trailer&quot;)  # =&gt;
+  &lt;video src=&quot;/videos/trailer&quot; /&gt;
+video_tag(&quot;trailer.ogg&quot;)  # =&gt;
+  &lt;video src=&quot;/videos/trailer.ogg&quot; /&gt;
+video_tag(&quot;trailer.ogg&quot;, :controls =&gt; true, :autobuffer =&gt; true)  # =&gt;
+  &lt;video autobuffer=&quot;autobuffer&quot; controls=&quot;controls&quot; src=&quot;/videos/trailer.ogg&quot; /&gt;
+video_tag(&quot;trailer.m4v&quot;, :size =&gt; &quot;16x10&quot;, :poster =&gt; &quot;screenshot.png&quot;)  # =&gt;
+  &lt;video src=&quot;/videos/trailer.m4v&quot; width=&quot;16&quot; height=&quot;10&quot; poster=&quot;/images/screenshot.png&quot; /&gt;
+video_tag(&quot;/trailers/hd.avi&quot;, :size =&gt; &quot;16x16&quot;)  # =&gt;
+  &lt;video src=&quot;/trailers/hd.avi&quot; width=&quot;16&quot; height=&quot;16&quot; /&gt;
+video_tag(&quot;/trailers/hd.avi&quot;, :height =&gt; '32', :width =&gt; '32') # =&gt;
+  &lt;video height=&quot;32&quot; src=&quot;/trailers/hd.avi&quot; width=&quot;32&quot; /&gt;
+video_tag([&quot;trailer.ogg&quot;, &quot;trailer.flv&quot;]) # =&gt;
+  &lt;video&gt;&lt;source src=&quot;trailer.ogg&quot; /&gt;&lt;source src=&quot;trailer.ogg&quot; /&gt;&lt;source src=&quot;trailer.flv&quot; /&gt;&lt;/video&gt;
+video_tag([&quot;trailer.ogg&quot;, &quot;trailer.flv&quot;] :size =&gt; &quot;160x120&quot;) # =&gt;
+  &lt;video height=&quot;120&quot; width=&quot;160&quot;&gt;&lt;source src=&quot;trailer.ogg&quot; /&gt;&lt;source src=&quot;trailer.flv&quot; /&gt;&lt;/video&gt;</pre>
+
+
+
+
+

@@ -1,0 +1,18 @@
+<h1>ActiveRecord::Validations#valid?</h1>
+
+
+<p>Runs all the validations within the specified context. Returns true if no
+errors are found, false otherwise.</p>
+
+<p>If the argument is false (default is <tt>nil</tt>), the context is set to
+<tt>:create</tt> if <tt>new_record?</tt> is true, and to <tt>:update</tt>
+if it is not.</p>
+
+<p>Validations with no <tt>:on</tt> option will run no matter the context.
+Validations with some <tt>:on</tt> option will only run in the specified
+context.</p>
+
+
+
+
+

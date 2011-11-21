@@ -1,0 +1,33 @@
+<h1>Date#to_s</h1>
+
+
+<p>Convert to a formatted string. See DATE_FORMATS for predefined formats.</p>
+
+<p>This method is aliased to <tt>to_s</tt>.</p>
+
+<h4>Examples</h4>
+
+<pre>date = Date.new(2007, 11, 10)       # =&gt; Sat, 10 Nov 2007
+
+date.to_formatted_s(:db)            # =&gt; &quot;2007-11-10&quot;
+date.to_s(:db)                      # =&gt; &quot;2007-11-10&quot;
+
+date.to_formatted_s(:short)         # =&gt; &quot;10 Nov&quot;
+date.to_formatted_s(:long)          # =&gt; &quot;November 10, 2007&quot;
+date.to_formatted_s(:long_ordinal)  # =&gt; &quot;November 10th, 2007&quot;
+date.to_formatted_s(:rfc822)        # =&gt; &quot;10 Nov 2007&quot;</pre>
+
+<h2>Adding your own time formats to to_formatted_s</h2>
+
+<p>You can add your own formats to the Date::DATE_FORMATS hash. Use the format
+name as the hash key and either a strftime string or Proc instance that
+takes a date argument as the value.</p>
+
+<pre># config/initializers/time_formats.rb
+Date::DATE_FORMATS[:month_and_year] = &quot;%B %Y&quot;
+Date::DATE_FORMATS[:short_ordinal] = lambda { |date| date.strftime(&quot;%B #{date.day.ordinalize}&quot;) }</pre>
+
+
+
+
+

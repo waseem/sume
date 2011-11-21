@@ -1,0 +1,41 @@
+<h1>ActionDispatch::Routing::Mapper::Scoping#scope</h1>
+
+
+<p>Scopes a set of routes to the given default options.</p>
+
+<p>Take the following route definition as an example:</p>
+
+<pre>scope :path =&gt; &quot;:account_id&quot;, :as =&gt; &quot;account&quot; do
+  resources :projects
+end</pre>
+
+<p>This generates helpers such as <tt>account_projects_path</tt>, just like
+<tt>resources</tt> does. The difference here being that the routes
+generated are like /rails/projects/2, rather than
+/accounts/rails/projects/2.</p>
+
+<h3>Options</h3>
+
+<p>Takes same options as <tt>Base#match</tt> and <tt>Resources#resources</tt>.</p>
+
+<h3>Examples</h3>
+
+<pre># route /posts (without the prefix /admin) to &lt;tt&gt;Admin::PostsController&lt;/tt&gt;
+scope :module =&gt; &quot;admin&quot; do
+  resources :posts
+end
+
+# prefix the posts resource's requests with '/admin'
+scope :path =&gt; &quot;/admin&quot; do
+  resources :posts
+end
+
+# prefix the routing helper name: <tt>sekret_posts_path</tt> instead of <tt>posts_path</tt>
+scope :as =&gt; &quot;sekret&quot; do
+  resources :posts
+end</pre>
+
+
+
+
+

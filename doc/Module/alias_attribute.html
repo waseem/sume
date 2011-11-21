@@ -1,0 +1,27 @@
+<h1>Module#alias_attribute</h1>
+
+
+<p>Allows you to make aliases for attributes, which includes getter, setter,
+and query methods.</p>
+
+<p>Example:</p>
+
+<pre>class Content &lt; ActiveRecord::Base
+  # has a title attribute
+end
+
+class Email &lt; Content
+  alias_attribute :subject, :title
+end
+
+e = Email.find(1)
+e.title    # =&gt; &quot;Superstars&quot;
+e.subject  # =&gt; &quot;Superstars&quot;
+e.subject? # =&gt; true
+e.subject = &quot;Megastars&quot;
+e.title    # =&gt; &quot;Megastars&quot;</pre>
+
+
+
+
+

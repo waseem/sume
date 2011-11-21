@@ -1,0 +1,33 @@
+<h1>ActiveRecord::Base.find_by_sql</h1>
+
+
+<p>Executes a custom SQL query against your database and returns all the
+results. The results will be returned as an array with columns requested
+encapsulated as attributes of the model you call this method from. If you
+call <tt>Product.find_by_sql</tt> then the results will be returned in a
+Product object with the attributes you specified in the SQL query.</p>
+
+<p>If you call a complicated SQL query which spans multiple tables the columns
+specified by the SELECT will be attributes of the model, whether or not
+they are columns of the corresponding table.</p>
+
+<p>The <tt>sql</tt> parameter is a full SQL query as a string. It will be
+called as is, there will be no database agnostic conversions performed.
+This should be a last resort because using, for example, MySQL specific
+terms will lock you to using that particular database engine or require you
+to change your call if you switch engines.</p>
+
+<h4>Examples</h4>
+
+<pre># A simple SQL query spanning multiple tables
+Post.find_by_sql &quot;SELECT p.title, c.author FROM posts p, comments c WHERE p.id = c.post_id&quot;
+&gt; [#&lt;Post:0x36bff9c @attributes={&quot;title&quot;=&gt;&quot;Ruby Meetup&quot;, &quot;first_name&quot;=&gt;&quot;Quentin&quot;}&gt;, ...]
+
+# You can use the same string replacement techniques as you can with ActiveRecord#find
+Post.find_by_sql [&quot;SELECT title FROM posts WHERE author = ? AND created &gt; ?&quot;, author_id, start_date]
+&gt; [#&lt;Post:0x36bff9c @attributes={&quot;title&quot;=&gt;&quot;The Cheap Man Buys Twice&quot;}&gt;, ...]</pre>
+
+
+
+
+

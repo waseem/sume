@@ -1,0 +1,37 @@
+<h1>ActionView::Helpers::TextHelper#truncate</h1>
+
+
+<p>Truncates a given <tt>text</tt> after a given <tt>:length</tt> if
+<tt>text</tt> is longer than <tt>:length</tt> (defaults to 30). The last
+characters will be replaced with the <tt>:omission</tt> (defaults to "...")
+for a total length not exceeding <tt>:length</tt>.</p>
+
+<p>Pass a <tt>:separator</tt> to truncate <tt>text</tt> at a natural break.</p>
+
+<p>The result is not marked as HTML-safe, so will be subject to the default
+escaping when used in views, unless wrapped by <tt>raw()</tt>. Care should
+be taken if <tt>text</tt> contains HTML tags or entities, because
+truncation may produce invalid HTML (such as unbalanced or incomplete
+tags).</p>
+
+<h4>Examples</h4>
+
+<pre>truncate(&quot;Once upon a time in a world far far away&quot;)
+# =&gt; &quot;Once upon a time in a world...&quot;
+
+truncate(&quot;Once upon a time in a world far far away&quot;, :length =&gt; 17)
+# =&gt; &quot;Once upon a ti...&quot;
+
+truncate(&quot;Once upon a time in a world far far away&quot;, :length =&gt; 17, :separator =&gt; ' ')
+# =&gt; &quot;Once upon a...&quot;
+
+truncate(&quot;And they found that many people were sleeping better.&quot;, :length =&gt; 25, :omission =&gt; '... (continued)')
+# =&gt; &quot;And they f... (continued)&quot;
+
+truncate(&quot;&lt;p&gt;Once upon a time in a world far far away&lt;/p&gt;&quot;)
+# =&gt; &quot;&lt;p&gt;Once upon a time in a wo...&quot;</pre>
+
+
+
+
+

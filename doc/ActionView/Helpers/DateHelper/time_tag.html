@@ -1,0 +1,20 @@
+<h1>ActionView::Helpers::DateHelper#time_tag</h1>
+
+
+<p>Returns an html time tag for the given date or time.</p>
+
+<h4>Examples</h4>
+
+<pre>time_tag Date.today  # =&gt;
+  &lt;time datetime=&quot;2010-11-04&quot;&gt;November 04, 2010&lt;/time&gt;
+time_tag Time.now  # =&gt;
+  &lt;time datetime=&quot;2010-11-04T17:55:45+01:00&quot;&gt;November 04, 2010 17:55&lt;/time&gt;
+time_tag Date.yesterday, 'Yesterday'  # =&gt;
+  &lt;time datetime=&quot;2010-11-03&quot;&gt;Yesterday&lt;/time&gt;
+time_tag Date.today, :pubdate =&gt; true  # =&gt;
+  &lt;time datetime=&quot;2010-11-04&quot; pubdate=&quot;pubdate&quot;&gt;November 04, 2010&lt;/time&gt;</pre>
+
+
+
+
+

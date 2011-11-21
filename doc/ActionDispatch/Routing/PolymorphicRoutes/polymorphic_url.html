@@ -1,0 +1,41 @@
+<h1>ActionDispatch::Routing::PolymorphicRoutes#polymorphic_url</h1>
+
+
+<p>Constructs a call to a named RESTful route for the given record and returns
+the resulting URL string. For example:</p>
+
+<pre># calls post_url(post)
+polymorphic_url(post) # =&gt; &quot;http://example.com/posts/1&quot;
+polymorphic_url([blog, post]) # =&gt; &quot;http://example.com/blogs/1/posts/1&quot;
+polymorphic_url([:admin, blog, post]) # =&gt; &quot;http://example.com/admin/blogs/1/posts/1&quot;
+polymorphic_url([user, :blog, post]) # =&gt; &quot;http://example.com/users/1/blog/posts/1&quot;
+polymorphic_url(Comment) # =&gt; &quot;http://example.com/comments&quot;</pre>
+
+<h4>Options</h4>
+<ul><li>
+<p><tt>:action</tt> - Specifies the action prefix for the named route:
+<tt>:new</tt> or <tt>:edit</tt>. Default is no prefix.</p>
+</li><li>
+<p><tt>:routing_type</tt> - Allowed values are <tt>:path</tt> or
+<tt>:url</tt>. Default is <tt>:url</tt>.</p>
+</li></ul>
+
+<h4>Examples</h4>
+
+<pre># an Article record
+polymorphic_url(record)  # same as article_url(record)
+
+# a Comment record
+polymorphic_url(record)  # same as comment_url(record)
+
+# it recognizes new records and maps to the collection
+record = Comment.new
+polymorphic_url(record)  # same as comments_url()
+
+# the class of a record will also map to the collection
+polymorphic_url(Comment) # same as comments_url()</pre>
+
+
+
+
+

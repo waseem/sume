@@ -1,0 +1,11 @@
+The WatchStack keeps a stack of the modules being watched as files are loaded.
+If a file in the process of being loaded (parent.rb) triggers the load of
+another file (child.rb) the stack will ensure that child.rb handles the new
+constants.
+
+If child.rb is being autoloaded, its constants will be added to
+autoloaded_constants. If it was being `require`d, they will be discarded.
+
+This is handled by walking back up the watch stack and adding the constants
+found by child.rb to the list of original constants in parent.rb
+

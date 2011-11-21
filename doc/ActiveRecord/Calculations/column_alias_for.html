@@ -1,0 +1,16 @@
+<h1>ActiveRecord::Calculations#column_alias_for</h1>
+
+
+<p>Converts the given keys to the value that the database adapter returns as a
+usable column name:</p>
+
+<pre>column_alias_for(&quot;users.id&quot;)                 # =&gt; &quot;users_id&quot;
+column_alias_for(&quot;sum(id)&quot;)                  # =&gt; &quot;sum_id&quot;
+column_alias_for(&quot;count(distinct users.id)&quot;) # =&gt; &quot;count_distinct_users_id&quot;
+column_alias_for(&quot;count(*)&quot;)                 # =&gt; &quot;count_all&quot;
+column_alias_for(&quot;count&quot;, &quot;id&quot;)              # =&gt; &quot;count_id&quot;</pre>
+
+
+
+
+

@@ -1,0 +1,15 @@
+<h1>ActionDispatch::Routing::Mapper::Scoping#defaults</h1>
+
+
+<p>Allows you to set default parameters for a route, such as this:</p>
+
+<pre>defaults :id =&gt; 'home' do
+  match 'scoped_pages/(:id)', :to =&gt; 'pages#show'
+end</pre>
+
+<p>Using this, the <tt>:id</tt> parameter here will default to 'home'.</p>
+
+
+
+
+

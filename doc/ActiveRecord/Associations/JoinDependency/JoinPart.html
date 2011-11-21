@@ -1,0 +1,7 @@
+A JoinPart represents a part of a JoinDependency. It is an abstract class, inherited
+by JoinBase and JoinAssociation. A JoinBase represents the Active Record which
+everything else is being joined onto. A JoinAssociation represents an association which
+is joining to the base. A JoinAssociation may result in more than one actual join
+operations (for example a has_and_belongs_to_many JoinAssociation would result in
+two; one for the join table and one for the target table).
+

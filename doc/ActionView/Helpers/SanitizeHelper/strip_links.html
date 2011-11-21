@@ -1,0 +1,20 @@
+<h1>ActionView::Helpers::SanitizeHelper#strip_links</h1>
+
+
+<p>Strips all link tags from <tt>text</tt> leaving just the link text.</p>
+
+<h4>Examples</h4>
+
+<pre>strip_links('&lt;a href=&quot;http://www.rubyonrails.org&quot;&gt;Ruby on Rails&lt;/a&gt;')
+# =&gt; Ruby on Rails
+
+strip_links('Please e-mail me at &lt;a href=&quot;mailto:me@email.com&quot;&gt;me@email.com&lt;/a&gt;.')
+# =&gt; Please e-mail me at me@email.com.
+
+strip_links('Blog: &lt;a href=&quot;http://www.myblog.com/&quot; class=&quot;nav&quot; target=\&quot;_blank\&quot;&gt;Visit&lt;/a&gt;.')
+# =&gt; Blog: Visit.</pre>
+
+
+
+
+

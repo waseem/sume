@@ -1,0 +1,13 @@
+<h1>ActiveRecord::ConnectionAdapters::Mysql2Adapter#join_to_update</h1>
+
+
+<p>In the simple case, MySQL allows us to place JOINs directly into the UPDATE
+query. However, this does not allow for LIMIT, OFFSET and ORDER. To support
+these, we must use a subquery. However, MySQL is too stupid to create a
+temporary table for this automatically, so we have to give it some
+prompting in the form of a subsubquery. Ugh!</p>
+
+
+
+
+

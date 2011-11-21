@@ -1,0 +1,19 @@
+<h1>ActionDispatch::Http::MimeNegotiation#format=</h1>
+
+
+<p>Sets the format by string extension, which can be used to force custom
+formats that are not controlled by the extension.</p>
+
+<pre>class ApplicationController &lt; ActionController::Base
+  before_filter :adjust_format_for_iphone
+
+  private
+    def adjust_format_for_iphone
+      request.format = :iphone if request.env[&quot;HTTP_USER_AGENT&quot;][/iPhone/]
+    end
+end</pre>
+
+
+
+
+

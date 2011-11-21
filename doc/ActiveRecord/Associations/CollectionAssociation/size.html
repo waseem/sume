@@ -1,0 +1,19 @@
+<h1>ActiveRecord::Associations::CollectionAssociation#size</h1>
+
+
+<p>Returns the size of the collection by executing a SELECT COUNT(*) query if
+the collection hasn't been loaded, and calling <tt>collection.size</tt> if
+it has.</p>
+
+<p>If the collection has been already loaded <tt>size</tt> and <tt>length</tt>
+are equivalent. If not and you are going to need the records anyway
+<tt>length</tt> will take one less query. Otherwise <tt>size</tt> is more
+efficient.</p>
+
+<p>This method is abstract in the sense that it relies on
+<tt>count_records</tt>, which is a method descendants have to provide.</p>
+
+
+
+
+

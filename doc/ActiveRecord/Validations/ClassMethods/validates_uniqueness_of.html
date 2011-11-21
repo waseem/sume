@@ -1,0 +1,134 @@
+<h1>ActiveRecord::Validations::ClassMethods#validates_uniqueness_of</h1>
+
+
+<p>Validates whether the value of the specified attributes are unique across
+the system. Useful for making sure that only one user can be named
+"davidhh".</p>
+
+<pre>class Person &lt; ActiveRecord::Base
+  validates_uniqueness_of :user_name
+end</pre>
+
+<p>It can also validate whether the value of the specified attributes are
+unique based on a scope parameter:</p>
+
+<pre>class Person &lt; ActiveRecord::Base
+  validates_uniqueness_of :user_name, :scope =&gt; :account_id
+end</pre>
+
+<p>Or even multiple scope parameters.  For example, making sure that a teacher
+can only be on the schedule once per semester for a particular class.</p>
+
+<pre>class TeacherSchedule &lt; ActiveRecord::Base
+  validates_uniqueness_of :teacher_id, :scope =&gt; [:semester_id, :class_id]
+end</pre>
+
+<p>When the record is created, a check is performed to make sure that no
+record exists in the database with the given value for the specified
+attribute (that maps to a column). When the record is updated, the same
+check is made but disregarding the record itself.</p>
+
+<p>Configuration options:</p>
+<ul><li>
+<p><tt>:message</tt> - Specifies a custom error message (default is: "has
+already been taken").</p>
+</li><li>
+<p><tt>:scope</tt> - One or more columns by which to limit the scope of the
+uniqueness constraint.</p>
+</li><li>
+<p><tt>:case_sensitive</tt> - Looks for an exact match. Ignored by non-text
+columns (<tt>true</tt> by default).</p>
+</li><li>
+<p><tt>:allow_nil</tt> - If set to true, skips this validation if the
+attribute is <tt>nil</tt> (default is <tt>false</tt>).</p>
+</li><li>
+<p><tt>:allow_blank</tt> - If set to true, skips this validation if the
+attribute is blank (default is <tt>false</tt>).</p>
+</li><li>
+<p><tt>:if</tt> - Specifies a method, proc or string to call to determine if
+the validation should occur (e.g. <tt>:if =&gt; :allow_validation</tt>, or
+<tt>:if =&gt; Proc.new { |user| user.signup_step &gt; 2 }</tt>). The
+method, proc or string should return or evaluate to a true or false value.</p>
+</li><li>
+<p><tt>:unless</tt> - Specifies a method, proc or string to call to determine
+if the validation should not occur (e.g. <tt>:unless =&gt;
+:skip_validation</tt>, or <tt>:unless =&gt; Proc.new { |user|
+user.signup_step &lt;= 2 }</tt>).  The method, proc or string should return
+or evaluate to a true or false value.</p>
+</li></ul>
+
+<h3>Concurrency and integrity</h3>
+
+<p>Using this validation method in conjunction with ActiveRecord::Base#save
+does not guarantee the absence of duplicate record insertions, because
+uniqueness checks on the application level are inherently prone to race
+conditions. For example, suppose that two users try to post a Comment at
+the same time, and a Comment's title must be unique. At the database-level,
+the actions performed by these users could be interleaved in the following
+manner:</p>
+
+<pre>             User 1                 |               User 2
+------------------------------------+--------------------------------------
+# User 1 checks whether there's     |
+# already a comment with the title  |
+# 'My Post'. This is not the case.  |
+SELECT * FROM comments              |
+WHERE title = 'My Post'             |
+                                    |
+                                    | # User 2 does the same thing and also
+                                    | # infers that his title is unique.
+                                    | SELECT * FROM comments
+                                    | WHERE title = 'My Post'
+                                    |
+# User 1 inserts his comment.       |
+INSERT INTO comments                |
+(title, content) VALUES             |
+('My Post', 'hi!')                  |
+                                    |
+                                    | # User 2 does the same thing.
+                                    | INSERT INTO comments
+                                    | (title, content) VALUES
+                                    | ('My Post', 'hello!')
+                                    |
+                                    | # ^^^^^^
+                                    | # Boom! We now have a duplicate
+                                    | # title!</pre>
+
+<p>This could even happen if you use transactions with the 'serializable'
+isolation level. The best way to work around this problem is to add a
+unique index to the database table using
+ActiveRecord::ConnectionAdapters::SchemaStatements#add_index. In the rare
+case that a race condition occurs, the database will guarantee the field's
+uniqueness.</p>
+
+<p>When the database catches such a duplicate insertion,
+ActiveRecord::Base#save will raise an ActiveRecord::StatementInvalid
+exception. You can either choose to let this error propagate (which will
+result in the default Rails exception page being shown), or you can catch
+it and restart the transaction (e.g. by telling the user that the title
+already exists, and asking him to re-enter the title). This technique is
+also known as optimistic concurrency control: <a
+href="http://en.wikipedia.org/wiki/Optimistic_concurrency_control">en.wikipedia.org/wiki/Optimistic_concurrency_control</a></p>
+
+<p>The bundled ActiveRecord::ConnectionAdapters distinguish unique index
+constraint errors from other types of database errors by throwing an
+ActiveRecord::RecordNotUnique exception. For other adapters you will have
+to parse the (database-specific) exception message to detect such a case.
+The following bundled adapters throw the ActiveRecord::RecordNotUnique
+exception:</p>
+<ul><li>
+<p>ActiveRecord::ConnectionAdapters::MysqlAdapter</p>
+</li><li>
+<p>ActiveRecord::ConnectionAdapters::Mysql2Adapter</p>
+</li><li>
+<p>ActiveRecord::ConnectionAdapters::SQLiteAdapter</p>
+</li><li>
+<p>ActiveRecord::ConnectionAdapters::SQLite3Adapter</p>
+</li><li>
+<p>ActiveRecord::ConnectionAdapters::PostgreSQLAdapter</p>
+</li></ul>
+
+
+
+
+

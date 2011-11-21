@@ -1,0 +1,22 @@
+<h1>ActiveSupport::Callbacks#run_callbacks</h1>
+
+
+<p>Runs the callbacks for the given event.</p>
+
+<p>Calls the before and around callbacks in the order they were set, yields
+the block (if given one), and then runs the after callbacks in reverse
+order. Optionally accepts a key, which will be used to compile an optimized
+callback method for each key. See <tt>ClassMethods.define_callbacks</tt>
+for more information.</p>
+
+<p>If the callback chain was halted, returns <tt>false</tt>. Otherwise returns
+the result of the block, or <tt>true</tt> if no block is given.</p>
+
+<pre>run_callbacks :save do
+  save
+end</pre>
+
+
+
+
+

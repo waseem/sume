@@ -1,0 +1,71 @@
+<h1>ActiveSupport::Callbacks::ClassMethods#set_callback</h1>
+
+
+<p>Install a callback for the given event.</p>
+
+<pre>set_callback :save, :before, :before_meth
+set_callback :save, :after,  :after_meth, :if =&gt; :condition
+set_callback :save, :around, lambda { |r| stuff; result = yield; stuff }</pre>
+
+<p>The second arguments indicates whether the callback is to be run
+<tt>:before</tt>, <tt>:after</tt>, or <tt>:around</tt> the event. If
+omitted, <tt>:before</tt> is assumed. This means the first example above
+can also be written as:</p>
+
+<pre>set_callback :save, :before_meth</pre>
+
+<p>The callback can specified as a symbol naming an instance method; as a
+proc, lambda, or block; as a string to be instance evaluated; or as an
+object that responds to a certain method determined by the <tt>:scope</tt>
+argument to <tt>define_callback</tt>.</p>
+
+<p>If a proc, lambda, or block is given, its body is evaluated in the context
+of the current object. It can also optionally accept the current object as
+an argument.</p>
+
+<p>Before and around callbacks are called in the order that they are set;
+after callbacks are called in the reverse order.</p>
+
+<p>Around callbacks can access the return value from the event, if it wasn't
+halted, from the <tt>yield</tt> call.</p>
+
+<h5>Options</h5>
+<ul><li>
+<p><tt>:if</tt> - A symbol naming an instance method or a proc; the callback
+will be called only when it returns a true value.</p>
+</li><li>
+<p><tt>:unless</tt> - A symbol naming an instance method or a proc; the
+callback will be called only when it returns a false value.</p>
+</li><li>
+<p><tt>:prepend</tt> - If true, the callback will be prepended to the existing
+chain rather than appended.</p>
+</li><li>
+<p><tt>:per_key</tt> - A hash with <tt>:if</tt> and <tt>:unless</tt> options;
+see "Per-key conditions" below.</p>
+</li></ul>
+
+<h5>Per-key conditions</h5>
+
+<p>When creating or skipping callbacks, you can specify conditions that are
+always the same for a given key. For instance, in Action Pack, we convert
+:only and :except conditions into per-key conditions.</p>
+
+<pre>before_filter :authenticate, :except =&gt; &quot;index&quot;</pre>
+
+<p>becomes</p>
+
+<pre>set_callback :process_action, :before, :authenticate, :per_key =&gt; {:unless =&gt; proc {|c| c.action_name == &quot;index&quot;}}</pre>
+
+<p>Per-key conditions are evaluated only once per use of a given key. In the
+case of the above example, you would do:</p>
+
+<pre>run_callbacks(:process_action, action_name) { ... dispatch stuff ... }</pre>
+
+<p>In that case, each action_name would get its own compiled callback method
+that took into consideration the per_key conditions. This is a speed
+improvement for ActionPack.</p>
+
+
+
+
+

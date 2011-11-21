@@ -1,0 +1,51 @@
+<h1>ActionDispatch::Routing::UrlFor#url_for</h1>
+
+
+<p>Generate a url based on the options provided, default_url_options and the
+routes defined in routes.rb.  The following options are supported:</p>
+<ul><li>
+<p><tt>:only_path</tt> - If true, the relative url is returned. Defaults to
+<tt>false</tt>.</p>
+</li><li>
+<p><tt>:protocol</tt> - The protocol to connect to. Defaults to 'http'.</p>
+</li><li>
+<p><tt>:host</tt> - Specifies the host the link should be targeted at. If
+<tt>:only_path</tt> is false, this option must be provided either
+explicitly, or via <tt>default_url_options</tt>.</p>
+</li><li>
+<p><tt>:subdomain</tt> - Specifies the subdomain of the link, using the
+<tt>tld_length</tt> to split the domain from the host.</p>
+</li><li>
+<p><tt>:domain</tt> - Specifies the domain of the link, using the
+<tt>tld_length</tt> to split the subdomain from the host.</p>
+</li><li>
+<p><tt>:tld_length</tt> - Number of labels the TLD id composed of, only used
+if <tt>:subdomain</tt> or <tt>:domain</tt> are supplied. Defaults to
+<tt>ActionDispatch::Http::URL.tld_length</tt>, which in turn defaults to 1.</p>
+</li><li>
+<p><tt>:port</tt> - Optionally specify the port to connect to.</p>
+</li><li>
+<p><tt>:anchor</tt> - An anchor name to be appended to the path.</p>
+</li><li>
+<p><tt>:trailing_slash</tt> - If true, adds a trailing slash, as in
+"/archive/2009/"</p>
+</li></ul>
+
+<p>Any other key (<tt>:controller</tt>, <tt>:action</tt>, etc.) given to
+<tt>url_for</tt> is forwarded to the Routes module.</p>
+
+<p>Examples:</p>
+
+<pre>url_for :controller =&gt; 'tasks', :action =&gt; 'testing', :host =&gt; 'somehost.org', :port =&gt; '8080'
+# =&gt; 'http://somehost.org:8080/tasks/testing'
+url_for :controller =&gt; 'tasks', :action =&gt; 'testing', :host =&gt; 'somehost.org', :anchor =&gt; 'ok', :only_path =&gt; true
+# =&gt; '/tasks/testing#ok'
+url_for :controller =&gt; 'tasks', :action =&gt; 'testing', :trailing_slash =&gt; true
+# =&gt; 'http://somehost.org/tasks/testing/'
+url_for :controller =&gt; 'tasks', :action =&gt; 'testing', :host =&gt; 'somehost.org', :number =&gt; '33'
+# =&gt; 'http://somehost.org/tasks/testing?number=33'</pre>
+
+
+
+
+

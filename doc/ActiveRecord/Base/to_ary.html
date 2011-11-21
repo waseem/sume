@@ -1,0 +1,19 @@
+<h1>ActiveRecord::Base#to_ary</h1>
+
+
+<p>Under Ruby 1.9, Array#flatten will call #to_ary (recursively) on each of
+the elements of the array, and then rescues from the possible
+NoMethodError. If those elements are ActiveRecord::Base's, then this
+triggers the various method_missing's that we have, which significantly
+impacts upon performance.</p>
+
+<p>So we can avoid the method_missing hit by explicitly defining #to_ary as
+nil here.</p>
+
+<p>See also <a
+href="http://tenderlovemaking.com/2011/06/28/til-its-ok-to-return-nil-from-to_ary">tenderlovemaking.com/2011/06/28/til-its-ok-to-return-nil-from-to_ary</a>/</p>
+
+
+
+
+

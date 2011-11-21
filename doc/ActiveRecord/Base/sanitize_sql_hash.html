@@ -1,0 +1,26 @@
+<h1>ActiveRecord::Base.sanitize_sql_hash</h1>
+
+
+<p>Sanitizes a hash of attribute/value pairs into SQL conditions for a WHERE
+clause.</p>
+
+<pre>{ :name =&gt; &quot;foo'bar&quot;, :group_id =&gt; 4 }
+  # =&gt; &quot;name='foo''bar' and group_id= 4&quot;
+{ :status =&gt; nil, :group_id =&gt; [1,2,3] }
+  # =&gt; &quot;status IS NULL and group_id IN (1,2,3)&quot;
+{ :age =&gt; 13..18 }
+  # =&gt; &quot;age BETWEEN 13 AND 18&quot;
+{ 'other_records.id' =&gt; 7 }
+  # =&gt; &quot;`other_records`.`id` = 7&quot;
+{ :other_records =&gt; { :id =&gt; 7 } }
+  # =&gt; &quot;`other_records`.`id` = 7&quot;</pre>
+
+<p>And for value objects on a composed_of relationship:</p>
+
+<pre>{ :address =&gt; Address.new(&quot;123 abc st.&quot;, &quot;chicago&quot;) }
+  # =&gt; &quot;address_street='123 abc st.' and address_city='chicago'&quot;</pre>
+
+
+
+
+

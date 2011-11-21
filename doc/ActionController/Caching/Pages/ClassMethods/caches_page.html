@@ -1,0 +1,19 @@
+<h1>ActionController::Caching::Pages::ClassMethods#caches_page</h1>
+
+
+<p>Caches the <tt>actions</tt> using the page-caching approach that'll store
+the cache in a path within the page_cache_directory that matches the
+triggering url.</p>
+
+<p>Usage:</p>
+
+<pre># cache the index action
+caches_page :index
+
+# cache the index action except for JSON requests
+caches_page :index, :if =&gt; Proc.new { |c| !c.request.format.json? }</pre>
+
+
+
+
+

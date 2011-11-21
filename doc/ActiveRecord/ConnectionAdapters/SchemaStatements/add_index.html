@@ -1,0 +1,62 @@
+<h1>ActiveRecord::ConnectionAdapters::SchemaStatements#add_index</h1>
+
+
+<p>Adds a new index to the table.  <tt>column_name</tt> can be a single
+Symbol, or an Array of Symbols.</p>
+
+<p>The index will be named after the table and the first column name, unless
+you pass <tt>:name</tt> as an option.</p>
+
+<p>When creating an index on multiple columns, the first column is used as a
+name for the index. For example, when you specify an index on two columns
+[<tt>:first</tt>, <tt>:last</tt>], the DBMS creates an index for both
+columns as well as an index for the first column <tt>:first</tt>. Using
+just the first name for this index makes sense, because you will never have
+to create a singular index with this name.</p>
+
+<h5>Examples</h5>
+
+<h6>Creating a simple index</h6>
+
+<pre>add_index(:suppliers, :name)</pre>
+
+<p>generates</p>
+
+<pre>CREATE INDEX suppliers_name_index ON suppliers(name)</pre>
+
+<h6>Creating a unique index</h6>
+
+<pre>add_index(:accounts, [:branch_id, :party_id], :unique =&gt; true)</pre>
+
+<p>generates</p>
+
+<pre>CREATE UNIQUE INDEX accounts_branch_id_party_id_index ON accounts(branch_id, party_id)</pre>
+
+<h6>Creating a named index</h6>
+
+<pre>add_index(:accounts, [:branch_id, :party_id], :unique =&gt; true, :name =&gt; 'by_branch_party')</pre>
+
+<p>generates</p>
+
+<pre>CREATE UNIQUE INDEX by_branch_party ON accounts(branch_id, party_id)</pre>
+
+<h6>Creating an index with specific key length</h6>
+
+<pre>add_index(:accounts, :name, :name =&gt; 'by_name', :length =&gt; 10)</pre>
+
+<p>generates</p>
+
+<pre>CREATE INDEX by_name ON accounts(name(10))
+
+add_index(:accounts, [:name, :surname], :name =&gt; 'by_name_surname', :length =&gt; {:name =&gt; 10, :surname =&gt; 15})</pre>
+
+<p>generates</p>
+
+<pre>CREATE INDEX by_name_surname ON accounts(name(10), surname(15))</pre>
+
+<p>Note: SQLite doesn't support index length</p>
+
+
+
+
+

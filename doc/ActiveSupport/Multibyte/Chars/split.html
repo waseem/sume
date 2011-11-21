@@ -1,0 +1,15 @@
+<h1>ActiveSupport::Multibyte::Chars#split</h1>
+
+
+<p>Works just like <tt>String#split</tt>, with the exception that the items in
+the resulting list are Chars instances instead of String. This makes
+chaining methods easier.</p>
+
+<p>Example:</p>
+
+<pre>'Café périferôl'.mb_chars.split(/é/).map { |part| part.upcase.to_s } # =&gt; [&quot;CAF&quot;, &quot; P&quot;, &quot;RIFERÔL&quot;]</pre>
+
+
+
+
+

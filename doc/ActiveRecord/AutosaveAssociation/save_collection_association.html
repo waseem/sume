@@ -1,0 +1,17 @@
+<h1>ActiveRecord::AutosaveAssociation#save_collection_association</h1>
+
+
+<p>Saves any new associated records, or all loaded autosave associations if
+<tt>:autosave</tt> is enabled on the association.</p>
+
+<p>In addition, it destroys all children that were marked for destruction with
+mark_for_destruction.</p>
+
+<p>This all happens inside a transaction, <em>if</em> the Transactions module
+is included into ActiveRecord::Base after the AutosaveAssociation module,
+which it does by default.</p>
+
+
+
+
+

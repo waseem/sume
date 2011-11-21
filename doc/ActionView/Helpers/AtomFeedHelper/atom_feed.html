@@ -1,0 +1,109 @@
+<h1>ActionView::Helpers::AtomFeedHelper#atom_feed</h1>
+
+
+<p>Adds easy defaults to writing Atom feeds with the Builder template engine
+(this does not work on ERB or any other template languages).</p>
+
+<p>Full usage example:</p>
+
+<pre>config/routes.rb:
+  Basecamp::Application.routes.draw do
+    resources :posts
+    root :to =&gt; &quot;posts#index&quot;
+  end
+
+app/controllers/posts_controller.rb:
+  class PostsController &lt; ApplicationController::Base
+    # GET /posts.html
+    # GET /posts.atom
+    def index
+      @posts = Post.find(:all)
+
+      respond_to do |format|
+        format.html
+        format.atom
+      end
+    end
+  end
+
+app/views/posts/index.atom.builder:
+  atom_feed do |feed|
+    feed.title(&quot;My great blog!&quot;)
+    feed.updated(@posts.first.created_at)
+
+    @posts.each do |post|
+      feed.entry(post) do |entry|
+        entry.title(post.title)
+        entry.content(post.body, :type =&gt; 'html')
+
+        entry.author do |author|
+          author.name(&quot;DHH&quot;)
+        end
+      end
+    end
+  end</pre>
+
+<p>The options for atom_feed are:</p>
+<ul><li>
+<p><tt>:language</tt>: Defaults to "en-US".</p>
+</li><li>
+<p><tt>:root_url</tt>: The HTML alternative that this feed is doubling for.
+Defaults to / on the current host.</p>
+</li><li>
+<p><tt>:url</tt>: The URL for this feed. Defaults to the current URL.</p>
+</li><li>
+<p><tt>:id</tt>: The id for this feed. Defaults to "<a
+href="http://:schema_date">tag:#{request.host},#{options</a>}:#{<a
+href="http://0">request.fullpath.split(".")</a>}"</p>
+</li><li>
+<p><tt>:schema_date</tt>: The date at which the tag scheme for the feed was
+first used. A good default is the year you created the feed. See <a
+href="http://feedvalidator.org/docs/error/InvalidTAG.html">feedvalidator.org/docs/error/InvalidTAG.html</a>
+for more information. If not specified, 2005 is used (as an "I don't care"
+value).</p>
+</li><li>
+<p><tt>:instruct</tt>: Hash of XML processing instructions in the form {target
+=&gt; {attribute =&gt; value, }} or {target =&gt; [{attribute =&gt; value,
+}, ]}</p>
+</li></ul>
+
+<p>Other namespaces can be added to the root element:</p>
+
+<pre>app/views/posts/index.atom.builder:
+  atom_feed({'xmlns:app' =&gt; 'http://www.w3.org/2007/app',
+      'xmlns:openSearch' =&gt; 'http://a9.com/-/spec/opensearch/1.1/'}) do |feed|
+    feed.title(&quot;My great blog!&quot;)
+    feed.updated((@posts.first.created_at))
+    feed.tag!(openSearch:totalResults, 10)
+
+    @posts.each do |post|
+      feed.entry(post) do |entry|
+        entry.title(post.title)
+        entry.content(post.body, :type =&gt; 'html')
+        entry.tag!('app:edited', Time.now)
+
+        entry.author do |author|
+          author.name(&quot;DHH&quot;)
+        end
+      end
+    end
+  end</pre>
+
+<p>The Atom spec defines five elements (content rights title subtitle summary)
+which may directly contain xhtml content if :type =&gt; 'xhtml' is
+specified as an attribute. If so, this helper will take care of the
+enclosing div and xhtml namespace declaration. Example usage:</p>
+
+<pre>entry.summary :type =&gt; 'xhtml' do |xhtml|
+  xhtml.p pluralize(order.line_items.count, &quot;line item&quot;)
+  xhtml.p &quot;Shipped to #{order.address}&quot;
+  xhtml.p &quot;Paid by #{order.pay_type}&quot;
+end</pre>
+
+<p><tt>atom_feed</tt> yields an <tt>AtomFeedBuilder</tt> instance. Nested
+elements yield an <tt>AtomBuilder</tt> instance.</p>
+
+
+
+
+

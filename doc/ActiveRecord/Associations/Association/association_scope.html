@@ -1,0 +1,14 @@
+<h1>ActiveRecord::Associations::Association#association_scope</h1>
+
+
+<p>The scope for this association.</p>
+
+<p>Note that the association_scope is merged into the target_scope only when
+the scoped method is called. This is because at that point the call may be
+surrounded by scope.scoping { ... } or with_scope { ... } etc, which
+affects the scope which actually gets built.</p>
+
+
+
+
+

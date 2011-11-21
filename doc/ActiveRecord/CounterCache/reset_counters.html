@@ -1,0 +1,23 @@
+<h1>ActiveRecord::CounterCache#reset_counters</h1>
+
+
+<p>Resets one or more counter caches to their correct value using an SQL count
+query.  This is useful when adding new counter caches, or if the counter
+has been corrupted or modified directly by SQL.</p>
+
+<h4>Parameters</h4>
+<ul><li>
+<p><tt>id</tt> - The id of the object you wish to reset a counter on.</p>
+</li><li>
+<p><tt>counters</tt> - One or more counter names to reset</p>
+</li></ul>
+
+<h4>Examples</h4>
+
+<pre># For Post with id #1 records reset the comments_count
+Post.reset_counters(1, :comments)</pre>
+
+
+
+
+

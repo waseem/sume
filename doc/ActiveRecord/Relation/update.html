@@ -1,0 +1,28 @@
+<h1>ActiveRecord::Relation#update</h1>
+
+
+<p>Updates an object (or multiple objects) and saves it to the database, if
+validations pass. The resulting object is returned whether the object was
+saved successfully to the database or not.</p>
+
+<h4>Parameters</h4>
+<ul><li>
+<p><tt>id</tt> - This should be the id or an array of ids to be updated.</p>
+</li><li>
+<p><tt>attributes</tt> - This should be a hash of attributes or an array of
+hashes.</p>
+</li></ul>
+
+<h4>Examples</h4>
+
+<pre># Updates one record
+Person.update(15, :user_name =&gt; 'Samuel', :group =&gt; 'expert')
+
+# Updates multiple records
+people = { 1 =&gt; { &quot;first_name&quot; =&gt; &quot;David&quot; }, 2 =&gt; { &quot;first_name&quot; =&gt; &quot;Jeremy&quot; } }
+Person.update(people.keys, people.values)</pre>
+
+
+
+
+

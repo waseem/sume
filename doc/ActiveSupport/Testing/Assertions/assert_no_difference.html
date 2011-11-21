@@ -1,0 +1,20 @@
+<h1>ActiveSupport::Testing::Assertions#assert_no_difference</h1>
+
+
+<p>Assertion that the numeric result of evaluating an expression is not
+changed before and after invoking the passed in block.</p>
+
+<pre>assert_no_difference 'Article.count' do
+  post :create, :article =&gt; invalid_attributes
+end</pre>
+
+<p>A error message can be specified.</p>
+
+<pre>assert_no_difference 'Article.count', &quot;An Article should not be destroyed&quot; do
+  post :create, :article =&gt; invalid_attributes
+end</pre>
+
+
+
+
+

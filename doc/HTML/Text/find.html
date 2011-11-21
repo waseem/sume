@@ -1,0 +1,21 @@
+<h1>HTML::Text#find</h1>
+
+
+<p>Returns <tt>self</tt> if this node meets the given conditions. Text nodes
+support conditions of the following kinds:</p>
+<ul><li>
+<p>if <tt>conditions</tt> is a string, it must be a substring of the node's
+content</p>
+</li><li>
+<p>if <tt>conditions</tt> is a regular expression, it must match the node's
+content</p>
+</li><li>
+<p>if <tt>conditions</tt> is a hash, it must contain a <tt>:content</tt> key
+that is either a string or a regexp, and which is interpreted as described
+above.</p>
+</li></ul>
+
+
+
+
+

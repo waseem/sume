@@ -1,0 +1,56 @@
+<h1>ActiveRecord::Base.default_scope</h1>
+
+
+<p>Use this macro in your model to set a default scope for all operations on
+the model.</p>
+
+<pre>class Article &lt; ActiveRecord::Base
+  default_scope where(:published =&gt; true)
+end
+
+Article.all # =&gt; SELECT * FROM articles WHERE published = true</pre>
+
+<p>The <tt>default_scope</tt> is also applied while creating/building a
+record. It is not applied while updating a record.</p>
+
+<pre>Article.new.published    # =&gt; true
+Article.create.published # =&gt; true</pre>
+
+<p>You can also use <tt>default_scope</tt> with a block, in order to have it
+lazily evaluated:</p>
+
+<pre>class Article &lt; ActiveRecord::Base
+  default_scope { where(:published_at =&gt; Time.now - 1.week) }
+end</pre>
+
+<p>(You can also pass any object which responds to <tt>call</tt> to the
+<tt>default_scope</tt> macro, and it will be called when building the
+default scope.)</p>
+
+<p>If you use multiple <tt>default_scope</tt> declarations in your model then
+they will be merged together:</p>
+
+<pre>class Article &lt; ActiveRecord::Base
+  default_scope where(:published =&gt; true)
+  default_scope where(:rating =&gt; 'G')
+end
+
+Article.all # =&gt; SELECT * FROM articles WHERE published = true AND rating = 'G'</pre>
+
+<p>This is also the case with inheritance and module includes where the parent
+or module defines a <tt>default_scope</tt> and the child or including class
+defines a second one.</p>
+
+<p>If you need to do more complex things with a default scope, you can
+alternatively define it as a class method:</p>
+
+<pre>class Article &lt; ActiveRecord::Base
+  def self.default_scope
+    # Should return a scope, you can call 'super' here etc.
+  end
+end</pre>
+
+
+
+
+

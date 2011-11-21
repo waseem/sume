@@ -1,0 +1,33 @@
+<h1>ActiveRecord::Base#configurations</h1>
+
+
+<p>:singleton-method: Contains the database configuration - as is typically
+stored in config/database.yml - as a Hash.</p>
+
+<p>For example, the following database.yml...</p>
+
+<pre>development:
+  adapter: sqlite3
+  database: db/development.sqlite3
+
+production:
+  adapter: sqlite3
+  database: db/production.sqlite3</pre>
+
+<p>...would result in ActiveRecord::Base.configurations to look like this:</p>
+
+<pre>{
+   'development' =&gt; {
+      'adapter'  =&gt; 'sqlite3',
+      'database' =&gt; 'db/development.sqlite3'
+   },
+   'production' =&gt; {
+      'adapter'  =&gt; 'sqlite3',
+      'database' =&gt; 'db/production.sqlite3'
+   }
+}</pre>
+
+
+
+
+

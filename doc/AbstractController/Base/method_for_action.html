@@ -1,0 +1,35 @@
+<h1>AbstractController::Base#method_for_action</h1>
+
+
+<p>Takes an action name and returns the name of the method that will handle
+the action. In normal cases, this method returns the same name as it
+receives. By default, if #method_for_action receives a name that is not an
+action, it will look for an #action_missing method and return
+"_handle_action_missing" if one is found.</p>
+
+<p>Subclasses may override this method to add additional conditions that
+should be considered an action. For instance, an HTTP controller with a
+template matching the action name is considered to exist.</p>
+
+<p>If you override this method to handle additional cases, you may also
+provide a method (like _handle_method_missing) to handle the case.</p>
+
+<p>If none of these conditions are true, and method_for_action returns nil, an
+ActionNotFound exception will be raised.</p>
+
+<h4>Parameters</h4>
+<ul><li>
+<p><tt>action_name</tt> - An action name to find a method name for</p>
+</li></ul>
+
+<h4>Returns</h4>
+<ul><li>
+<p><tt>string</tt> - The name of the method that handles the action</p>
+</li><li>
+<p><tt>nil</tt>    - No method name could be found. Raise ActionNotFound.</p>
+</li></ul>
+
+
+
+
+

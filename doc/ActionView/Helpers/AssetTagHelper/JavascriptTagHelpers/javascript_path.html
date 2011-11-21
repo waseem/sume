@@ -1,0 +1,21 @@
+<h1>ActionView::Helpers::AssetTagHelper::JavascriptTagHelpers#javascript_path</h1>
+
+
+<p>Computes the path to a javascript asset in the public javascripts
+directory. If the <tt>source</tt> filename has no extension, .js will be
+appended (except for explicit URIs) Full paths from the document root will
+be passed through. Used internally by javascript_include_tag to build the
+script path.</p>
+
+<h4>Examples</h4>
+
+<pre>javascript_path &quot;xmlhr&quot;                              # =&gt; /javascripts/xmlhr.js
+javascript_path &quot;dir/xmlhr.js&quot;                       # =&gt; /javascripts/dir/xmlhr.js
+javascript_path &quot;/dir/xmlhr&quot;                         # =&gt; /dir/xmlhr.js
+javascript_path &quot;http://www.example.com/js/xmlhr&quot;    # =&gt; http://www.example.com/js/xmlhr
+javascript_path &quot;http://www.example.com/js/xmlhr.js&quot; # =&gt; http://www.example.com/js/xmlhr.js</pre>
+
+
+
+
+

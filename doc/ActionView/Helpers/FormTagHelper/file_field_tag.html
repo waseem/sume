@@ -1,0 +1,46 @@
+<h1>ActionView::Helpers::FormTagHelper#file_field_tag</h1>
+
+
+<p>Creates a file upload field.  If you are using file uploads then you will
+also need to set the multipart option for the form tag:</p>
+
+<pre>&lt;%= form_tag '/upload', :multipart =&gt; true do %&gt;
+  &lt;label for=&quot;file&quot;&gt;File to Upload&lt;/label&gt; &lt;%= file_field_tag &quot;file&quot; %&gt;
+  &lt;%= submit_tag %&gt;
+&lt;% end %&gt;</pre>
+
+<p>The specified URL will then be passed a File object containing the selected
+file, or if the field was left blank, a StringIO object.</p>
+
+<h4>Options</h4>
+<ul><li>
+<p>Creates standard HTML attributes for the tag.</p>
+</li><li>
+<p><tt>:disabled</tt> - If set to true, the user will not be able to use this
+input.</p>
+</li></ul>
+
+<h4>Examples</h4>
+
+<pre>file_field_tag 'attachment'
+# =&gt; &lt;input id=&quot;attachment&quot; name=&quot;attachment&quot; type=&quot;file&quot; /&gt;
+
+file_field_tag 'avatar', :class =&gt; 'profile_input'
+# =&gt; &lt;input class=&quot;profile_input&quot; id=&quot;avatar&quot; name=&quot;avatar&quot; type=&quot;file&quot; /&gt;
+
+file_field_tag 'picture', :disabled =&gt; true
+# =&gt; &lt;input disabled=&quot;disabled&quot; id=&quot;picture&quot; name=&quot;picture&quot; type=&quot;file&quot; /&gt;
+
+file_field_tag 'resume', :value =&gt; '~/resume.doc'
+# =&gt; &lt;input id=&quot;resume&quot; name=&quot;resume&quot; type=&quot;file&quot; value=&quot;~/resume.doc&quot; /&gt;
+
+file_field_tag 'user_pic', :accept =&gt; 'image/png,image/gif,image/jpeg'
+# =&gt; &lt;input accept=&quot;image/png,image/gif,image/jpeg&quot; id=&quot;user_pic&quot; name=&quot;user_pic&quot; type=&quot;file&quot; /&gt;
+
+file_field_tag 'file', :accept =&gt; 'text/html', :class =&gt; 'upload', :value =&gt; 'index.html'
+# =&gt; &lt;input accept=&quot;text/html&quot; class=&quot;upload&quot; id=&quot;file&quot; name=&quot;file&quot; type=&quot;file&quot; value=&quot;index.html&quot; /&gt;</pre>
+
+
+
+
+

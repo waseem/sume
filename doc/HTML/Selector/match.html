@@ -1,0 +1,27 @@
+<h1>HTML::Selector#match</h1>
+
+
+<p>:call-seq:</p>
+
+<pre>match(element, first?) =&gt; array or nil</pre>
+
+<p>Matches an element against the selector.</p>
+
+<p>For a simple selector this method returns an array with the element if the
+element matches, nil otherwise.</p>
+
+<p>For a complex selector (sibling and descendant) this method returns an
+array with all matching elements, nil if no match is found.</p>
+
+<p>Use <tt>first_only=true</tt> if you are only interested in the first element.</p>
+
+<p>For example:</p>
+
+<pre>if selector.match(element)
+  puts &quot;Element is a login form&quot;
+end</pre>
+
+
+
+
+

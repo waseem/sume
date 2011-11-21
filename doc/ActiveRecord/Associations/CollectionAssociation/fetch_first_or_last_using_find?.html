@@ -1,0 +1,21 @@
+<h1>ActiveRecord::Associations::CollectionAssociation#fetch_first_or_last_using_find?</h1>
+
+
+<p>Should we deal with assoc.first or assoc.last by issuing an independent
+query to the database, or by getting the target, and then taking the
+first/last item from that?</p>
+
+<p>If the args is just a non-empty options hash, go to the database.</p>
+
+<p>Otherwise, go to the database only if none of the following are true:</p>
+
+<pre>* target already loaded
+* owner is new record
+* custom :finder_sql exists
+* target contains new or changed record(s)
+* the first arg is an integer (which indicates the number of records to be returned)</pre>
+
+
+
+
+

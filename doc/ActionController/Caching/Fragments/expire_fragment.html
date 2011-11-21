@@ -1,0 +1,29 @@
+<h1>ActionController::Caching::Fragments#expire_fragment</h1>
+
+
+<p>Removes fragments from the cache.</p>
+
+<p><tt>key</tt> can take one of three forms:</p>
+<ul><li>
+<p>String - This would normally take the form of a path, like
+<tt>pages/45/notes</tt>.</p>
+</li><li>
+<p>Hash - Treated as an implicit call to <tt>url_for</tt>, like
+<tt>{:controller =&gt; &quot;pages&quot;, :action =&gt; &quot;notes&quot;,
+:id =&gt; 45}</tt></p>
+</li><li>
+<p>Regexp - Will remove any fragment that matches, so
+<tt>%r{pages/\d*/notes}</tt> might remove all notes. Make sure you don't
+use anchors in the regex (<tt>^</tt> or <tt>$</tt>) because the actual
+filename matched looks like <tt>./cache/filename/path.cache</tt>. Note:
+Regexp expiration is only supported on caches that can iterate over all
+keys (unlike memcached).</p>
+</li></ul>
+
+<p><tt>options</tt> is passed through to the cache store's <tt>delete</tt>
+method (or <tt>delete_matched</tt>, for Regexp keys.)</p>
+
+
+
+
+

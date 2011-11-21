@@ -1,0 +1,48 @@
+<h1>String#mb_chars</h1>
+
+
+<h2>Multibyte proxy</h2>
+
+<p><tt>mb_chars</tt> is a multibyte safe proxy for string methods.</p>
+
+<p>In Ruby 1.8 and older it creates and returns an instance of the
+ActiveSupport::Multibyte::Chars class which encapsulates the original
+string. A Unicode safe version of all the String methods are defined on
+this proxy class. If the proxy class doesn’t respond to a certain method,
+it’s forwarded to the encapsulated string.</p>
+
+<pre>name = 'Claus Müller'
+name.reverse # =&gt; &quot;rell??M sualC&quot;
+name.length  # =&gt; 13
+
+name.mb_chars.reverse.to_s # =&gt; &quot;rellüM sualC&quot;
+name.mb_chars.length       # =&gt; 12</pre>
+
+<p>In Ruby 1.9 and newer <tt>mb_chars</tt> returns <tt>self</tt> because
+String is (mostly) encoding aware. This means that it becomes easy to run
+one version of your code on multiple Ruby versions.</p>
+
+<h2>Method chaining</h2>
+
+<p>All the methods on the Chars proxy which normally return a string will
+return a Chars object. This allows method chaining on the result of any of
+these methods.</p>
+
+<pre>name.mb_chars.reverse.length # =&gt; 12</pre>
+
+<h2>Interoperability and configuration</h2>
+
+<p>The Chars object tries to be as interchangeable with String objects as
+possible: sorting and comparing between String and Char work like expected.
+The bang! methods change the internal string representation in the Chars
+object. Interoperability problems can be resolved easily with a
+<tt>to_s</tt> call.</p>
+
+<p>For more information about the methods defined on the Chars proxy see
+ActiveSupport::Multibyte::Chars. For information about how to change the
+default Multibyte behavior see ActiveSupport::Multibyte.</p>
+
+
+
+
+

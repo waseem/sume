@@ -1,0 +1,21 @@
+<h1>Hash#slice</h1>
+
+
+<p>Slice a hash to include only the given keys. This is useful for limiting an
+options hash to valid keys before passing to a method:</p>
+
+<pre>def search(criteria = {})
+  assert_valid_keys(:mass, :velocity, :time)
+end
+
+search(options.slice(:mass, :velocity, :time))</pre>
+
+<p>If you have an array of keys you want to limit to, you should splat them:</p>
+
+<pre>valid_keys = [:mass, :velocity, :time]
+search(options.slice(*valid_keys))</pre>
+
+
+
+
+

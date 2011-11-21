@@ -1,0 +1,19 @@
+<h1>ActionController::RecordIdentifier#dom_class</h1>
+
+
+<p>The DOM class convention is to use the singular form of an object or class.
+Examples:</p>
+
+<pre>dom_class(post)   # =&gt; &quot;post&quot;
+dom_class(Person) # =&gt; &quot;person&quot;</pre>
+
+<p>If you need to address multiple instances of the same class in the same
+view, you can prefix the dom_class:</p>
+
+<pre>dom_class(post, :edit)   # =&gt; &quot;edit_post&quot;
+dom_class(Person, :edit) # =&gt; &quot;edit_person&quot;</pre>
+
+
+
+
+

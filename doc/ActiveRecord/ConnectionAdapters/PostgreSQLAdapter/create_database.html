@@ -1,0 +1,17 @@
+<h1>ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#create_database</h1>
+
+
+<p>Create a new PostgreSQL database.  Options include <tt>:owner</tt>,
+<tt>:template</tt>, <tt>:encoding</tt>, <tt>:tablespace</tt>, and
+<tt>:connection_limit</tt> (note that MySQL uses <tt>:charset</tt> while
+PostgreSQL uses <tt>:encoding</tt>).</p>
+
+<p>Example:</p>
+
+<pre>create_database config[:database], config
+create_database 'foo_development', :encoding =&gt; 'unicode'</pre>
+
+
+
+
+

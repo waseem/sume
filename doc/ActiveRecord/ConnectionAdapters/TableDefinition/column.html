@@ -1,0 +1,160 @@
+<h1>ActiveRecord::ConnectionAdapters::TableDefinition#column</h1>
+
+
+<p>Instantiates a new column for the table. The <tt>type</tt> parameter is
+normally one of the migrations native types, which is one of the following:
+<tt>:primary_key</tt>, <tt>:string</tt>, <tt>:text</tt>, <tt>:integer</tt>,
+<tt>:float</tt>, <tt>:decimal</tt>, <tt>:datetime</tt>,
+<tt>:timestamp</tt>, <tt>:time</tt>, <tt>:date</tt>, <tt>:binary</tt>,
+<tt>:boolean</tt>.</p>
+
+<p>You may use a type not in this list as long as it is supported by your
+database (for example, "polygon" in MySQL), but this will not be database
+agnostic and should usually be avoided.</p>
+
+<p>Available options are (none of these exists by default):</p>
+<ul><li>
+<p><tt>:limit</tt> - Requests a maximum column length. This is number of
+characters for <tt>:string</tt> and <tt>:text</tt> columns and number of
+bytes for <tt>:binary</tt> and <tt>:integer</tt> columns.</p>
+</li><li>
+<p><tt>:default</tt> - The column's default value. Use nil for NULL.</p>
+</li><li>
+<p><tt>:null</tt> - Allows or disallows <tt>NULL</tt> values in the column.
+This option could have been named <tt>:null_allowed</tt>.</p>
+</li><li>
+<p><tt>:precision</tt> - Specifies the precision for a <tt>:decimal</tt>
+column.</p>
+</li><li>
+<p><tt>:scale</tt> - Specifies the scale for a <tt>:decimal</tt> column.</p>
+</li></ul>
+
+<p>For clarity's sake: the precision is the number of significant digits,
+while the scale is the number of digits that can be stored following the
+decimal point. For example, the number 123.45 has a precision of 5 and a
+scale of 2. A decimal with a precision of 5 and a scale of 2 can range from
+-999.99 to 999.99.</p>
+
+<p>Please be aware of different RDBMS implementations behavior with
+<tt>:decimal</tt> columns:</p>
+<ul><li>
+<p>The SQL standard says the default scale should be 0, <tt>:scale</tt> &lt;=
+<tt>:precision</tt>, and makes no comments about the requirements of
+<tt>:precision</tt>.</p>
+</li><li>
+<p>MySQL: <tt>:precision</tt> [1..63], <tt>:scale</tt> [0..30]. Default is
+(10,0).</p>
+</li><li>
+<p>PostgreSQL: <tt>:precision</tt> [1..infinity], <tt>:scale</tt>
+[0..infinity]. No default.</p>
+</li><li>
+<p>SQLite2: Any <tt>:precision</tt> and <tt>:scale</tt> may be used. Internal
+storage as strings. No default.</p>
+</li><li>
+<p>SQLite3: No restrictions on <tt>:precision</tt> and <tt>:scale</tt>, but
+the maximum supported <tt>:precision</tt> is 16. No default.</p>
+</li><li>
+<p>Oracle: <tt>:precision</tt> [1..38], <tt>:scale</tt> [-84..127]. Default is
+(38,0).</p>
+</li><li>
+<p>DB2: <tt>:precision</tt> [1..63], <tt>:scale</tt> [0..62]. Default unknown.</p>
+</li><li>
+<p>Firebird: <tt>:precision</tt> [1..18], <tt>:scale</tt> [0..18]. Default
+(9,0). Internal types NUMERIC and DECIMAL have different storage rules,
+decimal being better.</p>
+</li><li>
+<p>FrontBase?: <tt>:precision</tt> [1..38], <tt>:scale</tt> [0..38]. Default
+(38,0). WARNING Max <tt>:precision</tt>/<tt>:scale</tt> for NUMERIC is 19,
+and DECIMAL is 38.</p>
+</li><li>
+<p>SqlServer?: <tt>:precision</tt> [1..38], <tt>:scale</tt> [0..38]. Default
+(38,0).</p>
+</li><li>
+<p>Sybase: <tt>:precision</tt> [1..38], <tt>:scale</tt> [0..38]. Default
+(38,0).</p>
+</li><li>
+<p>OpenBase?: Documentation unclear. Claims storage in <tt>double</tt>.</p>
+</li></ul>
+
+<p>This method returns <tt>self</tt>.</p>
+
+<h2>Examples</h2>
+
+<pre># Assuming <tt>td</tt> is an instance of TableDefinition
+td.column(:granted, :boolean)
+# granted BOOLEAN
+
+td.column(:picture, :binary, :limit =&gt; 2.megabytes)
+# =&gt; picture BLOB(2097152)
+
+td.column(:sales_stage, :string, :limit =&gt; 20, :default =&gt; 'new', :null =&gt; false)
+# =&gt; sales_stage VARCHAR(20) DEFAULT 'new' NOT NULL
+
+td.column(:bill_gates_money, :decimal, :precision =&gt; 15, :scale =&gt; 2)
+# =&gt; bill_gates_money DECIMAL(15,2)
+
+td.column(:sensor_reading, :decimal, :precision =&gt; 30, :scale =&gt; 20)
+# =&gt; sensor_reading DECIMAL(30,20)
+
+# While &lt;tt&gt;:scale&lt;/tt&gt; defaults to zero on most databases, it
+# probably wouldn't hurt to include it.
+td.column(:huge_integer, :decimal, :precision =&gt; 30)
+# =&gt; huge_integer DECIMAL(30)
+
+# Defines a column with a database-specific type.
+td.column(:foo, 'polygon')
+# =&gt; foo polygon</pre>
+
+<h2>Short-hand examples</h2>
+
+<p>Instead of calling <tt>column</tt> directly, you can also work with the
+short-hand definitions for the default types. They use the type as the
+method name instead of as a parameter and allow for multiple columns to be
+defined in a single statement.</p>
+
+<p>What can be written like this with the regular calls to column:</p>
+
+<pre>create_table &quot;products&quot;, :force =&gt; true do |t|
+  t.column &quot;shop_id&quot;,    :integer
+  t.column &quot;creator_id&quot;, :integer
+  t.column &quot;name&quot;,       :string,   :default =&gt; &quot;Untitled&quot;
+  t.column &quot;value&quot;,      :string,   :default =&gt; &quot;Untitled&quot;
+  t.column &quot;created_at&quot;, :datetime
+  t.column &quot;updated_at&quot;, :datetime
+end</pre>
+
+<p>Can also be written as follows using the short-hand:</p>
+
+<pre>create_table :products do |t|
+  t.integer :shop_id, :creator_id
+  t.string  :name, :value, :default =&gt; &quot;Untitled&quot;
+  t.timestamps
+end</pre>
+
+<p>There's a short-hand method for each of the type values declared at the
+top. And then there's TableDefinition#timestamps that'll add
+<tt>created_at</tt> and <tt>updated_at</tt> as datetimes.</p>
+
+<p>TableDefinition#references will add an appropriately-named _id column, plus
+a corresponding _type column if the <tt>:polymorphic</tt> option is
+supplied. If <tt>:polymorphic</tt> is a hash of options, these will be used
+when creating the <tt>_type</tt> column. So what can be written like this:</p>
+
+<pre>create_table :taggings do |t|
+  t.integer :tag_id, :tagger_id, :taggable_id
+  t.string  :tagger_type
+  t.string  :taggable_type, :default =&gt; 'Photo'
+end</pre>
+
+<p>Can also be written as follows using references:</p>
+
+<pre>create_table :taggings do |t|
+  t.references :tag
+  t.references :tagger, :polymorphic =&gt; true
+  t.references :taggable, :polymorphic =&gt; { :default =&gt; 'Photo' }
+end</pre>
+
+
+
+
+

@@ -1,0 +1,18 @@
+<h1>ActiveRecord::Relation#scoping</h1>
+
+
+<p>Scope all queries to the current scope.</p>
+
+<h4>Example</h4>
+
+<pre>Comment.where(:post_id =&gt; 1).scoping do
+  Comment.first # SELECT * FROM comments WHERE post_id = 1
+end</pre>
+
+<p>Please check unscoped if you want to remove all previous scopes (including
+the default_scope) during the execution of a block.</p>
+
+
+
+
+

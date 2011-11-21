@@ -1,0 +1,41 @@
+<h1>ActionDispatch::Assertions::SelectorAssertions#css_select</h1>
+
+
+<p>Select and return all matching elements.</p>
+
+<p>If called with a single argument, uses that argument as a selector to match
+all elements of the current page. Returns an empty array if no match is
+found.</p>
+
+<p>If called with two arguments, uses the first argument as the base element
+and the second argument as the selector. Attempts to match the base element
+and any of its children. Returns an empty array if no match is found.</p>
+
+<p>The selector may be a CSS selector expression (String), an expression with
+substitution values (Array) or an HTML::Selector object.</p>
+
+<h4>Examples</h4>
+
+<pre># Selects all div tags
+divs = css_select(&quot;div&quot;)
+
+# Selects all paragraph tags and does something interesting
+pars = css_select(&quot;p&quot;)
+pars.each do |par|
+  # Do something fun with paragraphs here...
+end
+
+# Selects all list items in unordered lists
+items = css_select(&quot;ul&gt;li&quot;)
+
+# Selects all form tags and then all inputs inside the form
+forms = css_select(&quot;form&quot;)
+forms.each do |form|
+  inputs = css_select(form, &quot;input&quot;)
+  ...
+end</pre>
+
+
+
+
+

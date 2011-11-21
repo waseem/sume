@@ -1,0 +1,15 @@
+<h1>ActionController::ParamsWrapper::ClassMethods#_default_wrap_model</h1>
+
+
+<p>Determine the wrapper model from the controller's name. By convention, this
+could be done by trying to find the defined model that has the same
+singularize name as the controller. For example, <tt>UsersController</tt>
+will try to find if the <tt>User</tt> model exists.</p>
+
+<p>This method also does namespace lookup. Foo::Bar::UsersController will try
+to find Foo::Bar::User, Foo::User and finally User.</p>
+
+
+
+
+

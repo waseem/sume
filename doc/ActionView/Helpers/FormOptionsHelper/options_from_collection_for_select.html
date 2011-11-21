@@ -1,0 +1,46 @@
+<h1>ActionView::Helpers::FormOptionsHelper#options_from_collection_for_select</h1>
+
+
+<p>Returns a string of option tags that have been compiled by iterating over
+the <tt>collection</tt> and assigning the the result of a call to the
+<tt>value_method</tt> as the option value and the <tt>text_method</tt> as
+the option text. Example:</p>
+
+<pre>options_from_collection_for_select(@people, 'id', 'name')</pre>
+
+<p>This will output the same HTML as if you did this:</p>
+
+<pre>&lt;option value=&quot;#{person.id}&quot;&gt;#{person.name}&lt;/option&gt;</pre>
+
+<p>This is more often than not used inside a #select_tag like this example:</p>
+
+<pre>select_tag 'person', options_from_collection_for_select(@people, 'id', 'name')</pre>
+
+<p>If <tt>selected</tt> is specified as a value or array of values, the
+element(s) returning a match on <tt>value_method</tt> will be selected
+option tag(s).</p>
+
+<p>If <tt>selected</tt> is specified as a Proc, those members of the
+collection that return true for the anonymous function are the selected
+values.</p>
+
+<p><tt>selected</tt> can also be a hash, specifying both <tt>:selected</tt>
+and/or <tt>:disabled</tt> values as required.</p>
+
+<p>Be sure to specify the same class as the <tt>value_method</tt> when
+specifying selected or disabled options. Failure to do this will produce
+undesired results. Example:</p>
+
+<pre>options_from_collection_for_select(@people, 'id', 'name', '1')</pre>
+
+<p>Will not select a person with the id of 1 because 1 (an Integer) is not the
+same as '1' (a string)</p>
+
+<pre>options_from_collection_for_select(@people, 'id', 'name', 1)</pre>
+
+<p>should produce the desired results.</p>
+
+
+
+
+

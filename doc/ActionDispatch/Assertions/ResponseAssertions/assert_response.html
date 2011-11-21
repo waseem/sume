@@ -1,0 +1,31 @@
+<h1>ActionDispatch::Assertions::ResponseAssertions#assert_response</h1>
+
+
+<p>Asserts that the response is one of the following types:</p>
+<ul><li>
+<p><tt>:success</tt>   - Status code was 200</p>
+</li><li>
+<p><tt>:redirect</tt>  - Status code was in the 300-399 range</p>
+</li><li>
+<p><tt>:missing</tt>   - Status code was 404</p>
+</li><li>
+<p><tt>:error</tt>     - Status code was in the 500-599 range</p>
+</li></ul>
+
+<p>You can also pass an explicit status number like
+<tt>assert_response(501)</tt> or its symbolic equivalent
+<tt>assert_response(:not_implemented)</tt>. See
+Rack::Utils::SYMBOL_TO_STATUS_CODE for a full list.</p>
+
+<h4>Examples</h4>
+
+<pre># assert that the response was a redirection
+assert_response :redirect
+
+# assert that the response code was status code 401 (unauthorized)
+assert_response 401</pre>
+
+
+
+
+

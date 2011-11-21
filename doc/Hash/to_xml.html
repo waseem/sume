@@ -1,0 +1,75 @@
+<h1>Hash#to_xml</h1>
+
+
+<p>Returns a string containing an XML representation of its receiver:</p>
+
+<pre>{&quot;foo&quot; =&gt; 1, &quot;bar&quot; =&gt; 2}.to_xml
+# =&gt;
+# &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+# &lt;hash&gt;
+#   &lt;foo type=&quot;integer&quot;&gt;1&lt;/foo&gt;
+#   &lt;bar type=&quot;integer&quot;&gt;2&lt;/bar&gt;
+# &lt;/hash&gt;</pre>
+
+<p>To do so, the method loops over the pairs and builds nodes that depend on
+the <em>values</em>. Given a pair <tt>key</tt>, <tt>value</tt>:</p>
+<ul><li>
+<p>If <tt>value</tt> is a hash there's a recursive call with <tt>key</tt> as
+<tt>:root</tt>.</p>
+</li><li>
+<p>If <tt>value</tt> is an array there's a recursive call with <tt>key</tt> as
+<tt>:root</tt>, and <tt>key</tt> singularized as <tt>:children</tt>.</p>
+</li><li>
+<p>If <tt>value</tt> is a callable object it must expect one or two arguments.
+Depending on the arity, the callable is invoked with the <tt>options</tt>
+hash as first argument with <tt>key</tt> as <tt>:root</tt>, and
+<tt>key</tt> singularized as second argument. The  callable can add nodes
+by using <tt>options[:builder]</tt>.</p>
+
+<pre>&quot;foo&quot;.to_xml(lambda { |options, key| options[:builder].b(key) })
+# =&gt; &quot;&lt;b&gt;foo&lt;/b&gt;&quot;</pre>
+</li><li>
+<p>If <tt>value</tt> responds to <tt>to_xml</tt> the method is invoked with
+<tt>key</tt> as <tt>:root</tt>.</p>
+
+<pre>class Foo
+  def to_xml(options)
+    options[:builder].bar &quot;fooing!&quot;
+  end
+end
+
+{:foo =&gt; Foo.new}.to_xml(:skip_instruct =&gt; true)
+# =&gt; &quot;&lt;hash&gt;&lt;bar&gt;fooing!&lt;/bar&gt;&lt;/hash&gt;&quot;</pre>
+</li><li>
+<p>Otherwise, a node with <tt>key</tt> as tag is created with a string
+representation of <tt>value</tt> as text node. If <tt>value</tt> is
+<tt>nil</tt> an attribute "nil" set to "true" is added. Unless the option
+<tt>:skip_types</tt> exists and is true, an attribute "type" is added as
+well according to the following mapping:</p>
+
+<pre>XML_TYPE_NAMES = {
+  &quot;Symbol&quot;     =&gt; &quot;symbol&quot;,
+  &quot;Fixnum&quot;     =&gt; &quot;integer&quot;,
+  &quot;Bignum&quot;     =&gt; &quot;integer&quot;,
+  &quot;BigDecimal&quot; =&gt; &quot;decimal&quot;,
+  &quot;Float&quot;      =&gt; &quot;float&quot;,
+  &quot;TrueClass&quot;  =&gt; &quot;boolean&quot;,
+  &quot;FalseClass&quot; =&gt; &quot;boolean&quot;,
+  &quot;Date&quot;       =&gt; &quot;date&quot;,
+  &quot;DateTime&quot;   =&gt; &quot;datetime&quot;,
+  &quot;Time&quot;       =&gt; &quot;datetime&quot;
+}</pre>
+</li></ul>
+
+<p>By default the root node is "hash", but that's configurable via the
+<tt>:root</tt> option.</p>
+
+<p>The default XML builder is a fresh instance of <tt>Builder::XmlMarkup</tt>.
+You can configure your own builder with the <tt>:builder</tt> option. The
+method also accepts options like <tt>:dasherize</tt> and friends, they are
+forwarded to the builder.</p>
+
+
+
+
+

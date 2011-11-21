@@ -1,0 +1,18 @@
+<h1>ActionDispatch::Integration::Runner#open_session</h1>
+
+
+<p>Open a new session instance. If a block is given, the new session is
+yielded to the block before being returned.</p>
+
+<pre>session = open_session do |sess|
+  sess.extend(CustomAssertions)
+end</pre>
+
+<p>By default, a single session is automatically created for you, but you can
+use this method to open multiple sessions that ought to be tested
+simultaneously.</p>
+
+
+
+
+

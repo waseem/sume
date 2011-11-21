@@ -1,0 +1,34 @@
+<h1>ActionView::Helpers::FormTagHelper#check_box_tag</h1>
+
+
+<p>Creates a check box form input tag.</p>
+
+<h4>Options</h4>
+<ul><li>
+<p><tt>:disabled</tt> - If set to true, the user will not be able to use this
+input.</p>
+</li><li>
+<p>Any other key creates standard HTML options for the tag.</p>
+</li></ul>
+
+<h4>Examples</h4>
+
+<pre>check_box_tag 'accept'
+# =&gt; &lt;input id=&quot;accept&quot; name=&quot;accept&quot; type=&quot;checkbox&quot; value=&quot;1&quot; /&gt;
+
+check_box_tag 'rock', 'rock music'
+# =&gt; &lt;input id=&quot;rock&quot; name=&quot;rock&quot; type=&quot;checkbox&quot; value=&quot;rock music&quot; /&gt;
+
+check_box_tag 'receive_email', 'yes', true
+# =&gt; &lt;input checked=&quot;checked&quot; id=&quot;receive_email&quot; name=&quot;receive_email&quot; type=&quot;checkbox&quot; value=&quot;yes&quot; /&gt;
+
+check_box_tag 'tos', 'yes', false, :class =&gt; 'accept_tos'
+# =&gt; &lt;input class=&quot;accept_tos&quot; id=&quot;tos&quot; name=&quot;tos&quot; type=&quot;checkbox&quot; value=&quot;yes&quot; /&gt;
+
+check_box_tag 'eula', 'accepted', false, :disabled =&gt; true
+# =&gt; &lt;input disabled=&quot;disabled&quot; id=&quot;eula&quot; name=&quot;eula&quot; type=&quot;checkbox&quot; value=&quot;accepted&quot; /&gt;</pre>
+
+
+
+
+

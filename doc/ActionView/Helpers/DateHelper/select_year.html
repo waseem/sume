@@ -1,0 +1,38 @@
+<h1>ActionView::Helpers::DateHelper#select_year</h1>
+
+
+<p>Returns a select tag with options for each of the five years on each side
+of the current, which is selected. The five year radius can be changed
+using the <tt>:start_year</tt> and <tt>:end_year</tt> keys in the
+<tt>options</tt>. Both ascending and descending year lists are supported by
+making <tt>:start_year</tt> less than or greater than <tt>:end_year</tt>.
+The <tt>date</tt> can also be substituted for a year given as a number.
+Override the field name using the <tt>:field_name</tt> option, 'year' by
+default.</p>
+
+<h4>Examples</h4>
+
+<pre># Generates a select field for years that defaults to the current year that
+# has ascending year values.
+select_year(Date.today, :start_year =&gt; 1992, :end_year =&gt; 2007)
+
+# Generates a select field for years that defaults to the current year that
+# is named 'birth' rather than 'year'.
+select_year(Date.today, :field_name =&gt; 'birth')
+
+# Generates a select field for years that defaults to the current year that
+# has descending year values.
+select_year(Date.today, :start_year =&gt; 2005, :end_year =&gt; 1900)
+
+# Generates a select field for years that defaults to the year 2006 that
+# has ascending year values.
+select_year(2006, :start_year =&gt; 2000, :end_year =&gt; 2010)
+
+# Generates a select field for years with a custom prompt. Use &lt;tt&gt;:prompt =&gt; true&lt;/tt&gt; for a
+# generic prompt.
+select_year(14, :prompt =&gt; 'Choose year')</pre>
+
+
+
+
+

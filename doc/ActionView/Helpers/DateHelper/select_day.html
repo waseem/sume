@@ -1,0 +1,30 @@
+<h1>ActionView::Helpers::DateHelper#select_day</h1>
+
+
+<p>Returns a select tag with options for each of the days 1 through 31 with
+the current day selected. The <tt>date</tt> can also be substituted for a
+day number. Override the field name using the <tt>:field_name</tt> option,
+'day' by default.</p>
+
+<h4>Examples</h4>
+
+<pre>my_date = Time.now + 2.days
+
+# Generates a select field for days that defaults to the day for the date in my_date.
+select_day(my_time)
+
+# Generates a select field for days that defaults to the number given.
+select_day(5)
+
+# Generates a select field for days that defaults to the day for the date in my_date
+# that is named 'due' rather than 'day'.
+select_day(my_time, :field_name =&gt; 'due')
+
+# Generates a select field for days with a custom prompt.  Use &lt;tt&gt;:prompt =&gt; true&lt;/tt&gt; for a
+# generic prompt.
+select_day(5, :prompt =&gt; 'Choose day')</pre>
+
+
+
+
+

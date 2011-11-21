@@ -1,0 +1,15 @@
+<h1>ActiveRecord::Associations::Preloader#preload_one</h1>
+
+
+<p>Not all records have the same class, so group then preload group on the
+reflection itself so that if various subclass share the same association
+then we do not split them unnecessarily</p>
+
+<p>Additionally, polymorphic belongs_to associations can have multiple
+associated classes, depending on the polymorphic_type field. So we group by
+the classes as well.</p>
+
+
+
+
+

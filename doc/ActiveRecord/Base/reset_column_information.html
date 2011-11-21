@@ -1,0 +1,34 @@
+<h1>ActiveRecord::Base.reset_column_information</h1>
+
+
+<p>Resets all the cached information about columns, which will cause them to
+be reloaded on the next request.</p>
+
+<p>The most common usage pattern for this method is probably in a migration,
+when just after creating a table you want to populate it with some default
+values, eg:</p>
+
+<pre>class CreateJobLevels &lt; ActiveRecord::Migration
+  def self.up
+    create_table :job_levels do |t|
+      t.integer :id
+      t.string :name
+
+      t.timestamps
+    end
+
+    JobLevel.reset_column_information
+    %w{assistant executive manager director}.each do |type|
+      JobLevel.create(:name =&gt; type)
+    end
+  end
+
+  def self.down
+    drop_table :job_levels
+  end
+end</pre>
+
+
+
+
+

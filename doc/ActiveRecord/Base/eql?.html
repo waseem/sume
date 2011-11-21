@@ -1,0 +1,19 @@
+<h1>ActiveRecord::Base#eql?</h1>
+
+
+<p>Returns true if <tt>comparison_object</tt> is the same exact object, or
+<tt>comparison_object</tt> is of the same type and <tt>self</tt> has an ID
+and it is equal to <tt>comparison_object.id</tt>.</p>
+
+<p>Note that new records are different from any other record by definition,
+unless the other record is the receiver itself. Besides, if you fetch
+existing records with <tt>select</tt> and leave the ID out, you're on your
+own, this predicate will return false.</p>
+
+<p>Note also that destroying a record preserves its ID in the model instance,
+so deleted models are still comparable.</p>
+
+
+
+
+

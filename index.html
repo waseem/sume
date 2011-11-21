@@ -7,19 +7,22 @@
     <script src='underscore.js'></script>
     <script src='backbone.js'></script>
     <script src='sume.js'></script>
+    <script src='sume_index.js'></script>
     <meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0"/>
   </head>
   <body>
     <script id='autocompleteTemplate' type='text/template'>
       <%= model["term"] %>
     </script>
-    <h2>Search:</h2> <input type='text' id='search' autocomplete='off' autocorrect='off' autocapitalize='off'>
+    <h2>Search:</h2><br>
+    <input type='text' id='search' autocomplete='off' autocorrect='off' autocapitalize='off'>
     <ul id='search_autocomplete'>
     </ul>
 
     <div id='docs'>
       <br>
-      <small><em>This is just a proof-of-concept. Try searching for "ActiveSupport::Concern" or "distance_of_time_in_words" or even "Model.find"</em></small>
+      <small><em>This is just a proof-of-concept. Try searching for "find" or "distance_of_time_in_words", "resources" or even "Model.find"</em></small><br><br>
+      <small><em>Hint: search takes a regular expression. Try "A.*R.*find". Forward slashes not necessary.</em></small>
     </div>
   </body>
 </html>

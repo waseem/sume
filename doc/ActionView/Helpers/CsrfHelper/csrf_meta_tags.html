@@ -1,0 +1,20 @@
+<h1>ActionView::Helpers::CsrfHelper#csrf_meta_tags</h1>
+
+
+<p>Returns meta tags "csrf-param" and "csrf-token" with the name of the
+cross-site request forgery protection parameter and token, respectively.</p>
+
+<pre>&lt;head&gt;
+  &lt;%= csrf_meta_tags %&gt;
+&lt;/head&gt;</pre>
+
+<p>These are used to generate the dynamic forms that implement non-remote
+links with <tt>:method</tt>.</p>
+
+<p>Note that regular forms generate hidden fields, and that Ajax calls are
+whitelisted, so they do not use these tags.</p>
+
+
+
+
+

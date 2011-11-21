@@ -1,0 +1,57 @@
+<h1>ActiveRecord::Aggregations::ClassMethods#composed_of</h1>
+
+
+<p>Adds reader and writer methods for manipulating a value object:
+<tt>composed_of :address</tt> adds <tt>address</tt> and
+<tt>address=(new_address)</tt> methods.</p>
+
+<p>Options are:</p>
+<ul><li>
+<p><tt>:class_name</tt> - Specifies the class name of the association. Use it
+only if that name can't be inferred from the part id. So <tt>composed_of
+:address</tt> will by default be linked to the Address class, but if the
+real class name is CompanyAddress, you'll have to specify it with this
+option.</p>
+</li><li>
+<p><tt>:mapping</tt> - Specifies the mapping of entity attributes to
+attributes of the value object. Each mapping is represented as an array
+where the first item is the name of the entity attribute and the second
+item is the name the attribute in the value object. The order in which
+mappings are defined determine the order in which attributes are sent to
+the value class constructor.</p>
+</li><li>
+<p><tt>:allow_nil</tt> - Specifies that the value object will not be
+instantiated when all mapped attributes are <tt>nil</tt>.  Setting the
+value object to <tt>nil</tt> has the effect of writing <tt>nil</tt> to all
+mapped attributes. This defaults to <tt>false</tt>.</p>
+</li><li>
+<p><tt>:constructor</tt> - A symbol specifying the name of the constructor
+method or a Proc that is called to initialize the value object. The
+constructor is passed all of the mapped attributes, in the order that they
+are defined in the <tt>:mapping option</tt>, as arguments and uses them to
+instantiate a <tt>:class_name</tt> object. The default is <tt>:new</tt>.</p>
+</li><li>
+<p><tt>:converter</tt> - A symbol specifying the name of a class method of
+<tt>:class_name</tt> or a Proc that is called when a new value is assigned
+to the value object. The converter is passed the single value that is used
+in the assignment and is only called if the new value is not an instance of
+<tt>:class_name</tt>.</p>
+</li></ul>
+
+<p>Option examples:</p>
+
+<pre>composed_of :temperature, :mapping =&gt; %w(reading celsius)
+composed_of :balance, :class_name =&gt; &quot;Money&quot;, :mapping =&gt; %w(balance amount), :converter =&gt; Proc.new { |balance| balance.to_money }
+composed_of :address, :mapping =&gt; [ %w(address_street street), %w(address_city city) ]
+composed_of :gps_location
+composed_of :gps_location, :allow_nil =&gt; true
+composed_of :ip_address,
+            :class_name =&gt; 'IPAddr',
+            :mapping =&gt; %w(ip to_i),
+            :constructor =&gt; Proc.new { |ip| IPAddr.new(ip, Socket::AF_INET) },
+            :converter =&gt; Proc.new { |ip| ip.is_a?(Integer) ? IPAddr.new(ip, Socket::AF_INET) : IPAddr.new(ip.to_s) }</pre>
+
+
+
+
+

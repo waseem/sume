@@ -1,0 +1,17 @@
+<h1>ActionDispatch::Flash::FlashHash#use</h1>
+
+
+<p>Used internally by the <tt>keep</tt> and <tt>discard</tt> methods</p>
+
+<pre>use()               # marks the entire flash as used
+use('msg')          # marks the &quot;msg&quot; entry as used
+use(nil, false)     # marks the entire flash as unused (keeps it around for one more action)
+use('msg', false)   # marks the &quot;msg&quot; entry as unused (keeps it around for one more action)</pre>
+
+<p>Returns the single value for the key you asked to be marked (un)used or the
+FlashHash itself if no key is passed.</p>
+
+
+
+
+

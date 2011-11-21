@@ -1,0 +1,18 @@
+<h1>ActiveRecord::Reflection::ThroughReflection#through_reflection</h1>
+
+
+<p>Returns the AssociationReflection object specified in the <tt>:through</tt>
+option of a HasManyThrough or HasOneThrough association.</p>
+
+<pre>class Post &lt; ActiveRecord::Base
+  has_many :taggings
+  has_many :tags, :through =&gt; :taggings
+end
+
+tags_reflection = Post.reflect_on_association(:tags)
+taggings_reflection = tags_reflection.through_reflection</pre>
+
+
+
+
+

@@ -1,0 +1,17 @@
+<h1>ActiveRecord::ConnectionAdapters::Table#references</h1>
+
+
+<p>Adds a reference. Optionally adds a <tt>type</tt> column, if
+<tt>:polymorphic</tt> option is provided. <tt>references</tt> and
+<tt>belongs_to</tt> are acceptable.</p>
+
+<h5>Examples</h5>
+
+<pre>t.references(:goat)
+t.references(:goat, :polymorphic =&gt; true)
+t.belongs_to(:goat)</pre>
+
+
+
+
+

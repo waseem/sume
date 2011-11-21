@@ -1,0 +1,26 @@
+<h1>AbstractController::Callbacks::ClassMethods#_insert_callbacks</h1>
+
+
+<p>Take callback names and an optional callback proc, normalize them, then
+call the block with each callback. This allows us to abstract the
+normalization across several methods that use it.</p>
+
+<h4>Parameters</h4>
+<ul><li>
+<p><tt>callbacks</tt> - An array of callbacks, with an optional options hash
+as the last parameter.</p>
+</li><li>
+<p><tt>block</tt>    - A proc that should be added to the callbacks.</p>
+</li></ul>
+
+<h4>Block Parameters</h4>
+<ul><li>
+<p><tt>name</tt>     - The callback to be added</p>
+</li><li>
+<p><tt>options</tt>  - A hash of options to be used when adding the callback</p>
+</li></ul>
+
+
+
+
+

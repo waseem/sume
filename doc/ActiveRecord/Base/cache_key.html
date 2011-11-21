@@ -1,0 +1,15 @@
+<h1>ActiveRecord::Base#cache_key</h1>
+
+
+<p>Returns a cache key that can be used to identify this record.</p>
+
+<h4>Examples</h4>
+
+<pre>Product.new.cache_key     # =&gt; &quot;products/new&quot;
+Product.find(5).cache_key # =&gt; &quot;products/5&quot; (updated_at not available)
+Person.find(5).cache_key  # =&gt; &quot;people/5-20071224150000&quot; (updated_at available)</pre>
+
+
+
+
+

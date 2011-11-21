@@ -1,0 +1,9 @@
+An instance of this class represents a set of requests and responses
+performed sequentially by a test process. Because you can instantiate
+multiple sessions and run them side-by-side, you can also mimic (to some
+limited extent) multiple simultaneous users interacting with your system.
+
+Typically, you will instantiate a new session using
+IntegrationTest#open_session, rather than instantiating
+Integration::Session directly.
+

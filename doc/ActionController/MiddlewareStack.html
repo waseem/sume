@@ -1,0 +1,7 @@
+Extend ActionDispatch middleware stack to make it aware of options
+allowing the following syntax in controllers:
+
+  class PostsController < ApplicationController
+    use AuthenticationMiddleware, :except => [:index, :show]
+  end
+

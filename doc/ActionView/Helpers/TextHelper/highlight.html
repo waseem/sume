@@ -1,0 +1,32 @@
+<h1>ActionView::Helpers::TextHelper#highlight</h1>
+
+
+<p>Highlights one or more <tt>phrases</tt> everywhere in <tt>text</tt> by
+inserting it into a <tt>:highlighter</tt> string. The highlighter can be
+specialized by passing <tt>:highlighter</tt> as a single-quoted string with
+1 where the phrase is to be inserted (defaults to '&lt;strong
+class="highlight"&gt;1&lt;/strong&gt;')</p>
+
+<h4>Examples</h4>
+
+<pre>highlight('You searched for: rails', 'rails')
+# =&gt; You searched for: &lt;strong class=&quot;highlight&quot;&gt;rails&lt;/strong&gt;
+
+highlight('You searched for: ruby, rails, dhh', 'actionpack')
+# =&gt; You searched for: ruby, rails, dhh
+
+highlight('You searched for: rails', ['for', 'rails'], :highlighter =&gt; '&lt;em&gt;\1&lt;/em&gt;')
+# =&gt; You searched &lt;em&gt;for&lt;/em&gt;: &lt;em&gt;rails&lt;/em&gt;
+
+highlight('You searched for: rails', 'rails', :highlighter =&gt; '&lt;a href=&quot;search?q=\1&quot;&gt;\1&lt;/a&gt;')
+# =&gt; You searched for: &lt;a href=&quot;search?q=rails&quot;&gt;rails&lt;/a&gt;</pre>
+
+<p>You can still use <tt>highlight</tt> with the old API that accepts the
+<tt>highlighter</tt> as its optional third parameter:</p>
+
+<pre>highlight('You searched for: rails', 'rails', '&lt;a href=&quot;search?q=\1&quot;&gt;\1&lt;/a&gt;')     # =&gt; You searched for: &lt;a href=&quot;search?q=rails&quot;&gt;rails&lt;/a&gt;</pre>
+
+
+
+
+
