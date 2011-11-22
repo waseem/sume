@@ -34,17 +34,28 @@ Sume.SearchEngine = {
 }
 
 Sume.AutoCompleteController = {
+  areas: { "AR": "ActiveRecord",
+           "AC": "ActionController" },
+
+  // Used to parse strings such as:
+  // find in AR (ActiveRecord::FinderMethods#find)
+  // AR find (ActiveRecord::FinderMethods#find)
+  // AC redirect_to (ActionController::Redirecting#redirect_to)
+  filter_by_area: function(term, area) {
+    if (this.areas[area]) {
+      area = this.areas[area]
+    }
+    unfiltered_results = this.lookup(term)
+    filtered_results = unfiltered_results.filter(function(result) {
+      return result.search(new RegExp(area + ".*" + term, "i")) != -1
+    })
+    return filtered_results
+  },
 
   fuzzies: [/[A-Z]\w+\.find/],
   fuzzy_matches: ["ActiveRecord::FinderMethods#find"],
 
-  search: function(term) {
-    $('#search_autocomplete').show()
-    $('#search_autocomplete').empty()
-    var results = $.grep(Sume.index, function(element) {
-      return element.search(new RegExp(term, "i")) != -1;
-    })
-
+  fuzzy_lookup: function(term) {
     var fuzzy_results = $.grep(this.fuzzies, function(fuzzy_key) {
       return term.match(fuzzy_key)
     })
@@ -53,22 +64,50 @@ Sume.AutoCompleteController = {
       index = $.inArray(fuzzy_results[key], this.fuzzies)
       fuzzy_results[key] = this.fuzzy_matches[index]
     }
+    return fuzzy_results
+  },
 
-    if (results.length == 0 && fuzzy_results.length == 0) {
-      var results = $.grep(Sume.index, function(element) {
-        return element.search(new RegExp(term.split("").join(".*"), "i")) != -1;
-      })
+  lookup: function(term) {
+    var results = $.grep(Sume.index, function(element) {
+      return element.search(new RegExp(term, "i")) != -1;
+    })
+    return results
+  },
+
+
+  search: function(term) {
+    $('#search_autocomplete').show()
+    $('#search_autocomplete').empty()
+    // Supports things like "find in AR"
+    if (term.search(" in ") > 0) {
+      parts = term.split(" ")
+      term = parts[0]
+      area = parts[2]
+      results = this.filter_by_area(term, area)
+      fuzzy_results = []
+    }
+    // Supports things like "AR find"
+    else if (term.search(" ") > 0) {
+      parts = term.split(" ")
+      term = parts[1]
+      area = parts[0]
+      results = this.filter_by_area(term, area)
+      fuzzy_results = []
+    }
+    else {
+      results = this.lookup(term)
+      fuzzy_results = this.fuzzy_lookup(term)
     }
 
-    // sort search results by weight
-    results.sort(function(result, other_result) {
-      index = Sume.index.indexOf(result)
-      other_index = Sume.index.indexOf(other_result)
+    results = results.concat(fuzzy_results)
 
-      if (Sume.weights[index] < Sume.weights[other_index]) {
+    results.sort(function(result, other_result) {
+      result_weight = Sume.weights[result] || 0
+      other_result_weight = Sume.weights[other_result] || 0
+      if (result_weight < other_result_weight) {
         return 1
       }
-      else if (Sume.weights[index] > Sume.weights[other_index]) {
+      else if (result_weight > other_result_weight) {
         return -1
       }
       else {
@@ -76,8 +115,7 @@ Sume.AutoCompleteController = {
       }
     })
 
-    results = results.concat(fuzzy_results).slice(0, 10)
-    $.each(results, function (index, term) {
+    $.each(results.slice(0,10), function (index, term) {
       Sume.searchResults.add({term : term})
     })
 
