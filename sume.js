@@ -18,7 +18,7 @@ Sume.SearchEngine = {
       term = $.trim(active.text())
     }
     else {
-      term = location.hash.split("/")[1]
+      term = location.hash.replace("%23", "#").split("/")[1]
     }
 
     if (Sume.paths[term]) {
