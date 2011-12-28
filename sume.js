@@ -18,14 +18,14 @@ Sume.SearchEngine = {
       term = $.trim(active.text())
     }
     else {
-      term = location.hash.replace("%23", "#").split("/")[1]
+      term = location.hash.replace("%23", "#").split("/")[2]
     }
 
     if (Sume.paths[term]) {
       $.get("doc/" + Sume.paths[term], function(html) {
         $('#docs').html(html)
       })
-      Backbone.history.navigate("search/" + term, false)
+      Backbone.history.navigate("!/search/" + term, false)
     }
     else {
       $('#docs').html("<br><h4>Hmm... we couldn't find what you were looking for, sorry!</h4>")
@@ -167,8 +167,8 @@ Sume.SearchResultView = Backbone.View.extend({
 Sume.SearchRouter = Backbone.Router.extend({
 
   routes: {
-    'autocomplete/:term' : 'autocomplete',
-    'search/:term': 'search'
+    '!/autocomplete/:term' : 'autocomplete',
+    '!/search/:term': 'search'
   },
 
   initialize: function() {
@@ -200,7 +200,7 @@ Sume.SearchView = Backbone.View.extend({
   autocomplete: function(e) {
     if (e.keyCode != 13) {
       if ($(this.el).val().length >= 2) {
-        this.router.navigate('autocomplete/' + $(this.el).val(), true)
+        this.router.navigate('!/autocomplete/' + $(this.el).val(), true)
       }
     }
   }
