@@ -39,7 +39,7 @@ the savepoint that was created will be automatically released.</p>
 #transaction will raise exceptions when it tries to release the
 already-automatically-released savepoints:</p>
 
-<pre>Model.connection.transaction do  # BEGIN
+<pre data-language="ruby">Model.connection.transaction do  # BEGIN
   Model.connection.transaction(:requires_new =&gt; true) do  # CREATE SAVEPOINT active_record_1
     Model.connection.create_table(...)
     # active_record_1 now automatically released

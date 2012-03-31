@@ -23,7 +23,11 @@ Sume.SearchEngine = {
 
     if (Sume.paths[term]) {
       $.get("doc/" + Sume.paths[term], function(html) {
-        $('#docs').html(html)
+        var div = document.createElement('div');
+        div.innerHTML = html;
+        Rainbow.color(div, function () {
+          $('#docs').html(div.innerHTML);
+        });
       })
       Backbone.history.navigate("!/search/" + term, false)
     }

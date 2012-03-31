@@ -23,20 +23,20 @@ to ".").</p>
 <p><tt>:format</tt>           - Sets the format for non-negative numbers
 (defaults to "%u%n").</p>
 
-<pre>Fields are &lt;tt&gt;%u&lt;/tt&gt; for the currency, and &lt;tt&gt;%n&lt;/tt&gt;
+<pre data-language="ruby">Fields are &lt;tt&gt;%u&lt;/tt&gt; for the currency, and &lt;tt&gt;%n&lt;/tt&gt;
 for the number.</pre>
 </li><li>
 <p><tt>:negative_format</tt>  - Sets the format for negative numbers (defaults
 to prepending</p>
 
-<pre>an hyphen to the formatted number given by &lt;tt&gt;:format&lt;/tt&gt;).
+<pre data-language="ruby">an hyphen to the formatted number given by &lt;tt&gt;:format&lt;/tt&gt;).
 Accepts the same fields than &lt;tt&gt;:format&lt;/tt&gt;, except
 &lt;tt&gt;%n&lt;/tt&gt; is here the absolute value of the number.</pre>
 </li></ul>
 
 <h4>Examples</h4>
 
-<pre>number_to_currency(1234567890.50)                    # =&gt; $1,234,567,890.50
+<pre data-language="ruby">number_to_currency(1234567890.50)                    # =&gt; $1,234,567,890.50
 number_to_currency(1234567890.506)                   # =&gt; $1,234,567,890.51
 number_to_currency(1234567890.506, :precision =&gt; 3)  # =&gt; $1,234,567,890.506
 number_to_currency(1234567890.506, :locale =&gt; :fr)   # =&gt; 1 234 567 890,506 €

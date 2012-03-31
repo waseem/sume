@@ -37,19 +37,19 @@ keys:</p>
 
 <p>** <tt>:count</tt>: either a number or a range which must equal (or</p>
 
-<pre>include) the number of children that match.</pre>
+<pre data-language="ruby">include) the number of children that match.</pre>
 
 <p>** <tt>:less_than</tt>: the number of matching children must be less than</p>
 
-<pre>this number.</pre>
+<pre data-language="ruby">this number.</pre>
 
 <p>** <tt>:greater_than</tt>: the number of matching children must be</p>
 
-<pre>greater than this number.</pre>
+<pre data-language="ruby">greater than this number.</pre>
 
 <p>** <tt>:only</tt>: another hash consisting of the keys to use</p>
 
-<pre>to match on the children, and only matching children will be
+<pre data-language="ruby">to match on the children, and only matching children will be
 counted.</pre>
 
 <p>Conditions are matched using the following algorithm:</p>
@@ -68,7 +68,7 @@ counted.</pre>
 
 <p>Usage:</p>
 
-<pre># test if the node is a &quot;span&quot; tag
+<pre data-language="ruby"># test if the node is a &quot;span&quot; tag
 node.match :tag =&gt; &quot;span&quot;
 
 # test if the node's parent is a &quot;div&quot;

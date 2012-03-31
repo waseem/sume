@@ -3,7 +3,7 @@
 
 <p>:call-seq:</p>
 
-<pre>select(root) =&gt; array</pre>
+<pre data-language="ruby">select(root) =&gt; array</pre>
 
 <p>Selects and returns an array with all matching elements, beginning with one
 node and traversing through all children depth-first. Returns an empty
@@ -13,7 +13,7 @@ array if no match is found.</p>
 
 <p>For example:</p>
 
-<pre>selector = HTML::Selector.new &quot;input[type=text]&quot;
+<pre data-language="ruby">selector = HTML::Selector.new &quot;input[type=text]&quot;
 matches = selector.select(element)
 matches.each do |match|
   puts &quot;Found text field with name #{match.attributes['name']}&quot;

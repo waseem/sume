@@ -9,7 +9,7 @@ are required.</p>
 
 <p>Delegation is particularly useful with Active Record associations:</p>
 
-<pre>class Greeter &lt; ActiveRecord::Base
+<pre data-language="ruby">class Greeter &lt; ActiveRecord::Base
   def hello
     &quot;hello&quot;
   end
@@ -29,7 +29,7 @@ Foo.new.goodbye # =&gt; NoMethodError: undefined method `goodbye' for #&lt;Foo:0
 
 <p>Multiple delegates to the same target are allowed:</p>
 
-<pre>class Foo &lt; ActiveRecord::Base
+<pre data-language="ruby">class Foo &lt; ActiveRecord::Base
   belongs_to :greeter
   delegate :hello, :goodbye, :to =&gt; :greeter
 end
@@ -39,7 +39,7 @@ Foo.new.goodbye # =&gt; &quot;goodbye&quot;</pre>
 <p>Methods can be delegated to instance variables, class variables, or
 constants by providing them as a symbols:</p>
 
-<pre>class Foo
+<pre data-language="ruby">class Foo
   CONSTANT_ARRAY = [0,1,2,3]
   @@class_array  = [4,5,6,7]
 
@@ -59,7 +59,7 @@ Foo.new.max # =&gt; 11</pre>
 the value is <tt>true</tt>, the delegate methods are prefixed with the name
 of the object being delegated to.</p>
 
-<pre>Person = Struct.new(:name, :address)
+<pre data-language="ruby">Person = Struct.new(:name, :address)
 
 class Invoice &lt; Struct.new(:client)
   delegate :name, :address, :to =&gt; :client, :prefix =&gt; true
@@ -72,7 +72,7 @@ invoice.client_address # =&gt; &quot;Vimmersvej 13&quot;</pre>
 
 <p>It is also possible to supply a custom prefix.</p>
 
-<pre>class Invoice &lt; Struct.new(:client)
+<pre data-language="ruby">class Invoice &lt; Struct.new(:client)
   delegate :name, :address, :to =&gt; :client, :prefix =&gt; :customer
 end
 
@@ -84,7 +84,7 @@ invoice.customer_address # =&gt; &quot;Vimmersvej 13&quot;</pre>
 happens no matter whether <tt>nil</tt> responds to the delegated method.
 You can get a <tt>nil</tt> instead with the <tt>:allow_nil</tt> option.</p>
 
-<pre>class Foo
+<pre data-language="ruby">class Foo
   attr_accessor :bar
   def initialize(bar = nil)
     @bar = bar

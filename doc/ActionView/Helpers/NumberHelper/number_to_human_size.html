@@ -33,7 +33,7 @@ insignificant zeros after the decimal separator (defaults to <tt>true</tt>)</p>
 
 <h4>Examples</h4>
 
-<pre>number_to_human_size(123)                                          # =&gt; 123 Bytes
+<pre data-language="ruby">number_to_human_size(123)                                          # =&gt; 123 Bytes
 number_to_human_size(1234)                                         # =&gt; 1.21 KB
 number_to_human_size(12345)                                        # =&gt; 12.1 KB
 number_to_human_size(1234567)                                      # =&gt; 1.18 MB
@@ -47,7 +47,7 @@ number_to_human_size(1234567, :precision =&gt; 2, :separator =&gt; ',')  # =&gt;
 default (set <tt>:strip_insignificant_zeros</tt> to <tt>false</tt> to
 change that):</p>
 
-<pre>number_to_human_size(1234567890123, :precision =&gt; 5)        # =&gt; &quot;1.1229 TB&quot;
+<pre data-language="ruby">number_to_human_size(1234567890123, :precision =&gt; 5)        # =&gt; &quot;1.1229 TB&quot;
 number_to_human_size(524288000, :precision =&gt; 5)            # =&gt; &quot;500 MB&quot;</pre>
 
 

@@ -6,7 +6,7 @@ stored in config/database.yml - as a Hash.</p>
 
 <p>For example, the following database.yml...</p>
 
-<pre>development:
+<pre data-language="ruby">development:
   adapter: sqlite3
   database: db/development.sqlite3
 
@@ -16,7 +16,7 @@ production:
 
 <p>...would result in ActiveRecord::Base.configurations to look like this:</p>
 
-<pre>{
+<pre data-language="ruby">{
    'development' =&gt; {
       'adapter'  =&gt; 'sqlite3',
       'database' =&gt; 'db/development.sqlite3'

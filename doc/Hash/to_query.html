@@ -4,12 +4,12 @@
 <p>Returns a string representation of the receiver suitable for use as a URL
 query string:</p>
 
-<pre>{:name =&gt; 'David', :nationality =&gt; 'Danish'}.to_param
+<pre data-language="ruby">{:name =&gt; 'David', :nationality =&gt; 'Danish'}.to_param
 # =&gt; &quot;name=David&amp;nationality=Danish&quot;</pre>
 
 <p>An optional namespace can be passed to enclose the param names:</p>
 
-<pre>{:name =&gt; 'David', :nationality =&gt; 'Danish'}.to_param('user')
+<pre data-language="ruby">{:name =&gt; 'David', :nationality =&gt; 'Danish'}.to_param('user')
 # =&gt; &quot;user[name]=David&amp;user[nationality]=Danish&quot;</pre>
 
 <p>The string pairs "key=value" that conform the query string are sorted

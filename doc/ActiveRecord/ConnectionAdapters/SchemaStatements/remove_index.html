@@ -5,20 +5,20 @@
 
 <p>Remove the index_accounts_on_column in the accounts table.</p>
 
-<pre>remove_index :accounts, :column</pre>
+<pre data-language="ruby">remove_index :accounts, :column</pre>
 
 <p>Remove the index named index_accounts_on_branch_id in the accounts table.</p>
 
-<pre>remove_index :accounts, :column =&gt; :branch_id</pre>
+<pre data-language="ruby">remove_index :accounts, :column =&gt; :branch_id</pre>
 
 <p>Remove the index named index_accounts_on_branch_id_and_party_id in the
 accounts table.</p>
 
-<pre>remove_index :accounts, :column =&gt; [:branch_id, :party_id]</pre>
+<pre data-language="ruby">remove_index :accounts, :column =&gt; [:branch_id, :party_id]</pre>
 
 <p>Remove the index named by_branch_party in the accounts table.</p>
 
-<pre>remove_index :accounts, :name =&gt; :by_branch_party</pre>
+<pre data-language="ruby">remove_index :accounts, :name =&gt; :by_branch_party</pre>
 
 
 

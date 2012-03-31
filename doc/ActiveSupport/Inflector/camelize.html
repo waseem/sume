@@ -10,7 +10,7 @@ converting paths to namespaces.</p>
 
 <p>Examples:</p>
 
-<pre>&quot;active_record&quot;.camelize                # =&gt; &quot;ActiveRecord&quot;
+<pre data-language="ruby">&quot;active_record&quot;.camelize                # =&gt; &quot;ActiveRecord&quot;
 &quot;active_record&quot;.camelize(:lower)        # =&gt; &quot;activeRecord&quot;
 &quot;active_record/errors&quot;.camelize         # =&gt; &quot;ActiveRecord::Errors&quot;
 &quot;active_record/errors&quot;.camelize(:lower) # =&gt; &quot;activeRecord::Errors&quot;</pre>
@@ -18,7 +18,7 @@ converting paths to namespaces.</p>
 <p>As a rule of thumb you can think of <tt>camelize</tt> as the inverse of
 <tt>underscore</tt>, though there are cases where that does not hold:</p>
 
-<pre>&quot;SSLError&quot;.underscore.camelize # =&gt; &quot;SslError&quot;</pre>
+<pre data-language="ruby">&quot;SSLError&quot;.underscore.camelize # =&gt; &quot;SslError&quot;</pre>
 
 
 

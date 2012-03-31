@@ -8,7 +8,7 @@
 
 <p>Let's say we're in the <tt>/shop/checkout?order=desc</tt> action.</p>
 
-<pre>current_page?(:action =&gt; 'process')
+<pre data-language="ruby">current_page?(:action =&gt; 'process')
 # =&gt; false
 
 current_page?(:controller =&gt; 'shop', :action =&gt; 'checkout')
@@ -26,7 +26,7 @@ current_page?(:controller =&gt; 'library', :action =&gt; 'checkout')
 <p>Let's say we're in the <tt>/shop/checkout?order=desc&amp;page=1</tt>
 action.</p>
 
-<pre>current_page?(:action =&gt; 'process')
+<pre data-language="ruby">current_page?(:action =&gt; 'process')
 # =&gt; false
 
 current_page?(:controller =&gt; 'shop', :action =&gt; 'checkout')

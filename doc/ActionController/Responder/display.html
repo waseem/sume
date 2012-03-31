@@ -3,20 +3,20 @@
 
 <p>Display is just a shortcut to render a resource with the current format.</p>
 
-<pre>display @user, :status =&gt; :ok</pre>
+<pre data-language="ruby">display @user, :status =&gt; :ok</pre>
 
 <p>For XML requests it's equivalent to:</p>
 
-<pre>render :xml =&gt; @user, :status =&gt; :ok</pre>
+<pre data-language="ruby">render :xml =&gt; @user, :status =&gt; :ok</pre>
 
 <p>Options sent by the user are also used:</p>
 
-<pre>respond_with(@user, :status =&gt; :created)
+<pre data-language="ruby">respond_with(@user, :status =&gt; :created)
 display(@user, :status =&gt; :ok)</pre>
 
 <p>Results in:</p>
 
-<pre>render :xml =&gt; @user, :status =&gt; :created</pre>
+<pre data-language="ruby">render :xml =&gt; @user, :status =&gt; :created</pre>
 
 
 

@@ -36,7 +36,7 @@ if <tt>:subdomain</tt> or <tt>:domain</tt> are supplied. Defaults to
 
 <p>Examples:</p>
 
-<pre>url_for :controller =&gt; 'tasks', :action =&gt; 'testing', :host =&gt; 'somehost.org', :port =&gt; '8080'
+<pre data-language="ruby">url_for :controller =&gt; 'tasks', :action =&gt; 'testing', :host =&gt; 'somehost.org', :port =&gt; '8080'
 # =&gt; 'http://somehost.org:8080/tasks/testing'
 url_for :controller =&gt; 'tasks', :action =&gt; 'testing', :host =&gt; 'somehost.org', :anchor =&gt; 'ok', :only_path =&gt; true
 # =&gt; '/tasks/testing#ok'

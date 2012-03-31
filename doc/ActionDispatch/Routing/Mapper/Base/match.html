@@ -5,14 +5,14 @@
 interpreted as url query parameters and thus available as <tt>params</tt>
 in an action:</p>
 
-<pre># sets :controller, :action and :id in params
+<pre data-language="ruby"># sets :controller, :action and :id in params
 match ':controller/:action/:id'</pre>
 
 <p>Two of these symbols are special, <tt>:controller</tt> maps to the
 controller and <tt>:action</tt> to the controller's action. A pattern can
 also map wildcard segments (globs) to params:</p>
 
-<pre>match 'songs/*category/:title' =&gt; 'songs#show'
+<pre data-language="ruby">match 'songs/*category/:title' =&gt; 'songs#show'
 
 # 'songs/rock/classic/stairway-to-heaven' sets
 #  params[:category] = 'rock/classic'
@@ -22,14 +22,14 @@ also map wildcard segments (globs) to params:</p>
 and <tt>:controller</tt> should be set in options or hash shorthand.
 Examples:</p>
 
-<pre>match 'photos/:id' =&gt; 'photos#show'
+<pre data-language="ruby">match 'photos/:id' =&gt; 'photos#show'
 match 'photos/:id', :to =&gt; 'photos#show'
 match 'photos/:id', :controller =&gt; 'photos', :action =&gt; 'show'</pre>
 
 <p>A pattern can also point to a <tt>Rack</tt> endpoint i.e. anything that
 responds to <tt>call</tt>:</p>
 
-<pre>match 'photos/:id' =&gt; lambda {|hash| [200, {}, &quot;Coming soon&quot; }
+<pre data-language="ruby">match 'photos/:id' =&gt; lambda {|hash| [200, {}, &quot;Coming soon&quot; }
 match 'photos/:id' =&gt; PhotoRackApp
 # Yes, controller actions are just rack endpoints
 match 'photos/:id' =&gt; PhotosController.action(:show)</pre>
@@ -50,7 +50,7 @@ match 'photos/:id' =&gt; PhotosController.action(:show)</pre>
 <dd>
 <p>The namespace for :controller.</p>
 
-<pre>match 'path' =&gt; 'c#a', :module =&gt; 'sekret', :controller =&gt; 'posts'
+<pre data-language="ruby">match 'path' =&gt; 'c#a', :module =&gt; 'sekret', :controller =&gt; 'posts'
 #=&gt; Sekret::PostsController</pre>
 
 <p>See <tt>Scoping#namespace</tt> for its scope equivalent.</p>
@@ -61,14 +61,14 @@ match 'photos/:id' =&gt; PhotosController.action(:show)</pre>
 <dd>
 <p>Allowed HTTP verb(s) for route.</p>
 
-<pre>match 'path' =&gt; 'c#a', :via =&gt; :get
+<pre data-language="ruby">match 'path' =&gt; 'c#a', :via =&gt; :get
 match 'path' =&gt; 'c#a', :via =&gt; [:get, :post]</pre>
 </dd><dt>:to</dt>
 <dd>
 <p>Points to a <tt>Rack</tt> endpoint. Can be an object that responds to
 <tt>call</tt> or a string representing a controller's action.</p>
 
-<pre>match 'path', :to =&gt; 'controller#action'
+<pre data-language="ruby">match 'path', :to =&gt; 'controller#action'
 match 'path', :to =&gt; lambda { [200, {}, &quot;Success!&quot;] }
 match 'path', :to =&gt; RackApp</pre>
 </dd><dt>:on</dt>
@@ -77,13 +77,13 @@ match 'path', :to =&gt; RackApp</pre>
 are <tt>:member</tt>, <tt>:collection</tt>, and <tt>:new</tt>.  Only use
 within <tt>resource(s)</tt> block. For example:</p>
 
-<pre>resource :bar do
+<pre data-language="ruby">resource :bar do
   match 'foo' =&gt; 'c#a', :on =&gt; :member, :via =&gt; [:get, :post]
 end</pre>
 
 <p>Is equivalent to:</p>
 
-<pre>resource :bar do
+<pre data-language="ruby">resource :bar do
   member do
     match 'foo' =&gt; 'c#a', :via =&gt; [:get, :post]
   end
@@ -93,7 +93,7 @@ end</pre>
 <p>Constrains parameters with a hash of regular expressions or an object that
 responds to <tt>matches?</tt></p>
 
-<pre>match 'path/:id', :constraints =&gt; { :id =&gt; /[A-Z]\d{5}/ }
+<pre data-language="ruby">match 'path/:id', :constraints =&gt; { :id =&gt; /[A-Z]\d{5}/ }
 
 class Blacklist
   def matches?(request) request.remote_ip == '1.2.3.4' end
@@ -106,7 +106,7 @@ equivalent.</p>
 <dd>
 <p>Sets defaults for parameters</p>
 
-<pre># Sets params[:format] to 'jpg' by default
+<pre data-language="ruby"># Sets params[:format] to 'jpg' by default
 match 'path' =&gt; 'c#a', :defaults =&gt; { :format =&gt; 'jpg' }</pre>
 
 <p>See <tt>Scoping#defaults</tt> for its scope equivalent.</p>
@@ -115,7 +115,7 @@ match 'path' =&gt; 'c#a', :defaults =&gt; { :format =&gt; 'jpg' }</pre>
 <p>Boolean to anchor a <tt>match</tt> pattern. Default is true. When set to
 false, the pattern matches any request prefixed with the given path.</p>
 
-<pre># Matches any request starting with 'path'
+<pre data-language="ruby"># Matches any request starting with 'path'
 match 'path' =&gt; 'c#a', :anchor =&gt; false</pre>
 </dd></dl>
 

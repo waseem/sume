@@ -7,11 +7,11 @@ aliased as <tt>h</tt>.</p>
 <p>In your ERB templates, use this method to escape any unsafe content. For
 example:</p>
 
-<pre>&lt;%=h @person.name %&gt;</pre>
+<pre data-language="ruby">&lt;%=h @person.name %&gt;</pre>
 
 <h4>Example:</h4>
 
-<pre>puts html_escape(&quot;is a &gt; 0 &amp; a &lt; 10?&quot;)
+<pre data-language="ruby">puts html_escape(&quot;is a &gt; 0 &amp; a &lt; 10?&quot;)
 # =&gt; is a &amp;gt; 0 &amp;amp; a &amp;lt; 10?</pre>
 
 

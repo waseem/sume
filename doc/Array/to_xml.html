@@ -11,7 +11,7 @@ does not then an exception is raised.</p>
 <p>The root node reflects the class name of the first element in plural if all
 elements belong to the same type and that's not Hash:</p>
 
-<pre>customer.projects.to_xml
+<pre data-language="ruby">customer.projects.to_xml
 
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;projects type=&quot;array&quot;&gt;
@@ -31,7 +31,7 @@ elements belong to the same type and that's not Hash:</p>
 
 <p>Otherwise the root element is "records":</p>
 
-<pre>[{:foo =&gt; 1, :bar =&gt; 2}, {:baz =&gt; 3}].to_xml
+<pre data-language="ruby">[{:foo =&gt; 1, :bar =&gt; 2}, {:baz =&gt; 3}].to_xml
 
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;records type=&quot;array&quot;&gt;
@@ -46,14 +46,14 @@ elements belong to the same type and that's not Hash:</p>
 
 <p>If the collection is empty the root element is "nil-classes" by default:</p>
 
-<pre>[].to_xml
+<pre data-language="ruby">[].to_xml
 
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;nil-classes type=&quot;array&quot;/&gt;</pre>
 
 <p>To ensure a meaningful root element use the <tt>:root</tt> option:</p>
 
-<pre>customer_with_no_projects.projects.to_xml(:root =&gt; &quot;projects&quot;)
+<pre data-language="ruby">customer_with_no_projects.projects.to_xml(:root =&gt; &quot;projects&quot;)
 
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;projects type=&quot;array&quot;/&gt;</pre>
@@ -64,7 +64,7 @@ option.</p>
 
 <p>The <tt>options</tt> hash is passed downwards:</p>
 
-<pre>Message.all.to_xml(:skip_types =&gt; true)
+<pre data-language="ruby">Message.all.to_xml(:skip_types =&gt; true)
 
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;messages&gt;

@@ -6,7 +6,7 @@ is passed to <tt>stylesheet_link_tag</tt>. This method is typically
 intended to be called from plugin initialization to register stylesheet
 files that the plugin installed in <tt>public/stylesheets</tt>.</p>
 
-<pre>ActionView::Helpers::AssetTagHelper.register_stylesheet_expansion :monkey =&gt; [&quot;head&quot;, &quot;body&quot;, &quot;tail&quot;]
+<pre data-language="ruby">ActionView::Helpers::AssetTagHelper.register_stylesheet_expansion :monkey =&gt; [&quot;head&quot;, &quot;body&quot;, &quot;tail&quot;]
 
 stylesheet_link_tag :monkey # =&gt;
   &lt;link href=&quot;/stylesheets/head.css&quot;  media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;

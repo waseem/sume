@@ -3,7 +3,7 @@
 
 <p>Returns the simultaneous time in <tt>Time.zone</tt>.</p>
 
-<pre>Time.zone = 'Hawaii'             # =&gt; 'Hawaii'
+<pre data-language="ruby">Time.zone = 'Hawaii'             # =&gt; 'Hawaii'
 DateTime.new(2000).in_time_zone  # =&gt; Fri, 31 Dec 1999 14:00:00 HST -10:00</pre>
 
 <p>This method is similar to Time#localtime, except that it uses
@@ -14,7 +14,7 @@ zone.</p>
 TimeZone as an argument, and the conversion will be based on that zone
 instead of <tt>Time.zone</tt>.</p>
 
-<pre>DateTime.new(2000).in_time_zone('Alaska')  # =&gt; Fri, 31 Dec 1999 15:00:00 AKST -09:00</pre>
+<pre data-language="ruby">DateTime.new(2000).in_time_zone('Alaska')  # =&gt; Fri, 31 Dec 1999 15:00:00 AKST -09:00</pre>
 
 
 

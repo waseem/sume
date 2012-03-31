@@ -40,7 +40,7 @@ the value.</p>
 
 <p>The last point is particularly worth comparing for some enumerables:</p>
 
-<pre>Array(:foo =&gt; :bar)      # =&gt; [[:foo, :bar]]
+<pre data-language="ruby">Array(:foo =&gt; :bar)      # =&gt; [[:foo, :bar]]
 Array.wrap(:foo =&gt; :bar) # =&gt; [{:foo =&gt; :bar}]
 
 Array(&quot;foo\nbar&quot;)        # =&gt; [&quot;foo\n&quot;, &quot;bar&quot;], in Ruby 1.8
@@ -48,7 +48,7 @@ Array.wrap(&quot;foo\nbar&quot;)   # =&gt; [&quot;foo\nbar&quot;]</pre>
 
 <p>There's also a related idiom that uses the splat operator:</p>
 
-<pre>[*object]</pre>
+<pre data-language="ruby">[*object]</pre>
 
 <p>which returns <tt>[nil]</tt> for <tt>nil</tt>, and calls to
 <tt>Array(object)</tt> otherwise.</p>

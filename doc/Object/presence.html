@@ -9,13 +9,13 @@ nil</tt>.</p>
 not present at all.  For example, this simplifies a common check for HTTP
 POST/query parameters:</p>
 
-<pre>state   = params[:state]   if params[:state].present?
+<pre data-language="ruby">state   = params[:state]   if params[:state].present?
 country = params[:country] if params[:country].present?
 region  = state || country || 'US'</pre>
 
 <p>...becomes:</p>
 
-<pre>region = params[:state].presence || params[:country].presence || 'US'</pre>
+<pre data-language="ruby">region = params[:state].presence || params[:country].presence || 'US'</pre>
 
 
 

@@ -3,7 +3,7 @@
 
 <p>Filters support:</p>
 
-<pre>Arrays::  Used in conditions. This is used to specify
+<pre data-language="ruby">Arrays::  Used in conditions. This is used to specify
           multiple conditions. Used internally to
           merge conditions from skip_* filters
 Symbols:: A method to call
@@ -14,7 +14,7 @@ Objects:: An object with a before_foo method on it to call</pre>
 <p>All of these objects are compiled into methods and handled the same after
 this point:</p>
 
-<pre>Arrays::  Merged together into a single filter
+<pre data-language="ruby">Arrays::  Merged together into a single filter
 Symbols:: Already methods
 Strings:: class_eval'ed into methods
 Procs::   define_method'ed into methods

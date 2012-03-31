@@ -12,7 +12,7 @@ any case. If the <tt>phrase</tt> isn't found, nil is returned.</p>
 
 <h4>Examples</h4>
 
-<pre>excerpt('This is an example', 'an', :radius =&gt; 5)
+<pre data-language="ruby">excerpt('This is an example', 'an', :radius =&gt; 5)
 # =&gt; ...s is an exam...
 
 excerpt('This is an example', 'is', :radius =&gt; 5)
@@ -31,7 +31,7 @@ excerpt('This is also an example', 'an', :radius =&gt; 8, :omission =&gt; '&lt;c
 <tt>radius</tt> as its optional third and the <tt>ellipsis</tt> as its
 optional forth parameter:</p>
 
-<pre>excerpt('This is an example', 'an', 5)                   # =&gt; ...s is an exam...
+<pre data-language="ruby">excerpt('This is an example', 'an', 5)                   # =&gt; ...s is an exam...
 excerpt('This is also an example', 'an', 8, '&lt;chop&gt; ')   # =&gt; &lt;chop&gt; is also an example</pre>
 
 

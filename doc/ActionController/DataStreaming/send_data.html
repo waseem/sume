@@ -25,15 +25,15 @@ Defaults to 200.</p>
 
 <p>Generic data download:</p>
 
-<pre>send_data buffer</pre>
+<pre data-language="ruby">send_data buffer</pre>
 
 <p>Download a dynamically-generated tarball:</p>
 
-<pre>send_data generate_tgz('dir'), :filename =&gt; 'dir.tgz'</pre>
+<pre data-language="ruby">send_data generate_tgz('dir'), :filename =&gt; 'dir.tgz'</pre>
 
 <p>Display an image Active Record in the browser:</p>
 
-<pre>send_data image.data, :type =&gt; image.content_type, :disposition =&gt; 'inline'</pre>
+<pre data-language="ruby">send_data image.data, :type =&gt; image.content_type, :disposition =&gt; 'inline'</pre>
 
 <p>See <tt>send_file</tt> for more information on HTTP Content-* headers and
 caching.</p>

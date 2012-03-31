@@ -3,7 +3,7 @@
 
 <p>Convert an enumerable to a hash. Examples:</p>
 
-<pre>people.index_by(&amp;:login)
+<pre data-language="ruby">people.index_by(&amp;:login)
   =&gt; { &quot;nextangle&quot; =&gt; &lt;Person ...&gt;, &quot;chade-&quot; =&gt; &lt;Person ...&gt;, ...}
 people.index_by { |person| &quot;#{person.first_name} #{person.last_name}&quot; }
   =&gt; { &quot;Chade- Fowlersburg-e&quot; =&gt; &lt;Person ...&gt;, &quot;David Heinemeier Hansson&quot; =&gt; &lt;Person ...&gt;, ...}</pre>

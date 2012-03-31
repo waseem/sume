@@ -8,7 +8,7 @@ formats.</p>
 
 <h3>Examples</h3>
 
-<pre>datetime = DateTime.civil(2007, 12, 4, 0, 0, 0, 0)   # =&gt; Tue, 04 Dec 2007 00:00:00 +0000
+<pre data-language="ruby">datetime = DateTime.civil(2007, 12, 4, 0, 0, 0, 0)   # =&gt; Tue, 04 Dec 2007 00:00:00 +0000
 
 datetime.to_formatted_s(:db)            # =&gt; &quot;2007-12-04 00:00:00&quot;
 datetime.to_s(:db)                      # =&gt; &quot;2007-12-04 00:00:00&quot;
@@ -25,7 +25,7 @@ Time::DATE_FORMATS hash. Use the format name as the hash key and either a
 strftime string or Proc instance that takes a time or datetime argument as
 the value.</p>
 
-<pre># config/initializers/time_formats.rb
+<pre data-language="ruby"># config/initializers/time_formats.rb
 Time::DATE_FORMATS[:month_and_year] = &quot;%B %Y&quot;
 Time::DATE_FORMATS[:short_ordinal] = lambda { |time| time.strftime(&quot;%B #{time.day.ordinalize}&quot;) }</pre>
 

@@ -4,11 +4,11 @@
 <p>Converts a collection of elements into a formatted string by calling
 <tt>to_s</tt> on all elements and joining them:</p>
 
-<pre>Blog.all.to_formatted_s # =&gt; &quot;First PostSecond PostThird Post&quot;</pre>
+<pre data-language="ruby">Blog.all.to_formatted_s # =&gt; &quot;First PostSecond PostThird Post&quot;</pre>
 
 <p>Adding in the <tt>:db</tt> argument as the format yields a prettier output:</p>
 
-<pre>Blog.all.to_formatted_s(:db) # =&gt; &quot;First Post,Second Post,Third Post&quot;</pre>
+<pre data-language="ruby">Blog.all.to_formatted_s(:db) # =&gt; &quot;First Post,Second Post,Third Post&quot;</pre>
 
 
 

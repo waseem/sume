@@ -78,7 +78,7 @@ usually "FOR UPDATE".</p>
 
 <h4>Examples</h4>
 
-<pre># find by id
+<pre data-language="ruby"># find by id
 Person.find(1)       # returns the object for ID = 1
 Person.find(1, 2, 6) # returns an array for objects with IDs in (1, 2, 6)
 Person.find([7, 17]) # returns an array for objects with IDs in (7, 17)
@@ -91,7 +91,7 @@ to ensure the results are sorted.</p>
 
 <h4>Examples</h4>
 
-<pre># find first
+<pre data-language="ruby"># find first
 Person.first # returns the first object fetched by SELECT * FROM people
 Person.where([&quot;user_name = ?&quot;, user_name]).first
 Person.where([&quot;user_name = :u&quot;, { :u =&gt; user_name }]).first
@@ -116,13 +116,8 @@ two saves of <tt>person.visits = 3</tt>.  By locking the row, the second
 transaction has to wait until the first is finished; we get the expected
 <tt>person.visits == 4</tt>.</p>
 
-<pre>Person.transaction do
+<pre data-language="ruby">Person.transaction do
   person = Person.lock(true).find(1)
   person.visits += 1
   person.save!
 end</pre>
-
-
-
-
-

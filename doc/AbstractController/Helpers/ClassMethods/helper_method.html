@@ -4,7 +4,7 @@
 <p>Declare a controller method as a helper. For example, the following makes
 the <tt>current_user</tt> controller method available to the view:</p>
 
-<pre>class ApplicationController &lt; ActionController::Base
+<pre data-language="ruby">class ApplicationController &lt; ActionController::Base
   helper_method :current_user, :logged_in?
 
   def current_user
@@ -18,7 +18,7 @@ end</pre>
 
 <p>In a view:</p>
 
-<pre>&lt;% if logged_in? -%&gt;Welcome, &lt;%= current_user.name %&gt;&lt;% end -%&gt;</pre>
+<pre data-language="ruby">&lt;% if logged_in? -%&gt;Welcome, &lt;%= current_user.name %&gt;&lt;% end -%&gt;</pre>
 
 <h4>Parameters</h4>
 <ul><li>

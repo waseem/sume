@@ -4,7 +4,7 @@
 <p>Returns a list that represents commands that are the inverse of the
 commands stored in <tt>commands</tt>.  For example:</p>
 
-<pre>recorder.record(:rename_table, [:old, :new])
+<pre data-language="ruby">recorder.record(:rename_table, [:old, :new])
 recorder.inverse # =&gt; [:rename_table, [:new, :old]]</pre>
 
 <p>This method will raise an IrreversibleMigration exception if it cannot

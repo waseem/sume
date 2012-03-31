@@ -9,7 +9,7 @@ using the :as option.</p>
 <p>To bypass mass-assignment security you can use the :without_protection
 =&gt; true option.</p>
 
-<pre>class User &lt; ActiveRecord::Base
+<pre data-language="ruby">class User &lt; ActiveRecord::Base
   attr_accessible :name
   attr_accessible :name, :is_admin, :as =&gt; :admin
 end

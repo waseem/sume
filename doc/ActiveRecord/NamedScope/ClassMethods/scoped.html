@@ -3,7 +3,7 @@
 
 <p>Returns an anonymous scope.</p>
 
-<pre>posts = Post.scoped
+<pre data-language="ruby">posts = Post.scoped
 posts.size # Fires &quot;select count(*) from  posts&quot; and returns the count
 posts.each {|p| puts p.name } # Fires &quot;select * from posts&quot; and loads post objects
 

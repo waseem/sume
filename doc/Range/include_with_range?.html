@@ -3,13 +3,13 @@
 
 <p>Extends the default Range#include? to support range comparisons.</p>
 
-<pre>(1..5).include?(1..5) # =&gt; true
+<pre data-language="ruby">(1..5).include?(1..5) # =&gt; true
 (1..5).include?(2..3) # =&gt; true
 (1..5).include?(2..6) # =&gt; false</pre>
 
 <p>The native Range#include? behavior is untouched.</p>
 
-<pre>(&quot;a&quot;..&quot;f&quot;).include?(&quot;c&quot;) # =&gt; true
+<pre data-language="ruby">(&quot;a&quot;..&quot;f&quot;).include?(&quot;c&quot;) # =&gt; true
 (5..9).include?(11) # =&gt; false</pre>
 
 

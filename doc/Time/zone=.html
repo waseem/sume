@@ -21,7 +21,7 @@ basis and reset it when the request is done.
 <tt>current_user.time_zone</tt> just needs to return a string identifying
 the user's preferred time zone:</p>
 
-<pre>class ApplicationController &lt; ActionController::Base
+<pre data-language="ruby">class ApplicationController &lt; ActionController::Base
   around_filter :set_time_zone
 
   def set_time_zone

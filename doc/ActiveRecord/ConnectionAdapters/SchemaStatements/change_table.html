@@ -5,7 +5,7 @@
 
 <h3>Example</h3>
 
-<pre># change_table() yields a Table instance
+<pre data-language="ruby"># change_table() yields a Table instance
 change_table(:suppliers) do |t|
   t.column :name, :string, :limit =&gt; 60
   # Other column alterations here
@@ -24,25 +24,25 @@ end</pre>
 
 <h6>Add a column</h6>
 
-<pre>change_table(:suppliers) do |t|
+<pre data-language="ruby">change_table(:suppliers) do |t|
   t.column :name, :string, :limit =&gt; 60
 end</pre>
 
 <h6>Add 2 integer columns</h6>
 
-<pre>change_table(:suppliers) do |t|
+<pre data-language="ruby">change_table(:suppliers) do |t|
   t.integer :width, :height, :null =&gt; false, :default =&gt; 0
 end</pre>
 
 <h6>Add created_at/updated_at columns</h6>
 
-<pre>change_table(:suppliers) do |t|
+<pre data-language="ruby">change_table(:suppliers) do |t|
   t.timestamps
 end</pre>
 
 <h6>Add a foreign key column</h6>
 
-<pre>change_table(:suppliers) do |t|
+<pre data-language="ruby">change_table(:suppliers) do |t|
   t.references :company
 end</pre>
 
@@ -50,7 +50,7 @@ end</pre>
 
 <h6>Add a polymorphic foreign key column</h6>
 
-<pre>change_table(:suppliers) do |t|
+<pre data-language="ruby">change_table(:suppliers) do |t|
   t.belongs_to :company, :polymorphic =&gt; true
 end</pre>
 
@@ -59,20 +59,20 @@ columns</p>
 
 <h6>Remove a column</h6>
 
-<pre>change_table(:suppliers) do |t|
+<pre data-language="ruby">change_table(:suppliers) do |t|
   t.remove :company
 end</pre>
 
 <h6>Remove several columns</h6>
 
-<pre>change_table(:suppliers) do |t|
+<pre data-language="ruby">change_table(:suppliers) do |t|
   t.remove :company_id
   t.remove :width, :height
 end</pre>
 
 <h6>Remove an index</h6>
 
-<pre>change_table(:suppliers) do |t|
+<pre data-language="ruby">change_table(:suppliers) do |t|
   t.remove_index :company_id
 end</pre>
 

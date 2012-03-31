@@ -7,7 +7,7 @@ present token and options.</p>
 <p>controller      - ActionController::Base instance for the current request.
 login_procedure - Proc to call if a token is present.  The Proc should</p>
 
-<pre>take 2 arguments:
+<pre data-language="ruby">take 2 arguments:
   authenticate(controller) { |token, options| ... }</pre>
 
 <p>Returns the return value of `&amp;login_procedure` if a token is found.

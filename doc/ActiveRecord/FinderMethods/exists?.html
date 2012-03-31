@@ -27,7 +27,7 @@ primary key column, like <tt>id = 'name = \'Jamie\''</tt>.</p>
 
 <h4>Examples</h4>
 
-<pre>Person.exists?(5)
+<pre data-language="ruby">Person.exists?(5)
 Person.exists?('5')
 Person.exists?(:name =&gt; &quot;David&quot;)
 Person.exists?(['name LIKE ?', &quot;%#{query}%&quot;])

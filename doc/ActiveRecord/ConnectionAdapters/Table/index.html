@@ -8,15 +8,15 @@ or an Array of Symbols. See SchemaStatements#add_index</p>
 
 <h6>Creating a simple index</h6>
 
-<pre>t.index(:name)</pre>
+<pre data-language="ruby">t.index(:name)</pre>
 
 <h6>Creating a unique index</h6>
 
-<pre>t.index([:branch_id, :party_id], :unique =&gt; true)</pre>
+<pre data-language="ruby">t.index([:branch_id, :party_id], :unique =&gt; true)</pre>
 
 <h6>Creating a named index</h6>
 
-<pre>t.index([:branch_id, :party_id], :unique =&gt; true, :name =&gt; 'by_branch_party')</pre>
+<pre data-language="ruby">t.index([:branch_id, :party_id], :unique =&gt; true, :name =&gt; 'by_branch_party')</pre>
 
 
 

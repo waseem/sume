@@ -3,13 +3,13 @@
 
 <p>Scopes routes to a specific namespace. For example:</p>
 
-<pre>namespace :admin do
+<pre data-language="ruby">namespace :admin do
   resources :posts
 end</pre>
 
 <p>This generates the following routes:</p>
 
-<pre>    admin_posts GET    /admin/posts(.:format)          {:action=&gt;&quot;index&quot;, :controller=&gt;&quot;admin/posts&quot;}
+<pre data-language="ruby">    admin_posts GET    /admin/posts(.:format)          {:action=&gt;&quot;index&quot;, :controller=&gt;&quot;admin/posts&quot;}
     admin_posts POST   /admin/posts(.:format)          {:action=&gt;&quot;create&quot;, :controller=&gt;&quot;admin/posts&quot;}
  new_admin_post GET    /admin/posts/new(.:format)      {:action=&gt;&quot;new&quot;, :controller=&gt;&quot;admin/posts&quot;}
 edit_admin_post GET    /admin/posts/:id/edit(.:format) {:action=&gt;&quot;edit&quot;, :controller=&gt;&quot;admin/posts&quot;}
@@ -28,7 +28,7 @@ see <tt>Resources#resources</tt>.</p>
 
 <h3>Examples</h3>
 
-<pre># accessible through /sekret/posts rather than /admin/posts
+<pre data-language="ruby"># accessible through /sekret/posts rather than /admin/posts
 namespace :admin, :path =&gt; &quot;sekret&quot; do
   resources :posts
 end

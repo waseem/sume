@@ -5,21 +5,21 @@
 the system. Useful for making sure that only one user can be named
 "davidhh".</p>
 
-<pre>class Person &lt; ActiveRecord::Base
+<pre data-language="ruby">class Person &lt; ActiveRecord::Base
   validates_uniqueness_of :user_name
 end</pre>
 
 <p>It can also validate whether the value of the specified attributes are
 unique based on a scope parameter:</p>
 
-<pre>class Person &lt; ActiveRecord::Base
+<pre data-language="ruby">class Person &lt; ActiveRecord::Base
   validates_uniqueness_of :user_name, :scope =&gt; :account_id
 end</pre>
 
 <p>Or even multiple scope parameters.  For example, making sure that a teacher
 can only be on the schedule once per semester for a particular class.</p>
 
-<pre>class TeacherSchedule &lt; ActiveRecord::Base
+<pre data-language="ruby">class TeacherSchedule &lt; ActiveRecord::Base
   validates_uniqueness_of :teacher_id, :scope =&gt; [:semester_id, :class_id]
 end</pre>
 
@@ -67,7 +67,7 @@ the same time, and a Comment's title must be unique. At the database-level,
 the actions performed by these users could be interleaved in the following
 manner:</p>
 
-<pre>             User 1                 |               User 2
+<pre data-language="ruby">             User 1                 |               User 2
 ------------------------------------+--------------------------------------
 # User 1 checks whether there's     |
 # already a comment with the title  |

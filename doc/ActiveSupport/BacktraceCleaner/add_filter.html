@@ -6,7 +6,7 @@ mapped against this filter.</p>
 
 <p>Example:</p>
 
-<pre># Will turn &quot;/my/rails/root/app/models/person.rb&quot; into &quot;/app/models/person.rb&quot;
+<pre data-language="ruby"># Will turn &quot;/my/rails/root/app/models/person.rb&quot; into &quot;/app/models/person.rb&quot;
 backtrace_cleaner.add_filter { |line| line.gsub(Rails.root, '') }</pre>
 
 

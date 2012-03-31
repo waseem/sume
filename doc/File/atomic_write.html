@@ -4,14 +4,14 @@
 <p>Write to a file atomically.  Useful for situations where you don't want
 other processes or threads to see half-written files.</p>
 
-<pre>File.atomic_write(&quot;important.file&quot;) do |file|
+<pre data-language="ruby">File.atomic_write(&quot;important.file&quot;) do |file|
   file.write(&quot;hello&quot;)
 end</pre>
 
 <p>If your temp directory is not on the same filesystem as the file you're
 trying to write, you can provide a different temporary directory.</p>
 
-<pre>File.atomic_write(&quot;/data/something.important&quot;, &quot;/data/tmp&quot;) do |file|
+<pre data-language="ruby">File.atomic_write(&quot;/data/something.important&quot;, &quot;/data/tmp&quot;) do |file|
   file.write(&quot;hello&quot;)
 end</pre>
 

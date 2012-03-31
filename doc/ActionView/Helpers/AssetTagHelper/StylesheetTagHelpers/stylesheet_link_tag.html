@@ -8,7 +8,7 @@ last argument.</p>
 
 <h4>Examples</h4>
 
-<pre>stylesheet_link_tag &quot;style&quot; # =&gt;
+<pre data-language="ruby">stylesheet_link_tag &quot;style&quot; # =&gt;
   &lt;link href=&quot;/stylesheets/style.css&quot; media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
 
 stylesheet_link_tag &quot;style.css&quot; # =&gt;
@@ -30,7 +30,7 @@ stylesheet_link_tag &quot;random.styles&quot;, &quot;/css/stylish&quot; # =&gt;
 <p>You can also include all styles in the stylesheets directory using
 <tt>:all</tt> as the source:</p>
 
-<pre>stylesheet_link_tag :all # =&gt;
+<pre data-language="ruby">stylesheet_link_tag :all # =&gt;
   &lt;link href=&quot;/stylesheets/style1.css&quot;  media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
   &lt;link href=&quot;/stylesheets/styleB.css&quot;  media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
   &lt;link href=&quot;/stylesheets/styleX2.css&quot; media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;</pre>
@@ -38,7 +38,7 @@ stylesheet_link_tag &quot;random.styles&quot;, &quot;/css/stylish&quot; # =&gt;
 <p>If you want Rails to search in all the subdirectories under stylesheets,
 you should explicitly set <tt>:recursive</tt>:</p>
 
-<pre>stylesheet_link_tag :all, :recursive =&gt; true</pre>
+<pre data-language="ruby">stylesheet_link_tag :all, :recursive =&gt; true</pre>
 
 <h2>Caching multiple stylesheets into one</h2>
 
@@ -50,7 +50,7 @@ but not for the development environment). Examples:</p>
 
 <h4>Examples</h4>
 
-<pre>stylesheet_link_tag :all, :cache =&gt; true # when config.perform_caching is false =&gt;
+<pre data-language="ruby">stylesheet_link_tag :all, :cache =&gt; true # when config.perform_caching is false =&gt;
   &lt;link href=&quot;/stylesheets/style1.css&quot;  media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
   &lt;link href=&quot;/stylesheets/styleB.css&quot;  media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
   &lt;link href=&quot;/stylesheets/styleX2.css&quot; media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;
@@ -68,12 +68,12 @@ stylesheet_link_tag &quot;shop&quot;, &quot;cart&quot;, &quot;checkout&quot;, :c
 
 <p>The <tt>:recursive</tt> option is also available for caching:</p>
 
-<pre>stylesheet_link_tag :all, :cache =&gt; true, :recursive =&gt; true</pre>
+<pre data-language="ruby">stylesheet_link_tag :all, :cache =&gt; true, :recursive =&gt; true</pre>
 
 <p>To force concatenation (even in development mode) set <tt>:concat</tt> to
 true. This is useful if you have too many stylesheets for IE to load.</p>
 
-<pre>stylesheet_link_tag :all, :concat =&gt; true</pre>
+<pre data-language="ruby">stylesheet_link_tag :all, :concat =&gt; true</pre>
 
 
 

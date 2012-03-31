@@ -12,7 +12,7 @@ will default to the commonly used pattern of: #{table_name}_seq</p>
 <p>If a sequence name is not explicitly set when using PostgreSQL, it will
 discover the sequence corresponding to your primary key for you.</p>
 
-<pre>class Project &lt; ActiveRecord::Base
+<pre data-language="ruby">class Project &lt; ActiveRecord::Base
   set_sequence_name &quot;projectseq&quot;   # default would have been &quot;project_seq&quot;
 end</pre>
 

@@ -11,7 +11,7 @@ record for destruction.</p>
 
 <p>For example:</p>
 
-<pre>assign_nested_attributes_for_collection_association(:people, {
+<pre data-language="ruby">assign_nested_attributes_for_collection_association(:people, {
   '1' =&gt; { :id =&gt; '1', :name =&gt; 'Peter' },
   '2' =&gt; { :name =&gt; 'John' },
   '3' =&gt; { :id =&gt; '2', :_destroy =&gt; true }
@@ -23,7 +23,7 @@ destruction.</p>
 
 <p>Also accepts an Array of attribute hashes:</p>
 
-<pre>assign_nested_attributes_for_collection_association(:people, [
+<pre data-language="ruby">assign_nested_attributes_for_collection_association(:people, [
   { :id =&gt; '1', :name =&gt; 'Peter' },
   { :name =&gt; 'John' },
   { :id =&gt; '2', :_destroy =&gt; true }

@@ -39,7 +39,7 @@ associations. This option is off by default.</p>
 
 <p>Examples:</p>
 
-<pre># creates avatar_attributes=
+<pre data-language="ruby"># creates avatar_attributes=
 accepts_nested_attributes_for :avatar, :reject_if =&gt; proc { |attributes| attributes['name'].blank? }
 # creates avatar_attributes=
 accepts_nested_attributes_for :avatar, :reject_if =&gt; :all_blank

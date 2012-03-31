@@ -4,7 +4,7 @@
 <p>Returns the AssociationReflection object specified in the <tt>:through</tt>
 option of a HasManyThrough or HasOneThrough association.</p>
 
-<pre>class Post &lt; ActiveRecord::Base
+<pre data-language="ruby">class Post &lt; ActiveRecord::Base
   has_many :taggings
   has_many :tags, :through =&gt; :taggings
 end

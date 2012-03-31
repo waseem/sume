@@ -23,7 +23,7 @@ for each element.</p>
 <p>If the response contains two ordered lists, each with four list elements
 then:</p>
 
-<pre>assert_select &quot;ol&quot; do |elements|
+<pre data-language="ruby">assert_select &quot;ol&quot; do |elements|
   elements.each do |element|
     assert_select element, &quot;li&quot;, 4
   end
@@ -31,7 +31,7 @@ end</pre>
 
 <p>will pass, as will:</p>
 
-<pre>assert_select &quot;ol&quot; do
+<pre data-language="ruby">assert_select &quot;ol&quot; do
   assert_select &quot;li&quot;, 8
 end</pre>
 
@@ -83,7 +83,7 @@ the block is called with an array of all matched elements.</p>
 
 <h4>Examples</h4>
 
-<pre># At least one form element
+<pre data-language="ruby"># At least one form element
 assert_select &quot;form&quot;
 
 # Form element includes four input fields

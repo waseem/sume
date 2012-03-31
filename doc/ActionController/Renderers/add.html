@@ -12,7 +12,7 @@ to <tt>render</tt>.</p>
 
 <p>Create a csv renderer:</p>
 
-<pre>ActionController::Renderers.add :csv do |obj, options|
+<pre data-language="ruby">ActionController::Renderers.add :csv do |obj, options|
   filename = options[:filename] || 'data'
   str = obj.respond_to?(:to_csv) ? obj.to_csv : obj.to_s
   send_data str, :type =&gt; Mime::CSV,
@@ -25,7 +25,7 @@ For a custom renderer, you'll need to register a mime type with
 
 <p>To use the csv renderer in a controller action:</p>
 
-<pre>def show
+<pre data-language="ruby">def show
   @csvable = Csvable.find(params[:id])
   respond_to do |format|
     format.html

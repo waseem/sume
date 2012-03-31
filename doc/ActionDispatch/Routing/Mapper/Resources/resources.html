@@ -6,12 +6,12 @@ URLs and controller actions. By convention, each action also maps to
 particular CRUD operations in a database. A single entry in the routing
 file, such as</p>
 
-<pre>resources :photos</pre>
+<pre data-language="ruby">resources :photos</pre>
 
 <p>creates seven different routes in your application, all mapping to the
 <tt>Photos</tt> controller:</p>
 
-<pre>GET     /photos/new
+<pre data-language="ruby">GET     /photos/new
 POST    /photos
 GET     /photos/:id
 GET     /photos/:id/edit
@@ -20,13 +20,13 @@ DELETE  /photos/:id</pre>
 
 <p>Resources can also be nested infinitely by using this block syntax:</p>
 
-<pre>resources :photos do
+<pre data-language="ruby">resources :photos do
   resources :comments
 end</pre>
 
 <p>This generates the following comments routes:</p>
 
-<pre>GET     /photos/:id/comments/new
+<pre data-language="ruby">GET     /photos/:id/comments/new
 POST    /photos/:id/comments
 GET     /photos/:id/comments/:id
 GET     /photos/:id/comments/:id/edit
@@ -41,33 +41,33 @@ DELETE  /photos/:id/comments/:id</pre>
 <p>Allows you to change the paths of the seven default actions. Paths not
 specified are not changed.</p>
 
-<pre>resources :posts, :path_names =&gt; { :new =&gt; &quot;brand_new&quot; }</pre>
+<pre data-language="ruby">resources :posts, :path_names =&gt; { :new =&gt; &quot;brand_new&quot; }</pre>
 
 <p>The above example will now change /posts/new to /posts/brand_new</p>
 </dd><dt>:only</dt>
 <dd>
 <p>Only generate routes for the given actions.</p>
 
-<pre>resources :cows, :only =&gt; :show
+<pre data-language="ruby">resources :cows, :only =&gt; :show
 resources :cows, :only =&gt; [:show, :index]</pre>
 </dd><dt>:except</dt>
 <dd>
 <p>Generate all routes except for the given actions.</p>
 
-<pre>resources :cows, :except =&gt; :show
+<pre data-language="ruby">resources :cows, :except =&gt; :show
 resources :cows, :except =&gt; [:show, :index]</pre>
 </dd><dt>:shallow</dt>
 <dd>
 <p>Generates shallow routes for nested resource(s). When placed on a parent
 resource, generates shallow routes for all nested resources.</p>
 
-<pre>resources :posts, :shallow =&gt; true do
+<pre data-language="ruby">resources :posts, :shallow =&gt; true do
   resources :comments
 end</pre>
 
 <p>Is the same as:</p>
 
-<pre>resources :posts do
+<pre data-language="ruby">resources :posts do
   resources :comments, :except =&gt; [:show, :edit, :update, :destroy]
 end
 resources :comments, :only =&gt; [:show, :edit, :update, :destroy]</pre>
@@ -82,7 +82,7 @@ as a comment on a blog post like
 
 <p>scope :shallow_path =&gt; "sekret" do</p>
 
-<pre>resources :posts do
+<pre data-language="ruby">resources :posts do
   resources :comments, :shallow =&gt; true
 end</pre>
 
@@ -91,7 +91,7 @@ end</pre>
 <p>The <tt>comments</tt> resource here will have the following routes
 generated for it:</p>
 
-<pre>post_comments    GET    /posts/:post_id/comments(.:format)
+<pre data-language="ruby">post_comments    GET    /posts/:post_id/comments(.:format)
 post_comments    POST   /posts/:post_id/comments(.:format)
 new_post_comment GET    /posts/:post_id/comments/new(.:format)
 edit_comment     GET    /sekret/comments/:id/edit(.:format)
@@ -102,7 +102,7 @@ comment          DELETE /sekret/comments/:id(.:format)</pre>
 
 <h3>Examples</h3>
 
-<pre># routes call &lt;tt&gt;Admin::PostsController&lt;/tt&gt;
+<pre data-language="ruby"># routes call &lt;tt&gt;Admin::PostsController&lt;/tt&gt;
 resources :posts, :module =&gt; &quot;admin&quot;
 
 # resource actions are at /admin/posts.

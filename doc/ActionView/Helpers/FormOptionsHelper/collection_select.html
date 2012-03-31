@@ -15,7 +15,7 @@ used as the <tt>value</tt> attribute and contents of each
 
 <p>Example object structure for use with this method:</p>
 
-<pre>class Post &lt; ActiveRecord::Base
+<pre data-language="ruby">class Post &lt; ActiveRecord::Base
   belongs_to :author
 end
 class Author &lt; ActiveRecord::Base
@@ -28,11 +28,11 @@ end</pre>
 <p>Sample usage (selecting the associated Author for an instance of Post,
 <tt>@post</tt>):</p>
 
-<pre>collection_select(:post, :author_id, Author.all, :id, :name_with_initial, :prompt =&gt; true)</pre>
+<pre data-language="ruby">collection_select(:post, :author_id, Author.all, :id, :name_with_initial, :prompt =&gt; true)</pre>
 
 <p>If <tt>@post.author_id</tt> is already <tt>1</tt>, this would return:</p>
 
-<pre>&lt;select name=&quot;post[author_id]&quot;&gt;
+<pre data-language="ruby">&lt;select name=&quot;post[author_id]&quot;&gt;
   &lt;option value=&quot;&quot;&gt;Please select&lt;/option&gt;
   &lt;option value=&quot;1&quot; selected=&quot;selected&quot;&gt;D. Heinemeier Hansson&lt;/option&gt;
   &lt;option value=&quot;2&quot;&gt;D. Thomas&lt;/option&gt;

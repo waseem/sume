@@ -262,7 +262,7 @@ associations for more detail.</p>
 
 <p>Option examples:</p>
 
-<pre>has_many :comments, :order =&gt; &quot;posted_on&quot;
+<pre data-language="ruby">has_many :comments, :order =&gt; &quot;posted_on&quot;
 has_many :comments, :include =&gt; :author
 has_many :people, :class_name =&gt; &quot;Person&quot;, :conditions =&gt; &quot;deleted = 0&quot;, :order =&gt; &quot;name&quot;
 has_many :tracks, :order =&gt; &quot;position&quot;, :dependent =&gt; :destroy

@@ -26,7 +26,7 @@ that are triggered from multiple places. Short-hand for
 
 <p>Examples:</p>
 
-<pre>redirect_to :action =&gt; &quot;show&quot;, :id =&gt; 5
+<pre data-language="ruby">redirect_to :action =&gt; &quot;show&quot;, :id =&gt; 5
 redirect_to post
 redirect_to &quot;http://www.rubyonrails.org&quot;
 redirect_to &quot;/images/screenshot.jpg&quot;
@@ -38,7 +38,7 @@ redirect_to proc { edit_post_url(@post) }</pre>
 
 <p>Examples:</p>
 
-<pre>redirect_to post_url(@post), :status =&gt; :found
+<pre data-language="ruby">redirect_to post_url(@post), :status =&gt; :found
 redirect_to :action=&gt;'atom', :status =&gt; :moved_permanently
 redirect_to post_url(@post), :status =&gt; 301
 redirect_to :action=&gt;'atom', :status =&gt; 302</pre>
@@ -56,7 +56,7 @@ There are two special accessors for the commonly used flash names
 
 <p>Examples:</p>
 
-<pre>redirect_to post_url(@post), :alert =&gt; &quot;Watch it, mister!&quot;
+<pre data-language="ruby">redirect_to post_url(@post), :alert =&gt; &quot;Watch it, mister!&quot;
 redirect_to post_url(@post), :status=&gt; :found, :notice =&gt; &quot;Pay attention to the road&quot;
 redirect_to post_url(@post), :status =&gt; 301, :flash =&gt; { :updated_post_id =&gt; @post.id }
 redirect_to { :action=&gt;'atom' }, :alert =&gt; &quot;Something serious happened&quot;</pre>

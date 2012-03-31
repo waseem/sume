@@ -5,7 +5,7 @@
 
 <p>To give attribute <tt>:age</tt> the initial value <tt>25</tt>:</p>
 
-<pre>class Person
+<pre data-language="ruby">class Person
   attr_accessor_with_default :age, 25
 end
 
@@ -18,7 +18,7 @@ person.age # =&gt; 26</pre>
 <p>To give attribute <tt>:element_name</tt> a dynamic default value, evaluated
 in scope of self:</p>
 
-<pre>attr_accessor_with_default(:element_name) { name.underscore }</pre>
+<pre data-language="ruby">attr_accessor_with_default(:element_name) { name.underscore }</pre>
 
 
 

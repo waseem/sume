@@ -5,7 +5,7 @@
 <tt>:unless</tt> options may be passed in order to control when the
 callback is skipped.</p>
 
-<pre>class Writer &lt; Person
+<pre data-language="ruby">class Writer &lt; Person
    skip_callback :validate, :before, :check_membership, :if =&gt; lambda { self.age &gt; 18 }
 end</pre>
 

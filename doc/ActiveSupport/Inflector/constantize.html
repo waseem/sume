@@ -3,14 +3,14 @@
 
 <p>Tries to find a constant with the name specified in the argument string:</p>
 
-<pre>&quot;Module&quot;.constantize     # =&gt; Module
+<pre data-language="ruby">&quot;Module&quot;.constantize     # =&gt; Module
 &quot;Test::Unit&quot;.constantize # =&gt; Test::Unit</pre>
 
 <p>The name is assumed to be the one of a top-level constant, no matter
 whether it starts with "::" or not. No lexical context is taken into
 account:</p>
 
-<pre>C = 'outside'
+<pre data-language="ruby">C = 'outside'
 module M
   C = 'inside'
   C               # =&gt; 'inside'

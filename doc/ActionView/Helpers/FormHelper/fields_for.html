@@ -7,7 +7,7 @@ specifying additional model objects in the same form.</p>
 
 <h3>Generic Examples</h3>
 
-<pre>&lt;%= form_for @person do |person_form| %&gt;
+<pre data-language="ruby">&lt;%= form_for @person do |person_form| %&gt;
   First name: &lt;%= person_form.text_field :first_name %&gt;
   Last name : &lt;%= person_form.text_field :last_name %&gt;
 
@@ -21,13 +21,13 @@ specifying additional model objects in the same form.</p>
 <p>...or if you have an object that needs to be represented as a different
 parameter, like a Client that acts as a Person:</p>
 
-<pre>&lt;%= fields_for :person, @client do |permission_fields| %&gt;
+<pre data-language="ruby">&lt;%= fields_for :person, @client do |permission_fields| %&gt;
   Admin?: &lt;%= permission_fields.check_box :admin %&gt;
 &lt;% end %&gt;</pre>
 
 <p>...or if you don't have an object, just a name of the parameter:</p>
 
-<pre>&lt;%= fields_for :person do |permission_fields| %&gt;
+<pre data-language="ruby">&lt;%= fields_for :person do |permission_fields| %&gt;
   Admin?: &lt;%= permission_fields.check_box :admin %&gt;
 &lt;% end %&gt;</pre>
 
@@ -58,7 +58,7 @@ object or an <em>array</em> of objects.</p>
 <tt>address</tt> reader method and responds to the
 <tt>address_attributes=</tt> writer method:</p>
 
-<pre>class Person
+<pre data-language="ruby">class Person
   def address
     @address
   end
@@ -70,7 +70,7 @@ end</pre>
 
 <p>This model can now be used with a nested fields_for, like so:</p>
 
-<pre>&lt;%= form_for @person do |person_form| %&gt;
+<pre data-language="ruby">&lt;%= form_for @person do |person_form| %&gt;
   ...
   &lt;%= person_form.fields_for :address do |address_fields| %&gt;
     Street  : &lt;%= address_fields.text_field :street %&gt;
@@ -82,7 +82,7 @@ end</pre>
 <p>When address is already an association on a Person you can use
 <tt>accepts_nested_attributes_for</tt> to define the writer method for you:</p>
 
-<pre>class Person &lt; ActiveRecord::Base
+<pre data-language="ruby">class Person &lt; ActiveRecord::Base
   has_one :address
   accepts_nested_attributes_for :address
 end</pre>
@@ -91,7 +91,7 @@ end</pre>
 enable it first using the <tt>:allow_destroy</tt> option for
 <tt>accepts_nested_attributes_for</tt>:</p>
 
-<pre>class Person &lt; ActiveRecord::Base
+<pre data-language="ruby">class Person &lt; ActiveRecord::Base
   has_one :address
   accepts_nested_attributes_for :address, :allow_destroy =&gt; true
 end</pre>
@@ -100,7 +100,7 @@ end</pre>
 a value that evaluates to <tt>true</tt>, you will destroy the associated
 model (eg. 1, '1', true, or 'true'):</p>
 
-<pre>&lt;%= form_for @person do |person_form| %&gt;
+<pre data-language="ruby">&lt;%= form_for @person do |person_form| %&gt;
   ...
   &lt;%= person_form.fields_for :address do |address_fields| %&gt;
     ...
@@ -115,7 +115,7 @@ model (eg. 1, '1', true, or 'true'):</p>
 instances from the <tt>projects</tt> reader method and responds to the
 <tt>projects_attributes=</tt> writer method:</p>
 
-<pre>class Person
+<pre data-language="ruby">class Person
   def projects
     [@project1, @project2]
   end
@@ -129,7 +129,7 @@ end</pre>
 nested fields_for call will be repeated for each instance in the
 collection:</p>
 
-<pre>&lt;%= form_for @person do |person_form| %&gt;
+<pre data-language="ruby">&lt;%= form_for @person do |person_form| %&gt;
   ...
   &lt;%= person_form.fields_for :projects do |project_fields| %&gt;
     &lt;% if project_fields.object.active? %&gt;
@@ -141,7 +141,7 @@ collection:</p>
 
 <p>It's also possible to specify the instance to be used:</p>
 
-<pre>&lt;%= form_for @person do |person_form| %&gt;
+<pre data-language="ruby">&lt;%= form_for @person do |person_form| %&gt;
   ...
   &lt;% @person.projects.each do |project| %&gt;
     &lt;% if project.active? %&gt;
@@ -155,7 +155,7 @@ collection:</p>
 
 <p>Or a collection to be used:</p>
 
-<pre>&lt;%= form_for @person do |person_form| %&gt;
+<pre data-language="ruby">&lt;%= form_for @person do |person_form| %&gt;
   ...
   &lt;%= person_form.fields_for :projects, @active_projects do |project_fields| %&gt;
     Name: &lt;%= project_fields.text_field :name %&gt;
@@ -166,7 +166,7 @@ collection:</p>
 <p>When projects is already an association on Person you can use
 <tt>accepts_nested_attributes_for</tt> to define the writer method for you:</p>
 
-<pre>class Person &lt; ActiveRecord::Base
+<pre data-language="ruby">class Person &lt; ActiveRecord::Base
   has_many :projects
   accepts_nested_attributes_for :projects
 end</pre>
@@ -175,7 +175,7 @@ end</pre>
 have to enable it first using the <tt>:allow_destroy</tt> option for
 <tt>accepts_nested_attributes_for</tt>:</p>
 
-<pre>class Person &lt; ActiveRecord::Base
+<pre data-language="ruby">class Person &lt; ActiveRecord::Base
   has_many :projects
   accepts_nested_attributes_for :projects, :allow_destroy =&gt; true
 end</pre>
@@ -184,7 +184,7 @@ end</pre>
 hash by adding a form element for the <tt>_destroy</tt> parameter with a
 value that evaluates to <tt>true</tt> (eg. 1, '1', true, or 'true'):</p>
 
-<pre>&lt;%= form_for @person do |person_form| %&gt;
+<pre data-language="ruby">&lt;%= form_for @person do |person_form| %&gt;
   ...
   &lt;%= person_form.fields_for :projects do |project_fields| %&gt;
     Delete: &lt;%= project_fields.check_box :_destroy %&gt;

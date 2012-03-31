@@ -4,7 +4,7 @@
 <p>Add the submit button for the given form. When no value is given, it checks
 if the object is a new resource or not to create the proper label:</p>
 
-<pre>&lt;%= form_for @post do |f| %&gt;
+<pre data-language="ruby">&lt;%= form_for @post do |f| %&gt;
   &lt;%= f.submit %&gt;
 &lt;% end %&gt;</pre>
 
@@ -14,7 +14,7 @@ as submit button label, otherwise, it uses "Update Post".</p>
 <p>Those labels can be customized using I18n, under the helpers.submit key and
 accept the %{model} as translation interpolation:</p>
 
-<pre>en:
+<pre data-language="ruby">en:
   helpers:
     submit:
       create: &quot;Create a %{model}&quot;
@@ -22,7 +22,7 @@ accept the %{model} as translation interpolation:</p>
 
 <p>It also searches for a key specific for the given object:</p>
 
-<pre>en:
+<pre data-language="ruby">en:
   helpers:
     submit:
       post:

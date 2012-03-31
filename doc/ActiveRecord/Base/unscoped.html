@@ -4,7 +4,7 @@
 <p>Returns a scope for this class without taking into account the
 default_scope.</p>
 
-<pre>class Post &lt; ActiveRecord::Base
+<pre data-language="ruby">class Post &lt; ActiveRecord::Base
   def self.default_scope
     where :published =&gt; true
   end
@@ -16,7 +16,7 @@ Post.unscoped.all # Fires &quot;SELECT * FROM posts&quot;</pre>
 <p>This method also accepts a block meaning that all queries inside the block
 will not use the default_scope:</p>
 
-<pre>Post.unscoped {
+<pre data-language="ruby">Post.unscoped {
   Post.limit(10) # Fires &quot;SELECT * FROM posts LIMIT 10&quot;
 }</pre>
 

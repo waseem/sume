@@ -18,7 +18,7 @@ to update as keys and the amount to update the field by as values.</p>
 
 <h4>Examples</h4>
 
-<pre># For the Post with id of 5, decrement the comment_count by 1, and
+<pre data-language="ruby"># For the Post with id of 5, decrement the comment_count by 1, and
 # increment the action_count by 1
 Post.update_counters 5, :comment_count =&gt; -1, :action_count =&gt; 1
 # Executes the following SQL:

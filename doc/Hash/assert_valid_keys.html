@@ -7,7 +7,7 @@ strings for keys but assert symbols as keys, this will fail.</p>
 
 <h4>Examples</h4>
 
-<pre>{ :name =&gt; &quot;Rob&quot;, :years =&gt; &quot;28&quot; }.assert_valid_keys(:name, :age) # =&gt; raises &quot;ArgumentError: Unknown key: years&quot;
+<pre data-language="ruby">{ :name =&gt; &quot;Rob&quot;, :years =&gt; &quot;28&quot; }.assert_valid_keys(:name, :age) # =&gt; raises &quot;ArgumentError: Unknown key: years&quot;
 { :name =&gt; &quot;Rob&quot;, :age =&gt; &quot;28&quot; }.assert_valid_keys(&quot;name&quot;, &quot;age&quot;) # =&gt; raises &quot;ArgumentError: Unknown key: name&quot;
 { :name =&gt; &quot;Rob&quot;, :age =&gt; &quot;28&quot; }.assert_valid_keys(:name, :age) # =&gt; passes, raises nothing</pre>
 

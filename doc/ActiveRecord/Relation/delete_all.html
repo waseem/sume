@@ -17,7 +17,7 @@ affected.</p>
 
 <h4>Example</h4>
 
-<pre>Post.delete_all(&quot;person_id = 5 AND (category = 'Something' OR category = 'Else')&quot;)
+<pre data-language="ruby">Post.delete_all(&quot;person_id = 5 AND (category = 'Something' OR category = 'Else')&quot;)
 Post.delete_all([&quot;person_id = ? AND (category = ? OR category = ?)&quot;, 5, 'Something', 'Else'])
 Post.where(:person_id =&gt; 5).where(:category =&gt; ['Something', 'Else']).delete_all</pre>
 

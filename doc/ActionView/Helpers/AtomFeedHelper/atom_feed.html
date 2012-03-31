@@ -6,7 +6,7 @@
 
 <p>Full usage example:</p>
 
-<pre>config/routes.rb:
+<pre data-language="ruby">config/routes.rb:
   Basecamp::Application.routes.draw do
     resources :posts
     root :to =&gt; &quot;posts#index&quot;
@@ -69,7 +69,7 @@ value).</p>
 
 <p>Other namespaces can be added to the root element:</p>
 
-<pre>app/views/posts/index.atom.builder:
+<pre data-language="ruby">app/views/posts/index.atom.builder:
   atom_feed({'xmlns:app' =&gt; 'http://www.w3.org/2007/app',
       'xmlns:openSearch' =&gt; 'http://a9.com/-/spec/opensearch/1.1/'}) do |feed|
     feed.title(&quot;My great blog!&quot;)
@@ -94,7 +94,7 @@ which may directly contain xhtml content if :type =&gt; 'xhtml' is
 specified as an attribute. If so, this helper will take care of the
 enclosing div and xhtml namespace declaration. Example usage:</p>
 
-<pre>entry.summary :type =&gt; 'xhtml' do |xhtml|
+<pre data-language="ruby">entry.summary :type =&gt; 'xhtml' do |xhtml|
   xhtml.p pluralize(order.line_items.count, &quot;line item&quot;)
   xhtml.p &quot;Shipped to #{order.address}&quot;
   xhtml.p &quot;Paid by #{order.pay_type}&quot;
