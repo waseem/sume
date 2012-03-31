@@ -19,7 +19,7 @@ to change your call if you switch engines.</p>
 
 <h4>Examples</h4>
 
-<pre># A simple SQL query spanning multiple tables
+<pre data-language="ruby"># A simple SQL query spanning multiple tables
 Post.find_by_sql &quot;SELECT p.title, c.author FROM posts p, comments c WHERE p.id = c.post_id&quot;
 &gt; [#&lt;Post:0x36bff9c @attributes={&quot;title&quot;=&gt;&quot;Ruby Meetup&quot;, &quot;first_name&quot;=&gt;&quot;Quentin&quot;}&gt;, ...]
 

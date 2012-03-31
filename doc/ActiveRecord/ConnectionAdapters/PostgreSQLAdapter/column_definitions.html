@@ -5,7 +5,7 @@
 
 <p>The underlying query is roughly:</p>
 
-<pre>SELECT column.name, column.type, default.value
+<pre data-language="ruby">SELECT column.name, column.type, default.value
   FROM column LEFT JOIN default
     ON column.table_id = default.table_id
    AND column.num = default.column_num
@@ -19,7 +19,7 @@ first match from the schema search path.</p>
 
 <p>Query implementation notes:</p>
 
-<pre>- format_type includes the column size constraint, e.g. varchar(50)
+<pre data-language="ruby">- format_type includes the column size constraint, e.g. varchar(50)
 - ::regclass is a function that gives the id for a table name</pre>
 
 

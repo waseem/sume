@@ -10,7 +10,7 @@ be run in the event of a cache miss. The return value of the block will be
 written to the cache under the given cache key, and that return value will
 be returned.</p>
 
-<pre>cache.write(&quot;today&quot;, &quot;Monday&quot;)
+<pre data-language="ruby">cache.write(&quot;today&quot;, &quot;Monday&quot;)
 cache.fetch(&quot;today&quot;)  # =&gt; &quot;Monday&quot;
 
 cache.fetch(&quot;city&quot;)   # =&gt; nil
@@ -22,7 +22,7 @@ cache.fetch(&quot;city&quot;)   # =&gt; &quot;Duckburgh&quot;</pre>
 <p>You may also specify additional options via the <tt>options</tt> argument.
 Setting <tt>:force =&gt; true</tt> will force a cache miss:</p>
 
-<pre>cache.write(&quot;today&quot;, &quot;Monday&quot;)
+<pre data-language="ruby">cache.write(&quot;today&quot;, &quot;Monday&quot;)
 cache.fetch(&quot;today&quot;, :force =&gt; true)  # =&gt; nil</pre>
 
 <p>Setting <tt>:compress</tt> will store a large cache entry set by the call
@@ -34,7 +34,7 @@ This value can be specified as an option to the construction in which call
 all entries will be affected. Or it can be supplied to the <tt>fetch</tt>
 or <tt>write</tt> method for just one entry.</p>
 
-<pre>cache = ActiveSupport::Cache::MemoryStore.new(:expires_in =&gt; 5.minutes)
+<pre data-language="ruby">cache = ActiveSupport::Cache::MemoryStore.new(:expires_in =&gt; 5.minutes)
 cache.write(key, value, :expires_in =&gt; 1.minute)  # Set a lower value for one entry</pre>
 
 <p>Setting <tt>:race_condition_ttl</tt> is very useful in situations where a
@@ -55,7 +55,7 @@ regenerated after the specified number of seconds. Also note that the life
 of stale cache is extended only if it expired recently. Otherwise a new
 value is generated and <tt>:race_condition_ttl</tt> does not play any role.</p>
 
-<pre># Set all values to expire after one minute.
+<pre data-language="ruby"># Set all values to expire after one minute.
 cache = ActiveSupport::Cache::MemoryCache.new(:expires_in =&gt; 1.minute)
 
 cache.write(&quot;foo&quot;, &quot;original value&quot;)
@@ -89,7 +89,7 @@ miss. <tt>options</tt> will be passed to the #read and #write calls.</p>
 option, which tells the memcached server to store all values as strings. We
 can use this option with #fetch too:</p>
 
-<pre>cache = ActiveSupport::Cache::MemCacheStore.new
+<pre data-language="ruby">cache = ActiveSupport::Cache::MemCacheStore.new
 cache.fetch(&quot;foo&quot;, :force =&gt; true, :raw =&gt; true) do
   :bar
 end

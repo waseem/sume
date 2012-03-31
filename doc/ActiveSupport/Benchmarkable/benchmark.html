@@ -7,7 +7,7 @@ or possible bottlenecks to get a time reading for the operation.  For
 example, let's say you thought your file processing method was taking too
 long; you could wrap it in a benchmark block.</p>
 
-<pre>&lt;% benchmark &quot;Process data files&quot; do %&gt;
+<pre data-language="ruby">&lt;% benchmark &quot;Process data files&quot; do %&gt;
   &lt;%= expensive_files_operation %&gt;
 &lt;% end %&gt;</pre>
 
@@ -17,7 +17,7 @@ which you can then use to compare timings when optimizing your code.</p>
 <p>You may give an optional logger level as the :level option. (:debug, :info,
 :warn, :error); the default value is :info.</p>
 
-<pre>&lt;% benchmark &quot;Low-level files&quot;, :level =&gt; :debug do %&gt;
+<pre data-language="ruby">&lt;% benchmark &quot;Low-level files&quot;, :level =&gt; :debug do %&gt;
   &lt;%= lowlevel_files_operation %&gt;
 &lt;% end %&gt;</pre>
 
@@ -25,7 +25,7 @@ which you can then use to compare timings when optimizing your code.</p>
 activity inside the block. This is great for boiling down a noisy block to
 just a single statement:</p>
 
-<pre>&lt;% benchmark &quot;Process data files&quot;, :level =&gt; :info, :silence =&gt; true do %&gt;
+<pre data-language="ruby">&lt;% benchmark &quot;Process data files&quot;, :level =&gt; :info, :silence =&gt; true do %&gt;
   &lt;%= expensive_and_chatty_files_operation %&gt;
 &lt;% end %&gt;</pre>
 

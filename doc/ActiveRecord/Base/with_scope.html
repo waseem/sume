@@ -6,7 +6,7 @@ hash and the keys must be <tt>:find</tt> or <tt>:create</tt>.
 <tt>:find</tt> parameter is <tt>Relation</tt> while <tt>:create</tt>
 parameters are an attributes hash.</p>
 
-<pre>class Article &lt; ActiveRecord::Base
+<pre data-language="ruby">class Article &lt; ActiveRecord::Base
   def self.create_with_scope
     with_scope(:find =&gt; where(:blog_id =&gt; 1), :create =&gt; { :blog_id =&gt; 1 }) do
       find(1) # =&gt; SELECT * from articles WHERE blog_id = 1 AND id = 1
@@ -25,7 +25,7 @@ same table without table aliasing problems. If you need to join multiple
 tables, but still want one of the tables to be uniqued, use the array of
 strings format for your joins.</p>
 
-<pre>class Article &lt; ActiveRecord::Base
+<pre data-language="ruby">class Article &lt; ActiveRecord::Base
   def self.find_with_scope
     with_scope(:find =&gt; where(:blog_id =&gt; 1).limit(1), :create =&gt; { :blog_id =&gt; 1 }) do
       with_scope(:find =&gt; limit(10)) do
@@ -41,7 +41,7 @@ end</pre>
 <p>You can ignore any previous scopings by using the
 <tt>with_exclusive_scope</tt> method.</p>
 
-<pre>class Article &lt; ActiveRecord::Base
+<pre data-language="ruby">class Article &lt; ActiveRecord::Base
   def self.find_with_exclusive_scope
     with_scope(:find =&gt; where(:blog_id =&gt; 1).limit(1)) do
       with_exclusive_scope(:find =&gt; limit(10)) do

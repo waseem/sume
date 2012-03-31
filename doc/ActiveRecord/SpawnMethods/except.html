@@ -5,7 +5,7 @@
 
 <p>Example:</p>
 
-<pre>Post.order('id asc').except(:order)                  # discards the order condition
+<pre data-language="ruby">Post.order('id asc').except(:order)                  # discards the order condition
 Post.where('id &gt; 10').order('id asc').except(:where) # discards the where condition but keeps the order</pre>
 
 

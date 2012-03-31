@@ -6,16 +6,16 @@ HTML/JavaScript requests are checked.</p>
 
 <p>Example:</p>
 
-<pre>class FooController &lt; ApplicationController
+<pre data-language="ruby">class FooController &lt; ApplicationController
   protect_from_forgery :except =&gt; :index</pre>
 
 <p>You can disable csrf protection on controller-by-controller basis:</p>
 
-<pre>skip_before_filter :verify_authenticity_token</pre>
+<pre data-language="ruby">skip_before_filter :verify_authenticity_token</pre>
 
 <p>It can also be disabled for specific controller actions:</p>
 
-<pre>skip_before_filter :verify_authenticity_token, :except =&gt; [:create]</pre>
+<pre data-language="ruby">skip_before_filter :verify_authenticity_token, :except =&gt; [:create]</pre>
 
 <p>Valid Options:</p>
 <ul><li>

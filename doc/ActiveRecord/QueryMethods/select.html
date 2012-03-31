@@ -5,7 +5,7 @@
 
 <p>First: takes a block so it can be used just like Array#select.</p>
 
-<pre>Model.scoped.select { |m| m.field == value }</pre>
+<pre data-language="ruby">Model.scoped.select { |m| m.field == value }</pre>
 
 <p>This will build an array of objects from the database for the scope,
 converting them into an array and iterating through them using
@@ -14,7 +14,7 @@ Array#select.</p>
 <p>Second: Modifies the SELECT statement for the query so that only certain
 fields are retrieved:</p>
 
-<pre>&gt;&gt; Model.select(:field)
+<pre data-language="ruby">&gt;&gt; Model.select(:field)
 =&gt; [#&lt;Model field:value&gt;]</pre>
 
 <p>Although in the above example it looks as though this method returns an
@@ -24,13 +24,13 @@ ActiveRecord::QueryMethods.</p>
 
 <p>This method will also take multiple parameters:</p>
 
-<pre>&gt;&gt; Model.select(:field, :other_field, :and_one_more)
+<pre data-language="ruby">&gt;&gt; Model.select(:field, :other_field, :and_one_more)
 =&gt; [#&lt;Model field: &quot;value&quot;, other_field: &quot;value&quot;, and_one_more: &quot;value&quot;&gt;]</pre>
 
 <p>Any attributes that do not have fields retrieved by a select will return
 `nil` when the getter method for that attribute is used:</p>
 
-<pre>&gt;&gt; Model.select(:field).first.other_field
+<pre data-language="ruby">&gt;&gt; Model.select(:field).first.other_field
 =&gt; nil</pre>
 
 

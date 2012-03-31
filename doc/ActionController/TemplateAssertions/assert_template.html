@@ -6,7 +6,7 @@ partials.</p>
 
 <h4>Examples</h4>
 
-<pre># assert that the &quot;new&quot; view template was rendered
+<pre data-language="ruby"># assert that the &quot;new&quot; view template was rendered
 assert_template &quot;new&quot;
 
 # assert that the &quot;_customer&quot; partial was rendered twice
@@ -18,7 +18,7 @@ assert_template :partial =&gt; false</pre>
 <p>In a view test case, you can also assert that specific locals are passed to
 partials:</p>
 
-<pre># assert that the &quot;_customer&quot; partial was rendered with a specific object
+<pre data-language="ruby"># assert that the &quot;_customer&quot; partial was rendered with a specific object
 assert_template :partial =&gt; '_customer', :locals =&gt; { :customer =&gt; @customer }</pre>
 
 

@@ -19,7 +19,7 @@ if an <tt>Invoice</tt> model has a <tt>paid</tt> flag, and in the form that
 edits a paid invoice the user unchecks its check box, no <tt>paid</tt>
 parameter is sent. So, any mass-assignment idiom like</p>
 
-<pre>@invoice.update_attributes(params[:invoice])</pre>
+<pre data-language="ruby">@invoice.update_attributes(params[:invoice])</pre>
 
 <p>wouldn't update the flag.</p>
 
@@ -36,7 +36,7 @@ the query string, that works for ordinary forms.</p>
 <p>Unfortunately that workaround does not work when the check box goes within
 an array-like parameter, as in</p>
 
-<pre>&lt;%= fields_for &quot;project[invoice_attributes][]&quot;, invoice, :index =&gt; nil do |form| %&gt;
+<pre data-language="ruby">&lt;%= fields_for &quot;project[invoice_attributes][]&quot;, invoice, :index =&gt; nil do |form| %&gt;
   &lt;%= form.check_box :paid %&gt;
   ...
 &lt;% end %&gt;</pre>
@@ -50,7 +50,7 @@ use hashes instead of arrays.</p>
 
 <h4>Examples</h4>
 
-<pre># Let's say that @post.validated? is 1:
+<pre data-language="ruby"># Let's say that @post.validated? is 1:
 check_box(&quot;post&quot;, &quot;validated&quot;)
 # =&gt; &lt;input name=&quot;post[validated]&quot; type=&quot;hidden&quot; value=&quot;0&quot; /&gt;
 #    &lt;input type=&quot;checkbox&quot; id=&quot;post_validated&quot; name=&quot;post[validated]&quot; value=&quot;1&quot; /&gt;

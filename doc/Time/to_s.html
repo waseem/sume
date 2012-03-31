@@ -5,7 +5,7 @@
 
 <p>This method is aliased to <tt>to_s</tt>.</p>
 
-<pre>time = Time.now                     # =&gt; Thu Jan 18 06:10:17 CST 2007
+<pre data-language="ruby">time = Time.now                     # =&gt; Thu Jan 18 06:10:17 CST 2007
 
 time.to_formatted_s(:time)          # =&gt; &quot;06:10&quot;
 time.to_s(:time)                    # =&gt; &quot;06:10&quot;
@@ -23,7 +23,7 @@ time.to_formatted_s(:rfc822)        # =&gt; &quot;Thu, 18 Jan 2007 06:10:17 -060
 name as the hash key and either a strftime string or Proc instance that
 takes a time argument as the value.</p>
 
-<pre># config/initializers/time_formats.rb
+<pre data-language="ruby"># config/initializers/time_formats.rb
 Time::DATE_FORMATS[:month_and_year] = &quot;%B %Y&quot;
 Time::DATE_FORMATS[:short_ordinal] = lambda { |time| time.strftime(&quot;%B #{time.day.ordinalize}&quot;) }</pre>
 

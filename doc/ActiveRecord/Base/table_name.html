@@ -15,7 +15,7 @@ parent's table name. Enclosing modules are not considered.</p>
 
 <h4>Examples</h4>
 
-<pre>class Invoice &lt; ActiveRecord::Base
+<pre data-language="ruby">class Invoice &lt; ActiveRecord::Base
 end
 
 file                  class               table_name
@@ -45,7 +45,7 @@ Invoice::Lineitem becomes "myapp_invoice_lineitems".</p>
 <p>You can also overwrite this class method to allow for unguessable links,
 such as a Mouse class with a link to a "mice" table. Example:</p>
 
-<pre>class Mouse &lt; ActiveRecord::Base
+<pre data-language="ruby">class Mouse &lt; ActiveRecord::Base
   set_table_name &quot;mice&quot;
 end</pre>
 

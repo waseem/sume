@@ -4,7 +4,7 @@
 <p>Replaces non-ASCII characters with an ASCII approximation, or if none
 exists, a replacement character which defaults to “?”.</p>
 
-<pre>transliterate(&quot;Ærøskøbing&quot;)
+<pre data-language="ruby">transliterate(&quot;Ærøskøbing&quot;)
 # =&gt; &quot;AEroskobing&quot;</pre>
 
 <p>Default approximations are provided for Western/Latin characters, e.g, “ø”,
@@ -18,7 +18,7 @@ ASCII.</p>
 <p>In order to make your custom transliterations available, you must set them
 as the <tt>i18n.transliterate.rule</tt> i18n key:</p>
 
-<pre># Store the transliterations in locales/de.yml
+<pre data-language="ruby"># Store the transliterations in locales/de.yml
 i18n:
   transliterate:
     rule:
@@ -39,7 +39,7 @@ I18n.backend.store_translations(:de, :i18n =&gt; {
 maps characters to ASCII approximations as shown above, or, for more
 complex requirements, a Proc:</p>
 
-<pre>I18n.backend.store_translations(:de, :i18n =&gt; {
+<pre data-language="ruby">I18n.backend.store_translations(:de, :i18n =&gt; {
   :transliterate =&gt; {
     :rule =&gt; lambda {|string| MyTransliterator.transliterate(string)}
   }
@@ -47,7 +47,7 @@ complex requirements, a Proc:</p>
 
 <p>Now you can have different transliterations for each locale:</p>
 
-<pre>I18n.locale = :en
+<pre data-language="ruby">I18n.locale = :en
 transliterate(&quot;Jürgen&quot;)
 # =&gt; &quot;Jurgen&quot;
 

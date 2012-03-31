@@ -10,7 +10,7 @@ ActiveSupport::Cache::MemoryStore object will be returned.</p>
 store class under the ActiveSupport::Cache namespace will be created. For
 example:</p>
 
-<pre>ActiveSupport::Cache.lookup_store(:memory_store)
+<pre data-language="ruby">ActiveSupport::Cache.lookup_store(:memory_store)
 # =&gt; returns a new ActiveSupport::Cache::MemoryStore object
 
 ActiveSupport::Cache.lookup_store(:mem_cache_store)
@@ -19,12 +19,12 @@ ActiveSupport::Cache.lookup_store(:mem_cache_store)
 <p>Any additional arguments will be passed to the corresponding cache store
 class's constructor:</p>
 
-<pre>ActiveSupport::Cache.lookup_store(:file_store, &quot;/tmp/cache&quot;)
+<pre data-language="ruby">ActiveSupport::Cache.lookup_store(:file_store, &quot;/tmp/cache&quot;)
 # =&gt; same as: ActiveSupport::Cache::FileStore.new(&quot;/tmp/cache&quot;)</pre>
 
 <p>If the first argument is not a Symbol, then it will simply be returned:</p>
 
-<pre>ActiveSupport::Cache.lookup_store(MyOwnCacheStore.new)
+<pre data-language="ruby">ActiveSupport::Cache.lookup_store(MyOwnCacheStore.new)
 # =&gt; returns MyOwnCacheStore.new</pre>
 
 

@@ -3,22 +3,22 @@
 
 <p>Calculates a sum from the elements. Examples:</p>
 
-<pre>payments.sum { |p| p.price * p.tax_rate }
+<pre data-language="ruby">payments.sum { |p| p.price * p.tax_rate }
 payments.sum(&amp;:price)</pre>
 
 <p>The latter is a shortcut for:</p>
 
-<pre>payments.inject(0) { |sum, p| sum + p.price }</pre>
+<pre data-language="ruby">payments.inject(0) { |sum, p| sum + p.price }</pre>
 
 <p>It can also calculate the sum without the use of a block.</p>
 
-<pre>[5, 15, 10].sum # =&gt; 30
+<pre data-language="ruby">[5, 15, 10].sum # =&gt; 30
 [&quot;foo&quot;, &quot;bar&quot;].sum # =&gt; &quot;foobar&quot;
 [[1, 2], [3, 1, 5]].sum =&gt; [1, 2, 3, 1, 5]</pre>
 
 <p>The default sum of an empty list is zero. You can override this default:</p>
 
-<pre>[].sum(Payment.new(0)) { |i| i.amount } # =&gt; Payment.new(0)</pre>
+<pre data-language="ruby">[].sum(Payment.new(0)) { |i| i.amount } # =&gt; Payment.new(0)</pre>
 
 
 

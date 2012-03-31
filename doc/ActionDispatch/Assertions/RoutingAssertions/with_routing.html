@@ -7,7 +7,7 @@ method temporarily replaces @routes with a new RouteSet instance.</p>
 <p>The new instance is yielded to the passed block. Typically the block will
 create some routes using <tt>map.draw { map.connect ... }</tt>:</p>
 
-<pre>with_routing do |set|
+<pre data-language="ruby">with_routing do |set|
   set.draw do |map|
     map.connect ':controller/:action/:id'
       assert_equal(

@@ -9,13 +9,13 @@ nil if this record's unsaved.</p>
 <tt>resources :users</tt> route. Normally, <tt>user_path</tt> will
 construct a path with the user object's 'id' in it:</p>
 
-<pre>user = User.find_by_name('Phusion')
+<pre data-language="ruby">user = User.find_by_name('Phusion')
 user_path(user)  # =&gt; &quot;/users/1&quot;</pre>
 
 <p>You can override <tt>to_param</tt> in your model to make <tt>user_path</tt>
 construct a path using the user's name instead of the user's id:</p>
 
-<pre>class User &lt; ActiveRecord::Base
+<pre data-language="ruby">class User &lt; ActiveRecord::Base
   def to_param  # overridden
     name
   end

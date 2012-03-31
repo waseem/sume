@@ -152,7 +152,7 @@ associations for more detail.</p>
 
 <p>Option examples:</p>
 
-<pre>has_one :credit_card, :dependent =&gt; :destroy  # destroys the associated credit card
+<pre data-language="ruby">has_one :credit_card, :dependent =&gt; :destroy  # destroys the associated credit card
 has_one :credit_card, :dependent =&gt; :nullify  # updates the associated records foreign
                                               # key value to NULL rather than destroying it
 has_one :last_comment, :class_name =&gt; &quot;Comment&quot;, :order =&gt; &quot;posted_on&quot;

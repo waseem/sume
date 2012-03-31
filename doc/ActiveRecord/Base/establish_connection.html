@@ -6,7 +6,7 @@ the <tt>:adapter</tt> key must be specified with the name of a database
 adapter (in lower-case) example for regular databases (MySQL, Postgresql,
 etc):</p>
 
-<pre>ActiveRecord::Base.establish_connection(
+<pre data-language="ruby">ActiveRecord::Base.establish_connection(
   :adapter  =&gt; &quot;mysql&quot;,
   :host     =&gt; &quot;localhost&quot;,
   :username =&gt; &quot;myuser&quot;,
@@ -16,14 +16,14 @@ etc):</p>
 
 <p>Example for SQLite database:</p>
 
-<pre>ActiveRecord::Base.establish_connection(
+<pre data-language="ruby">ActiveRecord::Base.establish_connection(
   :adapter =&gt; &quot;sqlite&quot;,
   :database  =&gt; &quot;path/to/dbfile&quot;
 )</pre>
 
 <p>Also accepts keys as strings (for parsing from YAML for example):</p>
 
-<pre>ActiveRecord::Base.establish_connection(
+<pre data-language="ruby">ActiveRecord::Base.establish_connection(
   &quot;adapter&quot; =&gt; &quot;sqlite&quot;,
   &quot;database&quot;  =&gt; &quot;path/to/dbfile&quot;
 )</pre>

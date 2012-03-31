@@ -7,7 +7,7 @@
 instance, in order to change the routes to allow for a dot character in the
 <tt>id</tt> parameter:</p>
 
-<pre>constraints(:id =&gt; /\d+\.\d+) do
+<pre data-language="ruby">constraints(:id =&gt; /\d+\.\d+) do
   resources :posts
 end</pre>
 
@@ -17,7 +17,7 @@ constraint passed in for this example.</p>
 
 <p>You may use this to also restrict other parameters:</p>
 
-<pre>resources :posts do
+<pre data-language="ruby">resources :posts do
   constraints(:post_id =&gt; /\d+\.\d+) do
     resources :comments
   end
@@ -27,7 +27,7 @@ end</pre>
 
 <p>Routes can also be constrained to an IP or a certain range of IP addresses:</p>
 
-<pre>constraints(:ip =&gt; /192.168.\d+.\d+/) do
+<pre data-language="ruby">constraints(:ip =&gt; /192.168.\d+.\d+/) do
   resources :posts
 end</pre>
 
@@ -39,7 +39,7 @@ there is no such route.</p>
 
 <p>Requests to routes can be constrained based on specific criteria:</p>
 
-<pre>constraints(lambda { |req| req.env[&quot;HTTP_USER_AGENT&quot;] =~ /iPhone/ }) do
+<pre data-language="ruby">constraints(lambda { |req| req.env[&quot;HTTP_USER_AGENT&quot;] =~ /iPhone/ }) do
   resources :iphones
 end</pre>
 
@@ -48,7 +48,7 @@ routes. This class must have a <tt>matches?</tt> method defined on it which
 either returns <tt>true</tt> if the user should be given access to that
 route, or <tt>false</tt> if the user should not.</p>
 
-<pre>class Iphone
+<pre data-language="ruby">class Iphone
   def self.matches(request)
     request.env[&quot;HTTP_USER_AGENT&quot;] =~ /iPhone/
   end
@@ -58,7 +58,7 @@ end</pre>
 
 <p>This class is then used like this:</p>
 
-<pre>constraints(Iphone) do
+<pre data-language="ruby">constraints(Iphone) do
   resources :iphones
 end</pre>
 

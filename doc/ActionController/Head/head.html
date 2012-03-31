@@ -6,13 +6,13 @@ argument is interpreted to be a hash of header names and values. This
 allows you to easily return a response that consists only of significant
 headers:</p>
 
-<pre>head :created, :location =&gt; person_path(@person)
+<pre data-language="ruby">head :created, :location =&gt; person_path(@person)
 
 head :created, :location =&gt; @person</pre>
 
 <p>It can also be used to return exceptional conditions:</p>
 
-<pre>return head(:method_not_allowed) unless request.post?
+<pre data-language="ruby">return head(:method_not_allowed) unless request.post?
 return head(:bad_request) unless valid_request?
 render</pre>
 

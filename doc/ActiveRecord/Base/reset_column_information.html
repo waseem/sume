@@ -8,7 +8,7 @@ be reloaded on the next request.</p>
 when just after creating a table you want to populate it with some default
 values, eg:</p>
 
-<pre>class CreateJobLevels &lt; ActiveRecord::Migration
+<pre data-language="ruby">class CreateJobLevels &lt; ActiveRecord::Migration
   def self.up
     create_table :job_levels do |t|
       t.integer :id

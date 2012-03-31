@@ -16,7 +16,7 @@ a block, or both.</p>
 <p>When the argument is a module it will be included directly in the template
 class.</p>
 
-<pre>helper FooHelper # =&gt; includes FooHelper</pre>
+<pre data-language="ruby">helper FooHelper # =&gt; includes FooHelper</pre>
 
 <p>When the argument is a string or symbol, the method will provide the
 "_helper" suffix, require the file and include the module in the template
@@ -25,13 +25,13 @@ working with namespaced controllers, or other cases where the file
 containing the helper definition is not in one of Rails' standard load
 paths:</p>
 
-<pre>helper :foo             # =&gt; requires 'foo_helper' and includes FooHelper
+<pre data-language="ruby">helper :foo             # =&gt; requires 'foo_helper' and includes FooHelper
 helper 'resources/foo'  # =&gt; requires 'resources/foo_helper' and includes Resources::FooHelper</pre>
 
 <p>Additionally, the <tt>helper</tt> class method can receive and evaluate a
 block, making the methods defined available to the template.</p>
 
-<pre># One line
+<pre data-language="ruby"># One line
 helper { def hello() &quot;Hello, world!&quot; end }
 
 # Multi-line
@@ -45,7 +45,7 @@ end</pre>
 <tt>helper</tt> method can be invoked with a mix of <tt>symbols</tt>,
 <tt>strings</tt>, <tt>modules</tt> and blocks.</p>
 
-<pre>helper(:three, BlindHelper) { def mice() 'mice' end }</pre>
+<pre data-language="ruby">helper(:three, BlindHelper) { def mice() 'mice' end }</pre>
 
 
 

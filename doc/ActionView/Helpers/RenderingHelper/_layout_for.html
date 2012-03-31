@@ -12,7 +12,7 @@ the default block returns <tt>content_for(:layout)</tt>.</p>
 
 <p>The user can override this default by passing a block to the layout:</p>
 
-<pre># The template
+<pre data-language="ruby"># The template
 &lt;%= render :layout =&gt; &quot;my_layout&quot; do %&gt;
   Content
 &lt;% end %&gt;
@@ -26,14 +26,14 @@ the default block returns <tt>content_for(:layout)</tt>.</p>
 <tt>content_for(:layout)</tt>, this method returns the block that was
 passed in to <tt>render :layout</tt>, and the response would be</p>
 
-<pre>&lt;html&gt;
+<pre data-language="ruby">&lt;html&gt;
   Content
 &lt;/html&gt;</pre>
 
 <p>Finally, the block can take block arguments, which can be passed in by
 <tt>yield</tt>:</p>
 
-<pre># The template
+<pre data-language="ruby"># The template
 &lt;%= render :layout =&gt; &quot;my_layout&quot; do |customer| %&gt;
   Hello &lt;%= customer.name %&gt;
 &lt;% end %&gt;
@@ -47,7 +47,7 @@ passed in to <tt>render :layout</tt>, and the response would be</p>
 :layout</tt>, and the struct specified would be passed into the block as an
 argument. The result would be</p>
 
-<pre>&lt;html&gt;
+<pre data-language="ruby">&lt;html&gt;
   Hello David
 &lt;/html&gt;</pre>
 

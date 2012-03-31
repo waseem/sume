@@ -36,7 +36,7 @@ made. Can also be a hash if disabled values are to be specified.</p>
 
 <p>Example object structure for use with this method:</p>
 
-<pre>class Continent &lt; ActiveRecord::Base
+<pre data-language="ruby">class Continent &lt; ActiveRecord::Base
   has_many :countries
   # attribs: id, name
 end
@@ -47,11 +47,11 @@ end</pre>
 
 <p>Sample usage:</p>
 
-<pre>option_groups_from_collection_for_select(@continents, :countries, :name, :id, :name, 3)</pre>
+<pre data-language="ruby">option_groups_from_collection_for_select(@continents, :countries, :name, :id, :name, 3)</pre>
 
 <p>Possible output:</p>
 
-<pre>&lt;optgroup label=&quot;Africa&quot;&gt;
+<pre data-language="ruby">&lt;optgroup label=&quot;Africa&quot;&gt;
   &lt;option value=&quot;1&quot;&gt;Egypt&lt;/option&gt;
   &lt;option value=&quot;4&quot;&gt;Rwanda&lt;/option&gt;
   ...

@@ -9,7 +9,7 @@ is considered to be boolean if its name is listed in the given
 <p>More specifically, for each boolean attribute in <tt>html_options</tt>
 given as:</p>
 
-<pre>&quot;attr&quot; =&gt; bool_value</pre>
+<pre data-language="ruby">&quot;attr&quot; =&gt; bool_value</pre>
 
 <p>if the associated <tt>bool_value</tt> evaluates to true, it is replaced
 with the attribute's name; otherwise the attribute is removed from the
@@ -22,7 +22,7 @@ place.</p>
 
 <p>Example:</p>
 
-<pre>convert_boolean_attributes!( html_options,
+<pre data-language="ruby">convert_boolean_attributes!( html_options,
                              %w( checked disabled readonly ) )</pre>
 
 

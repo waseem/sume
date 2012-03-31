@@ -5,11 +5,11 @@
 
 <p>You must enable deliveries for this assertion to work, use:</p>
 
-<pre>ActionMailer::Base.perform_deliveries = true</pre>
+<pre data-language="ruby">ActionMailer::Base.perform_deliveries = true</pre>
 
 <h4>Examples</h4>
 
-<pre>assert_select_email do
+<pre data-language="ruby">assert_select_email do
   assert_select &quot;h1&quot;, &quot;Email alert&quot;
 end
 

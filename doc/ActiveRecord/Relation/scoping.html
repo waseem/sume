@@ -5,7 +5,7 @@
 
 <h4>Example</h4>
 
-<pre>Comment.where(:post_id =&gt; 1).scoping do
+<pre data-language="ruby">Comment.where(:post_id =&gt; 1).scoping do
   Comment.first # SELECT * FROM comments WHERE post_id = 1
 end</pre>
 

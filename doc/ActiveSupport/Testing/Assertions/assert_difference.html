@@ -4,32 +4,32 @@
 <p>Test numeric difference between the return value of an expression as a
 result of what is evaluated in the yielded block.</p>
 
-<pre>assert_difference 'Article.count' do
+<pre data-language="ruby">assert_difference 'Article.count' do
   post :create, :article =&gt; {...}
 end</pre>
 
 <p>An arbitrary expression is passed in and evaluated.</p>
 
-<pre>assert_difference 'assigns(:article).comments(:reload).size' do
+<pre data-language="ruby">assert_difference 'assigns(:article).comments(:reload).size' do
   post :create, :comment =&gt; {...}
 end</pre>
 
 <p>An arbitrary positive or negative difference can be specified. The default
 is +1.</p>
 
-<pre>assert_difference 'Article.count', -1 do
+<pre data-language="ruby">assert_difference 'Article.count', -1 do
   post :delete, :id =&gt; ...
 end</pre>
 
 <p>An array of expressions can also be passed in and evaluated.</p>
 
-<pre>assert_difference [ 'Article.count', 'Post.count' ], +2 do
+<pre data-language="ruby">assert_difference [ 'Article.count', 'Post.count' ], +2 do
   post :create, :article =&gt; {...}
 end</pre>
 
 <p>A lambda or a list of lambdas can be passed in and evaluated:</p>
 
-<pre>assert_difference lambda { Article.count }, 2 do
+<pre data-language="ruby">assert_difference lambda { Article.count }, 2 do
   post :create, :article =&gt; {...}
 end
 
@@ -39,7 +39,7 @@ end</pre>
 
 <p>A error message can be specified.</p>
 
-<pre>assert_difference 'Article.count', -1, &quot;An Article should be destroyed&quot; do
+<pre data-language="ruby">assert_difference 'Article.count', -1, &quot;An Article should be destroyed&quot; do
   post :delete, :id =&gt; ...
 end</pre>
 

@@ -5,14 +5,14 @@
 correspond to a <tt>composed_of</tt> relationship with their expanded
 aggregate attribute values. Given:</p>
 
-<pre>class Person &lt; ActiveRecord::Base
+<pre data-language="ruby">class Person &lt; ActiveRecord::Base
   composed_of :address, :class_name =&gt; &quot;Address&quot;,
     :mapping =&gt; [%w(address_street street), %w(address_city city)]
 end</pre>
 
 <p>Then:</p>
 
-<pre>{ :address =&gt; Address.new(&quot;813 abc st.&quot;, &quot;chicago&quot;) }
+<pre data-language="ruby">{ :address =&gt; Address.new(&quot;813 abc st.&quot;, &quot;chicago&quot;) }
   # =&gt; { :address_street =&gt; &quot;813 abc st.&quot;, :address_city =&gt; &quot;chicago&quot; }</pre>
 
 

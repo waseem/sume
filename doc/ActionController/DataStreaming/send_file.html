@@ -38,15 +38,15 @@ versions 4, 5, 5.5, and 6 are all known to have a variety of quirks
 
 <p>Simple download:</p>
 
-<pre>send_file '/path/to.zip'</pre>
+<pre data-language="ruby">send_file '/path/to.zip'</pre>
 
 <p>Show a JPEG in the browser:</p>
 
-<pre>send_file '/path/to.jpeg', :type =&gt; 'image/jpeg', :disposition =&gt; 'inline'</pre>
+<pre data-language="ruby">send_file '/path/to.jpeg', :type =&gt; 'image/jpeg', :disposition =&gt; 'inline'</pre>
 
 <p>Show a 404 page in the browser:</p>
 
-<pre>send_file '/path/to/404.html', :type =&gt; 'text/html; charset=utf-8', :status =&gt; 404</pre>
+<pre data-language="ruby">send_file '/path/to/404.html', :type =&gt; 'text/html; charset=utf-8', :status =&gt; 404</pre>
 
 <p>Read about the other Content-* HTTP headers if you'd like to provide the
 user with more information (such as Content-Description) in <a

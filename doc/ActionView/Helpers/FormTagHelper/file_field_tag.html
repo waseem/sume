@@ -4,7 +4,7 @@
 <p>Creates a file upload field.  If you are using file uploads then you will
 also need to set the multipart option for the form tag:</p>
 
-<pre>&lt;%= form_tag '/upload', :multipart =&gt; true do %&gt;
+<pre data-language="ruby">&lt;%= form_tag '/upload', :multipart =&gt; true do %&gt;
   &lt;label for=&quot;file&quot;&gt;File to Upload&lt;/label&gt; &lt;%= file_field_tag &quot;file&quot; %&gt;
   &lt;%= submit_tag %&gt;
 &lt;% end %&gt;</pre>
@@ -22,7 +22,7 @@ input.</p>
 
 <h4>Examples</h4>
 
-<pre>file_field_tag 'attachment'
+<pre data-language="ruby">file_field_tag 'attachment'
 # =&gt; &lt;input id=&quot;attachment&quot; name=&quot;attachment&quot; type=&quot;file&quot; /&gt;
 
 file_field_tag 'avatar', :class =&gt; 'profile_input'

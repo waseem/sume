@@ -40,7 +40,7 @@ in the assignment and is only called if the new value is not an instance of
 
 <p>Option examples:</p>
 
-<pre>composed_of :temperature, :mapping =&gt; %w(reading celsius)
+<pre data-language="ruby">composed_of :temperature, :mapping =&gt; %w(reading celsius)
 composed_of :balance, :class_name =&gt; &quot;Money&quot;, :mapping =&gt; %w(balance amount), :converter =&gt; Proc.new { |balance| balance.to_money }
 composed_of :address, :mapping =&gt; [ %w(address_street street), %w(address_city city) ]
 composed_of :gps_location

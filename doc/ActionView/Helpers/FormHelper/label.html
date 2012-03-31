@@ -14,7 +14,7 @@ tags (where the value is used in the ID of the input tag).</p>
 
 <h4>Examples</h4>
 
-<pre>label(:post, :title)
+<pre data-language="ruby">label(:post, :title)
 # =&gt; &lt;label for=&quot;post_title&quot;&gt;Title&lt;/label&gt;
 
 You can localize your labels based on model and attribute names.
@@ -33,7 +33,7 @@ label(:post, :body)
 <p>Localization can also be based purely on the translation of the
 attribute-name (if you are using ActiveRecord):</p>
 
-<pre>activerecord:
+<pre data-language="ruby">activerecord:
   attributes:
     post:
       cost: &quot;Total cost&quot;

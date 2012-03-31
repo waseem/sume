@@ -4,7 +4,7 @@
 <p>content_tag_for creates an HTML element with id and class parameters that
 relate to the specified Active Record object. For example:</p>
 
-<pre>&lt;%= content_tag_for(:tr, @person) do %&gt;
+<pre data-language="ruby">&lt;%= content_tag_for(:tr, @person) do %&gt;
   &lt;td&gt;&lt;%= @person.first_name %&gt;&lt;/td&gt;
   &lt;td&gt;&lt;%= @person.last_name %&gt;&lt;/td&gt;
 &lt;% end %&gt;</pre>
@@ -12,25 +12,25 @@ relate to the specified Active Record object. For example:</p>
 <p>would produce the following HTML (assuming @person is an instance of a
 Person object, with an id value of 123):</p>
 
-<pre>&lt;tr id=&quot;person_123&quot; class=&quot;person&quot;&gt;....&lt;/tr&gt;</pre>
+<pre data-language="ruby">&lt;tr id=&quot;person_123&quot; class=&quot;person&quot;&gt;....&lt;/tr&gt;</pre>
 
 <p>If you require the HTML id attribute to have a prefix, you can specify it:</p>
 
-<pre>&lt;%= content_tag_for(:tr, @person, :foo) do %&gt; ...</pre>
+<pre data-language="ruby">&lt;%= content_tag_for(:tr, @person, :foo) do %&gt; ...</pre>
 
 <p>produces:</p>
 
-<pre>&lt;tr id=&quot;foo_person_123&quot; class=&quot;person&quot;&gt;...</pre>
+<pre data-language="ruby">&lt;tr id=&quot;foo_person_123&quot; class=&quot;person&quot;&gt;...</pre>
 
 <p>content_tag_for also accepts a hash of options, which will be converted to
 additional HTML attributes. If you specify a <tt>:class</tt> value, it will
 be combined with the default class name for your object. For example:</p>
 
-<pre>&lt;%= content_tag_for(:li, @person, :class =&gt; &quot;bar&quot;) %&gt;...</pre>
+<pre data-language="ruby">&lt;%= content_tag_for(:li, @person, :class =&gt; &quot;bar&quot;) %&gt;...</pre>
 
 <p>produces:</p>
 
-<pre>&lt;li id=&quot;person_123&quot; class=&quot;person bar&quot;&gt;...</pre>
+<pre data-language="ruby">&lt;li id=&quot;person_123&quot; class=&quot;person bar&quot;&gt;...</pre>
 
 
 

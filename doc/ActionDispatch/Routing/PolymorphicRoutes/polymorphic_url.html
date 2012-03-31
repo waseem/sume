@@ -4,7 +4,7 @@
 <p>Constructs a call to a named RESTful route for the given record and returns
 the resulting URL string. For example:</p>
 
-<pre># calls post_url(post)
+<pre data-language="ruby"># calls post_url(post)
 polymorphic_url(post) # =&gt; &quot;http://example.com/posts/1&quot;
 polymorphic_url([blog, post]) # =&gt; &quot;http://example.com/blogs/1/posts/1&quot;
 polymorphic_url([:admin, blog, post]) # =&gt; &quot;http://example.com/admin/blogs/1/posts/1&quot;
@@ -22,7 +22,7 @@ polymorphic_url(Comment) # =&gt; &quot;http://example.com/comments&quot;</pre>
 
 <h4>Examples</h4>
 
-<pre># an Article record
+<pre data-language="ruby"># an Article record
 polymorphic_url(record)  # same as article_url(record)
 
 # a Comment record

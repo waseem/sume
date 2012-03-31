@@ -6,19 +6,19 @@ the document root of your application and it changes later, clients that
 have it in their cache won't see the update. Using this helper prevents
 that because it appends an asset ID:</p>
 
-<pre>&lt;%= favicon_link_tag %&gt;</pre>
+<pre data-language="ruby">&lt;%= favicon_link_tag %&gt;</pre>
 
 <p>generates</p>
 
-<pre>&lt;link href=&quot;/favicon.ico?4649789979&quot; rel=&quot;shortcut icon&quot; type=&quot;image/vnd.microsoft.icon&quot; /&gt;</pre>
+<pre data-language="ruby">&lt;link href=&quot;/favicon.ico?4649789979&quot; rel=&quot;shortcut icon&quot; type=&quot;image/vnd.microsoft.icon&quot; /&gt;</pre>
 
 <p>You may specify a different file in the first argument:</p>
 
-<pre>&lt;%= favicon_link_tag 'favicon.ico' %&gt;</pre>
+<pre data-language="ruby">&lt;%= favicon_link_tag 'favicon.ico' %&gt;</pre>
 
 <p>That's passed to <tt>path_to_image</tt> as is, so it gives</p>
 
-<pre>&lt;link href=&quot;/images/favicon.ico?4649789979&quot; rel=&quot;shortcut icon&quot; type=&quot;image/vnd.microsoft.icon&quot; /&gt;</pre>
+<pre data-language="ruby">&lt;link href=&quot;/images/favicon.ico?4649789979&quot; rel=&quot;shortcut icon&quot; type=&quot;image/vnd.microsoft.icon&quot; /&gt;</pre>
 
 <p>The helper accepts an additional options hash where you can override "rel"
 and "type".</p>
@@ -27,7 +27,7 @@ and "type".</p>
 image that will be used if you add the page to the home screen of an iPod
 Touch, iPhone, or iPad. The following call would generate such a tag:</p>
 
-<pre>&lt;%= favicon_link_tag 'mb-icon.png', :rel =&gt; 'apple-touch-icon', :type =&gt; 'image/png' %&gt;</pre>
+<pre data-language="ruby">&lt;%= favicon_link_tag 'mb-icon.png', :rel =&gt; 'apple-touch-icon', :type =&gt; 'image/png' %&gt;</pre>
 
 
 

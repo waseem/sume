@@ -6,13 +6,13 @@ Please note that no validation is performed and no callbacks are executed.
 If an attribute name is passed, that attribute is updated along with
 updated_at/on attributes.</p>
 
-<pre>product.touch               # updates updated_at/on
+<pre data-language="ruby">product.touch               # updates updated_at/on
 product.touch(:designed_at) # updates the designed_at attribute and updated_at/on</pre>
 
 <p>If used along with <tt>belongs_to</tt> then <tt>touch</tt> will invoke
 <tt>touch</tt> method on associated object.</p>
 
-<pre>class Brake &lt; ActiveRecord::Base
+<pre data-language="ruby">class Brake &lt; ActiveRecord::Base
   belongs_to :car, :touch =&gt; true
 end
 

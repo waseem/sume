@@ -8,7 +8,7 @@ override ActiveRecord::Base#to_xml.</p>
 <p>By default the generated XML document will include the processing
 instruction and all the object's attributes. For example:</p>
 
-<pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+<pre data-language="ruby">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;topic&gt;
   &lt;title&gt;The First Topic&lt;/title&gt;
   &lt;author-name&gt;David&lt;/author-name&gt;
@@ -35,7 +35,7 @@ column type included in the XML output set <tt>:skip_types</tt> to
 
 <p>For instance:</p>
 
-<pre>topic.to_xml(:skip_instruct =&gt; true, :except =&gt; [ :id, :bonus_time, :written_on, :replies_count ])
+<pre data-language="ruby">topic.to_xml(:skip_instruct =&gt; true, :except =&gt; [ :id, :bonus_time, :written_on, :replies_count ])
 
 &lt;topic&gt;
   &lt;title&gt;The First Topic&lt;/title&gt;
@@ -49,7 +49,7 @@ column type included in the XML output set <tt>:skip_types</tt> to
 
 <p>To include first level associations use <tt>:include</tt>:</p>
 
-<pre>firm.to_xml :include =&gt; [ :account, :clients ]
+<pre data-language="ruby">firm.to_xml :include =&gt; [ :account, :clients ]
 
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;firm&gt;
@@ -79,7 +79,7 @@ the closure created by a Proc, to_xml can be used to add elements that
 normally fall outside of the scope of the model -- for example, generating
 and appending URLs associated with models.</p>
 
-<pre>proc = Proc.new { |options, record| options[:builder].tag!('name-reverse', record.name.reverse) }
+<pre data-language="ruby">proc = Proc.new { |options, record| options[:builder].tag!('name-reverse', record.name.reverse) }
 firm.to_xml :procs =&gt; [ proc ]
 
 &lt;firm&gt;
@@ -89,7 +89,7 @@ firm.to_xml :procs =&gt; [ proc ]
 
 <p>To include deeper levels of associations pass a hash like this:</p>
 
-<pre>firm.to_xml :include =&gt; {:account =&gt; {}, :clients =&gt; {:include =&gt; :address}}
+<pre data-language="ruby">firm.to_xml :include =&gt; {:account =&gt; {}, :clients =&gt; {:include =&gt; :address}}
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;firm&gt;
   &lt;id type=&quot;integer&quot;&gt;1&lt;/id&gt;
@@ -119,7 +119,7 @@ firm.to_xml :procs =&gt; [ proc ]
 
 <p>To include any methods on the model being called use <tt>:methods</tt>:</p>
 
-<pre>firm.to_xml :methods =&gt; [ :calculated_earnings, :real_earnings ]
+<pre data-language="ruby">firm.to_xml :methods =&gt; [ :calculated_earnings, :real_earnings ]
 
 &lt;firm&gt;
   # ... normal attributes as shown above ...
@@ -130,7 +130,7 @@ firm.to_xml :procs =&gt; [ proc ]
 <p>To call any additional Procs use <tt>:procs</tt>. The Procs are passed a
 modified version of the options hash that was given to <tt>to_xml</tt>:</p>
 
-<pre>proc = Proc.new { |options| options[:builder].tag!('abc', 'def') }
+<pre data-language="ruby">proc = Proc.new { |options| options[:builder].tag!('abc', 'def') }
 firm.to_xml :procs =&gt; [ proc ]
 
 &lt;firm&gt;
@@ -141,7 +141,7 @@ firm.to_xml :procs =&gt; [ proc ]
 <p>Alternatively, you can yield the builder object as part of the
 <tt>to_xml</tt> call:</p>
 
-<pre>firm.to_xml do |xml|
+<pre data-language="ruby">firm.to_xml do |xml|
   xml.creator do
     xml.first_name &quot;David&quot;
     xml.last_name &quot;Heinemeier Hansson&quot;
@@ -160,7 +160,7 @@ end
 subclasses to have complete control about what's generated. The general
 form of doing this is:</p>
 
-<pre>class IHaveMyOwnXML &lt; ActiveRecord::Base
+<pre data-language="ruby">class IHaveMyOwnXML &lt; ActiveRecord::Base
   def to_xml(options = {})
     options[:indent] ||= 2
     xml = options[:builder] ||= Builder::XmlMarkup.new(:indent =&gt; options[:indent])

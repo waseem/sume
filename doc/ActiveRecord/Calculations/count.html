@@ -52,15 +52,15 @@ view).</p>
 
 <p>Examples for counting all:</p>
 
-<pre>Person.count         # returns the total count of all people</pre>
+<pre data-language="ruby">Person.count         # returns the total count of all people</pre>
 
 <p>Examples for counting by column:</p>
 
-<pre>Person.count(:age)  # returns the total count of all people whose age is present in database</pre>
+<pre data-language="ruby">Person.count(:age)  # returns the total count of all people whose age is present in database</pre>
 
 <p>Examples for count with options:</p>
 
-<pre>Person.count(:conditions =&gt; &quot;age &gt; 26&quot;)
+<pre data-language="ruby">Person.count(:conditions =&gt; &quot;age &gt; 26&quot;)
 
 # because of the named association, it finds the DISTINCT count using LEFT OUTER JOIN.
 Person.count(:conditions =&gt; &quot;age &gt; 26 AND job.salary &gt; 60000&quot;, :include =&gt; :job)

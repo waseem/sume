@@ -3,7 +3,7 @@
 
 <p>Define sets of events in the object lifecycle that support callbacks.</p>
 
-<pre>define_callbacks :validate
+<pre data-language="ruby">define_callbacks :validate
 define_callbacks :initialize, :save, :destroy</pre>
 
 <h5>Options</h5>
@@ -13,7 +13,7 @@ callback chain, preventing following callbacks from being called and the
 event from being triggered. This is a string to be eval'ed. The result of
 the callback is available in the <tt>result</tt> variable.</p>
 
-<pre>define_callbacks :validate, :terminator =&gt; &quot;result == false&quot;</pre>
+<pre data-language="ruby">define_callbacks :validate, :terminator =&gt; &quot;result == false&quot;</pre>
 
 <p>In this example, if any before validate callbacks returns <tt>false</tt>,
 other callbacks are not executed. Defaults to "false", meaning no value
@@ -27,7 +27,7 @@ all the after callbacks the stored exception is raised.</p>
 <p><tt>:scope</tt> - Indicates which methods should be executed when an object
 is used as a callback.</p>
 
-<pre>class Audit
+<pre data-language="ruby">class Audit
   def before(caller)
     puts 'Audit: before is called'
   end
@@ -53,7 +53,7 @@ end</pre>
 <p>In the above case whenever you save an account the method
 <tt>Audit#before</tt> will be called. On the other hand</p>
 
-<pre>define_callbacks :save, :scope =&gt; [:kind, :name]</pre>
+<pre data-language="ruby">define_callbacks :save, :scope =&gt; [:kind, :name]</pre>
 
 <p>would trigger <tt>Audit#before_save</tt> instead. That's constructed by
 calling <tt>#{kind}_#{name}</tt> on the given instance. In this case "kind"
@@ -64,7 +64,7 @@ which callbacks are being defined.</p>
 
 <p>A declaration like</p>
 
-<pre>define_callbacks :save, :scope =&gt; [:name]</pre>
+<pre data-language="ruby">define_callbacks :save, :scope =&gt; [:name]</pre>
 
 <p>would call <tt>Audit#save</tt>.</p>
 </li></ul>

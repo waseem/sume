@@ -8,11 +8,11 @@ the required format of the choices parameter.</p>
 
 <p>Example with @post.person_id =&gt; 1:</p>
 
-<pre>select(&quot;post&quot;, &quot;person_id&quot;, Person.all.collect {|p| [ p.name, p.id ] }, { :include_blank =&gt; true })</pre>
+<pre data-language="ruby">select(&quot;post&quot;, &quot;person_id&quot;, Person.all.collect {|p| [ p.name, p.id ] }, { :include_blank =&gt; true })</pre>
 
 <p>could become:</p>
 
-<pre>&lt;select name=&quot;post[person_id]&quot;&gt;
+<pre data-language="ruby">&lt;select name=&quot;post[person_id]&quot;&gt;
   &lt;option value=&quot;&quot;&gt;&lt;/option&gt;
   &lt;option value=&quot;1&quot; selected=&quot;selected&quot;&gt;David&lt;/option&gt;
   &lt;option value=&quot;2&quot;&gt;Sam&lt;/option&gt;

@@ -9,7 +9,7 @@ otherwise be recognized as markup. CDATA sections begin with the string
 
 <h4>Examples</h4>
 
-<pre>cdata_section(&quot;&lt;hello world&gt;&quot;)
+<pre data-language="ruby">cdata_section(&quot;&lt;hello world&gt;&quot;)
 # =&gt; &lt;![CDATA[&lt;hello world&gt;]]&gt;
 
 cdata_section(File.read(&quot;hello_world.txt&quot;))

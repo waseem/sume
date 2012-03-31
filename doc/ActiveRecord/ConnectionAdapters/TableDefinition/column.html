@@ -80,7 +80,7 @@ and DECIMAL is 38.</p>
 
 <h2>Examples</h2>
 
-<pre># Assuming <tt>td</tt> is an instance of TableDefinition
+<pre data-language="ruby"># Assuming <tt>td</tt> is an instance of TableDefinition
 td.column(:granted, :boolean)
 # granted BOOLEAN
 
@@ -114,7 +114,7 @@ defined in a single statement.</p>
 
 <p>What can be written like this with the regular calls to column:</p>
 
-<pre>create_table &quot;products&quot;, :force =&gt; true do |t|
+<pre data-language="ruby">create_table &quot;products&quot;, :force =&gt; true do |t|
   t.column &quot;shop_id&quot;,    :integer
   t.column &quot;creator_id&quot;, :integer
   t.column &quot;name&quot;,       :string,   :default =&gt; &quot;Untitled&quot;
@@ -125,7 +125,7 @@ end</pre>
 
 <p>Can also be written as follows using the short-hand:</p>
 
-<pre>create_table :products do |t|
+<pre data-language="ruby">create_table :products do |t|
   t.integer :shop_id, :creator_id
   t.string  :name, :value, :default =&gt; &quot;Untitled&quot;
   t.timestamps
@@ -140,7 +140,7 @@ a corresponding _type column if the <tt>:polymorphic</tt> option is
 supplied. If <tt>:polymorphic</tt> is a hash of options, these will be used
 when creating the <tt>_type</tt> column. So what can be written like this:</p>
 
-<pre>create_table :taggings do |t|
+<pre data-language="ruby">create_table :taggings do |t|
   t.integer :tag_id, :tagger_id, :taggable_id
   t.string  :tagger_type
   t.string  :taggable_type, :default =&gt; 'Photo'
@@ -148,7 +148,7 @@ end</pre>
 
 <p>Can also be written as follows using references:</p>
 
-<pre>create_table :taggings do |t|
+<pre data-language="ruby">create_table :taggings do |t|
   t.references :tag
   t.references :tagger, :polymorphic =&gt; true
   t.references :taggable, :polymorphic =&gt; { :default =&gt; 'Photo' }

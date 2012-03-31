@@ -45,13 +45,13 @@ an i18n scope where to find this hash. It might have the following keys:</p>
 <p><tt>:format</tt> - Sets the format of the output string (defaults to "%n
 %u"). The field types are:</p>
 
-<pre>%u  The quantifier (ex.: 'thousand')
+<pre data-language="ruby">%u  The quantifier (ex.: 'thousand')
 %n  The number</pre>
 </li></ul>
 
 <h4>Examples</h4>
 
-<pre>number_to_human(123)                                          # =&gt; &quot;123&quot;
+<pre data-language="ruby">number_to_human(123)                                          # =&gt; &quot;123&quot;
 number_to_human(1234)                                         # =&gt; &quot;1.23 Thousand&quot;
 number_to_human(12345)                                        # =&gt; &quot;12.3 Thousand&quot;
 number_to_human(1234567)                                      # =&gt; &quot;1.23 Million&quot;
@@ -70,18 +70,18 @@ number_to_human(1234567, :precision =&gt; 1,
 <p>Unsignificant zeros after the decimal separator are stripped out by default
 (set <tt>:strip_insignificant_zeros</tt> to <tt>false</tt> to change that):</p>
 
-<pre>number_to_human(12345012345, :significant_digits =&gt; 6)       # =&gt; &quot;12.345 Billion&quot;
+<pre data-language="ruby">number_to_human(12345012345, :significant_digits =&gt; 6)       # =&gt; &quot;12.345 Billion&quot;
 number_to_human(500000000, :precision =&gt; 5)                  # =&gt; &quot;500 Million&quot;</pre>
 
 <h4>Custom Unit Quantifiers</h4>
 
 <p>You can also use your own custom unit quantifiers:</p>
 
-<pre>number_to_human(500000, :units =&gt; {:unit =&gt; &quot;ml&quot;, :thousand =&gt; &quot;lt&quot;})  # =&gt; &quot;500 lt&quot;</pre>
+<pre data-language="ruby">number_to_human(500000, :units =&gt; {:unit =&gt; &quot;ml&quot;, :thousand =&gt; &quot;lt&quot;})  # =&gt; &quot;500 lt&quot;</pre>
 
 <p>If in your I18n locale you have:</p>
 
-<pre>distance:
+<pre data-language="ruby">distance:
   centi:
     one: &quot;centimeter&quot;
     other: &quot;centimeters&quot;
@@ -95,7 +95,7 @@ number_to_human(500000000, :precision =&gt; 5)                  # =&gt; &quot;50
 
 <p>Then you could do:</p>
 
-<pre>number_to_human(543934, :units =&gt; :distance)                              # =&gt; &quot;544 kilometers&quot;
+<pre data-language="ruby">number_to_human(543934, :units =&gt; :distance)                              # =&gt; &quot;544 kilometers&quot;
 number_to_human(54393498, :units =&gt; :distance)                            # =&gt; &quot;54400 kilometers&quot;
 number_to_human(54393498000, :units =&gt; :distance)                         # =&gt; &quot;54.4 gazillion-distance&quot;
 number_to_human(343, :units =&gt; :distance, :precision =&gt; 1)                # =&gt; &quot;300 meters&quot;

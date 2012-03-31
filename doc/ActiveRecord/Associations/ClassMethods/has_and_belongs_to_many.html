@@ -19,7 +19,7 @@ of the name "paper_boxes", but it in fact generates a join table name of
 <p>The join table should not have a primary key or a model associated with it.
 You must manually generate the join table with a migration such as this:</p>
 
-<pre>class CreateDevelopersProjectsJoinTable &lt; ActiveRecord::Migration
+<pre data-language="ruby">class CreateDevelopersProjectsJoinTable &lt; ActiveRecord::Migration
   def self.up
     create_table :developers_projects, :id =&gt; false do |t|
       t.integer :developer_id
@@ -238,7 +238,7 @@ new records.</p>
 
 <p>Option examples:</p>
 
-<pre>has_and_belongs_to_many :projects
+<pre data-language="ruby">has_and_belongs_to_many :projects
 has_and_belongs_to_many :projects, :include =&gt; [ :milestones, :manager ]
 has_and_belongs_to_many :nations, :class_name =&gt; &quot;Country&quot;
 has_and_belongs_to_many :categories, :join_table =&gt; &quot;prods_cats&quot;

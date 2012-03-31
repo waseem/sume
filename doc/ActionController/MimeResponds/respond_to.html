@@ -4,13 +4,13 @@
 <p>Without web-service support, an action which collects the data for
 displaying a list of people might look something like this:</p>
 
-<pre>def index
+<pre data-language="ruby">def index
   @people = Person.all
 end</pre>
 
 <p>Here's the same action, with web-service support baked in:</p>
 
-<pre>def index
+<pre data-language="ruby">def index
   @people = Person.all
 
   respond_to do |format|
@@ -28,7 +28,7 @@ response format from the HTTP Accept header submitted by the client.)</p>
 their company (by name) if it does not already exist, without web-services,
 it might look like this:</p>
 
-<pre>def create
+<pre data-language="ruby">def create
   @company = Company.find_or_create_by_name(params[:company][:name])
   @person  = @company.people.create(params[:person])
 
@@ -37,7 +37,7 @@ end</pre>
 
 <p>Here's the same action, with web-service support baked in:</p>
 
-<pre>def create
+<pre data-language="ruby">def create
   company  = params[:person].delete(:company)
   @company = Company.find_or_create_by_name(company[:name])
   @person  = @company.people.create(params[:person])
@@ -56,7 +56,7 @@ wants XML, we render the created person as XML, but with a twist: we also
 include the person's company in the rendered XML, so you get something like
 this:</p>
 
-<pre>&lt;person&gt;
+<pre data-language="ruby">&lt;person&gt;
   &lt;id&gt;...&lt;/id&gt;
   ...
   &lt;company&gt;
@@ -68,18 +68,18 @@ this:</p>
 
 <p>Note, however, the extra bit at the top of that action:</p>
 
-<pre>company  = params[:person].delete(:company)
+<pre data-language="ruby">company  = params[:person].delete(:company)
 @company = Company.find_or_create_by_name(company[:name])</pre>
 
 <p>This is because the incoming XML document (if a web-service request is in
 process) can only contain a single root-node. So, we have to rearrange
 things so that the request looks like this (url-encoded):</p>
 
-<pre>person[name]=...&amp;person[company][name]=...&amp;...</pre>
+<pre data-language="ruby">person[name]=...&amp;person[company][name]=...&amp;...</pre>
 
 <p>And, like this (xml-encoded):</p>
 
-<pre>&lt;person&gt;
+<pre data-language="ruby">&lt;person&gt;
   &lt;name&gt;...&lt;/name&gt;
   &lt;company&gt;
     &lt;name&gt;...&lt;/name&gt;
@@ -99,12 +99,12 @@ accept Rails' defaults, life will be much easier.</p>
 <p>If you need to use a MIME type which isn't supported by default, you can
 register your own handlers in config/initializers/mime_types.rb as follows.</p>
 
-<pre>Mime::Type.register &quot;image/jpg&quot;, :jpg</pre>
+<pre data-language="ruby">Mime::Type.register &quot;image/jpg&quot;, :jpg</pre>
 
 <p>Respond to also allows you to specify a common block for different formats
 by using any:</p>
 
-<pre>def index
+<pre data-language="ruby">def index
   @people = Person.all
 
   respond_to do |format|
@@ -115,16 +115,16 @@ end</pre>
 
 <p>In the example above, if the format is xml, it will render:</p>
 
-<pre>render :xml =&gt; @people</pre>
+<pre data-language="ruby">render :xml =&gt; @people</pre>
 
 <p>Or if the format is json:</p>
 
-<pre>render :json =&gt; @people</pre>
+<pre data-language="ruby">render :json =&gt; @people</pre>
 
 <p>Since this is a common pattern, you can use the class method respond_to
 with the respond_with method to have the same results:</p>
 
-<pre>class PeopleController &lt; ApplicationController
+<pre data-language="ruby">class PeopleController &lt; ApplicationController
   respond_to :html, :xml, :json
 
   def index

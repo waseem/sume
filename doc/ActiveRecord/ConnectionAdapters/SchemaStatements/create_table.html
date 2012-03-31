@@ -9,7 +9,7 @@ block form or the regular form, like this:</p>
 
 <h3>Block form</h3>
 
-<pre># create_table() passes a TableDefinition object to the block.
+<pre data-language="ruby"># create_table() passes a TableDefinition object to the block.
 # This form will not only create the table, but also columns for the
 # table.
 
@@ -20,7 +20,7 @@ end</pre>
 
 <h3>Block form, with shorthand</h3>
 
-<pre># You can also use the column types as method calls, rather than calling the column method.
+<pre data-language="ruby"># You can also use the column types as method calls, rather than calling the column method.
 create_table(:suppliers) do |t|
   t.string :name, :limit =&gt; 60
   # Other fields here
@@ -28,7 +28,7 @@ end</pre>
 
 <h3>Regular form</h3>
 
-<pre># Creates a table called 'suppliers' with no columns.
+<pre data-language="ruby"># Creates a table called 'suppliers' with no columns.
 create_table(:suppliers)
 # Add a column to 'suppliers'.
 add_column(:suppliers, :name, :string, {:limit =&gt; 60})</pre>
@@ -62,37 +62,37 @@ from their table definition.</p>
 
 <h6>Add a backend specific option to the generated SQL (MySQL)</h6>
 
-<pre>create_table(:suppliers, :options =&gt; 'ENGINE=InnoDB DEFAULT CHARSET=utf8')</pre>
+<pre data-language="ruby">create_table(:suppliers, :options =&gt; 'ENGINE=InnoDB DEFAULT CHARSET=utf8')</pre>
 
 <p>generates:</p>
 
-<pre>CREATE TABLE suppliers (
+<pre data-language="ruby">CREATE TABLE suppliers (
   id int(11) DEFAULT NULL auto_increment PRIMARY KEY
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8</pre>
 
 <h6>Rename the primary key column</h6>
 
-<pre>create_table(:objects, :primary_key =&gt; 'guid') do |t|
+<pre data-language="ruby">create_table(:objects, :primary_key =&gt; 'guid') do |t|
   t.column :name, :string, :limit =&gt; 80
 end</pre>
 
 <p>generates:</p>
 
-<pre>CREATE TABLE objects (
+<pre data-language="ruby">CREATE TABLE objects (
   guid int(11) DEFAULT NULL auto_increment PRIMARY KEY,
   name varchar(80)
 )</pre>
 
 <h6>Do not add a primary key column</h6>
 
-<pre>create_table(:categories_suppliers, :id =&gt; false) do |t|
+<pre data-language="ruby">create_table(:categories_suppliers, :id =&gt; false) do |t|
   t.column :category_id, :integer
   t.column :supplier_id, :integer
 end</pre>
 
 <p>generates:</p>
 
-<pre>CREATE TABLE categories_suppliers (
+<pre data-language="ruby">CREATE TABLE categories_suppliers (
   category_id int,
   supplier_id int
 )</pre>

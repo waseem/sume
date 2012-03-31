@@ -5,7 +5,7 @@
 
 <p>Take the following route definition as an example:</p>
 
-<pre>scope :path =&gt; &quot;:account_id&quot;, :as =&gt; &quot;account&quot; do
+<pre data-language="ruby">scope :path =&gt; &quot;:account_id&quot;, :as =&gt; &quot;account&quot; do
   resources :projects
 end</pre>
 
@@ -20,7 +20,7 @@ generated are like /rails/projects/2, rather than
 
 <h3>Examples</h3>
 
-<pre># route /posts (without the prefix /admin) to &lt;tt&gt;Admin::PostsController&lt;/tt&gt;
+<pre data-language="ruby"># route /posts (without the prefix /admin) to &lt;tt&gt;Admin::PostsController&lt;/tt&gt;
 scope :module =&gt; &quot;admin&quot; do
   resources :posts
 end

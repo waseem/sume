@@ -3,7 +3,7 @@
 
 <p>Returns a string containing an XML representation of its receiver:</p>
 
-<pre>{&quot;foo&quot; =&gt; 1, &quot;bar&quot; =&gt; 2}.to_xml
+<pre data-language="ruby">{&quot;foo&quot; =&gt; 1, &quot;bar&quot; =&gt; 2}.to_xml
 # =&gt;
 # &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 # &lt;hash&gt;
@@ -26,13 +26,13 @@ hash as first argument with <tt>key</tt> as <tt>:root</tt>, and
 <tt>key</tt> singularized as second argument. The  callable can add nodes
 by using <tt>options[:builder]</tt>.</p>
 
-<pre>&quot;foo&quot;.to_xml(lambda { |options, key| options[:builder].b(key) })
+<pre data-language="ruby">&quot;foo&quot;.to_xml(lambda { |options, key| options[:builder].b(key) })
 # =&gt; &quot;&lt;b&gt;foo&lt;/b&gt;&quot;</pre>
 </li><li>
 <p>If <tt>value</tt> responds to <tt>to_xml</tt> the method is invoked with
 <tt>key</tt> as <tt>:root</tt>.</p>
 
-<pre>class Foo
+<pre data-language="ruby">class Foo
   def to_xml(options)
     options[:builder].bar &quot;fooing!&quot;
   end
@@ -47,7 +47,7 @@ representation of <tt>value</tt> as text node. If <tt>value</tt> is
 <tt>:skip_types</tt> exists and is true, an attribute "type" is added as
 well according to the following mapping:</p>
 
-<pre>XML_TYPE_NAMES = {
+<pre data-language="ruby">XML_TYPE_NAMES = {
   &quot;Symbol&quot;     =&gt; &quot;symbol&quot;,
   &quot;Fixnum&quot;     =&gt; &quot;integer&quot;,
   &quot;Bignum&quot;     =&gt; &quot;integer&quot;,

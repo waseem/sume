@@ -7,7 +7,7 @@ particular mutex. A mutex (either a Mutex, or any object that responds to
 option. The :with option should be a symbol or string, and can represent a
 method, constant, or instance or class variable. Example:</p>
 
-<pre>class SharedCache
+<pre data-language="ruby">class SharedCache
   @@lock = Mutex.new
   def expire
     ...

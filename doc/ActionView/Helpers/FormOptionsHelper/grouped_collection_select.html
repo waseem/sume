@@ -38,7 +38,7 @@ as the contents of its <tt>&lt;option&gt;</tt> tag.</p>
 
 <p>Example object structure for use with this method:</p>
 
-<pre>class Continent &lt; ActiveRecord::Base
+<pre data-language="ruby">class Continent &lt; ActiveRecord::Base
   has_many :countries
   # attribs: id, name
 end
@@ -53,11 +53,11 @@ end</pre>
 
 <p>Sample usage:</p>
 
-<pre>grouped_collection_select(:city, :country_id, @continents, :countries, :name, :id, :name)</pre>
+<pre data-language="ruby">grouped_collection_select(:city, :country_id, @continents, :countries, :name, :id, :name)</pre>
 
 <p>Possible output:</p>
 
-<pre>&lt;select name=&quot;city[country_id]&quot;&gt;
+<pre data-language="ruby">&lt;select name=&quot;city[country_id]&quot;&gt;
   &lt;optgroup label=&quot;Africa&quot;&gt;
     &lt;option value=&quot;1&quot;&gt;South Africa&lt;/option&gt;
     &lt;option value=&quot;3&quot;&gt;Somalia&lt;/option&gt;

@@ -20,7 +20,7 @@ caches).</p>
 
 <p>Example:</p>
 
-<pre>def show
+<pre data-language="ruby">def show
   @article = Article.find(params[:id])
 
   if stale?(:etag =&gt; @article, :last_modified =&gt; @article.created_at)

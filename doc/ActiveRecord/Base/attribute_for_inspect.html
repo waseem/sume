@@ -6,7 +6,7 @@
 Date and Time attributes are returned in the <tt>:db</tt> format. Other
 attributes return the value of <tt>#inspect</tt> without modification.</p>
 
-<pre>person = Person.create!(:name =&gt; &quot;David Heinemeier Hansson &quot; * 3)
+<pre data-language="ruby">person = Person.create!(:name =&gt; &quot;David Heinemeier Hansson &quot; * 3)
 
 person.attribute_for_inspect(:name)
 # =&gt; '&quot;David Heinemeier Hansson David Heinemeier Hansson D...&quot;'

@@ -8,7 +8,7 @@ such as <tt>:conditions</tt>, <tt>:order</tt>, <tt>:group</tt>,
 
 <p>There are two basic forms of output:</p>
 
-<pre>* Single aggregate value: The single value is type cast to Fixnum for COUNT, Float
+<pre data-language="ruby">* Single aggregate value: The single value is type cast to Fixnum for COUNT, Float
   for AVG, and the given column's type for everything else.
 * Grouped values: This returns an ordered hash of the values and groups them by the
   &lt;tt&gt;:group&lt;/tt&gt; option.  It takes either a column name, or the name of a belongs_to association.
@@ -57,7 +57,7 @@ such as SELECT COUNT(DISTINCT posts.id) ...</p>
 
 <p>Examples:</p>
 
-<pre>Person.calculate(:count, :all) # The same as Person.count
+<pre data-language="ruby">Person.calculate(:count, :all) # The same as Person.count
 Person.average(:age) # SELECT AVG(age) FROM people...
 Person.minimum(:age, :conditions =&gt; ['last_name != ?', 'Drake']) # Selects the minimum age for
                                                                  # everyone with a last name other than 'Drake'

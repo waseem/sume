@@ -3,7 +3,7 @@
 
 <p>Install a callback for the given event.</p>
 
-<pre>set_callback :save, :before, :before_meth
+<pre data-language="ruby">set_callback :save, :before, :before_meth
 set_callback :save, :after,  :after_meth, :if =&gt; :condition
 set_callback :save, :around, lambda { |r| stuff; result = yield; stuff }</pre>
 
@@ -12,7 +12,7 @@ set_callback :save, :around, lambda { |r| stuff; result = yield; stuff }</pre>
 omitted, <tt>:before</tt> is assumed. This means the first example above
 can also be written as:</p>
 
-<pre>set_callback :save, :before_meth</pre>
+<pre data-language="ruby">set_callback :save, :before_meth</pre>
 
 <p>The callback can specified as a symbol naming an instance method; as a
 proc, lambda, or block; as a string to be instance evaluated; or as an
@@ -50,16 +50,16 @@ see "Per-key conditions" below.</p>
 always the same for a given key. For instance, in Action Pack, we convert
 :only and :except conditions into per-key conditions.</p>
 
-<pre>before_filter :authenticate, :except =&gt; &quot;index&quot;</pre>
+<pre data-language="ruby">before_filter :authenticate, :except =&gt; &quot;index&quot;</pre>
 
 <p>becomes</p>
 
-<pre>set_callback :process_action, :before, :authenticate, :per_key =&gt; {:unless =&gt; proc {|c| c.action_name == &quot;index&quot;}}</pre>
+<pre data-language="ruby">set_callback :process_action, :before, :authenticate, :per_key =&gt; {:unless =&gt; proc {|c| c.action_name == &quot;index&quot;}}</pre>
 
 <p>Per-key conditions are evaluated only once per use of a given key. In the
 case of the above example, you would do:</p>
 
-<pre>run_callbacks(:process_action, action_name) { ... dispatch stuff ... }</pre>
+<pre data-language="ruby">run_callbacks(:process_action, action_name) { ... dispatch stuff ... }</pre>
 
 <p>In that case, each action_name would get its own compiled callback method
 that took into consideration the per_key conditions. This is a speed

@@ -18,7 +18,7 @@ set the limit either, that's used to control the batch sizes.</p>
 
 <p>Example:</p>
 
-<pre>Person.where(&quot;age &gt; 21&quot;).find_in_batches do |group|
+<pre data-language="ruby">Person.where(&quot;age &gt; 21&quot;).find_in_batches do |group|
   sleep(50) # Make sure it doesn't get too crowded in there!
   group.each { |person| person.party_all_night! }
 end</pre>
